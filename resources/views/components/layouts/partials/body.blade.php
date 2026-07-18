@@ -1,0 +1,5 @@
+<body>
+    {{ $slot }}
+
+    @livewireScripts
+</body>
