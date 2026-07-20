@@ -1,0 +1,75 @@
+@blaze()
+
+@props([
+    'type' => 'text', // text, password
+    'name' => null,
+    'id' => null,
+    'placeholder' => null,
+    'value' => null,
+    'autocomplete' => 'off',
+    'spellcheck' => 'false',
+    'required' => false,
+    'disabled' => false,
+    'readonly' => false,
+])
+
+@php
+    $baseClasses = 'w-full relative block border border-solid flex gap-1 h-8 items-center rounded-lg';
+
+    $inputClasses = 'w-full flex-1 px-2.5 py-1 rounded-lg text-sm leading-5 bg-transparent outline-none text-foreground placeholder-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed border-input focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)] focus-within:bg-white';
+
+    $containerClasses = "$baseClasses";
+@endphp
+
+@switch($type)
+    @case('text')
+    @case('email')
+    @case('file')
+        <div {{ $attributes->class($containerClasses) }}>
+            <input
+                type="{{ $type }}"
+                name="{{ $name }}"
+                id="{{ $id }}"
+                @if($placeholder) placeholder="{{ $placeholder }}" @endif
+                value="{{ is_string(old($name)) ? old($name) : ($value ?? '') }}"
+                class="{{ $inputClasses }}"
+                autocomplete="{{ $autocomplete }}"
+                spellcheck="{{ $spellcheck }}"
+                @if($required) required @endif
+                @if($disabled) disabled @endif
+                @if($readonly) readonly @endif
+            >
+        </div>
+        @break
+    @case('password')
+        <div {{ $attributes->class($containerClasses) }} x-data="{ show: false }">
+            <input
+                x-bind:type="show ? 'text' : 'password'"
+                type="{{ $type }}"
+                name="{{ $name }}"
+                id="{{ $id }}"
+                @if($placeholder) placeholder="{{ $placeholder }}" @endif
+                value="{{ is_string(old($name)) ? old($name) : ($value ?? '') }}"
+                class="{{ $inputClasses }}"
+                autocomplete="{{ $autocomplete }}"
+                spellcheck="{{ $spellcheck }}"
+                @if($required) required @endif
+                @if($disabled) disabled @endif
+                @if($readonly) readonly @endif
+            >
+            <button
+                type="button"
+                @click="show = !show"
+                aria-label="Show password"
+                x-bind:aria-label="show ? 'Hide password' : 'Show password'"
+                x-bind:aria-pressed="show"
+                class="text-muted-foreground hover:text-foreground focus-visible:ring-ring/50 absolute inset-y-0 inset-e-0 flex items-center rounded-md px-3 outline-none transition-colors focus-visible:ring-3"
+            >
+                {{-- eye (password hidden) --}}
+                <x-ui.icon.eye x-show="!show" size="sm"/>
+                {{-- eye-off (password visible) --}}
+                <x-ui.icon.eye-off x-show="show" size="sm"/>
+            </button>
+        </div>
+        @break
+@endswitch
