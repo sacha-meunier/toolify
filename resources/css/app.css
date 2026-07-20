@@ -3,23 +3,42 @@
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
-@custom-variant dark (&:where([data-theme="dark"] *));
-
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+    /* Fonts */
     --font-sans: var(--font-sans);
     --font-heading: var(--font-heading);
     --font-mono: var(--font-mono);
-    --radius-big: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
+
+    /* Radius scale (derived from --radius) */
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
+    --radius-xl: calc(var(--radius) + 4px);
+
+    /* Spacing base (every p-*, gap-*, w-*… derives from this) */
+    --spacing: var(--spacing);
+
+    /* Letter-spacing scale (derived from --tracking-normal) */
+    --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
+    --tracking-tight: calc(var(--tracking-normal) - 0.025em);
+    --tracking-normal: var(--tracking-normal);
+    --tracking-wide: calc(var(--tracking-normal) + 0.025em);
+    --tracking-wider: calc(var(--tracking-normal) + 0.05em);
+    --tracking-widest: calc(var(--tracking-normal) + 0.1em);
+
+    /* Box-shadow scale */
+    --shadow-2xs: var(--shadow-2xs);
+    --shadow-xs: var(--shadow-xs);
+    --shadow-sm: var(--shadow-sm);
+    --shadow: var(--shadow);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --shadow-xl: var(--shadow-xl);
+    --shadow-2xl: var(--shadow-2xl);
+
+    /* Colors */
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --color-card: var(--card);
@@ -53,13 +72,26 @@
 
 :root {
     --radius: 0.625rem;
+    --spacing: .25rem;
+    --tracking-normal: 0em;
+    --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+    --font-heading: "Geist", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, monospace;
+    --shadow-2xs: 0 1px 3px 0px oklch(0 0 0/.05);
+    --shadow-xs: 0 1px 3px 0px oklch(0 0 0/.05);
+    --shadow-sm: 0 1px 3px 0px oklch(0 0 0/.1), 0 1px 2px -1px oklch(0 0 0/.1);
+    --shadow: 0 1px 3px 0px oklch(0 0 0/.1), 0 1px 2px -1px oklch(0 0 0/.1);
+    --shadow-md: 0 1px 3px 0px oklch(0 0 0/.1), 0 2px 4px -1px oklch(0 0 0/.1);
+    --shadow-lg: 0 1px 3px 0px oklch(0 0 0/.1), 0 4px 6px -1px oklch(0 0 0/.1);
+    --shadow-xl: 0 1px 3px 0px oklch(0 0 0/.1), 0 8px 10px -1px oklch(0 0 0/.1);
+    --shadow-2xl: 0 1px 3px 0px oklch(0 0 0/.25);
     --background: oklch(1 0 0);
-    --foreground: oklch(0% 0 0);
+    --foreground: oklch(0 0 0);
     --card: oklch(1 0 0);
-    --card-foreground: oklch(0% 0 0);
+    --card-foreground: oklch(0 0 0);
     --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0% 0 0);
-    --primary: oklch(0% 0 0);
+    --popover-foreground: oklch(0 0 0);
+    --primary: oklch(0 0 0);
     --primary-foreground: oklch(0.985 0 0);
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
@@ -73,20 +105,26 @@
     --input: oklch(0.922 0 0);
     --ring: oklch(0.708 0 0);
     --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0% 0 0);
+    --sidebar-foreground: oklch(0 0 0);
     --sidebar-primary: oklch(0.205 0 0);
     --sidebar-primary-foreground: oklch(0.985 0 0);
     --sidebar-accent: oklch(0.97 0 0);
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
-    --surface: oklch(0.98 0 0);
-    --surface-foreground: var(--foreground);
-    --selection: oklch(0% 0 0);
+    --selection: oklch(0 0 0);
     --selection-foreground: oklch(1 0 0);
 }
 
-[data-theme="dark"] {
+.dark {
+    --shadow-2xs: 0 1px 3px 0px oklch(0 0 0/.15);
+    --shadow-xs: 0 1px 3px 0px oklch(0 0 0/.15);
+    --shadow-sm: 0 1px 3px 0px oklch(0 0 0/.3), 0 1px 2px -1px oklch(0 0 0/.3);
+    --shadow: 0 1px 3px 0px oklch(0 0 0/.3), 0 1px 2px -1px oklch(0 0 0/.3);
+    --shadow-md: 0 1px 3px 0px oklch(0 0 0/.3), 0 2px 4px -1px oklch(0 0 0/.3);
+    --shadow-lg: 0 1px 3px 0px oklch(0 0 0/.3), 0 4px 6px -1px oklch(0 0 0/.3);
+    --shadow-xl: 0 1px 3px 0px oklch(0 0 0/.3), 0 8px 10px -1px oklch(0 0 0/.3);
+    --shadow-2xl: 0 1px 3px 0px oklch(0 0 0/.5);
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.205 0 0);
@@ -135,6 +173,7 @@
 
     html {
         @apply overscroll-y-none;
+        scrollbar-color: oklch(0 0 0 / 50%) transparent;
     }
 
     body {
