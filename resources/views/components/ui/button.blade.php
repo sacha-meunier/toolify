@@ -1,46 +1,76 @@
 @blaze()
 
 @props([
-    'variant' => 'outline', // primary, secondary, destructive, outline, ghost
+    'variant' => 'outline', // primary, secondary, destructive, outline, ghost, link
     'type' => 'button', // button, a
-    'align' => 'center', // start, end, center
-    'size' => 'default', // default, xs, md, lg
-    'square' => null,
+    'href' => null,
+    'size' => 'default', // default, xs, sm, lg, icon, icon-xs, icon-sm, icon-lg
+    'label' => null, // label used when don‘t want slot and closing tag
+    'icon' => null,
 ])
 
 @php
-    // Button should be a square if it has no text contents...
-    $square ??= $slot->isEmpty();
-
-    $baseClasses = "relative inline-flex items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none extend-touch-target";
+    $baseClasses = "relative inline-flex items-center justify-center font-medium whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none &_svg]:pointer-events-none extend-touch-target shrink-0";
 
     $sizeClasses = match ($size) {
-        'xs' => 'h-6 text-xs rounded-md gap-1' . ' ' . ($square ? 'w-6' : 'px-2'),
-        'default' => 'h-8 text-sm rounded-lg gap-1.5' . ' ' . ($square ? 'w-8' : 'px-2.5'),
-        'sm' => 'h-7 text-xs rounded-md gap-1' . ' ' . ($square ? 'w-7' : 'px-2.5'),
-        'lg' => 'h-9 text-sm rounded-lg gap-1.5' . ' ' . ($square ? 'w-9' : 'px-2.5'),
+        'xs' => 'h-6 text-xs rounded-md gap-1 px-2',
+        'sm' => 'h-7 text-xs rounded-md gap-1 px-2.5',
+        'default' => 'h-8 text-sm rounded-lg gap-1.5 px-2.5',
+        'lg' => 'h-9 text-sm rounded-lg gap-1.5 px-2.5',
+        'icon-xs' => 'size-6 rounded-lg',
+        'icon-sm' => 'size-7 rounded-lg',
+        'icon' => 'size-8 rounded-lg',
+        'icon-lg' => 'size-9 rounded-lg',
     };
 
     $variantClasses = match ($variant) {
-        'primary' => 'bg-primary text-primary-foreground hover:opacity-80 focus-visible:ring-3 focus-visible:ring-ring/50',
-        'secondary' => 'bg-secondary text-secondary-foreground hover:opacity-70 focus-visible:ring-3 focus-visible:ring-ring/50',
-        'destructive' => 'bg-destructive text-destructive-foreground hover:opacity-70 focus-visible:ring-3 focus-visible:ring-ring/50',
+        'primary' => 'bg-primary text-primary-foreground hover:bg-primary/80 focus-visible:ring-3 focus-visible:ring-ring/50',
+        'secondary' => 'bg-secondary text-secondary-foreground hover:bg-secondary/70 focus-visible:ring-3 focus-visible:ring-ring/50',
+        'destructive' => 'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:ring-3 focus-visible:ring-destructive/20',
         'outline' => 'bg-background text-foreground border border-border hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50',
         'ghost' => 'text-foreground hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50',
+        'link' => 'text-primary underline-offset-4 hover:underline',
     };
 
-    $alignClasses = match ($align) {
-        'start' => 'justify-start',
-        'center' => 'justify-center',
-        'end' => 'justify-end',
+    $classes = "$baseClasses $sizeClasses $variantClasses";
+
+    $iconSize = match ($size) {
+        'icon-xs' => 'xs',
+        'icon-sm' => 'sm',
+        'icon' => 'default',
+        'icon-lg' => 'lg',
+        default => $size,
     };
 
-    $classes = "$baseClasses $sizeClasses $variantClasses $alignClasses";
+    $tag = $href ? 'a' : 'button';
 
+    $trailingIcon = $attributes->get('icon:trailing');
 @endphp
 
-@if ($type === 'a' || $attributes->has('href'))
-    <a {{ $attributes->class($classes) }}>{{ $slot }}</a>
-@else
-    <button type="{{ $type }}" {{ $attributes->class($classes) }}>{{ $slot }}</button>
-@endif
+@switch($tag)
+    @case('a')
+        <a href="{{ $href }}" {{ $attributes->except('icon:trailing')->class($classes) }}>
+            @if ($icon)
+                <x-dynamic-component :size="$iconSize" :component="'ui.icon.'.$icon"/>
+            @endif
+            {{ $label }}
+            {{ $slot }}
+            @if ($trailingIcon)
+                <x-dynamic-component :size="$iconSize" :component="'ui.icon.'.$trailingIcon"/>
+            @endif
+        </a>
+        @break
+
+    @case('button')
+        <button type="{{ $type }}" {{ $attributes->except('icon:trailing')->class($classes) }}>
+            @if ($icon)
+                <x-dynamic-component :size="$iconSize" :component="'ui.icon.'.$icon"/>
+            @endif
+            {{ $label }}
+            {{ $slot }}
+            @if ($trailingIcon)
+                <x-dynamic-component :size="$iconSize" :component="'ui.icon.'.$trailingIcon"/>
+            @endif
+        </button>
+        @break
+@endswitch
