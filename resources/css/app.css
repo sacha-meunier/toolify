@@ -172,8 +172,8 @@
     }
 
     html {
-        @apply overscroll-y-none;
-        scrollbar-color: oklch(0 0 0 / 50%) transparent;
+        @apply overscroll-y-none overflow-y-scroll;
+        scrollbar-color: oklch(0 0 0 / 50%) var(--muted);
     }
 
     body {
