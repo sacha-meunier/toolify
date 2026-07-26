@@ -1,7 +1,7 @@
 @blaze()
 
 @props([
-    'type' => 'text', // text, password
+    'type' => 'text', // text, email, file, password
     'name' => null,
     'id' => null,
     'placeholder' => null,
@@ -19,14 +19,20 @@
     $inputClasses = 'w-full flex-1 px-2.5 py-1 rounded-lg text-sm leading-5 bg-transparent outline-none text-foreground placeholder-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed border-input focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)] focus-within:bg-white';
 
     $containerClasses = "$baseClasses";
+
+    // Binding directives (wire:model, x-model, ...) must land on the actual <input>,
+    // not the wrapping container, otherwise the directives don't work.
+    $inputAttributes = $attributes->whereStartsWith(['wire:', 'x-model']);
+    $containerAttributes = $attributes->whereDoesntStartWith(['wire:', 'x-model']);
 @endphp
 
 @switch($type)
     @case('text')
     @case('email')
     @case('file')
-        <div {{ $attributes->class($containerClasses) }}>
+        <div {{ $containerAttributes->class($containerClasses) }}>
             <input
+                {{ $inputAttributes }}
                 type="{{ $type }}"
                 name="{{ $name }}"
                 id="{{ $id }}"
@@ -42,8 +48,9 @@
         </div>
         @break
     @case('password')
-        <div {{ $attributes->class($containerClasses) }} x-data="{ show: false }">
+        <div {{ $containerAttributes->class($containerClasses) }} x-data="{ show: false }">
             <input
+                {{ $inputAttributes }}
                 x-bind:type="show ? 'text' : 'password'"
                 type="{{ $type }}"
                 name="{{ $name }}"

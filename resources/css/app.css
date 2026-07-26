@@ -180,6 +180,10 @@
         font-synthesis-weight: none;
         text-rendering: optimizeLegibility;
     }
+
+    [x-cloak] {
+        display: none !important;
+    }
 }
 
 /* Extend the touch target area on mobile */
@@ -188,3 +192,68 @@
         @apply relative touch-manipulation after:absolute after:-inset-2;
     }
 }
+
+/* Slide-fade transitions used between auth wizard steps (e.g. auth sign up),
+   Uses Livewire's wire:transition + #[Transition(type: ...)] on the swapping action. */
+html:active-view-transition-type(forward) {
+    &::view-transition-old(content) {
+        animation: slide-out-to-left 500ms forwards;
+    }
+    &::view-transition-new(content) {
+        animation: slide-in-from-right 500ms forwards;
+    }
+}
+
+html:active-view-transition-type(backward) {
+    &::view-transition-old(content) {
+        animation: slide-out-to-right 500ms forwards;
+    }
+    &::view-transition-new(content) {
+        animation: slide-in-from-left 500ms forwards;
+    }
+}
+
+
+@keyframes slide-in-from-right {
+    from {
+        transform: translateX(50%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-from-left {
+    from {
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes slide-out-to-left {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-to-right {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(50%);
+        opacity: 0;
+    }
+}
+
