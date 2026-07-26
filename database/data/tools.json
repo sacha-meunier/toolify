@@ -1,0 +1,426 @@
+[
+    {
+        "name": "Linear",
+        "company": "Linear Inc.",
+        "tagline": "Issue tracking built for high-performance teams",
+        "description": "Linear is a project and issue tracking tool designed for speed, with a focus on keyboard-first workflows, cycles, and roadmaps for product teams.",
+        "website_url": "https://linear.app",
+        "categories": [
+            "productivity",
+            "collaboration"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Notion",
+        "company": "Notion Inc.",
+        "tagline": "One workspace for notes, docs, and projects",
+        "description": "Notion combines notes, wikis, and project management into a single connected workspace with flexible blocks and databases.",
+        "website_url": "https://notion.so",
+        "categories": [
+            "productivity",
+            "collaboration"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Figma",
+        "company": "Figma Inc.",
+        "tagline": "Collaborative interface design tool",
+        "description": "Figma is a browser-based design and prototyping tool that lets teams collaborate on interfaces in real time.",
+        "website_url": "https://figma.com",
+        "categories": [
+            "productivity",
+            "collaboration"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "name": "Claude",
+        "company": "Claude Inc.",
+        "tagline": "AI assistant for reasoning, writing, and code",
+        "description": "Claude is Anthropic's family of large language models, available as a chat assistant and via API for building AI-powered products.",
+        "website_url": "https://claude.ai",
+        "categories": [
+            "artificial_intelligence"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Slack",
+        "company": "Slack Inc.",
+        "tagline": "Team communication and collaboration hub",
+        "description": "Slack is a messaging platform for teams, organizing conversations into channels with deep integrations across the software stack.",
+        "website_url": "https://slack.com",
+        "categories": [
+            "communication",
+            "collaboration"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "GitHub",
+        "company": "GitHub Inc.",
+        "tagline": "Code hosting, review, and CI/CD platform",
+        "description": "GitHub hosts Git repositories and provides pull requests, issues, actions, and project boards for software teams.",
+        "website_url": "https://github.com",
+        "categories": [
+            "developer_tools"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Vercel",
+        "company": "Vercel Inc.",
+        "tagline": "Frontend cloud for deploying web apps",
+        "description": "Vercel provides hosting, edge functions, and CI/CD tuned for frontend frameworks like Next.js.",
+        "website_url": "https://vercel.com",
+        "categories": [
+            "developer_tools",
+            "utilities"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web"
+        ]
+    },
+    {
+        "name": "Stripe",
+        "company": "Stripe Inc.",
+        "tagline": "Payments infrastructure for the internet",
+        "description": "Stripe provides APIs for accepting payments, managing subscriptions, and handling billing for online businesses.",
+        "website_url": "https://stripe.com",
+        "categories": [
+            "finance",
+            "business"
+        ],
+        "pricing": "paid",
+        "platforms": [
+            "web"
+        ]
+    },
+    {
+        "name": "Trello",
+        "company": "Trello Inc.",
+        "tagline": "Visual task boards for any workflow",
+        "description": "Trello organizes work into boards, lists, and cards, making it easy to track tasks and collaborate visually.",
+        "website_url": "https://trello.com",
+        "categories": [
+            "productivity",
+            "collaboration"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Asana",
+        "company": "Asana Inc.",
+        "tagline": "Work management for teams of all sizes",
+        "description": "Asana helps teams plan, track, and manage work across projects with timelines, boards, and automation rules.",
+        "website_url": "https://asana.com",
+        "categories": [
+            "productivity",
+            "collaboration"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Zoom",
+        "company": "Zoom Inc.",
+        "tagline": "Video conferencing for meetings and webinars",
+        "description": "Zoom provides video and audio conferencing, webinars, and screen sharing for remote collaboration.",
+        "website_url": "https://zoom.us",
+        "categories": [
+            "communication"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Airtable",
+        "company": "Airtable Inc.",
+        "tagline": "Spreadsheet-database hybrid for building apps",
+        "description": "Airtable combines the flexibility of a spreadsheet with the power of a database, letting teams build custom apps and workflows.",
+        "website_url": "https://airtable.com",
+        "categories": [
+            "productivity",
+            "business"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Canva",
+        "company": "Canva Inc.",
+        "tagline": "Drag-and-drop design for everyone",
+        "description": "Canva is an online design tool with templates for social media, presentations, and marketing materials.",
+        "website_url": "https://canva.com",
+        "categories": [
+            "productivity",
+            "photo_and_video"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "HubSpot",
+        "company": "HubSpot Inc.",
+        "tagline": "CRM and marketing platform for growing businesses",
+        "description": "HubSpot offers CRM, marketing, sales, and customer service tools on a single platform for growing businesses.",
+        "website_url": "https://hubspot.com",
+        "categories": [
+            "crm",
+            "business"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Zapier",
+        "company": "Zapier Inc.",
+        "tagline": "Automate workflows between your apps",
+        "description": "Zapier connects thousands of apps to automate repetitive tasks without writing code.",
+        "website_url": "https://zapier.com",
+        "categories": [
+            "productivity",
+            "utilities",
+            "developer_tools"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web"
+        ]
+    },
+    {
+        "name": "Miro",
+        "company": "Miro Inc.",
+        "tagline": "Online whiteboard for visual collaboration",
+        "description": "Miro is a collaborative whiteboard platform for brainstorming, diagramming, and workshops with distributed teams.",
+        "website_url": "https://miro.com",
+        "categories": [
+            "productivity",
+            "collaboration"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "GitLab",
+        "company": "GitLab Inc.",
+        "tagline": "DevOps platform for the whole software lifecycle",
+        "description": "GitLab provides source control, CI/CD, and project planning in a single DevOps platform.",
+        "website_url": "https://gitlab.com",
+        "categories": [
+            "developer_tools"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web"
+        ]
+    },
+    {
+        "name": "Discord",
+        "company": "Discord Inc.",
+        "tagline": "Voice, video, and text chat for communities",
+        "description": "Discord is a communication platform built around servers and channels, popular with communities and teams alike.",
+        "website_url": "https://discord.com",
+        "categories": [
+            "communication",
+            "social_networking",
+            "entertainment"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Dropbox",
+        "company": "Dropbox Inc.",
+        "tagline": "Cloud storage and file sync for teams",
+        "description": "Dropbox syncs and stores files in the cloud, with sharing and collaboration features for teams.",
+        "website_url": "https://dropbox.com",
+        "categories": [
+            "utilities",
+            "productivity"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Loom",
+        "company": "Loom Inc.",
+        "tagline": "Async video messaging for work",
+        "description": "Loom lets you quickly record and share video messages of your screen and camera for async communication.",
+        "website_url": "https://loom.com",
+        "categories": [
+            "communication",
+            "productivity"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Apple TV",
+        "company": "Apple Inc.",
+        "tagline": "Stream shows, movies, and live sports",
+        "description": "Apple TV is Apple's video app for streaming Apple TV+ originals, movies, and shows, and for accessing live sports and other streaming services in one place.",
+        "website_url": "https://www.apple.com/apple-tv-app/",
+        "categories": [
+            "entertainment"
+        ],
+        "pricing": "freemium",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Apple Music",
+        "company": "Apple Inc.",
+        "tagline": "Streaming music with over 100 million songs",
+        "description": "Apple Music is a subscription-based streaming service offering on-demand access to a massive music catalog, curated playlists, and lossless audio.",
+        "website_url": "https://www.apple.com/apple-music/",
+        "categories": [
+            "entertainment"
+        ],
+        "pricing": "subscription",
+        "platforms": [
+            "web",
+            "macos",
+            "windows",
+            "ios",
+            "android"
+        ]
+    },
+    {
+        "name": "Apple Notes",
+        "company": "Apple Inc.",
+        "tagline": "Quick notes, sketches, and checklists",
+        "description": "Apple Notes is a lightweight note-taking app built into Apple devices, supporting rich text, sketches, scanned documents, and folder organization.",
+        "website_url": "https://www.apple.com/",
+        "categories": [
+            "productivity"
+        ],
+        "pricing": "free",
+        "platforms": [
+            "macos",
+            "ios"
+        ]
+    },
+    {
+        "name": "Apple Pages",
+        "company": "Apple Inc.",
+        "tagline": "Beautiful documents made simple",
+        "description": "Apple Pages is a word processing and page layout application that lets users create documents, reports, and designed pages with templates and real-time collaboration.",
+        "website_url": "https://www.apple.com/pages/",
+        "categories": [
+            "productivity"
+        ],
+        "pricing": "free",
+        "platforms": [
+            "macos",
+            "ios"
+        ]
+    }
+]
