@@ -31,7 +31,7 @@
     </nav>
 
     <div class="flex shrink-0 items-center justify-between px-4 py-3.5">
-        <div class="size-6 shrink-0 rounded-full border border-border bg-muted"></div>
+        <x-domain.app.sidebar.account/>
         <x-ui.button variant="outline" size="icon-xs" label="?"/>
     </div>
 </aside>
