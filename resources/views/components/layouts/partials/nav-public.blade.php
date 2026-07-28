@@ -17,7 +17,13 @@
 
         <div class="hidden items-center gap-1 lg:flex">
             @foreach ($links as $route => $label)
-                <x-ui.button variant="ghost" size="lg" :href="route($route)" :label="$label"/>
+                <x-ui.button
+                    variant="ghost"
+                    size="lg"
+                    :href="route($route)"
+                    :label="$label"
+                    :class="request()->routeIs($route) ? 'bg-muted text-foreground font-medium' : ''"
+                />
             @endforeach
         </div>
 
@@ -47,7 +53,13 @@
         class="absolute inset-x-0 top-full z-50 flex flex-col gap-1 border-b border-border bg-background p-4 shadow-xs lg:hidden"
     >
         @foreach ($links as $route => $label)
-            <x-ui.button variant="ghost" size="lg" class="w-full justify-start" :href="route($route)" :label="$label"/>
+            <x-ui.button
+                variant="ghost"
+                size="lg"
+                :href="route($route)"
+                :label="$label"
+                :class="'w-full justify-start '.(request()->routeIs($route) ? 'bg-muted text-foreground font-medium' : '')"
+            />
         @endforeach
 
         <div class="mt-2 flex flex-col gap-2 border-t border-border pt-4">
