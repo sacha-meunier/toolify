@@ -1,0 +1,18 @@
+@props([
+    'tools',
+    'emptyIcon' => 'inbox',
+    'emptyTitle' => null,
+    'emptyDescription' => null,
+])
+
+@if ($tools->isEmpty())
+    <div class="border border-border rounded-md">
+        <x-domain.app.empty-state :icon="$emptyIcon" :title="$emptyTitle" :description="$emptyDescription"/>
+    </div>
+@else
+    <div class="flex flex-col divide-y border border-border rounded-md">
+        @foreach ($tools as $tool)
+            <x-domain.app.tool-list-item :tool="$tool"/>
+        @endforeach
+    </div>
+@endif

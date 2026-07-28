@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Team;
+use App\Models\Workspace;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +18,12 @@ class TeamFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->unique()->word();
+
         return [
-            //
+            'workspace_id' => Workspace::factory(),
+            'name' => $name,
+            'slug' => str($name)->slug().'-'.fake()->unique()->numberBetween(1, 1000000),
         ];
     }
 }

@@ -20,7 +20,7 @@ new class extends Component
         </p>
 
         <x-slot:actions>
-            <x-ui.button variant="primary" icon="layer" label="Add to stack"/>
+            <livewire:domain.app.dropdown.add-to-stack-menu :tool="$tool" :key="'add-to-stack-'.$tool->id"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 

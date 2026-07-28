@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Enums\Category;
+use App\Enums\Platform;
+use App\Enums\Pricing;
+use App\Models\Team;
 use App\Models\Tool;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,8 +21,19 @@ class ToolFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->unique()->company();
+
         return [
-            //
+            'team_id' => Team::factory(),
+            'name' => $name,
+            'slug' => str($name)->slug(),
+            'tagline' => fake()->catchPhrase(),
+            'description' => fake()->paragraph(),
+            'website_url' => fake()->url(),
+            'logo_url' => null,
+            'categories' => [Category::Business->value],
+            'pricing' => Pricing::Free->value,
+            'platforms' => [Platform::Web->value],
         ];
     }
 }

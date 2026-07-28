@@ -19,10 +19,11 @@ class ToolSeeder extends Seeder
     public function run(): void
     {
         $admin = User::query()->where('email', 'admin@toolify.com')->firstOrFail();
+        $testUser = User::query()->where('email', 'test@example.com')->firstOrFail();
 
         $tools = json_decode(file_get_contents(database_path('data/tools.json')), true);
 
-        foreach ($tools as $tool) {
+        foreach ($tools as $index => $tool) {
             $toolSlug = Str::slug($tool['name']);
 
             $workspace = Workspace::query()->updateOrCreate(
@@ -49,6 +50,12 @@ class ToolSeeder extends Seeder
                     'platforms' => $tool['platforms'],
                 ]
             );
+
+            /* Give the test account membership in the first seeded workspace/team, so its stacks can be tried out locally. */
+            if ($index === 0) {
+                $workspace->members()->syncWithoutDetaching($testUser);
+                $team->members()->syncWithoutDetaching($testUser);
+            }
         }
     }
 }
