@@ -5,6 +5,12 @@
         "tagline": "Issue tracking built for high-performance teams",
         "description": "Linear is a project and issue tracking tool designed for speed, with a focus on keyboard-first workflows, cycles, and roadmaps for product teams.",
         "website_url": "https://linear.app",
+        "logo_url": "tools/linear/logo.png",
+        "banner_url": "tools/linear/banner.jpg",
+        "gallery": [
+            "tools/linear/gallery-1.jpg",
+            "tools/linear/gallery-2.jpg"
+        ],
         "categories": [
             "productivity",
             "collaboration"
@@ -24,6 +30,12 @@
         "tagline": "One workspace for notes, docs, and projects",
         "description": "Notion combines notes, wikis, and project management into a single connected workspace with flexible blocks and databases.",
         "website_url": "https://notion.so",
+        "logo_url": "tools/notion/logo.png",
+        "banner_url": "tools/notion/banner.jpg",
+        "gallery": [
+            "tools/notion/gallery-1.jpg",
+            "tools/notion/gallery-2.jpg"
+        ],
         "categories": [
             "productivity",
             "collaboration"
@@ -43,6 +55,12 @@
         "tagline": "Collaborative interface design tool",
         "description": "Figma is a browser-based design and prototyping tool that lets teams collaborate on interfaces in real time.",
         "website_url": "https://figma.com",
+        "logo_url": "tools/figma/logo.png",
+        "banner_url": "tools/figma/banner.jpg",
+        "gallery": [
+            "tools/figma/gallery-1.jpg",
+            "tools/figma/gallery-2.jpg"
+        ],
         "categories": [
             "productivity",
             "collaboration"
@@ -60,6 +78,12 @@
         "tagline": "AI assistant for reasoning, writing, and code",
         "description": "Claude is Anthropic's family of large language models, available as a chat assistant and via API for building AI-powered products.",
         "website_url": "https://claude.ai",
+        "logo_url": "tools/claude/logo.png",
+        "banner_url": "tools/claude/banner.jpg",
+        "gallery": [
+            "tools/claude/gallery-1.jpg",
+            "tools/claude/gallery-2.jpg"
+        ],
         "categories": [
             "artificial_intelligence"
         ],
@@ -78,6 +102,12 @@
         "tagline": "Team communication and collaboration hub",
         "description": "Slack is a messaging platform for teams, organizing conversations into channels with deep integrations across the software stack.",
         "website_url": "https://slack.com",
+        "logo_url": "tools/slack/logo.png",
+        "banner_url": "tools/slack/banner.jpg",
+        "gallery": [
+            "tools/slack/gallery-1.jpg",
+            "tools/slack/gallery-2.jpg"
+        ],
         "categories": [
             "communication",
             "collaboration"
@@ -97,6 +127,12 @@
         "tagline": "Code hosting, review, and CI/CD platform",
         "description": "GitHub hosts Git repositories and provides pull requests, issues, actions, and project boards for software teams.",
         "website_url": "https://github.com",
+        "logo_url": "tools/github/logo.png",
+        "banner_url": "tools/github/banner.jpg",
+        "gallery": [
+            "tools/github/gallery-1.jpg",
+            "tools/github/gallery-2.jpg"
+        ],
         "categories": [
             "developer_tools"
         ],
@@ -115,6 +151,12 @@
         "tagline": "Frontend cloud for deploying web apps",
         "description": "Vercel provides hosting, edge functions, and CI/CD tuned for frontend frameworks like Next.js.",
         "website_url": "https://vercel.com",
+        "logo_url": "tools/vercel/logo.png",
+        "banner_url": "tools/vercel/banner.jpg",
+        "gallery": [
+            "tools/vercel/gallery-1.jpg",
+            "tools/vercel/gallery-2.jpg"
+        ],
         "categories": [
             "developer_tools",
             "utilities"
@@ -130,6 +172,12 @@
         "tagline": "Payments infrastructure for the internet",
         "description": "Stripe provides APIs for accepting payments, managing subscriptions, and handling billing for online businesses.",
         "website_url": "https://stripe.com",
+        "logo_url": "tools/stripe/logo.png",
+        "banner_url": "tools/stripe/banner.jpg",
+        "gallery": [
+            "tools/stripe/gallery-1.jpg",
+            "tools/stripe/gallery-2.jpg"
+        ],
         "categories": [
             "finance",
             "business"
@@ -145,6 +193,12 @@
         "tagline": "Visual task boards for any workflow",
         "description": "Trello organizes work into boards, lists, and cards, making it easy to track tasks and collaborate visually.",
         "website_url": "https://trello.com",
+        "logo_url": "tools/trello/logo.png",
+        "banner_url": "tools/trello/banner.jpg",
+        "gallery": [
+            "tools/trello/gallery-1.jpg",
+            "tools/trello/gallery-2.jpg"
+        ],
         "categories": [
             "productivity",
             "collaboration"
@@ -164,6 +218,12 @@
         "tagline": "Work management for teams of all sizes",
         "description": "Asana helps teams plan, track, and manage work across projects with timelines, boards, and automation rules.",
         "website_url": "https://asana.com",
+        "logo_url": "tools/asana/logo.png",
+        "banner_url": "tools/asana/banner.jpg",
+        "gallery": [
+            "tools/asana/gallery-1.jpg",
+            "tools/asana/gallery-2.jpg"
+        ],
         "categories": [
             "productivity",
             "collaboration"
@@ -183,6 +243,12 @@
         "tagline": "Video conferencing for meetings and webinars",
         "description": "Zoom provides video and audio conferencing, webinars, and screen sharing for remote collaboration.",
         "website_url": "https://zoom.us",
+        "logo_url": "tools/zoom/logo.png",
+        "banner_url": "tools/zoom/banner.jpg",
+        "gallery": [
+            "tools/zoom/gallery-1.jpg",
+            "tools/zoom/gallery-2.jpg"
+        ],
         "categories": [
             "communication"
         ],
@@ -201,6 +267,12 @@
         "tagline": "Spreadsheet-database hybrid for building apps",
         "description": "Airtable combines the flexibility of a spreadsheet with the power of a database, letting teams build custom apps and workflows.",
         "website_url": "https://airtable.com",
+        "logo_url": "tools/airtable/logo.png",
+        "banner_url": "tools/airtable/banner.jpg",
+        "gallery": [
+            "tools/airtable/gallery-1.jpg",
+            "tools/airtable/gallery-2.jpg"
+        ],
         "categories": [
             "productivity",
             "business"
@@ -220,6 +292,12 @@
         "tagline": "Drag-and-drop design for everyone",
         "description": "Canva is an online design tool with templates for social media, presentations, and marketing materials.",
         "website_url": "https://canva.com",
+        "logo_url": "tools/canva/logo.png",
+        "banner_url": "tools/canva/banner.jpg",
+        "gallery": [
+            "tools/canva/gallery-1.jpg",
+            "tools/canva/gallery-2.jpg"
+        ],
         "categories": [
             "productivity",
             "photo_and_video"
@@ -239,6 +317,12 @@
         "tagline": "CRM and marketing platform for growing businesses",
         "description": "HubSpot offers CRM, marketing, sales, and customer service tools on a single platform for growing businesses.",
         "website_url": "https://hubspot.com",
+        "logo_url": "tools/hubspot/logo.png",
+        "banner_url": "tools/hubspot/banner.jpg",
+        "gallery": [
+            "tools/hubspot/gallery-1.jpg",
+            "tools/hubspot/gallery-2.jpg"
+        ],
         "categories": [
             "crm",
             "business"
@@ -256,6 +340,12 @@
         "tagline": "Automate workflows between your apps",
         "description": "Zapier connects thousands of apps to automate repetitive tasks without writing code.",
         "website_url": "https://zapier.com",
+        "logo_url": "tools/zapier/logo.png",
+        "banner_url": "tools/zapier/banner.jpg",
+        "gallery": [
+            "tools/zapier/gallery-1.jpg",
+            "tools/zapier/gallery-2.jpg"
+        ],
         "categories": [
             "productivity",
             "utilities",
@@ -272,6 +362,12 @@
         "tagline": "Online whiteboard for visual collaboration",
         "description": "Miro is a collaborative whiteboard platform for brainstorming, diagramming, and workshops with distributed teams.",
         "website_url": "https://miro.com",
+        "logo_url": "tools/miro/logo.png",
+        "banner_url": "tools/miro/banner.jpg",
+        "gallery": [
+            "tools/miro/gallery-1.jpg",
+            "tools/miro/gallery-2.jpg"
+        ],
         "categories": [
             "productivity",
             "collaboration"
@@ -291,6 +387,12 @@
         "tagline": "DevOps platform for the whole software lifecycle",
         "description": "GitLab provides source control, CI/CD, and project planning in a single DevOps platform.",
         "website_url": "https://gitlab.com",
+        "logo_url": "tools/gitlab/logo.png",
+        "banner_url": "tools/gitlab/banner.jpg",
+        "gallery": [
+            "tools/gitlab/gallery-1.jpg",
+            "tools/gitlab/gallery-2.jpg"
+        ],
         "categories": [
             "developer_tools"
         ],
@@ -305,6 +407,12 @@
         "tagline": "Voice, video, and text chat for communities",
         "description": "Discord is a communication platform built around servers and channels, popular with communities and teams alike.",
         "website_url": "https://discord.com",
+        "logo_url": "tools/discord/logo.png",
+        "banner_url": "tools/discord/banner.jpg",
+        "gallery": [
+            "tools/discord/gallery-1.jpg",
+            "tools/discord/gallery-2.jpg"
+        ],
         "categories": [
             "communication",
             "social_networking",
@@ -325,6 +433,12 @@
         "tagline": "Cloud storage and file sync for teams",
         "description": "Dropbox syncs and stores files in the cloud, with sharing and collaboration features for teams.",
         "website_url": "https://dropbox.com",
+        "logo_url": "tools/dropbox/logo.png",
+        "banner_url": "tools/dropbox/banner.jpg",
+        "gallery": [
+            "tools/dropbox/gallery-1.jpg",
+            "tools/dropbox/gallery-2.jpg"
+        ],
         "categories": [
             "utilities",
             "productivity"
@@ -344,6 +458,12 @@
         "tagline": "Async video messaging for work",
         "description": "Loom lets you quickly record and share video messages of your screen and camera for async communication.",
         "website_url": "https://loom.com",
+        "logo_url": "tools/loom/logo.png",
+        "banner_url": "tools/loom/banner.jpg",
+        "gallery": [
+            "tools/loom/gallery-1.jpg",
+            "tools/loom/gallery-2.jpg"
+        ],
         "categories": [
             "communication",
             "productivity"
@@ -363,6 +483,7 @@
         "tagline": "Stream shows, movies, and live sports",
         "description": "Apple TV is Apple's video app for streaming Apple TV+ originals, movies, and shows, and for accessing live sports and other streaming services in one place.",
         "website_url": "https://www.apple.com/apple-tv-app/",
+        "logo_url": "tools/apple-tv/logo.png",
         "categories": [
             "entertainment"
         ],
@@ -381,6 +502,7 @@
         "tagline": "Streaming music with over 100 million songs",
         "description": "Apple Music is a subscription-based streaming service offering on-demand access to a massive music catalog, curated playlists, and lossless audio.",
         "website_url": "https://www.apple.com/apple-music/",
+        "logo_url": "tools/apple-music/logo.png",
         "categories": [
             "entertainment"
         ],
@@ -399,6 +521,7 @@
         "tagline": "Quick notes, sketches, and checklists",
         "description": "Apple Notes is a lightweight note-taking app built into Apple devices, supporting rich text, sketches, scanned documents, and folder organization.",
         "website_url": "https://www.apple.com/",
+        "logo_url": "tools/apple-notes/logo.png",
         "categories": [
             "productivity"
         ],
@@ -414,6 +537,7 @@
         "tagline": "Beautiful documents made simple",
         "description": "Apple Pages is a word processing and page layout application that lets users create documents, reports, and designed pages with templates and real-time collaboration.",
         "website_url": "https://www.apple.com/pages/",
+        "logo_url": "tools/apple-pages/logo.png",
         "categories": [
             "productivity"
         ],

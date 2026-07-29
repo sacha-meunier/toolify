@@ -31,6 +31,8 @@ class ToolFactory extends Factory
             'description' => fake()->paragraph(),
             'website_url' => fake()->url(),
             'logo_url' => null,
+            'banner_url' => null,
+            'gallery' => null,
             'categories' => [Category::Business->value],
             'pricing' => Pricing::Free->value,
             'platforms' => [Platform::Web->value],

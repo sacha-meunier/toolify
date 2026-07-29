@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('description');
             $table->string('website_url');
             $table->string('logo_url')->nullable();
+            $table->string('banner_url')->nullable();
+            $table->json('gallery')->nullable();
             $table->json('categories');
             $table->string('pricing');
             $table->json('platforms');

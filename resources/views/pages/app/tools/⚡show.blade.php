@@ -28,7 +28,7 @@ new class extends Component
         {{-- Header --}}
         <section class="flex flex-col gap-6">
             <div class="flex items-start gap-3">
-                <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-sidebar-primary text-sidebar-primary-foreground">
+                <div class="flex size-12 shrink-0 items-center justify-center rounded-lg text-sidebar-primary-foreground">
                     @if ($tool->logo_url)
                         <img src="{{ $tool->logo_url }}" alt="" class="size-full rounded-2xl object-cover">
                     @else
@@ -161,9 +161,13 @@ new class extends Component
             </div>
 
             <div class="flex gap-4 overflow-x-auto">
-                @foreach (['Overview', 'Workflow', 'Collaboration'] as $shot)
+                @foreach (['Overview' => $tool->banner_url, 'Workflow' => $tool->gallery?->get(0), 'Collaboration' => $tool->gallery?->get(1)] as $shot => $image)
                     <div class="w-[320px] shrink-0 overflow-clip rounded-xl border border-foreground/10 bg-card shadow-xs">
-                        <div class="aspect-video w-full bg-gradient-to-br from-muted to-border"></div>
+                        @if ($image)
+                            <img src="{{ $image }}" alt="" class="aspect-video w-full object-cover">
+                        @else
+                            <div class="aspect-video w-full bg-gradient-to-br from-muted to-border"></div>
+                        @endif
 
                         <div class="flex flex-col gap-1 p-4">
                             <p class="text-base font-medium text-card-foreground">{{ $shot }}</p>
