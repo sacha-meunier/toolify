@@ -19,7 +19,7 @@ class ToolSeeder extends Seeder
     public function run(): void
     {
         $admin = User::query()->where('email', 'admin@toolify.com')->firstOrFail();
-        $testUser = User::query()->where('email', 'test@example.com')->firstOrFail();
+        $testUser = User::query()->where('email', 'member@toolify.com')->firstOrFail();
 
         $tools = json_decode(file_get_contents(database_path('data/tools.json')), true);
 
