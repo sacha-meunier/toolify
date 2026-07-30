@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasStack;
+use App\Models\Concerns\HasSurveys;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -31,7 +32,7 @@ use Illuminate\Support\Str;
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, HasStack, Notifiable;
+    use HasFactory, HasStack, HasSurveys, Notifiable;
 
     /**
      * Get the attributes that should be cast.

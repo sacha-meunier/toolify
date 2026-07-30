@@ -14,4 +14,12 @@ class WorkspacePolicy
     {
         return $workspace->hasMember($user);
     }
+
+    /**
+     * Determine whether the user can manage this workspace's surveys.
+     */
+    public function manageSurveys(User $user, Workspace $workspace): bool
+    {
+        return $workspace->hasMember($user);
+    }
 }

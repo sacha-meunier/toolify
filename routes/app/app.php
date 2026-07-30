@@ -10,4 +10,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::livewire('/stack', 'pages::app.stacks.personal')->name('stacks.personal');
     Route::livewire('/stack/workspace', 'pages::app.stacks.workspace')->name('stacks.workspace');
     Route::livewire('/stack/teams/{team:slug}', 'pages::app.stacks.teams.show')->name('stacks.teams.show');
+
+    Route::livewire('/surveys', 'pages::app.surveys.index')->name('surveys.personal')->defaults('scope', 'personal');
+    Route::livewire('/surveys/workspace', 'pages::app.surveys.index')->name('surveys.workspace')->defaults('scope', 'workspace');
+    Route::livewire('/surveys/teams/{team:slug}', 'pages::app.surveys.index')->name('surveys.teams.show')->defaults('scope', 'team');
+    Route::livewire('/surveys/{survey:name}', 'pages::app.surveys.show')->name('surveys.show');
 });

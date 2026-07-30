@@ -14,4 +14,12 @@ class TeamPolicy
     {
         return $team->hasMember($user);
     }
+
+    /**
+     * Determine whether the user can manage this team's surveys.
+     */
+    public function manageSurveys(User $user, Team $team): bool
+    {
+        return $team->hasMember($user);
+    }
 }

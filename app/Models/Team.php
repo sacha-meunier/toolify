@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasStack;
+use App\Models\Concerns\HasSurveys;
 use Database\Factories\TeamFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,7 +25,7 @@ use Illuminate\Support\Carbon;
 class Team extends Model
 {
     /** @use HasFactory<TeamFactory> */
-    use HasFactory, HasStack;
+    use HasFactory, HasStack, HasSurveys;
 
     public function workspace(): BelongsTo
     {

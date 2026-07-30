@@ -1,0 +1,20 @@
+@props([
+    'surveys',
+    'emptyIcon' => 'layer',
+    'emptyTitle' => null,
+    'emptyDescription' => null,
+])
+
+@if ($surveys->isEmpty())
+    <div class="border border-border rounded-md">
+        <x-domain.app.empty-state :icon="$emptyIcon" :title="$emptyTitle" :description="$emptyDescription">
+            {{ $slot ?? '' }}
+        </x-domain.app.empty-state>
+    </div>
+@else
+    <div class="flex flex-col divide-y border border-border rounded-md">
+        @foreach ($surveys as $survey)
+            <x-domain.app.survey-list-item :survey="$survey"/>
+        @endforeach
+    </div>
+@endif

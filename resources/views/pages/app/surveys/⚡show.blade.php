@@ -1,0 +1,110 @@
+<?php
+
+use App\Livewire\Traits\ManagesSurveyForm;
+use App\Models\Survey;
+use App\Models\Team;
+use App\Models\Tool;
+use App\Models\Workspace;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Computed;
+use Livewire\Component;
+
+new class extends Component
+{
+    use ManagesSurveyForm;
+
+    public Survey $survey;
+
+    public function mount(Survey $survey): void
+    {
+        Gate::authorize('view', $survey);
+
+        $this->survey = $survey;
+        $survey->markVisited();
+    }
+
+    #[Computed]
+    public function tools(): Collection
+    {
+        return Tool::matching($this->survey->query ?? '', $this->survey->filters)->orderBy('name')->get();
+    }
+
+    #[Computed]
+    public function scopeLabel(): string
+    {
+        return match (true) {
+            $this->survey->owner instanceof Workspace => 'Workspace',
+            $this->survey->owner instanceof Team => $this->survey->owner->name,
+            default => 'Personal',
+        };
+    }
+
+    #[Computed]
+    public function scopeUrl(): string
+    {
+        return match (true) {
+            $this->survey->owner instanceof Workspace => route('surveys.workspace'),
+            $this->survey->owner instanceof Team => route('surveys.teams.show', $this->survey->owner),
+            default => route('surveys.personal'),
+        };
+    }
+
+    protected function surveyFormOwner(): Model
+    {
+        // This page only ever edits an existing survey (whose scope is fixed at creation),
+        // never creates one, so there's no owner to resolve here.
+        throw new \LogicException('Surveys cannot be created from the show page.');
+    }
+
+    protected function afterSurveyFormSaved(Survey $survey): void
+    {
+        $this->survey->refresh();
+        unset($this->tools, $this->scopeLabel, $this->scopeUrl);
+    }
+};
+?>
+
+<div class="flex flex-col">
+    <x-domain.app.topbar>
+        <x-domain.app.topbar.breadcrumb :items="['Surveys' => route('surveys.personal'), $this->scopeLabel => $this->scopeUrl, $survey->name => null]"/>
+
+        <x-slot:actions>
+            <x-ui.button
+                variant="outline"
+                icon="pen-01"
+                label="Edit"
+                wire:click="openSurveyForm({{ $survey->id }})"
+            />
+        </x-slot:actions>
+    </x-domain.app.topbar>
+
+    <div class="flex flex-col gap-6 px-8 py-8">
+        @if ($this->tools->isNotEmpty())
+            <div class="flex flex-col divide-y border border-border rounded-md">
+                @foreach ($this->tools as $tool)
+                    <x-domain.app.tool-list-item :tool="$tool"/>
+                @endforeach
+            </div>
+        @else
+            <x-domain.app.empty-state
+                icon="search-01"
+                title="No tools match this survey yet"
+                description="You'll be notified as soon as a tool matches your criteria."
+            >
+                <div class="flex items-center gap-2 mt-2">
+                    <x-ui.button
+                        variant="secondary"
+                        icon="pen-01"
+                        label="Edit survey"
+                        wire:click="openSurveyForm({{ $survey->id }})"
+                    />
+                    <x-ui.button variant="outline" label="Notification settings" disabled/>
+                </div>
+            </x-domain.app.empty-state>
+        @endif
+    </div>
+
+    @include('components.domain.app.survey-form-modal')
+</div>

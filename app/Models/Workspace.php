@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasStack;
+use App\Models\Concerns\HasSurveys;
 use Database\Factories\WorkspaceFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,7 +25,7 @@ use Illuminate\Support\Carbon;
 class Workspace extends Model
 {
     /** @use HasFactory<WorkspaceFactory> */
-    use HasFactory, HasStack;
+    use HasFactory, HasStack, HasSurveys;
 
     /**
      * The user who owns this workspace. Null means the workspace is held by Toolify itself.
