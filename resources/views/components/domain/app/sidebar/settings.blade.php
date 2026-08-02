@@ -23,10 +23,10 @@
         <x-domain.app.sidebar.group label="Personal">
             <x-domain.app.sidebar.item :href="route('settings.account.profile')">Profile</x-domain.app.sidebar.item>
             <x-domain.app.sidebar.item :href="route('settings.account.security')">Account & Security</x-domain.app.sidebar.item>
-            <x-domain.app.sidebar.item :href="route('settings.account.preferences')">Preferences</x-domain.app.sidebar.item>
-            <x-domain.app.sidebar.item :href="route('settings.account.display')">Display</x-domain.app.sidebar.item>
-            <x-domain.app.sidebar.item :href="route('settings.account.tracking')">Tracking</x-domain.app.sidebar.item>
-            <x-domain.app.sidebar.item :href="route('settings.account.notifications')">Notifications</x-domain.app.sidebar.item>
+            {{--<x-domain.app.sidebar.item :href="route('settings.account.preferences')">Preferences</x-domain.app.sidebar.item>--}}
+            {{--<x-domain.app.sidebar.item :href="route('settings.account.display')">Display</x-domain.app.sidebar.item>--}}
+            {{--<x-domain.app.sidebar.item :href="route('settings.account.tracking')">Tracking</x-domain.app.sidebar.item>--}}
+            {{--<x-domain.app.sidebar.item :href="route('settings.account.notifications')">Notifications</x-domain.app.sidebar.item>--}}
         </x-domain.app.sidebar.group>
 
         <x-domain.app.sidebar.group label="Workspace">

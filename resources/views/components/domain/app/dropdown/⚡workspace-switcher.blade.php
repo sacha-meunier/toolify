@@ -39,12 +39,21 @@ new class extends Component
     <x-ui.button
         variant="ghost"
         size="sm"
-        icon="command"
         icon:trailing="arrow-down-01"
         class="gap-2 px-1.5 font-semibold text-sidebar-foreground"
-        :label="$this->workspace->name ?? 'Toolify'"
         @click="open = !open"
-    />
+    >
+        <span class="flex size-5 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-[10px] font-medium text-muted-foreground">
+            @if ($this->workspace?->logo_url)
+                <img src="{{ $this->workspace->logo_url }}" alt="" class="size-full object-cover">
+            @elseif ($this->workspace)
+                {{ $this->workspace->initials() }}
+            @else
+                <x-ui.icon.command size="xs"/>
+            @endif
+        </span>
+        {{ $this->workspace->name ?? 'Toolify' }}
+    </x-ui.button>
 
     <div
         x-show="open"
@@ -65,7 +74,7 @@ new class extends Component
                 x-show="hover"
                 x-cloak
                 x-transition
-                class="absolute left-full top-0 ml-1 w-56 overflow-clip rounded-md border border-border bg-background py-1 shadow-xs"
+                class="absolute left-full top-0 ml-1 max-h-56 w-56 overflow-y-auto rounded-md border border-border bg-background py-1 shadow-xs"
             >
                 @forelse ($this->workspaces as $workspace)
                     <button
@@ -77,6 +86,13 @@ new class extends Component
                             size="sm"
                             class="shrink-0 {{ $this->workspace?->id === $workspace->id ? 'text-primary' : 'text-transparent' }}"
                         />
+                        <span class="flex size-5 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-[10px] font-medium text-muted-foreground">
+                            @if ($workspace->logo_url)
+                                <img src="{{ $workspace->logo_url }}" alt="" class="size-full object-cover">
+                            @else
+                                {{ $workspace->initials() }}
+                            @endif
+                        </span>
                         <span class="truncate">{{ $workspace->name }}</span>
                     </button>
                 @empty

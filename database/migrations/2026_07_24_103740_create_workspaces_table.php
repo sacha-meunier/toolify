@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('owner_id')->nullable()->constrained('users')->nullOnDelete();
             $table->string('name');
+            $table->string('logo_url')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
         });
