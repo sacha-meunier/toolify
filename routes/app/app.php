@@ -15,4 +15,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::livewire('/surveys/workspace', 'pages::app.surveys.index')->name('surveys.workspace')->defaults('scope', 'workspace');
     Route::livewire('/surveys/teams/{team:slug}', 'pages::app.surveys.index')->name('surveys.teams.show')->defaults('scope', 'team');
     Route::livewire('/surveys/{survey:name}', 'pages::app.surveys.show')->name('surveys.show');
+
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::prefix('account')->name('account.')->group(function () {
+            Route::livewire('/profile', 'pages::app.settings.account.profile')->name('profile');
 });

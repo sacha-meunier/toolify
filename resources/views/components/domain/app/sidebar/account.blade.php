@@ -7,10 +7,14 @@
 <div class="relative" x-data="{ open: false }" @click.outside="open = false">
     <button
         type="button"
-        class="flex size-6 shrink-0 items-center justify-center rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground cursor-pointer extend-touch-target"
+        class="flex size-6 shrink-0 items-center justify-center overflow-clip rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground cursor-pointer extend-touch-target"
         @click="open = !open"
     >
-        {{ $user->initials() }}
+        @if ($user->avatar_url)
+            <img src="{{ $user->avatar_url }}" alt="" class="size-full object-cover">
+        @else
+            {{ $user->initials() }}
+        @endif
     </button>
 
     <div
@@ -20,8 +24,12 @@
         class="absolute bottom-full left-0 z-20 mb-1.5 w-64 overflow-visible rounded-md border border-border bg-popover py-1 shadow-xs"
     >
         <div class="flex items-center gap-2 px-3 py-2">
-            <div class="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground">
-                {{ $user->initials() }}
+            <div class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-sm font-medium text-muted-foreground">
+                @if ($user->avatar_url)
+                    <img src="{{ $user->avatar_url }}" alt="" class="size-full object-cover">
+                @else
+                    {{ $user->initials() }}
+                @endif
             </div>
             <div class="flex min-w-0 flex-1 flex-col justify-center gap-0.5 leading-none">
                 <p class="truncate text-sm font-semibold text-popover-foreground">{{ $user->name }}</p>

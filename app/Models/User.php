@@ -21,13 +21,14 @@ use Illuminate\Support\Str;
  * @property int $id
  * @property string $name
  * @property string $email
+ * @property string|null $avatar_url
  * @property Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'avatar_url', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements MustVerifyEmail
 {
