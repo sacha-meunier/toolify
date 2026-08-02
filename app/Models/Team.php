@@ -12,16 +12,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 /**
  * @property int $id
  * @property int $workspace_id
  * @property string $name
+ * @property string|null $logo_url
  * @property string $slug
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['name', 'slug', 'workspace_id'])]
+#[Fillable(['name', 'slug', 'logo_url', 'workspace_id'])]
 class Team extends Model
 {
     /** @use HasFactory<TeamFactory> */
@@ -52,5 +54,17 @@ class Team extends Model
     public function hasMember(User $user): bool
     {
         return $this->members()->whereKey($user->id)->exists() || $this->workspace->owner_id === $user->id;
+    }
+
+    /**
+     * Get the team's initials, used as a logo fallback.
+     */
+    public function initials(): string
+    {
+        $initials = Str::initials($this->name, true);
+
+        return Str::length($initials) > 1
+            ? Str::substr($initials, 0, 1).Str::substr($initials, -1)
+            : $initials;
     }
 }

@@ -41,7 +41,7 @@
 
         @foreach ($teams as $team)
             <x-domain.app.sidebar.group :label="$team->name">
-                <x-domain.app.sidebar.item href="#" disabled>General</x-domain.app.sidebar.item>
+                <x-domain.app.sidebar.item :href="route('settings.teams.general', $team)">General</x-domain.app.sidebar.item>
                 <x-domain.app.sidebar.item href="#" disabled>Members</x-domain.app.sidebar.item>
                 {{--<x-domain.app.sidebar.item href="#" disabled>Roles</x-domain.app.sidebar.item>--}}
                 {{--<x-domain.app.sidebar.item href="#" disabled>Invitations</x-domain.app.sidebar.item>--}}

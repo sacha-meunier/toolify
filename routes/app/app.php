@@ -25,4 +25,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::prefix('workspace')->name('workspace.')->group(function () {
             Route::livewire('/general', 'pages::app.settings.workspace.general')->name('general');
         });
+
+        Route::prefix('teams/{team:slug}')->name('teams.')->group(function () {
+            Route::livewire('/general', 'pages::app.settings.teams.general')->name('general');
+        });
+    });
 });

@@ -8,6 +8,14 @@ use App\Models\User;
 class TeamPolicy
 {
     /**
+     * Determine whether the user can manage this team's general settings.
+     */
+    public function manageTeam(User $user, Team $team): bool
+    {
+        return $team->hasMember($user);
+    }
+
+    /**
      * Determine whether the user can manage this team's stack.
      */
     public function manageStack(User $user, Team $team): bool
