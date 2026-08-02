@@ -19,4 +19,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('settings')->name('settings.')->group(function () {
         Route::prefix('account')->name('account.')->group(function () {
             Route::livewire('/profile', 'pages::app.settings.account.profile')->name('profile');
+            Route::livewire('/security', 'pages::app.settings.account.security')->name('security');
 });
