@@ -1,9 +1,9 @@
 <x-layouts.root>
-    {{-- TODO sidebar-settings --}}
+    <div class="flex p-2 gap-2 h-dvh w-full">
+        <x-domain.app.sidebar.settings/>
 
-    <div class="flex flex-col flex-1">
-        {{-- TODO topbar-settings --}}
-
-        <main>{{ $slot }}</main>
+        <main class="flex flex-1 flex-col rounded-sm border border-border bg-background overflow-y-auto">
+            {{ $slot }}
+        </main>
     </div>
 </x-layouts.root>
