@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('tagline');
             $table->text('description');
             $table->string('website_url');
+            $table->string('github_url')->nullable();
+            $table->string('twitter_url')->nullable();
+            $table->string('app_store_url')->nullable();
+            $table->string('play_store_url')->nullable();
             $table->string('logo_url')->nullable();
             $table->string('banner_url')->nullable();
             $table->json('gallery')->nullable();

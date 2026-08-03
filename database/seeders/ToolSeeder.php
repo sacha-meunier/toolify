@@ -45,12 +45,21 @@ class ToolSeeder extends Seeder
                     'tagline' => $tool['tagline'],
                     'description' => $tool['description'],
                     'website_url' => $tool['website_url'],
+                    'github_url' => $tool['github_url'] ?? null,
+                    'twitter_url' => $tool['twitter_url'] ?? null,
+                    'app_store_url' => $tool['app_store_url'] ?? null,
+                    'play_store_url' => $tool['play_store_url'] ?? null,
                     'logo_url' => isset($tool['logo_url']) ? Storage::disk('public')->url($tool['logo_url']) : null,
                     'banner_url' => isset($tool['banner_url']) ? Storage::disk('public')->url($tool['banner_url']) : null,
                     'gallery' => isset($tool['gallery']) ? array_map(fn (string $path): string => Storage::disk('public')->url($path), $tool['gallery']) : null,
                     'categories' => $tool['categories'],
                     'pricing' => $tool['pricing'],
                     'platforms' => $tool['platforms'],
+                    'founded_year' => $tool['founded_year'] ?? null,
+                    'first_release_year' => $tool['first_release_year'] ?? null,
+                    'headquarters' => $tool['headquarters'] ?? null,
+                    'headcount' => $tool['headcount'] ?? null,
+                    'status' => $tool['status'] ?? 'active',
                 ]
             );
 

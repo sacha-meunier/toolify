@@ -5,6 +5,10 @@
         "tagline": "Issue tracking built for high-performance teams",
         "description": "Linear is a project and issue tracking tool designed for speed, with a focus on keyboard-first workflows, cycles, and roadmaps for product teams.",
         "website_url": "https://linear.app",
+        "github_url": "https://github.com/linear",
+        "twitter_url": "https://x.com/linear",
+        "app_store_url": null,
+        "play_store_url": null,
         "logo_url": "tools/linear/logo.png",
         "banner_url": "tools/linear/banner.jpg",
         "gallery": [
@@ -22,7 +26,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2019,
+        "first_release_year": 2019,
+        "headquarters": "San Francisco, CA",
+        "headcount": "51-100",
+        "status": "active"
     },
     {
         "name": "Notion",
@@ -30,6 +39,10 @@
         "tagline": "One workspace for notes, docs, and projects",
         "description": "Notion combines notes, wikis, and project management into a single connected workspace with flexible blocks and databases.",
         "website_url": "https://notion.so",
+        "github_url": "https://github.com/makenotion",
+        "twitter_url": "https://x.com/NotionHQ",
+        "app_store_url": "https://apps.apple.com/app/notion/id1232780281",
+        "play_store_url": "https://play.google.com/store/apps/details?id=notion.id",
         "logo_url": "tools/notion/logo.png",
         "banner_url": "tools/notion/banner.jpg",
         "gallery": [
@@ -47,7 +60,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2016,
+        "first_release_year": 2016,
+        "headquarters": "San Francisco, CA",
+        "headcount": "101-500",
+        "status": "active"
     },
     {
         "name": "Figma",
@@ -55,6 +73,10 @@
         "tagline": "Collaborative interface design tool",
         "description": "Figma is a browser-based design and prototyping tool that lets teams collaborate on interfaces in real time.",
         "website_url": "https://figma.com",
+        "github_url": "https://github.com/figma",
+        "twitter_url": "https://x.com/figma",
+        "app_store_url": null,
+        "play_store_url": null,
         "logo_url": "tools/figma/logo.png",
         "banner_url": "tools/figma/banner.jpg",
         "gallery": [
@@ -70,7 +92,12 @@
             "web",
             "macos",
             "windows"
-        ]
+        ],
+        "founded_year": 2012,
+        "first_release_year": 2016,
+        "headquarters": "San Francisco, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Claude",
@@ -78,6 +105,10 @@
         "tagline": "AI assistant for reasoning, writing, and code",
         "description": "Claude is Anthropic's family of large language models, available as a chat assistant and via API for building AI-powered products.",
         "website_url": "https://claude.ai",
+        "github_url": "https://github.com/anthropics",
+        "twitter_url": "https://x.com/AnthropicAI",
+        "app_store_url": "https://apps.apple.com/app/claude/id6473753684",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.anthropic.claude",
         "logo_url": "tools/claude/logo.png",
         "banner_url": "tools/claude/banner.jpg",
         "gallery": [
@@ -94,7 +125,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2021,
+        "first_release_year": 2023,
+        "headquarters": "San Francisco, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Slack",
@@ -102,6 +138,10 @@
         "tagline": "Team communication and collaboration hub",
         "description": "Slack is a messaging platform for teams, organizing conversations into channels with deep integrations across the software stack.",
         "website_url": "https://slack.com",
+        "github_url": "https://github.com/slackapi",
+        "twitter_url": "https://x.com/SlackHQ",
+        "app_store_url": "https://apps.apple.com/app/slack/id618783545",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.Slack",
         "logo_url": "tools/slack/logo.png",
         "banner_url": "tools/slack/banner.jpg",
         "gallery": [
@@ -119,7 +159,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2013,
+        "first_release_year": 2013,
+        "headquarters": "San Francisco, CA",
+        "headcount": "500+",
+        "status": "acquired"
     },
     {
         "name": "GitHub",
@@ -127,6 +172,10 @@
         "tagline": "Code hosting, review, and CI/CD platform",
         "description": "GitHub hosts Git repositories and provides pull requests, issues, actions, and project boards for software teams.",
         "website_url": "https://github.com",
+        "github_url": "https://github.com/github",
+        "twitter_url": "https://x.com/github",
+        "app_store_url": "https://apps.apple.com/app/github/id1477376905",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.github.android",
         "logo_url": "tools/github/logo.png",
         "banner_url": "tools/github/banner.jpg",
         "gallery": [
@@ -143,7 +192,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2008,
+        "first_release_year": 2008,
+        "headquarters": "San Francisco, CA",
+        "headcount": "500+",
+        "status": "acquired"
     },
     {
         "name": "Vercel",
@@ -151,6 +205,10 @@
         "tagline": "Frontend cloud for deploying web apps",
         "description": "Vercel provides hosting, edge functions, and CI/CD tuned for frontend frameworks like Next.js.",
         "website_url": "https://vercel.com",
+        "github_url": "https://github.com/vercel",
+        "twitter_url": "https://x.com/vercel",
+        "app_store_url": null,
+        "play_store_url": null,
         "logo_url": "tools/vercel/logo.png",
         "banner_url": "tools/vercel/banner.jpg",
         "gallery": [
@@ -164,7 +222,12 @@
         "pricing": "freemium",
         "platforms": [
             "web"
-        ]
+        ],
+        "founded_year": 2015,
+        "first_release_year": 2015,
+        "headquarters": "San Francisco, CA",
+        "headcount": "101-500",
+        "status": "active"
     },
     {
         "name": "Stripe",
@@ -172,6 +235,10 @@
         "tagline": "Payments infrastructure for the internet",
         "description": "Stripe provides APIs for accepting payments, managing subscriptions, and handling billing for online businesses.",
         "website_url": "https://stripe.com",
+        "github_url": "https://github.com/stripe",
+        "twitter_url": "https://x.com/stripe",
+        "app_store_url": null,
+        "play_store_url": null,
         "logo_url": "tools/stripe/logo.png",
         "banner_url": "tools/stripe/banner.jpg",
         "gallery": [
@@ -185,7 +252,12 @@
         "pricing": "paid",
         "platforms": [
             "web"
-        ]
+        ],
+        "founded_year": 2010,
+        "first_release_year": 2011,
+        "headquarters": "San Francisco, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Trello",
@@ -193,6 +265,10 @@
         "tagline": "Visual task boards for any workflow",
         "description": "Trello organizes work into boards, lists, and cards, making it easy to track tasks and collaborate visually.",
         "website_url": "https://trello.com",
+        "github_url": "https://github.com/trello",
+        "twitter_url": "https://x.com/trello",
+        "app_store_url": "https://apps.apple.com/app/trello/id461504587",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.trello",
         "logo_url": "tools/trello/logo.png",
         "banner_url": "tools/trello/banner.jpg",
         "gallery": [
@@ -210,7 +286,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2011,
+        "first_release_year": 2011,
+        "headquarters": "New York, NY",
+        "headcount": "51-100",
+        "status": "acquired"
     },
     {
         "name": "Asana",
@@ -218,6 +299,10 @@
         "tagline": "Work management for teams of all sizes",
         "description": "Asana helps teams plan, track, and manage work across projects with timelines, boards, and automation rules.",
         "website_url": "https://asana.com",
+        "github_url": "https://github.com/Asana",
+        "twitter_url": "https://x.com/asana",
+        "app_store_url": "https://apps.apple.com/app/asana/id489969512",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.asana.app",
         "logo_url": "tools/asana/logo.png",
         "banner_url": "tools/asana/banner.jpg",
         "gallery": [
@@ -235,7 +320,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2008,
+        "first_release_year": 2011,
+        "headquarters": "San Francisco, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Zoom",
@@ -243,6 +333,10 @@
         "tagline": "Video conferencing for meetings and webinars",
         "description": "Zoom provides video and audio conferencing, webinars, and screen sharing for remote collaboration.",
         "website_url": "https://zoom.us",
+        "github_url": null,
+        "twitter_url": "https://x.com/zoom",
+        "app_store_url": "https://apps.apple.com/app/zoom/id546505307",
+        "play_store_url": "https://play.google.com/store/apps/details?id=us.zoom.videomeetings",
         "logo_url": "tools/zoom/logo.png",
         "banner_url": "tools/zoom/banner.jpg",
         "gallery": [
@@ -259,7 +353,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2011,
+        "first_release_year": 2013,
+        "headquarters": "San Jose, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Airtable",
@@ -267,6 +366,10 @@
         "tagline": "Spreadsheet-database hybrid for building apps",
         "description": "Airtable combines the flexibility of a spreadsheet with the power of a database, letting teams build custom apps and workflows.",
         "website_url": "https://airtable.com",
+        "github_url": null,
+        "twitter_url": "https://x.com/airtable",
+        "app_store_url": "https://apps.apple.com/app/airtable/id914172636",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.formagrid.airtable",
         "logo_url": "tools/airtable/logo.png",
         "banner_url": "tools/airtable/banner.jpg",
         "gallery": [
@@ -284,7 +387,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2012,
+        "first_release_year": 2013,
+        "headquarters": "San Francisco, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Canva",
@@ -292,6 +400,10 @@
         "tagline": "Drag-and-drop design for everyone",
         "description": "Canva is an online design tool with templates for social media, presentations, and marketing materials.",
         "website_url": "https://canva.com",
+        "github_url": null,
+        "twitter_url": "https://x.com/canva",
+        "app_store_url": "https://apps.apple.com/app/canva/id897446215",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.canva.editor",
         "logo_url": "tools/canva/logo.png",
         "banner_url": "tools/canva/banner.jpg",
         "gallery": [
@@ -309,7 +421,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2013,
+        "first_release_year": 2013,
+        "headquarters": "Sydney, Australia",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "HubSpot",
@@ -317,6 +434,10 @@
         "tagline": "CRM and marketing platform for growing businesses",
         "description": "HubSpot offers CRM, marketing, sales, and customer service tools on a single platform for growing businesses.",
         "website_url": "https://hubspot.com",
+        "github_url": "https://github.com/HubSpot",
+        "twitter_url": "https://x.com/HubSpot",
+        "app_store_url": "https://apps.apple.com/app/hubspot/id1006004573",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.hubspot.android",
         "logo_url": "tools/hubspot/logo.png",
         "banner_url": "tools/hubspot/banner.jpg",
         "gallery": [
@@ -332,7 +453,12 @@
             "web",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2006,
+        "first_release_year": 2006,
+        "headquarters": "Cambridge, MA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Zapier",
@@ -340,6 +466,10 @@
         "tagline": "Automate workflows between your apps",
         "description": "Zapier connects thousands of apps to automate repetitive tasks without writing code.",
         "website_url": "https://zapier.com",
+        "github_url": "https://github.com/zapier",
+        "twitter_url": "https://x.com/zapier",
+        "app_store_url": null,
+        "play_store_url": null,
         "logo_url": "tools/zapier/logo.png",
         "banner_url": "tools/zapier/banner.jpg",
         "gallery": [
@@ -354,7 +484,12 @@
         "pricing": "freemium",
         "platforms": [
             "web"
-        ]
+        ],
+        "founded_year": 2011,
+        "first_release_year": 2012,
+        "headquarters": "Fully remote",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Miro",
@@ -362,6 +497,10 @@
         "tagline": "Online whiteboard for visual collaboration",
         "description": "Miro is a collaborative whiteboard platform for brainstorming, diagramming, and workshops with distributed teams.",
         "website_url": "https://miro.com",
+        "github_url": null,
+        "twitter_url": "https://x.com/miro",
+        "app_store_url": "https://apps.apple.com/app/miro/id1080326964",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.miro.app",
         "logo_url": "tools/miro/logo.png",
         "banner_url": "tools/miro/banner.jpg",
         "gallery": [
@@ -379,7 +518,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2011,
+        "first_release_year": 2011,
+        "headquarters": "San Francisco, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "GitLab",
@@ -387,6 +531,10 @@
         "tagline": "DevOps platform for the whole software lifecycle",
         "description": "GitLab provides source control, CI/CD, and project planning in a single DevOps platform.",
         "website_url": "https://gitlab.com",
+        "github_url": "https://github.com/gitlab-org",
+        "twitter_url": "https://x.com/gitlab",
+        "app_store_url": null,
+        "play_store_url": null,
         "logo_url": "tools/gitlab/logo.png",
         "banner_url": "tools/gitlab/banner.jpg",
         "gallery": [
@@ -399,7 +547,12 @@
         "pricing": "freemium",
         "platforms": [
             "web"
-        ]
+        ],
+        "founded_year": 2011,
+        "first_release_year": 2011,
+        "headquarters": "Fully remote",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Discord",
@@ -407,6 +560,10 @@
         "tagline": "Voice, video, and text chat for communities",
         "description": "Discord is a communication platform built around servers and channels, popular with communities and teams alike.",
         "website_url": "https://discord.com",
+        "github_url": null,
+        "twitter_url": "https://x.com/discord",
+        "app_store_url": "https://apps.apple.com/app/discord/id985746746",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.discord",
         "logo_url": "tools/discord/logo.png",
         "banner_url": "tools/discord/banner.jpg",
         "gallery": [
@@ -425,7 +582,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2015,
+        "first_release_year": 2015,
+        "headquarters": "San Francisco, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Dropbox",
@@ -433,6 +595,10 @@
         "tagline": "Cloud storage and file sync for teams",
         "description": "Dropbox syncs and stores files in the cloud, with sharing and collaboration features for teams.",
         "website_url": "https://dropbox.com",
+        "github_url": "https://github.com/dropbox",
+        "twitter_url": "https://x.com/Dropbox",
+        "app_store_url": "https://apps.apple.com/app/dropbox/id327630330",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.dropbox.android",
         "logo_url": "tools/dropbox/logo.png",
         "banner_url": "tools/dropbox/banner.jpg",
         "gallery": [
@@ -450,7 +616,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2007,
+        "first_release_year": 2008,
+        "headquarters": "San Francisco, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Loom",
@@ -458,6 +629,10 @@
         "tagline": "Async video messaging for work",
         "description": "Loom lets you quickly record and share video messages of your screen and camera for async communication.",
         "website_url": "https://loom.com",
+        "github_url": null,
+        "twitter_url": "https://x.com/loom",
+        "app_store_url": "https://apps.apple.com/app/loom/id1587962286",
+        "play_store_url": null,
         "logo_url": "tools/loom/logo.png",
         "banner_url": "tools/loom/banner.jpg",
         "gallery": [
@@ -475,7 +650,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 2015,
+        "first_release_year": 2016,
+        "headquarters": "San Francisco, CA",
+        "headcount": "51-100",
+        "status": "acquired"
     },
     {
         "name": "Apple TV",
@@ -483,6 +663,10 @@
         "tagline": "Stream shows, movies, and live sports",
         "description": "Apple TV is Apple's video app for streaming Apple TV+ originals, movies, and shows, and for accessing live sports and other streaming services in one place.",
         "website_url": "https://www.apple.com/apple-tv-app/",
+        "github_url": null,
+        "twitter_url": "https://x.com/AppleTV",
+        "app_store_url": null,
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.apple.atve.androidtv.appletv",
         "logo_url": "tools/apple-tv/logo.png",
         "categories": [
             "entertainment"
@@ -494,7 +678,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 1976,
+        "first_release_year": 2019,
+        "headquarters": "Cupertino, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Apple Music",
@@ -502,6 +691,10 @@
         "tagline": "Streaming music with over 100 million songs",
         "description": "Apple Music is a subscription-based streaming service offering on-demand access to a massive music catalog, curated playlists, and lossless audio.",
         "website_url": "https://www.apple.com/apple-music/",
+        "github_url": null,
+        "twitter_url": "https://x.com/AppleMusic",
+        "app_store_url": "https://apps.apple.com/app/apple-music/id1108187390",
+        "play_store_url": "https://play.google.com/store/apps/details?id=com.apple.android.music",
         "logo_url": "tools/apple-music/logo.png",
         "categories": [
             "entertainment"
@@ -513,7 +706,12 @@
             "windows",
             "ios",
             "android"
-        ]
+        ],
+        "founded_year": 1976,
+        "first_release_year": 2015,
+        "headquarters": "Cupertino, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Apple Notes",
@@ -521,6 +719,10 @@
         "tagline": "Quick notes, sketches, and checklists",
         "description": "Apple Notes is a lightweight note-taking app built into Apple devices, supporting rich text, sketches, scanned documents, and folder organization.",
         "website_url": "https://www.apple.com/",
+        "github_url": null,
+        "twitter_url": null,
+        "app_store_url": null,
+        "play_store_url": null,
         "logo_url": "tools/apple-notes/logo.png",
         "categories": [
             "productivity"
@@ -529,7 +731,12 @@
         "platforms": [
             "macos",
             "ios"
-        ]
+        ],
+        "founded_year": 1976,
+        "first_release_year": 2015,
+        "headquarters": "Cupertino, CA",
+        "headcount": "500+",
+        "status": "active"
     },
     {
         "name": "Apple Pages",
@@ -537,6 +744,10 @@
         "tagline": "Beautiful documents made simple",
         "description": "Apple Pages is a word processing and page layout application that lets users create documents, reports, and designed pages with templates and real-time collaboration.",
         "website_url": "https://www.apple.com/pages/",
+        "github_url": null,
+        "twitter_url": null,
+        "app_store_url": "https://apps.apple.com/app/pages/id361309726",
+        "play_store_url": null,
         "logo_url": "tools/apple-pages/logo.png",
         "categories": [
             "productivity"
@@ -545,6 +756,11 @@
         "platforms": [
             "macos",
             "ios"
-        ]
+        ],
+        "founded_year": 1976,
+        "first_release_year": 2005,
+        "headquarters": "Cupertino, CA",
+        "headcount": "500+",
+        "status": "active"
     }
 ]

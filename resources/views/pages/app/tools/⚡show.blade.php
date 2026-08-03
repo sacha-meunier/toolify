@@ -96,20 +96,25 @@ new class extends Component
                 <p class="text-sm font-medium text-foreground">Links</p>
 
                 <div class="flex flex-col items-start gap-1">
-                    <a href="{{ $tool->website_url }}" target="_blank" class="flex items-center gap-1 rounded-md px-2 py-2 text-xs font-medium text-primary hover:bg-muted">
-                        <x-ui.icon.globe-02 size="xs"/>
-                        {{ str($tool->website_url)->after('://')->rtrim('/') }}
-                    </a>
-
-                    <span class="flex items-center gap-1 rounded-md px-2 py-2 text-xs font-medium text-muted-foreground">
-                        <x-ui.icon.github size="xs"/>
-                        Not linked yet
-                    </span>
-
-                    <span class="flex items-center gap-1 rounded-md px-2 py-2 text-xs font-medium text-muted-foreground">
-                        <x-ui.icon.x size="xs"/>
-                        Not linked yet
-                    </span>
+                    @foreach ([
+                        ['icon' => 'globe-02', 'url' => $tool->website_url],
+                        ['icon' => 'github', 'url' => $tool->github_url],
+                        ['icon' => 'twitter', 'url' => $tool->twitter_url],
+                        ['icon' => 'apple', 'url' => $tool->app_store_url],
+                        ['icon' => 'google-play', 'url' => $tool->play_store_url],
+                    ] as $link)
+                        @if ($link['url'])
+                            <a href="{{ $link['url'] }}" target="_blank" class="flex items-center gap-1 rounded-md px-2 py-2 text-xs font-medium text-primary hover:bg-muted">
+                                <x-dynamic-component :component="'ui.icon.'.$link['icon']" size="xs"/>
+                                {{ str($link['url'])->after('://')->rtrim('/') }}
+                            </a>
+                        @else
+                            <span class="flex items-center gap-1 rounded-md px-2 py-2 text-xs font-medium text-muted-foreground">
+                                <x-dynamic-component :component="'ui.icon.'.$link['icon']" size="xs"/>
+                                Not linked yet
+                            </span>
+                        @endif
+                    @endforeach
                 </div>
             </div>
 
@@ -141,9 +146,37 @@ new class extends Component
                         <p class="text-base text-foreground">{{ $tool->created_at?->format('Y') }}</p>
                     </div>
 
+                    @if ($tool->founded_year)
+                        <div class="flex items-center gap-2.5">
+                            <p class="flex-1 text-sm font-medium text-muted-foreground">Founded</p>
+                            <p class="text-base text-foreground">{{ $tool->founded_year }}</p>
+                        </div>
+                    @endif
+
+                    @if ($tool->first_release_year)
+                        <div class="flex items-center gap-2.5">
+                            <p class="flex-1 text-sm font-medium text-muted-foreground">First release</p>
+                            <p class="text-base text-foreground">{{ $tool->first_release_year }}</p>
+                        </div>
+                    @endif
+
+                    @if ($tool->headquarters)
+                        <div class="flex items-center gap-2.5">
+                            <p class="flex-1 text-sm font-medium text-muted-foreground">Headquarters</p>
+                            <p class="text-base text-foreground">{{ $tool->headquarters }}</p>
+                        </div>
+                    @endif
+
+                    @if ($tool->headcount)
+                        <div class="flex items-center gap-2.5">
+                            <p class="flex-1 text-sm font-medium text-muted-foreground">Headcount</p>
+                            <p class="text-base text-foreground">{{ $tool->headcount->label() }}</p>
+                        </div>
+                    @endif
+
                     <div class="flex items-center gap-2.5">
                         <p class="flex-1 text-sm font-medium text-muted-foreground">Status</p>
-                        <p class="text-base text-foreground">Active</p>
+                        <p class="text-base text-foreground">{{ $tool->status->label() }}</p>
                     </div>
                 </div>
             </div>

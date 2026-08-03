@@ -26,6 +26,10 @@ use Illuminate\Support\Collection;
  * @property string $tagline
  * @property string $description
  * @property string $website_url
+ * @property string|null $github_url
+ * @property string|null $twitter_url
+ * @property string|null $app_store_url
+ * @property string|null $play_store_url
  * @property string|null $logo_url
  * @property string|null $banner_url
  * @property Collection<int, string>|null $gallery
@@ -40,7 +44,7 @@ use Illuminate\Support\Collection;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['name', 'slug', 'tagline', 'description', 'website_url', 'logo_url', 'banner_url', 'gallery', 'categories', 'pricing', 'platforms', 'team_id', 'founded_year', 'first_release_year', 'headquarters', 'headcount', 'status'])]
+#[Fillable(['name', 'slug', 'tagline', 'description', 'website_url', 'github_url', 'twitter_url', 'app_store_url', 'play_store_url', 'logo_url', 'banner_url', 'gallery', 'categories', 'pricing', 'platforms', 'team_id', 'founded_year', 'first_release_year', 'headquarters', 'headcount', 'status'])]
 class Tool extends Model
 {
     /** @use HasFactory<ToolFactory> */
