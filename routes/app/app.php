@@ -28,6 +28,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::prefix('teams/{team:slug}')->name('teams.')->group(function () {
             Route::livewire('/general', 'pages::app.settings.teams.general')->name('general');
+
+            Route::prefix('listing')->name('listing.')->group(function () {
+                Route::livewire('/', 'pages::app.settings.teams.listing.index')->name('index');
+                Route::livewire('/identity', 'pages::app.settings.teams.listing.identity')->name('identity');
+                Route::livewire('/details', 'pages::app.settings.teams.listing.details')->name('details');
         });
     });
 });

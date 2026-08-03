@@ -1,7 +1,7 @@
 <?php
 
 use App\Enums\Category;
-use App\Livewire\Forms\Settings\ToolForm;
+use App\Livewire\Forms\Settings\ToolIdentityForm;
 use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Layout;
@@ -14,7 +14,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
     public Team $team;
 
-    public ToolForm $form;
+    public ToolIdentityForm $form;
 
     public function mount(Team $team): void
     {

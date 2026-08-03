@@ -25,6 +25,11 @@ return new class extends Migration
             $table->json('categories');
             $table->string('pricing');
             $table->json('platforms');
+            $table->unsignedSmallInteger('founded_year')->nullable();
+            $table->unsignedSmallInteger('first_release_year')->nullable();
+            $table->string('headquarters')->nullable();
+            $table->string('headcount')->nullable();
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }
