@@ -5,6 +5,7 @@ namespace App\Livewire\Forms\Settings;
 use App\Enums\Category;
 use App\Livewire\Forms\Settings\Images\LogoUpload;
 use App\Models\Tool;
+use Illuminate\Validation\Rule;
 use Livewire\Form;
 
 class ToolIdentityForm extends Form
@@ -34,7 +35,7 @@ class ToolIdentityForm extends Form
             'tagline' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'categories' => ['required', 'array', 'min:1', 'max:'.Category::MAX_CATEGORIES_PER_TOOL],
-            'categories.*' => ['string', 'in:'.implode(',', array_column(Category::cases(), 'value'))],
+            'categories.*' => [Rule::enum(Category::class)],
             'logo' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
         ];
     }

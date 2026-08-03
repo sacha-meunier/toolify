@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('headquarters')->nullable();
             $table->string('headcount')->nullable();
             $table->string('status')->default('active');
+            $table->string('visibility')->default('public');
             $table->timestamps();
         });
     }

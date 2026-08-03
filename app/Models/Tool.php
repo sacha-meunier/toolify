@@ -7,6 +7,7 @@ use App\Enums\Platform;
 use App\Enums\Pricing;
 use App\Enums\ToolHeadcount;
 use App\Enums\ToolStatus;
+use App\Enums\ToolVisibility;
 use Database\Factories\ToolFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
@@ -41,10 +42,11 @@ use Illuminate\Support\Collection;
  * @property string|null $headquarters
  * @property ToolHeadcount|null $headcount
  * @property ToolStatus $status
+ * @property ToolVisibility $visibility
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['name', 'slug', 'tagline', 'description', 'website_url', 'github_url', 'twitter_url', 'app_store_url', 'play_store_url', 'logo_url', 'banner_url', 'gallery', 'categories', 'pricing', 'platforms', 'team_id', 'founded_year', 'first_release_year', 'headquarters', 'headcount', 'status'])]
+#[Fillable(['name', 'slug', 'tagline', 'description', 'website_url', 'github_url', 'twitter_url', 'app_store_url', 'play_store_url', 'logo_url', 'banner_url', 'gallery', 'categories', 'pricing', 'platforms', 'team_id', 'founded_year', 'first_release_year', 'headquarters', 'headcount', 'status', 'visibility'])]
 class Tool extends Model
 {
     /** @use HasFactory<ToolFactory> */
@@ -64,6 +66,7 @@ class Tool extends Model
             'gallery' => AsCollection::class,
             'headcount' => ToolHeadcount::class,
             'status' => ToolStatus::class,
+            'visibility' => ToolVisibility::class,
         ];
     }
 

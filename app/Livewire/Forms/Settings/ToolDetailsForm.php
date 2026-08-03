@@ -6,6 +6,7 @@ use App\Enums\ToolHeadcount;
 use App\Enums\ToolStatus;
 use App\Models\Tool;
 use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rule;
 use Livewire\Form;
 
 class ToolDetailsForm extends Form
@@ -31,8 +32,8 @@ class ToolDetailsForm extends Form
             'foundedYear' => ['nullable', 'integer', 'min:1970', 'max:'.Carbon::now()->year],
             'firstReleaseYear' => ['nullable', 'integer', 'min:1970', 'max:'.Carbon::now()->year],
             'headquarters' => ['nullable', 'string', 'max:255'],
-            'headcount' => ['nullable', 'string', 'in:'.implode(',', array_column(ToolHeadcount::cases(), 'value'))],
-            'status' => ['required', 'string', 'in:'.implode(',', array_column(ToolStatus::cases(), 'value'))],
+            'headcount' => ['nullable', Rule::enum(ToolHeadcount::class)],
+            'status' => ['required', Rule::enum(ToolStatus::class)],
         ];
     }
 
