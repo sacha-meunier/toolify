@@ -31,7 +31,7 @@
 
         <x-domain.app.sidebar.group label="Workspace">
             <x-domain.app.sidebar.item icon="settings-01" :href="route('settings.workspace.general')">General</x-domain.app.sidebar.item>
-            <x-domain.app.sidebar.item icon="user-group" href="#" disabled>Members</x-domain.app.sidebar.item>
+            <x-domain.app.sidebar.item icon="user-group" :href="route('settings.workspace.members')">Members</x-domain.app.sidebar.item>
             {{--<x-domain.app.sidebar.item href="#" disabled>Roles</x-domain.app.sidebar.item>--}}
             {{--<x-domain.app.sidebar.item href="#" disabled>Invitations</x-domain.app.sidebar.item>--}}
             {{--<x-domain.app.sidebar.item href="#" disabled>Billing</x-domain.app.sidebar.item>--}}
@@ -45,6 +45,9 @@
                     <x-domain.app.sidebar.team :team="$team">
                         <x-domain.app.sidebar.tree-branch>
                             <x-domain.app.sidebar.item icon="settings-01" :href="route('settings.teams.general', $team)">General</x-domain.app.sidebar.item>
+                        </x-domain.app.sidebar.tree-branch>
+                        <x-domain.app.sidebar.tree-branch>
+                            <x-domain.app.sidebar.item icon="user-group" :href="route('settings.teams.members', $team)">Members</x-domain.app.sidebar.item>
                         </x-domain.app.sidebar.tree-branch>
                         <x-domain.app.sidebar.tree-branch last>
                             <x-domain.app.sidebar.item icon="store-01" :href="route('settings.teams.listing.index', $team)">Listing</x-domain.app.sidebar.item>

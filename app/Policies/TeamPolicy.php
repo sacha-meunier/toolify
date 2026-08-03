@@ -16,6 +16,14 @@ class TeamPolicy
     }
 
     /**
+     * Determine whether the user can manage this team's members.
+     */
+    public function manageMembers(User $user, Team $team): bool
+    {
+        return $team->hasMember($user);
+    }
+
+    /**
      * Determine whether the user can manage this team's stack.
      */
     public function manageStack(User $user, Team $team): bool
@@ -27,6 +35,14 @@ class TeamPolicy
      * Determine whether the user can manage this team's surveys.
      */
     public function manageSurveys(User $user, Team $team): bool
+    {
+        return $team->hasMember($user);
+    }
+
+    /**
+     * Determine whether the user can manage this team's public listing.
+     */
+    public function manageListing(User $user, Team $team): bool
     {
         return $team->hasMember($user);
     }
