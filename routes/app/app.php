@@ -24,10 +24,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::prefix('workspace')->name('workspace.')->group(function () {
             Route::livewire('/general', 'pages::app.settings.workspace.general')->name('general');
+            Route::livewire('/members', 'pages::app.settings.workspace.members')->name('members');
         });
 
         Route::prefix('teams/{team:slug}')->name('teams.')->group(function () {
             Route::livewire('/general', 'pages::app.settings.teams.general')->name('general');
+            Route::livewire('/members', 'pages::app.settings.teams.members')->name('members');
 
             Route::prefix('listing')->name('listing.')->group(function () {
                 Route::livewire('/', 'pages::app.settings.teams.listing.index')->name('index');
