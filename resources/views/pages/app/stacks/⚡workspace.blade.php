@@ -32,13 +32,13 @@ new class extends Component
         @if ($this->workspace)
             <x-domain.app.tool-list
                 :tools="$this->tools"
-                empty-icon="computer-terminal-01"
+                empty-icon="layer"
                 empty-title="This workspace's stack is empty"
                 empty-description="Tools saved to the workspace will show up here."
             />
         @else
             <x-domain.app.empty-state
-                icon="computer-terminal-01"
+                icon="layer"
                 title="You're not part of a workspace yet"
                 description="Join or create a workspace to start building its stack."
             />

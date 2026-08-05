@@ -154,7 +154,7 @@ new class extends Component
                     <h2 class="text-lg font-semibold text-foreground">Recent searches</h2>
                     @if (count($recentSearches))
                         <div class="flex items-center gap-2">
-                            <x-ui.button variant="secondary" icon="layer" label="Save all as surveys" wire:click="saveAllRecentSearchesAsSurveys"/>
+                            <x-ui.button variant="secondary" icon="tool-view" label="Save all as surveys" wire:click="saveAllRecentSearchesAsSurveys"/>
                             <x-ui.button label="Clear history" wire:click="clearRecentSearches"/>
                         </div>
                     @endif

@@ -18,13 +18,13 @@
         </x-domain.app.sidebar.group>
 
         <x-domain.app.sidebar.group label="Personal">
-            <x-domain.app.sidebar.item icon="computer-terminal-01" :href="route('stacks.personal')">Stack</x-domain.app.sidebar.item>
-            <x-domain.app.sidebar.item icon="layer" :href="route('surveys.personal')">Surveys</x-domain.app.sidebar.item>
+            <x-domain.app.sidebar.item icon="layer" :href="route('stacks.personal')">Stack</x-domain.app.sidebar.item>
+            <x-domain.app.sidebar.item icon="tool-view" :href="route('surveys.personal')">Surveys</x-domain.app.sidebar.item>
         </x-domain.app.sidebar.group>
 
         <x-domain.app.sidebar.group label="Workspace">
-            <x-domain.app.sidebar.item icon="computer-terminal-01" :href="$workspace ? route('stacks.workspace') : null" :disabled="! $workspace">Stack</x-domain.app.sidebar.item>
-            <x-domain.app.sidebar.item icon="layer" :href="$workspace ? route('surveys.workspace') : null" :disabled="! $workspace">Surveys</x-domain.app.sidebar.item>
+            <x-domain.app.sidebar.item icon="layer" :href="$workspace ? route('stacks.workspace') : null" :disabled="! $workspace">Stack</x-domain.app.sidebar.item>
+            <x-domain.app.sidebar.item icon="tool-view" :href="$workspace ? route('surveys.workspace') : null" :disabled="! $workspace">Surveys</x-domain.app.sidebar.item>
         </x-domain.app.sidebar.group>
 
         @if ($teams->isNotEmpty())
@@ -32,10 +32,10 @@
                 @foreach ($teams as $team)
                     <x-domain.app.sidebar.team :team="$team">
                         <x-domain.app.sidebar.tree-branch>
-                            <x-domain.app.sidebar.item icon="computer-terminal-01" :href="route('stacks.teams.show', $team)">Stack</x-domain.app.sidebar.item>
+                            <x-domain.app.sidebar.item icon="layer" :href="route('stacks.teams.show', $team)">Stack</x-domain.app.sidebar.item>
                         </x-domain.app.sidebar.tree-branch>
                         <x-domain.app.sidebar.tree-branch last>
-                            <x-domain.app.sidebar.item icon="layer" :href="route('surveys.teams.show', $team)">Surveys</x-domain.app.sidebar.item>
+                            <x-domain.app.sidebar.item icon="tool-view" :href="route('surveys.teams.show', $team)">Surveys</x-domain.app.sidebar.item>
                         </x-domain.app.sidebar.tree-branch>
                     </x-domain.app.sidebar.team>
                 @endforeach

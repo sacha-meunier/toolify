@@ -101,7 +101,7 @@ new class extends Component
     <div class="flex flex-col gap-6 px-8 py-8">
         @if ($this->scope === 'workspace' && ! $this->workspace)
             <x-domain.app.empty-state
-                icon="layer"
+                icon="tool-view"
                 title="You're not part of a workspace yet"
                 description="Join or create a workspace to start saving surveys to it."
             />

@@ -33,7 +33,7 @@ new class extends Component
     <div class="flex flex-col gap-6 px-8 py-8">
         <x-domain.app.tool-list
             :tools="$this->tools"
-            empty-icon="computer-terminal-01"
+            empty-icon="layer"
             empty-title="This team's stack is empty"
             empty-description="Tools saved to {{ $team->name }} will show up here."
         />

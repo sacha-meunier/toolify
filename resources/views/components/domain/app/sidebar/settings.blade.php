@@ -36,7 +36,7 @@
             {{--<x-domain.app.sidebar.item href="#" disabled>Invitations</x-domain.app.sidebar.item>--}}
             {{--<x-domain.app.sidebar.item href="#" disabled>Billing</x-domain.app.sidebar.item>--}}
             {{--<x-domain.app.sidebar.item href="#" disabled>Activity & Confidentiality</x-domain.app.sidebar.item>--}}
-            <x-domain.app.sidebar.item icon="store-01" href="#" disabled>Listing</x-domain.app.sidebar.item>
+            <x-domain.app.sidebar.item icon="identity-card" href="#" disabled>Listing</x-domain.app.sidebar.item>
         </x-domain.app.sidebar.group>
 
         @if ($teams->isNotEmpty())
@@ -50,7 +50,7 @@
                             <x-domain.app.sidebar.item icon="user-group" :href="route('settings.teams.members', $team)">Members</x-domain.app.sidebar.item>
                         </x-domain.app.sidebar.tree-branch>
                         <x-domain.app.sidebar.tree-branch last>
-                            <x-domain.app.sidebar.item icon="store-01" :href="route('settings.teams.listing.index', $team)">Listing</x-domain.app.sidebar.item>
+                            <x-domain.app.sidebar.item icon="identity-card" :href="route('settings.teams.listing.index', $team)">Listing</x-domain.app.sidebar.item>
                         </x-domain.app.sidebar.tree-branch>
                     </x-domain.app.sidebar.team>
                 @endforeach

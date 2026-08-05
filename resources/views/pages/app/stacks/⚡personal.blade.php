@@ -22,7 +22,7 @@ new class extends Component
     <div class="flex flex-col gap-6 px-8 py-8">
         <x-domain.app.tool-list
             :tools="$this->tools"
-            empty-icon="computer-terminal-01"
+            empty-icon="layer"
             empty-title="Your stack is empty"
             empty-description="Save tools you want to keep track of, and they'll show up here."
         />

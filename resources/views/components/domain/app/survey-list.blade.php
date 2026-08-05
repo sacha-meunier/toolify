@@ -1,6 +1,6 @@
 @props([
     'surveys',
-    'emptyIcon' => 'layer',
+    'emptyIcon' => 'tool-view',
     'emptyTitle' => null,
     'emptyDescription' => null,
 ])
