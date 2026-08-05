@@ -38,4 +38,12 @@ class WorkspacePolicy
     {
         return $workspace->hasMember($user);
     }
+
+    /**
+     * Determine whether the user can create a team within this workspace.
+     */
+    public function createTeam(User $user, Workspace $workspace): bool
+    {
+        return $workspace->hasMember($user);
+    }
 }

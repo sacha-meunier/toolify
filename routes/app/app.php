@@ -25,6 +25,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::prefix('workspace')->name('workspace.')->group(function () {
             Route::livewire('/general', 'pages::app.settings.workspace.general')->name('general');
             Route::livewire('/members', 'pages::app.settings.workspace.members')->name('members');
+
+            Route::prefix('teams')->name('teams.')->group(function () {
+                Route::livewire('/', 'pages::app.settings.workspace.teams.index')->name('index');
+                Route::livewire('/create', 'pages::app.settings.workspace.teams.create')->name('create');
+            });
         });
 
         Route::prefix('teams/{team:slug}')->name('teams.')->group(function () {

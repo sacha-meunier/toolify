@@ -1,0 +1,86 @@
+<?php
+
+use App\Models\Team;
+use App\Models\Workspace;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+
+new #[Layout('layouts::shells.settings')]
+class extends Component {
+    public Workspace $workspace;
+
+    public function mount(): void
+    {
+        $workspace = auth()->user()->currentWorkspace();
+
+        abort_if(! $workspace, 404);
+
+        Gate::authorize('manageWorkspace', $workspace);
+
+        $this->workspace = $workspace;
+    }
+
+    /**
+     * @return Collection<int, Team>
+     */
+    #[Computed]
+    public function teams(): Collection
+    {
+        return $this->workspace->teams()->orderBy('name')->get();
+    }
+};
+?>
+
+<div class="flex flex-col">
+    <x-domain.app.topbar>
+        <x-domain.app.topbar.breadcrumb :items="[
+            'Settings' => null,
+            'Workspace' => null,
+            'Teams' => null,
+        ]"/>
+
+        <x-slot:actions>
+            <x-ui.button variant="primary" size="sm" icon="add-01" label="Create team" :href="route('settings.workspace.teams.create')" wire:navigate/>
+        </x-slot:actions>
+    </x-domain.app.topbar>
+
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
+        <header class="flex flex-col gap-1 px-4">
+            <h1 class="text-3xl font-semibold text-foreground">Teams</h1>
+            <p class="text-sm text-muted-foreground">Teams within {{ $workspace->name }}.</p>
+        </header>
+
+        @if ($this->teams->isEmpty())
+            <x-domain.app.settings.section>
+                <x-domain.app.settings.section-content label="No teams yet" description="Create a team to start organizing your stack and surveys.">
+                    <x-ui.button variant="outline" size="sm" label="Create team" :href="route('settings.workspace.teams.create')" wire:navigate/>
+                </x-domain.app.settings.section-content>
+            </x-domain.app.settings.section>
+        @else
+            <div class="flex w-full flex-col divide-y divide-border overflow-clip rounded-xl border border-border bg-card shadow-xs">
+                @foreach ($this->teams as $team)
+                    <a href="{{ route('settings.teams.general', $team) }}" wire:navigate class="flex items-center gap-3 px-4 py-3 hover:bg-muted/50">
+                        <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-sm font-medium text-muted-foreground">
+                            @if ($team->logo_url)
+                                <img src="{{ $team->logo_url }}" alt="" class="size-full object-cover">
+                            @else
+                                {{ $team->initials() }}
+                            @endif
+                        </div>
+
+                        @php $membersCount = $team->members()->count(); @endphp
+                        <div class="flex min-w-0 flex-1 flex-col">
+                            <p class="truncate text-sm font-medium text-foreground">{{ $team->name }}</p>
+                            <p class="truncate text-xs text-muted-foreground">{{ $membersCount }} member{{ $membersCount === 1 ? '' : 's' }}</p>
+                        </div>
+
+                        <x-ui.icon.arrow-right-01 size="xs" class="shrink-0 text-muted-foreground"/>
+                    </a>
+                @endforeach
+            </div>
+        @endif
+    </div>
+</div>
