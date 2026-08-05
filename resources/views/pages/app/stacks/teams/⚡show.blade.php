@@ -20,7 +20,7 @@ new class extends Component
     #[Computed]
     public function tools(): Collection
     {
-        return $this->team->stack?->tools()->get() ?? new Collection;
+        return $this->team->stack?->tools()->withTrashed()->get() ?? new Collection;
     }
 };
 ?>

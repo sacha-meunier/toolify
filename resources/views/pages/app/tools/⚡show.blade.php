@@ -1,11 +1,19 @@
 <?php
 
 use App\Models\Tool;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 new class extends Component
 {
     public Tool $tool;
+
+    public function mount(Tool $tool): void
+    {
+        Gate::authorize('view', [$tool, request()->query('share')]);
+
+        $this->tool = $tool;
+    }
 };
 ?>
 

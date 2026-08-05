@@ -10,7 +10,7 @@ new class extends Component
     #[Computed]
     public function tools(): Collection
     {
-        return Tool::query()->orderBy('updated_at', 'desc')->get();
+        return Tool::query()->visibleTo(auth()->user())->orderBy('updated_at', 'desc')->get();
     }
 };
 ?>

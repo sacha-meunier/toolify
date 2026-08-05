@@ -35,6 +35,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::livewire('/', 'pages::app.settings.teams.listing.index')->name('index');
                 Route::livewire('/identity', 'pages::app.settings.teams.listing.identity')->name('identity');
                 Route::livewire('/details', 'pages::app.settings.teams.listing.details')->name('details');
+                Route::livewire('/links', 'pages::app.settings.teams.listing.links')->name('links');
+                Route::livewire('/basics', 'pages::app.settings.teams.listing.basics')->name('basics');
+                Route::livewire('/danger-zone', 'pages::app.settings.teams.listing.danger-zone')->name('danger-zone');
+            });
         });
     });
 });

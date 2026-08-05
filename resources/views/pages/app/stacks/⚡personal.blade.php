@@ -9,7 +9,7 @@ new class extends Component
     #[Computed]
     public function tools(): Collection
     {
-        return auth()->user()->stack?->tools()->get() ?? new Collection;
+        return auth()->user()->stack?->tools()->withTrashed()->get() ?? new Collection;
     }
 };
 ?>

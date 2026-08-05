@@ -73,7 +73,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
         <x-domain.app.settings.section>
             <x-domain.app.settings.section-content
                 label="Visibility"
-                description="Public products are visible to everyone and listed in search and category pages. Unlisted products are hidden from search but accessible via direct link. Private products are only visible to your Workspace."
+                description="Public products are visible to everyone and listed in search and category pages. Unlisted products are hidden from search but accessible via direct link. Private products are only visible to members of your team."
             >
                 <div
                     class="flex w-64 flex-col gap-1"

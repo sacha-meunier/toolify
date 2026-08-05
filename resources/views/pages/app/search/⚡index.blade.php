@@ -1,13 +1,17 @@
 <?php
 
-use App\Enums\Category;
+use App\Livewire\Traits\ManagesSurveyForm;
+use App\Models\Survey;
 use App\Models\Tool;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component
 {
+    use ManagesSurveyForm;
+
     public const int MAX_RECENT_SEARCHES = 10;
 
     public const int RECENT_SEARCHES_RETENTION_DAYS = 14;
@@ -20,6 +24,37 @@ new class extends Component
      */
     public array $recentSearches = [];
 
+    /**
+     * @var array{pricing: array<string>, categories: array<string>, platforms: array<string>}
+     */
+    public array $filters = [
+        'pricing' => [],
+        'categories' => [],
+        'platforms' => [],
+    ];
+
+    public function toggleFilter(string $group, string $value): void
+    {
+        $this->filters[$group] = in_array($value, $this->filters[$group], true)
+            ? array_values(array_diff($this->filters[$group], [$value]))
+            : [...$this->filters[$group], $value];
+    }
+
+    public function clearFilters(): void
+    {
+        $this->filters = [
+            'pricing' => [],
+            'categories' => [],
+            'platforms' => [],
+        ];
+    }
+
+    #[Computed]
+    public function hasActiveFilters(): bool
+    {
+        return collect($this->filters)->flatten()->isNotEmpty();
+    }
+
     /* Called on page load. */
     public function syncRecentSearches(array $searches): void
     {
@@ -31,6 +66,17 @@ new class extends Component
             ->take(self::MAX_RECENT_SEARCHES)
             ->values()
             ->all();
+    }
+
+    public function saveAllRecentSearchesAsSurveys(): void
+    {
+        foreach ($this->recentSearches as $recentSearch) {
+            auth()->user()->surveys()->create([
+                'name' => $recentSearch['query'],
+                'query' => $recentSearch['query'],
+                'filters' => ['pricing' => [], 'categories' => [], 'platforms' => []],
+            ]);
+        }
     }
 
     public function clearRecentSearches(): void
@@ -61,22 +107,16 @@ new class extends Component
     #[Computed]
     public function tools(): Collection
     {
-        $matchingCategories = collect(Category::cases())
-            ->filter(fn (Category $category) => str_contains(strtolower($category->label()), strtolower($this->search)))
-            ->map(fn (Category $category) => $category->value);
+        return Tool::matching($this->search, $this->filters)->orderBy('name')->get();
+    }
 
-        return Tool::query()
-            ->where(fn ($query) => $query
-                ->where('name', 'like', "%{$this->search}%")
-                ->orWhere('tagline', 'like', "%{$this->search}%")
-                ->when($matchingCategories->isNotEmpty(), fn ($query) => $query->orWhere(
-                    fn ($query) => $matchingCategories->each(
-                        fn (string $category) => $query->orWhereJsonContains('categories', $category)
-                    )
-                ))
-            )
-            ->orderBy('name')
-            ->get();
+    protected function surveyFormOwner(): User
+    {
+        return auth()->user();
+    }
+
+    protected function afterSurveyFormSaved(Survey $survey): void
+    {
     }
 };
 ?>
@@ -89,10 +129,10 @@ new class extends Component
         $wire.on('recent-searches-changed', ({ searches }) => localStorage.setItem('toolify:recent-searches', JSON.stringify(searches)));
     "
 >
-    <x-domain.app.topbar.search wire:model.live.debounce.300ms="search"/>
+    <x-domain.app.topbar.search wire:model.live.debounce.300ms="search" :filters="$filters"/>
 
     <div class="flex flex-col gap-6 px-8">
-        @if ($search !== '')
+        @if ($search !== '' || $this->hasActiveFilters)
             <section>
                 <header class="flex items-center justify-between py-3">
                     <h2 class="text-lg font-semibold text-foreground">Results</h2>
@@ -100,29 +140,7 @@ new class extends Component
 
                 <div class="flex flex-col divide-y border border-border rounded-md">
                     @forelse ($this->tools as $tool)
-                        <div class="flex items-center gap-3 px-6 py-3.5 hover:bg-muted">
-                            <a href="{{ route('tools.show', $tool) }}" wire:navigate class="flex min-w-0 flex-1 flex-col gap-2">
-                                <div class="flex items-center gap-2">
-                                    <p class="truncate text-sm font-medium text-foreground">{{ $tool->name }}</p>
-                                    <p class="truncate text-sm text-muted-foreground">{{ $tool->tagline }}</p>
-                                </div>
-
-                                <div class="flex flex-wrap items-center gap-1.5">
-                                    @foreach ($tool->categories as $category)
-                                        <x-ui.badge>{{ $category->label() }}</x-ui.badge>
-                                    @endforeach
-                                    <x-ui.badge>{{ $tool->pricing->label() }}</x-ui.badge>
-                                </div>
-                            </a>
-
-                            <x-ui.button
-                                variant="secondary"
-                                size="sm"
-                                :href="$tool->website_url"
-                                target="_blank"
-                                label="Visit"
-                            />
-                        </div>
+                        <x-domain.app.tool-list-item :tool="$tool"/>
                     @empty
                         <div class="px-6 py-8 text-center text-sm text-muted-foreground">
                             No tools match "{{ $search }}".
@@ -136,7 +154,7 @@ new class extends Component
                     <h2 class="text-lg font-semibold text-foreground">Recent searches</h2>
                     @if (count($recentSearches))
                         <div class="flex items-center gap-2">
-                            <x-ui.button variant="secondary" icon="layer" label="Save all as views"/>
+                            <x-ui.button variant="secondary" icon="layer" label="Save all as surveys" wire:click="saveAllRecentSearchesAsSurveys"/>
                             <x-ui.button label="Clear history" wire:click="clearRecentSearches"/>
                         </div>
                     @endif
@@ -163,7 +181,13 @@ new class extends Component
                             </div>
 
                             <div class="flex shrink-0 px-2 h-7">
-                                <x-ui.button variant="secondary" size="sm" icon="layer" label="Save as a view"/>
+                                <x-ui.button
+                                    variant="secondary"
+                                    size="sm"
+                                    icon="layer"
+                                    label="Save as a survey"
+                                    wire:click="openSurveyForm(null, @js($recentSearch['query']))"
+                                />
                             </div>
 
                             <div class="flex shrink-0 justify-center pl-3 pr-6 h-7">
@@ -174,7 +198,7 @@ new class extends Component
                         <x-domain.app.empty-state
                             icon="search-01"
                             title="No recent searches"
-                            description="Searches you run will show up here so you can jump back into them or save them as views."
+                            description="Searches you run will show up here so you can jump back into them or save them as surveys."
                         />
                     @endforelse
                 </div>
@@ -187,7 +211,9 @@ new class extends Component
                 @endif
             </section>
 
-            {{-- TODO : Add recent views --}}
+            {{-- TODO : Add recent surveys --}}
         @endif
     </div>
+
+    @include('components.domain.app.survey-form-modal')
 </div>

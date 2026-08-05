@@ -257,3 +257,33 @@ html:active-view-transition-type(backward) {
     }
 }
 
+/* Plain cross-fade, no horizontal movement, used when there's no directionality to convey
+   (e.g. revealing the listing setup wizard). Slower than the slide transitions above so it reads
+   as deliberate rather than a flicker. */
+html:active-view-transition-type(fade) {
+    &::view-transition-old(content) {
+        animation: fade-out 700ms forwards;
+    }
+    &::view-transition-new(content) {
+        animation: fade-in 700ms forwards;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+

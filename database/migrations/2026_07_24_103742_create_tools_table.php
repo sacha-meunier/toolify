@@ -35,7 +35,9 @@ return new class extends Migration
             $table->string('headcount')->nullable();
             $table->string('status')->default('active');
             $table->string('visibility')->default('public');
+            $table->string('share_token')->nullable()->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -16,8 +16,10 @@ use Illuminate\Database\Eloquent\Casts\AsEnumCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 /**
  * @property int $id
@@ -43,14 +45,27 @@ use Illuminate\Support\Collection;
  * @property ToolHeadcount|null $headcount
  * @property ToolStatus $status
  * @property ToolVisibility $visibility
+ * @property string|null $share_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
  */
 #[Fillable(['name', 'slug', 'tagline', 'description', 'website_url', 'github_url', 'twitter_url', 'app_store_url', 'play_store_url', 'logo_url', 'banner_url', 'gallery', 'categories', 'pricing', 'platforms', 'team_id', 'founded_year', 'first_release_year', 'headquarters', 'headcount', 'status', 'visibility'])]
 class Tool extends Model
 {
     /** @use HasFactory<ToolFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
+    /**
+     * Generate the tool's unguessable share token up front, so it's ready
+     * the moment its visibility is switched to Unlisted.
+     */
+    protected static function booted(): void
+    {
+        static::creating(function (Tool $tool): void {
+            $tool->share_token ??= Str::random(32);
+        });
+    }
 
     /**
      * Get the attributes that should be cast.
@@ -79,6 +94,24 @@ class Tool extends Model
     }
 
     /**
+     * Scope to tools listable by the given user: Public tools for anyone, Private/Unlisted
+     * tools belongs to a team the user is a member of (or owns the workspace of).
+     */
+    public function scopeVisibleTo(Builder $query, ?User $user): Builder
+    {
+        return $query->where(function (Builder $query) use ($user) {
+            $query->where('visibility', ToolVisibility::Public);
+
+            if ($user) {
+                $query->orWhereHas('team', fn (Builder $team) => $team
+                    ->whereHas('members', fn (Builder $members) => $members->whereKey($user->id))
+                    ->orWhereHas('workspace', fn (Builder $workspace) => $workspace->where('owner_id', $user->id))
+                );
+            }
+        });
+    }
+
+    /**
      * Tools matching a free-text search and a set of pricing/categories/platforms filters,
      * shared by the search page and by surveys (saved searches) re-running their own query.
      *
@@ -91,6 +124,7 @@ class Tool extends Model
             ->map(fn (Category $category) => $category->value);
 
         return static::query()
+            ->visibleTo(auth()->user())
             ->where(fn ($query) => $query
                 ->where('name', 'like', "%{$search}%")
                 ->orWhere('tagline', 'like', "%{$search}%")

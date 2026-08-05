@@ -118,8 +118,8 @@ class extends Component {
 
         <div class="flex items-center justify-between px-4">
             <a href="{{ route('settings.teams.listing.details', $team) }}" wire:navigate class="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-                Details
                 <x-ui.icon.arrow-left-01 size="xs"/>
+                Details
             </a>
 
             <a href="{{ route('settings.teams.listing.basics', $team) }}" wire:navigate class="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary">

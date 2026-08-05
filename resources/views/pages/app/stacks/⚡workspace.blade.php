@@ -16,7 +16,7 @@ new class extends Component
     #[Computed]
     public function tools(): Collection
     {
-        return $this->workspace?->stack?->tools()->get() ?? new Collection;
+        return $this->workspace?->stack?->tools()->withTrashed()->get() ?? new Collection;
     }
 };
 ?>
