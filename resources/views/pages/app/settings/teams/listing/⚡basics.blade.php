@@ -38,7 +38,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
 };
 ?>
 
-<div class="flex flex-col">
+<div class="flex h-full min-h-0 flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
             'Settings' => null,
@@ -65,85 +65,82 @@ new #[Layout('layouts::shells.settings')] class extends Component
         </x-slot:actions>
     </x-domain.app.topbar>
 
-    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
-        <header class="flex flex-col gap-1 px-4">
-            <h1 class="text-3xl font-semibold text-foreground">Basics</h1>
-        </header>
+    <div class="min-h-0 flex-1 overflow-y-auto">
+        <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
+            <header class="flex flex-col gap-1 px-4">
+                <h1 class="text-3xl font-semibold text-foreground">Basics</h1>
+            </header>
 
-        <x-domain.app.settings.section>
-            <x-domain.app.settings.section-content
-                label="Visibility"
-                description="Public products are visible to everyone and listed in search and category pages. Unlisted products are hidden from search but accessible via direct link. Private products are only visible to members of your team."
-            >
-                <div
-                    class="flex w-64 flex-col gap-1"
-                    x-data="{
-                        open: false,
-                        position: { top: 0, left: 0, width: 0 },
-                        options: [
-                            @foreach (ToolVisibility::cases() as $option)
-                                { value: '{{ $option->value }}', label: @js($option->label()) },
-                            @endforeach
-                        ],
-                        label() {
-                            return this.options.find(option => option.value === $wire.form.visibility)?.label ?? 'Select...';
-                        },
-                        toggle() {
-                            const rect = $refs.trigger.getBoundingClientRect();
-                            this.position = { top: rect.bottom + window.scrollY + 4, left: rect.left + window.scrollX, width: rect.width };
-                            this.open = ! this.open;
-                        },
-                    }"
+            <x-domain.app.settings.section>
+                <x-domain.app.settings.section-content
+                    label="Visibility"
+                    description="Public products are visible to everyone and listed in search and category pages. Unlisted products are hidden from search but accessible via direct link. Private products are only visible to members of your team."
                 >
-                    <button
-                        type="button"
-                        x-ref="trigger"
-                        @click="toggle()"
-                        class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm text-foreground"
+                    <div
+                        class="flex w-64 flex-col gap-1"
+                        x-data="{
+                            open: false,
+                            position: { top: 0, left: 0, width: 0 },
+                            options: [
+                                @foreach (ToolVisibility::cases() as $option)
+                                    { value: '{{ $option->value }}', label: @js($option->label()) },
+                                @endforeach
+                            ],
+                            label() {
+                                return this.options.find(option => option.value === $wire.form.visibility)?.label ?? 'Select...';
+                            },
+                            toggle() {
+                                const rect = $refs.trigger.getBoundingClientRect();
+                                this.position = { top: rect.bottom + window.scrollY + 4, left: rect.left + window.scrollX, width: rect.width };
+                                this.open = ! this.open;
+                            },
+                        }"
                     >
-                        <span x-text="label()"></span>
-                        <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
-                    </button>
-
-                    <template x-teleport="body">
-                        <div
-                            x-show="open"
-                            x-cloak
-                            x-transition
-                            @click.outside="if (! $refs.trigger.contains($event.target)) open = false"
-                            x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px; width: ${position.width}px;`"
-                            class="z-50 overflow-clip rounded-lg border border-border bg-popover p-1 shadow-md"
+                        <button
+                            type="button"
+                            x-ref="trigger"
+                            @click="toggle()"
+                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm text-foreground"
                         >
-                            <template x-for="option in options" :key="option.value">
-                                <button
-                                    type="button"
-                                    @click="$wire.form.visibility = option.value; open = false"
-                                    class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
-                                >
-                                    <span x-text="option.label"></span>
-                                    <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.visibility === option.value"/>
-                                </button>
-                            </template>
-                        </div>
-                    </template>
+                            <span x-text="label()"></span>
+                            <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
+                        </button>
 
-                    @error('form.visibility')
-                    <x-ui.field.error>{{ $message }}</x-ui.field.error>
-                    @enderror
-                </div>
-            </x-domain.app.settings.section-content>
-        </x-domain.app.settings.section>
+                        <template x-teleport="body">
+                            <div
+                                x-show="open"
+                                x-cloak
+                                x-transition
+                                @click.outside="if (! $refs.trigger.contains($event.target)) open = false"
+                                x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px; width: ${position.width}px;`"
+                                class="z-50 overflow-clip rounded-lg border border-border bg-popover p-1 shadow-md"
+                            >
+                                <template x-for="option in options" :key="option.value">
+                                    <button
+                                        type="button"
+                                        @click="$wire.form.visibility = option.value; open = false"
+                                        class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
+                                    >
+                                        <span x-text="option.label"></span>
+                                        <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.visibility === option.value"/>
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
 
-        <div class="flex items-center justify-between px-4">
-            <a href="{{ route('settings.teams.listing.links', $team) }}" wire:navigate class="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-                <x-ui.icon.arrow-left-01 size="xs"/>
-                Links
-            </a>
-
-            <a href="{{ route('settings.teams.listing.danger-zone', $team) }}" wire:navigate class="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-                Danger zone
-                <x-ui.icon.arrow-right-01 size="xs"/>
-            </a>
+                        @error('form.visibility')
+                        <x-ui.field.error>{{ $message }}</x-ui.field.error>
+                        @enderror
+                    </div>
+                </x-domain.app.settings.section-content>
+            </x-domain.app.settings.section>
         </div>
     </div>
+
+    <x-domain.app.settings.listing-nav
+        :prev-href="route('settings.teams.listing.links', $team)"
+        prev-label="Links"
+        :next-href="route('settings.teams.listing.danger-zone', $team)"
+        next-label="Danger zone"
+    />
 </div>

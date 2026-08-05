@@ -39,7 +39,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
 };
 ?>
 
-<div class="flex flex-col">
+<div class="flex h-full min-h-0 flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
             'Settings' => null,
@@ -66,168 +66,165 @@ new #[Layout('layouts::shells.settings')] class extends Component
         </x-slot:actions>
     </x-domain.app.topbar>
 
-    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
-        <header class="flex flex-col gap-1 px-4">
-            <h1 class="text-3xl font-semibold text-foreground">Details</h1>
-        </header>
+    <div class="min-h-0 flex-1 overflow-y-auto">
+        <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
+            <header class="flex flex-col gap-1 px-4">
+                <h1 class="text-3xl font-semibold text-foreground">Details</h1>
+            </header>
 
-        <x-domain.app.settings.section>
-            <x-domain.app.settings.section-content label="Founded" description="The year the company was founded.">
-                <div class="flex w-64 flex-col gap-1">
-                    <x-ui.input type="text" wire:model="form.foundedYear"/>
-                    @error('form.foundedYear')
-                    <x-ui.field.error>{{ $message }}</x-ui.field.error>
-                    @enderror
-                </div>
-            </x-domain.app.settings.section-content>
+            <x-domain.app.settings.section>
+                <x-domain.app.settings.section-content label="Founded" description="The year the company was founded.">
+                    <div class="flex w-64 flex-col gap-1">
+                        <x-ui.input type="text" wire:model="form.foundedYear"/>
+                        @error('form.foundedYear')
+                        <x-ui.field.error>{{ $message }}</x-ui.field.error>
+                        @enderror
+                    </div>
+                </x-domain.app.settings.section-content>
 
-            <x-domain.app.settings.section-content label="First release" description="The year of the first release of the product.">
-                <div class="flex w-64 flex-col gap-1">
-                    <x-ui.input type="text" wire:model="form.firstReleaseYear"/>
-                    @error('form.firstReleaseYear')
-                    <x-ui.field.error>{{ $message }}</x-ui.field.error>
-                    @enderror
-                </div>
-            </x-domain.app.settings.section-content>
+                <x-domain.app.settings.section-content label="First release" description="The year of the first release of the product.">
+                    <div class="flex w-64 flex-col gap-1">
+                        <x-ui.input type="text" wire:model="form.firstReleaseYear"/>
+                        @error('form.firstReleaseYear')
+                        <x-ui.field.error>{{ $message }}</x-ui.field.error>
+                        @enderror
+                    </div>
+                </x-domain.app.settings.section-content>
 
-            <x-domain.app.settings.section-content label="Headquarters" description="The location of your headquarters.">
-                <div class="flex w-64 flex-col gap-1">
-                    <x-ui.input wire:model="form.headquarters"/>
-                    @error('form.headquarters')
-                    <x-ui.field.error>{{ $message }}</x-ui.field.error>
-                    @enderror
-                </div>
-            </x-domain.app.settings.section-content>
+                <x-domain.app.settings.section-content label="Headquarters" description="The location of your headquarters.">
+                    <div class="flex w-64 flex-col gap-1">
+                        <x-ui.input wire:model="form.headquarters"/>
+                        @error('form.headquarters')
+                        <x-ui.field.error>{{ $message }}</x-ui.field.error>
+                        @enderror
+                    </div>
+                </x-domain.app.settings.section-content>
 
-            <x-domain.app.settings.section-content label="Headcount" description="The amount of employees inside of {{ $team->name }}.">
-                <div
-                    class="flex w-64 flex-col gap-1"
-                    x-data="{
-                        open: false,
-                        position: { top: 0, left: 0, width: 0 },
-                        options: [
-                            @foreach (ToolHeadcount::cases() as $option)
-                                { value: '{{ $option->value }}', label: @js($option->label()) },
-                            @endforeach
-                        ],
-                        label() {
-                            return this.options.find(option => option.value === $wire.form.headcount)?.label ?? 'Select...';
-                        },
-                        toggle() {
-                            const rect = $refs.trigger.getBoundingClientRect();
-                            this.position = { top: rect.bottom + window.scrollY + 4, left: rect.left + window.scrollX, width: rect.width };
-                            this.open = ! this.open;
-                        },
-                    }"
-                >
-                    <button
-                        type="button"
-                        x-ref="trigger"
-                        @click="toggle()"
-                        class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm text-foreground"
+                <x-domain.app.settings.section-content label="Headcount" description="The amount of employees inside of {{ $team->name }}.">
+                    <div
+                        class="flex w-64 flex-col gap-1"
+                        x-data="{
+                            open: false,
+                            position: { top: 0, left: 0, width: 0 },
+                            options: [
+                                @foreach (ToolHeadcount::cases() as $option)
+                                    { value: '{{ $option->value }}', label: @js($option->label()) },
+                                @endforeach
+                            ],
+                            label() {
+                                return this.options.find(option => option.value === $wire.form.headcount)?.label ?? 'Select...';
+                            },
+                            toggle() {
+                                const rect = $refs.trigger.getBoundingClientRect();
+                                this.position = { top: rect.bottom + window.scrollY + 4, left: rect.left + window.scrollX, width: rect.width };
+                                this.open = ! this.open;
+                            },
+                        }"
                     >
-                        <span x-text="label()"></span>
-                        <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
-                    </button>
-
-                    <template x-teleport="body">
-                        <div
-                            x-show="open"
-                            x-cloak
-                            x-transition
-                            @click.outside="if (! $refs.trigger.contains($event.target)) open = false"
-                            x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px; width: ${position.width}px;`"
-                            class="z-50 overflow-clip rounded-lg border border-border bg-popover p-1 shadow-md"
+                        <button
+                            type="button"
+                            x-ref="trigger"
+                            @click="toggle()"
+                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm text-foreground"
                         >
-                            <template x-for="option in options" :key="option.value">
-                                <button
-                                    type="button"
-                                    @click="$wire.form.headcount = option.value; open = false"
-                                    class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
-                                >
-                                    <span x-text="option.label"></span>
-                                    <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.headcount === option.value"/>
-                                </button>
-                            </template>
-                        </div>
-                    </template>
+                            <span x-text="label()"></span>
+                            <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
+                        </button>
 
-                    @error('form.headcount')
-                    <x-ui.field.error>{{ $message }}</x-ui.field.error>
-                    @enderror
-                </div>
-            </x-domain.app.settings.section-content>
+                        <template x-teleport="body">
+                            <div
+                                x-show="open"
+                                x-cloak
+                                x-transition
+                                @click.outside="if (! $refs.trigger.contains($event.target)) open = false"
+                                x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px; width: ${position.width}px;`"
+                                class="z-50 overflow-clip rounded-lg border border-border bg-popover p-1 shadow-md"
+                            >
+                                <template x-for="option in options" :key="option.value">
+                                    <button
+                                        type="button"
+                                        @click="$wire.form.headcount = option.value; open = false"
+                                        class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
+                                    >
+                                        <span x-text="option.label"></span>
+                                        <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.headcount === option.value"/>
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
 
-            <x-domain.app.settings.section-content label="Status" description="Active products appear in search. Other statuses are kept for history.">
-                <div
-                    class="flex w-64 flex-col gap-1"
-                    x-data="{
-                        open: false,
-                        position: { top: 0, left: 0, width: 0 },
-                        options: [
-                            @foreach (ToolStatus::cases() as $option)
-                                { value: '{{ $option->value }}', label: @js($option->label()) },
-                            @endforeach
-                        ],
-                        label() {
-                            return this.options.find(option => option.value === $wire.form.status)?.label ?? 'Select...';
-                        },
-                        toggle() {
-                            const rect = $refs.trigger.getBoundingClientRect();
-                            this.position = { top: rect.bottom + window.scrollY + 4, left: rect.left + window.scrollX, width: rect.width };
-                            this.open = ! this.open;
-                        },
-                    }"
-                >
-                    <button
-                        type="button"
-                        x-ref="trigger"
-                        @click="toggle()"
-                        class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm text-foreground"
+                        @error('form.headcount')
+                        <x-ui.field.error>{{ $message }}</x-ui.field.error>
+                        @enderror
+                    </div>
+                </x-domain.app.settings.section-content>
+
+                <x-domain.app.settings.section-content label="Status" description="Active products appear in search. Other statuses are kept for history.">
+                    <div
+                        class="flex w-64 flex-col gap-1"
+                        x-data="{
+                            open: false,
+                            position: { top: 0, left: 0, width: 0 },
+                            options: [
+                                @foreach (ToolStatus::cases() as $option)
+                                    { value: '{{ $option->value }}', label: @js($option->label()) },
+                                @endforeach
+                            ],
+                            label() {
+                                return this.options.find(option => option.value === $wire.form.status)?.label ?? 'Select...';
+                            },
+                            toggle() {
+                                const rect = $refs.trigger.getBoundingClientRect();
+                                this.position = { top: rect.bottom + window.scrollY + 4, left: rect.left + window.scrollX, width: rect.width };
+                                this.open = ! this.open;
+                            },
+                        }"
                     >
-                        <span x-text="label()"></span>
-                        <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
-                    </button>
-
-                    <template x-teleport="body">
-                        <div
-                            x-show="open"
-                            x-cloak
-                            x-transition
-                            @click.outside="if (! $refs.trigger.contains($event.target)) open = false"
-                            x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px; width: ${position.width}px;`"
-                            class="z-50 overflow-clip rounded-lg border border-border bg-popover p-1 shadow-md"
+                        <button
+                            type="button"
+                            x-ref="trigger"
+                            @click="toggle()"
+                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm text-foreground"
                         >
-                            <template x-for="option in options" :key="option.value">
-                                <button
-                                    type="button"
-                                    @click="$wire.form.status = option.value; open = false"
-                                    class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
-                                >
-                                    <span x-text="option.label"></span>
-                                    <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.status === option.value"/>
-                                </button>
-                            </template>
-                        </div>
-                    </template>
+                            <span x-text="label()"></span>
+                            <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
+                        </button>
 
-                    @error('form.status')
-                    <x-ui.field.error>{{ $message }}</x-ui.field.error>
-                    @enderror
-                </div>
-            </x-domain.app.settings.section-content>
-        </x-domain.app.settings.section>
+                        <template x-teleport="body">
+                            <div
+                                x-show="open"
+                                x-cloak
+                                x-transition
+                                @click.outside="if (! $refs.trigger.contains($event.target)) open = false"
+                                x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px; width: ${position.width}px;`"
+                                class="z-50 overflow-clip rounded-lg border border-border bg-popover p-1 shadow-md"
+                            >
+                                <template x-for="option in options" :key="option.value">
+                                    <button
+                                        type="button"
+                                        @click="$wire.form.status = option.value; open = false"
+                                        class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
+                                    >
+                                        <span x-text="option.label"></span>
+                                        <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.status === option.value"/>
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
 
-        <div class="flex items-center justify-between px-4">
-            <a href="{{ route('settings.teams.listing.identity', $team) }}" wire:navigate class="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-                <x-ui.icon.arrow-left-01 size="xs"/>
-                Identity
-            </a>
-
-            <a href="{{ route('settings.teams.listing.links', $team) }}" wire:navigate class="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-                Links
-                <x-ui.icon.arrow-right-01 size="xs"/>
-            </a>
+                        @error('form.status')
+                        <x-ui.field.error>{{ $message }}</x-ui.field.error>
+                        @enderror
+                    </div>
+                </x-domain.app.settings.section-content>
+            </x-domain.app.settings.section>
         </div>
     </div>
+
+    <x-domain.app.settings.listing-nav
+        :prev-href="route('settings.teams.listing.identity', $team)"
+        prev-label="Identity"
+        :next-href="route('settings.teams.listing.links', $team)"
+        next-label="Links"
+    />
 </div>
