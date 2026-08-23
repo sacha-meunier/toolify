@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::livewire('/search', 'pages::app.search.index')->name('search');
     Route::livewire('/discovery', 'pages::app.discovery.index')->name('discovery');
+    Route::livewire('/inbox/{notification?}', 'pages::app.inbox.index')->name('inbox');
     Route::livewire('/tools/{tool:slug}', 'pages::app.tools.show')->name('tools.show');
 
     Route::livewire('/stack', 'pages::app.stacks.personal')->name('stacks.personal');

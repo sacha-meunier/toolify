@@ -3,6 +3,7 @@
 @php
     $workspace = auth()->user()->currentWorkspace();
     $teams = $workspace?->teams->filter(fn ($team) => $team->hasMember(auth()->user())) ?? collect();
+    $unreadNotifications = auth()->user()->unreadNotifications()->count();
 @endphp
 
 <aside {{ $attributes->class('flex h-full w-61 shrink-0 flex-col overflow-visible rounded-sm border border-sidebar-border bg-sidebar') }}>
@@ -14,7 +15,7 @@
         <x-domain.app.sidebar.group>
             <x-domain.app.sidebar.item icon="search-01" :href="route('search')">Search</x-domain.app.sidebar.item>
             <x-domain.app.sidebar.item icon="discover-circle" :href="route('discovery')">Discovery</x-domain.app.sidebar.item>
-            <x-domain.app.sidebar.item icon="inbox" href="#" badge="23" disabled>Inbox</x-domain.app.sidebar.item>
+            <x-domain.app.sidebar.item icon="inbox" :href="route('inbox')" :badge="$unreadNotifications ?: null">Inbox</x-domain.app.sidebar.item>
         </x-domain.app.sidebar.group>
 
         <x-domain.app.sidebar.group label="Personal">

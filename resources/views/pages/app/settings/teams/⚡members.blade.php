@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Forms\Settings\InviteMemberForm;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Collection;
@@ -12,11 +13,40 @@ new #[Layout('layouts::shells.settings')]
 class extends Component {
     public Team $team;
 
+    public InviteMemberForm $inviteForm;
+
+    public bool $inviteMemberModalOpen = false;
+
     public function mount(Team $team): void
     {
         Gate::authorize('manageMembers', $team);
 
         $this->team = $team;
+        $this->inviteForm->setContext($team->workspace, $team);
+    }
+
+    public function openInviteMemberModal(): void
+    {
+        Gate::authorize('manageMembers', $this->team);
+
+        $this->inviteMemberModalOpen = true;
+    }
+
+    public function closeInviteMemberModal(): void
+    {
+        $this->inviteMemberModalOpen = false;
+        $this->inviteForm->reset();
+        $this->resetValidation();
+    }
+
+    public function inviteMember(): void
+    {
+        Gate::authorize('manageMembers', $this->team);
+
+        if ($this->inviteForm->invite()) {
+            $this->inviteMemberModalOpen = false;
+            unset($this->members);
+        }
     }
 
     /**
@@ -66,7 +96,7 @@ class extends Component {
         ]"/>
 
         <x-slot:actions>
-            <x-ui.button variant="primary" size="sm" icon="add-01" label="Invite member" disabled/>
+            <x-ui.button variant="primary" size="sm" icon="add-01" label="Invite member" wire:click="openInviteMemberModal"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
@@ -124,4 +154,23 @@ class extends Component {
             @endforeach
         </div>
     </div>
+
+    <x-ui.modal show="$wire.inviteMemberModalOpen" close="closeInviteMemberModal" class="max-w-md">
+        <x-slot:header>
+            <h2 class="text-lg font-semibold text-foreground">Invite member</h2>
+        </x-slot:header>
+
+        <form wire:submit="inviteMember" class="flex flex-col gap-4">
+            <x-ui.field>
+                <x-ui.field.label content="Email"/>
+                <x-ui.input type="email" wire:model="inviteForm.email" name="inviteForm.email" placeholder="teammate@company.com" autofocus/>
+                <x-ui.field.error :content="$errors->first('inviteForm.email')"/>
+            </x-ui.field>
+
+            <div class="flex items-center justify-end gap-2 pt-2">
+                <x-ui.button type="button" variant="outline" label="Cancel" wire:click="closeInviteMemberModal"/>
+                <x-ui.button type="submit" variant="primary" label="Send invite"/>
+            </div>
+        </form>
+    </x-ui.modal>
 </div>

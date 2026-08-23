@@ -1,17 +1,15 @@
 <x-layouts.root>
-    {{-- TODO sidebar-app --}}
+    <div class="flex h-dvh w-full gap-2 p-2">
+        <x-domain.app.sidebar/>
 
-    <div class="flex flex-1">
-        <div class="flex flex-col w-80 border-r">
-            {{-- TODO topbar-app --}}
+        <main class="flex flex-1 overflow-hidden rounded-sm border border-border bg-background">
+            <div class="flex w-80 shrink-0 flex-col overflow-y-auto border-r border-border">
+                {{ $list }}
+            </div>
 
-            {{ $list }}
-        </div>
-
-        <div class="flex flex-col flex-1">
-            {{-- TODO topbar-app-inbox --}}
-
-            {{ $slot }}
-        </div>
+            <div class="flex min-w-0 flex-1 flex-col overflow-y-auto">
+                {{ $slot }}
+            </div>
+        </main>
     </div>
 </x-layouts.root>
