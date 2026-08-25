@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Casts\AsEnumCollection;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,8 +27,8 @@ use Illuminate\Support\Str;
  * @property int $team_id
  * @property string $name
  * @property string $slug
- * @property string $tagline
- * @property string $description
+ * @property string $tagline Resolved for the current app locale, falling back to the default locale.
+ * @property string $description Resolved for the current app locale, falling back to the default locale.
  * @property string $website_url
  * @property string|null $github_url
  * @property string|null $twitter_url
@@ -86,6 +87,53 @@ class Tool extends Model
     }
 
     /**
+     * The tagline, translated for the current app locale.
+     */
+    protected function tagline(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value): string => $this->resolveTranslation($value),
+            set: fn (string $value, array $attributes): string => $this->mergeTranslation($attributes['tagline'] ?? null, $value),
+        );
+    }
+
+    /**
+     * The description, translated for the current app locale.
+     */
+    protected function description(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value): string => $this->resolveTranslation($value),
+            set: fn (string $value, array $attributes): string => $this->mergeTranslation($attributes['description'] ?? null, $value),
+        );
+    }
+
+    /**
+     * Resolve a translatable JSON attribute for the current app locale, falling back to
+     * the app's default locale when the current locale hasn't been translated yet.
+     */
+    private function resolveTranslation(?string $json): string
+    {
+        $translations = json_decode($json ?? '', true) ?? [];
+
+        return $translations[app()->getLocale()]
+            ?? $translations[config('app.fallback_locale')]
+            ?? '';
+    }
+
+    /**
+     * Set the translation for the current app locale on a translatable JSON attribute,
+     * preserving the translations already stored for other locales.
+     */
+    private function mergeTranslation(?string $json, string $value): string
+    {
+        $translations = json_decode($json ?? '', true) ?? [];
+        $translations[app()->getLocale()] = $value;
+
+        return json_encode($translations);
+    }
+
+    /**
      * The team where the tool listing belongs to.
      */
     public function team(): BelongsTo
@@ -127,7 +175,8 @@ class Tool extends Model
             ->visibleTo(auth()->user())
             ->where(fn ($query) => $query
                 ->where('name', 'like', "%{$search}%")
-                ->orWhere('tagline', 'like', "%{$search}%")
+                ->orWhere('tagline->'.app()->getLocale(), 'like', "%{$search}%")
+                ->orWhere('tagline->'.config('app.fallback_locale'), 'like', "%{$search}%")
                 ->when($matchingCategories->isNotEmpty(), fn ($query) => $query->orWhere(
                     fn ($query) => $matchingCategories->each(
                         fn (string $category) => $query->orWhereJsonContains('categories', $category)

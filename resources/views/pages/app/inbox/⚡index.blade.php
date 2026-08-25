@@ -57,7 +57,7 @@ class extends Component {
 
 <x-slot:list>
     <div class="flex h-14 shrink-0 items-center border-b border-border p-4">
-        <p class="text-sm font-medium text-foreground">Inbox</p>
+        <p class="text-sm font-medium text-foreground">{{ __('app/inbox.title') }}</p>
     </div>
 
     <div class="flex flex-col gap-1 p-2">
@@ -91,7 +91,7 @@ class extends Component {
                 </div>
             </a>
         @empty
-            <p class="px-1 py-8 text-center text-sm text-muted-foreground">No notifications yet.</p>
+            <p class="px-1 py-8 text-center text-sm text-muted-foreground">{{ __('app/inbox.empty_list') }}</p>
         @endforelse
     </div>
 </x-slot:list>
@@ -99,7 +99,7 @@ class extends Component {
 <div class="flex min-h-0 flex-1 flex-col">
     @if ($notification)
         <x-domain.app.topbar>
-            <x-domain.app.topbar.breadcrumb :items="['Inbox' => route('inbox'), $notification->data['title'] => null]"/>
+            <x-domain.app.topbar.breadcrumb :items="[__('app/inbox.title') => route('inbox'), $notification->data['title'] => null]"/>
         </x-domain.app.topbar>
 
         <div class="mx-auto flex w-full max-w-4xl flex-col gap-4 px-10 py-10">
@@ -113,8 +113,8 @@ class extends Component {
             @if ($invitation)
                 @if ($invitation->status === InvitationStatus::Pending)
                     <div class="flex items-center gap-2">
-                        <x-ui.button variant="primary" size="sm" label="Accept" wire:click="acceptInvitation"/>
-                        <x-ui.button variant="outline" size="sm" label="Decline" wire:click="declineInvitation"/>
+                        <x-ui.button variant="primary" size="sm" :label="__('app/inbox.accept')" wire:click="acceptInvitation"/>
+                        <x-ui.button variant="outline" size="sm" :label="__('app/inbox.decline')" wire:click="declineInvitation"/>
                     </div>
                 @else
                     <div>
@@ -123,7 +123,7 @@ class extends Component {
                 @endif
             @elseif ($url = $notification->data['url'] ?? null)
                 <div>
-                    <x-ui.button variant="outline" size="sm" label="View" :href="$url" wire:navigate/>
+                    <x-ui.button variant="outline" size="sm" :label="__('app/inbox.view')" :href="$url" wire:navigate/>
                 </div>
             @endif
         </div>
@@ -131,8 +131,8 @@ class extends Component {
         <div class="flex flex-1 items-center justify-center">
             <x-domain.app.empty-state
                 icon="notification-01"
-                title="No notifications yet"
-                description="Pick a notification on the left to read it."
+                :title="__('app/inbox.empty_state_title')"
+                :description="__('app/inbox.empty_state_description')"
             />
         </div>
     @endif

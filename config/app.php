@@ -86,6 +86,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Available Locales
+    |--------------------------------------------------------------------------
+    |
+    | The locales the application is translated into and accepts as a
+    | "{locale}" route prefix segment. Every entry must have a matching
+    | directory under lang/.
+    |
+    */
+
+    'available_locales' => ['en', 'fr'],
+
+    /*
+    |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
     |

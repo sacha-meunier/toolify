@@ -29,110 +29,108 @@ class extends Component {
 <div class="flex flex-col" x-data="{ confirming: false }">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Account & Security' => null,
+            __('app/settings/account/security.breadcrumb_settings') => null,
+            __('app/settings/account/security.breadcrumb_security') => null,
         ]"/>
     </x-domain.app.topbar>
 
     <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
         <header class="flex flex-col gap-1 border-b border-border px-4 pb-6">
-            <h1 class="text-3xl font-semibold text-foreground">Account & Security</h1>
-            <p class="text-sm text-muted-foreground">Manage your credentials, connected accounts, and active
-                sessions.</p>
+            <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/account/security.heading') }}</h1>
+            <p class="text-sm text-muted-foreground">{{ __('app/settings/account/security.description') }}</p>
         </header>
 
         <x-domain.app.settings.section>
             <x-domain.app.settings.section-content
-                label="Password"
-                description="Sends a reset password email to your address."
+                :label="__('app/settings/account/security.password_label')"
+                :description="__('app/settings/account/security.password_description')"
             >
                 <a href="{{ route('password.request') }}" wire:navigate
                    class="text-sm font-medium text-foreground underline underline-offset-4 hover:text-primary">
-                    Change password
+                    {{ __('app/settings/account/security.change_password') }}
                 </a>
             </x-domain.app.settings.section-content>
 
             <x-domain.app.settings.section-content
-                label="Two-factor authentication (2FA)"
-                description="Adds a layer of security to your login. Once enabled, a code is required at every sign-in."
+                :label="__('app/settings/account/security.two_factor_label')"
+                :description="__('app/settings/account/security.two_factor_description')"
             >
                 <div class="flex items-center gap-3">
-                    <x-ui.badge>Coming soon</x-ui.badge>
+                    <x-ui.badge>{{ __('app/settings/account/security.coming_soon') }}</x-ui.badge>
                     <button disabled
                         class="text-sm font-medium text-foreground underline underline-offset-4 hover:text-primary disabled:opacity-50">
-                        Enable 2FA
+                        {{ __('app/settings/account/security.enable_2fa') }}
                     </button>
                 </div>
             </x-domain.app.settings.section-content>
         </x-domain.app.settings.section>
 
         <x-domain.app.settings.section
-            label="Connected accounts"
-            description="Third-party accounts linked for login via OAuth."
+            :label="__('app/settings/account/security.connected_accounts_label')"
+            :description="__('app/settings/account/security.connected_accounts_description')"
         >
-            <x-domain.app.settings.section-content icon="github" label="Github">
+            <x-domain.app.settings.section-content icon="github" :label="__('app/settings/account/security.github')">
                 <div class="flex items-center gap-3">
-                    <x-ui.badge>Coming soon</x-ui.badge>
+                    <x-ui.badge>{{ __('app/settings/account/security.coming_soon') }}</x-ui.badge>
                     <button disabled
                             class="text-sm font-medium text-foreground underline underline-offset-4 hover:text-primary disabled:opacity-50">
-                        Connect
+                        {{ __('app/settings/account/security.connect') }}
                     </button>
                 </div>
             </x-domain.app.settings.section-content>
 
-            <x-domain.app.settings.section-content icon="google" label="Google">
+            <x-domain.app.settings.section-content icon="google" :label="__('app/settings/account/security.google')">
                 <div class="flex items-center gap-3">
-                    <x-ui.badge>Coming soon</x-ui.badge>
+                    <x-ui.badge>{{ __('app/settings/account/security.coming_soon') }}</x-ui.badge>
                     <button disabled
                             class="text-sm font-medium text-foreground underline underline-offset-4 hover:text-primary disabled:opacity-50">
-                        Connect
+                        {{ __('app/settings/account/security.connect') }}
                     </button>
                 </div>
             </x-domain.app.settings.section-content>
         </x-domain.app.settings.section>
 
         <x-domain.app.settings.section
-            label="Active sessions"
-            description="Devices and browsers currently logged into the account. Revoking a session immediately logs the device out."
+            :label="__('app/settings/account/security.active_sessions_label')"
+            :description="__('app/settings/account/security.active_sessions_description')"
         >
             <x-domain.app.settings.section-content
                 icon="computer-terminal-01"
-                label="Firefox on macOS"
-                description="Brussels, BE · Active now"
+                :label="__('app/settings/account/security.session_firefox_macos')"
+                :description="__('app/settings/account/security.session_current_location')"
             >
                 <div class="flex items-center gap-3">
-                    <x-ui.badge>Coming soon</x-ui.badge>
-                    <x-ui.badge>Current</x-ui.badge>
-                    <x-ui.button variant="outline" size="sm" label="Log out" disabled/>
+                    <x-ui.badge>{{ __('app/settings/account/security.coming_soon') }}</x-ui.badge>
+                    <x-ui.badge>{{ __('app/settings/account/security.session_current') }}</x-ui.badge>
+                    <x-ui.button variant="outline" size="sm" :label="__('app/settings/account/security.log_out')" disabled/>
                 </div>
             </x-domain.app.settings.section-content>
 
             <x-domain.app.settings.section-content
                 icon="computer-terminal-01"
-                label="Firefox on iPhone 13"
-                description="Brussels, BE · Last seen 2 days ago"
+                :label="__('app/settings/account/security.session_firefox_iphone')"
+                :description="__('app/settings/account/security.session_last_seen_location')"
             >
                 <div class="flex items-center gap-3">
-                    <x-ui.badge>Coming soon</x-ui.badge>
-                    <x-ui.button variant="outline" size="sm" label="Revoke" disabled/>
+                    <x-ui.badge>{{ __('app/settings/account/security.coming_soon') }}</x-ui.badge>
+                    <x-ui.button variant="outline" size="sm" :label="__('app/settings/account/security.revoke')" disabled/>
                 </div>
             </x-domain.app.settings.section-content>
         </x-domain.app.settings.section>
 
         <section class="flex w-full flex-col gap-2">
             <header class="flex flex-col px-4">
-                <p class="text-base font-semibold text-foreground">Delete account</p>
-                <p class="text-sm text-muted-foreground">Permanently delete your account and all associated data. This
-                    action cannot be undone.</p>
+                <p class="text-base font-semibold text-foreground">{{ __('app/settings/account/security.delete_account_section_title') }}</p>
+                <p class="text-sm text-muted-foreground">{{ __('app/settings/account/security.delete_account_section_description') }}</p>
             </header>
 
             <div
                 class="flex w-full flex-col divide-y divide-border overflow-clip rounded-xl border border-border bg-card shadow-xs">
                 <x-domain.app.settings.section-content
-                    label="Delete account"
-                    description="Once deleted, all your data will be permanently removed. There is no going back."
+                    :label="__('app/settings/account/security.delete_account_label')"
+                    :description="__('app/settings/account/security.delete_account_description')"
                 >
-                    <x-ui.button variant="destructive" size="sm" label="Delete account" @click="confirming = true"/>
+                    <x-ui.button variant="destructive" size="sm" :label="__('app/settings/account/security.delete_account_button')" @click="confirming = true"/>
                 </x-domain.app.settings.section-content>
             </div>
         </section>
@@ -146,15 +144,15 @@ class extends Component {
                 class="flex w-full max-w-md flex-col gap-5 rounded-lg border border-border bg-background p-6 shadow-lg"
             >
                 <header class="flex flex-col gap-1">
-                    <h2 class="text-lg font-semibold text-foreground">Delete account</h2>
+                    <h2 class="text-lg font-semibold text-foreground">{{ __('app/settings/account/security.delete_modal_heading') }}</h2>
                     <p class="text-sm text-muted-foreground">
-                        This will permanently delete your account and all of its data. This action cannot be undone.
+                        {{ __('app/settings/account/security.delete_modal_description') }}
                     </p>
                 </header>
 
                 <div class="flex flex-col gap-1">
                     <x-ui.input type="password" autocomplete="new-password" aria-autocomplete="none"
-                                placeholder="Confirm your password" wire:model="deleteAccountForm.password"
+                                :placeholder="__('app/settings/account/security.password_placeholder')" wire:model="deleteAccountForm.password"
                                 wire:keydown.enter="deleteAccount"/>
                     @error('deleteAccountForm.password')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>
@@ -162,7 +160,7 @@ class extends Component {
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <x-ui.input type="text" autocomplete="off" placeholder="Type DELETE to confirm"
+                    <x-ui.input type="text" autocomplete="off" :placeholder="__('app/settings/account/security.confirmation_placeholder')"
                                 wire:model="deleteAccountForm.confirmation" wire:keydown.enter="deleteAccount"/>
                     @error('deleteAccountForm.confirmation')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>
@@ -170,8 +168,8 @@ class extends Component {
                 </div>
 
                 <div class="flex items-center justify-end gap-2">
-                    <x-ui.button variant="outline" label="Cancel" @click="confirming = false"/>
-                    <x-ui.button variant="destructive" label="Delete account" wire:click="deleteAccount"/>
+                    <x-ui.button variant="outline" :label="__('app/settings/account/security.cancel')" @click="confirming = false"/>
+                    <x-ui.button variant="destructive" :label="__('app/settings/account/security.delete_account_button')" wire:click="deleteAccount"/>
                 </div>
             </div>
         </div>

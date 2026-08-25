@@ -53,27 +53,27 @@ class extends Component {
 <div class="flex flex-col" x-data="{ confirming: false }">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Workspace' => null,
-            'General' => null,
+            __('app/settings/workspace/general.breadcrumb_settings') => null,
+            __('app/settings/workspace/general.breadcrumb_workspace') => null,
+            __('app/settings/workspace/general.breadcrumb_general') => null,
         ]"/>
 
         <x-slot:actions>
             <x-ui.field.saved event="workspace-saved"/>
-            <x-ui.button variant="primary" size="sm" label="Save changes" wire:click="save"/>
+            <x-ui.button variant="primary" size="sm" :label="__('app/settings/workspace/general.save_changes')" wire:click="save"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
     <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
         <header class="flex flex-col gap-1 border-b border-border px-4 pb-6">
-            <h1 class="text-3xl font-semibold text-foreground">General</h1>
-            <p class="text-sm text-muted-foreground">Manage your workspace's identity and general settings.</p>
+            <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/workspace/general.heading') }}</h1>
+            <p class="text-sm text-muted-foreground">{{ __('app/settings/workspace/general.description') }}</p>
         </header>
 
         <x-domain.app.settings.section>
             <x-domain.app.settings.section-content
-                label="Logo"
-                description="Displayed in the sidebar and workspace switcher."
+                :label="__('app/settings/workspace/general.logo_label')"
+                :description="__('app/settings/workspace/general.logo_description')"
             >
                 <div class="flex items-center gap-3" x-data>
                     <div class="flex size-10 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-muted-foreground">
@@ -87,10 +87,10 @@ class extends Component {
                     </div>
 
                     <input type="file" wire:model="form.logo" accept="image/*" class="hidden" x-ref="logoInput">
-                    <x-ui.button variant="outline" size="sm" label="Change photo" x-on:click="$refs.logoInput.click()"/>
+                    <x-ui.button variant="outline" size="sm" :label="__('app/settings/workspace/general.change_photo')" x-on:click="$refs.logoInput.click()"/>
 
                     @if ($form->workspace->logo_url)
-                        <x-ui.button variant="ghost" size="sm" label="Remove" wire:click="deleteLogo" wire:confirm="Remove your workspace's logo?"/>
+                        <x-ui.button variant="ghost" size="sm" :label="__('app/settings/workspace/general.remove')" wire:click="deleteLogo" wire::confirm="__('app/settings/workspace/general.remove_logo_confirm')"/>
                     @endif
                 </div>
 
@@ -100,8 +100,8 @@ class extends Component {
             </x-domain.app.settings.section-content>
 
             <x-domain.app.settings.section-content
-                label="Name"
-                description="Displayed across the app for you and your workspace members."
+                :label="__('app/settings/workspace/general.name_label')"
+                :description="__('app/settings/workspace/general.name_description')"
             >
                 <div class="flex w-64 flex-col gap-1">
                     <x-ui.input wire:model="form.name"/>
@@ -114,15 +114,15 @@ class extends Component {
 
         <section class="flex w-full flex-col gap-2">
             <header class="flex flex-col px-4">
-                <p class="text-base font-semibold text-foreground">Danger zone</p>
+                <p class="text-base font-semibold text-foreground">{{ __('app/settings/workspace/general.danger_zone_title') }}</p>
             </header>
 
             <div class="flex w-full flex-col divide-y divide-border overflow-clip rounded-xl border border-border bg-card shadow-xs">
                 <x-domain.app.settings.section-content
-                    label="Delete workspace"
-                    description="Permanently removes this workspace, its stack, surveys, and all associated data. This action cannot be undone."
+                    :label="__('app/settings/workspace/general.delete_workspace_label')"
+                    :description="__('app/settings/workspace/general.delete_workspace_description')"
                 >
-                    <x-ui.button variant="destructive" size="sm" label="Delete workspace" @click="confirming = true"/>
+                    <x-ui.button variant="destructive" size="sm" :label="__('app/settings/workspace/general.delete_workspace_button')" @click="confirming = true"/>
                 </x-domain.app.settings.section-content>
             </div>
         </section>
@@ -135,15 +135,15 @@ class extends Component {
                 class="flex w-full max-w-md flex-col gap-5 rounded-lg border border-border bg-background p-6 shadow-lg"
             >
                 <header class="flex flex-col gap-1">
-                    <h2 class="text-lg font-semibold text-foreground">Delete workspace</h2>
+                    <h2 class="text-lg font-semibold text-foreground">{{ __('app/settings/workspace/general.delete_modal_heading') }}</h2>
                     <p class="text-sm text-muted-foreground">
-                        This will permanently delete {{ $workspace->name }} and all of its data — stack, surveys, and members. This action cannot be undone.
+                        {{ __('app/settings/workspace/general.delete_modal_description', ['name' => $workspace->name]) }}
                     </p>
                 </header>
 
                 <div class="flex items-center justify-end gap-2">
-                    <x-ui.button variant="outline" label="Cancel" @click="confirming = false"/>
-                    <x-ui.button variant="destructive" label="Delete workspace" wire:click="deleteWorkspace"/>
+                    <x-ui.button variant="outline" :label="__('app/settings/workspace/general.cancel')" @click="confirming = false"/>
+                    <x-ui.button variant="destructive" :label="__('app/settings/workspace/general.delete_workspace_button')" wire:click="deleteWorkspace"/>
                 </div>
             </div>
         </div>

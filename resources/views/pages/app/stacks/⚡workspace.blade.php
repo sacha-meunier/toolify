@@ -24,7 +24,7 @@ new class extends Component
 <div class="flex flex-col">
     <x-domain.app.topbar>
         <p class="truncate text-sm font-medium text-foreground">
-            {{ $this->workspace ? "{$this->workspace->name}'s stack" : 'Workspace stack' }}
+            {{ $this->workspace ? __('app/stacks/workspace.title', ['name' => $this->workspace->name]) : __('app/stacks/workspace.title_fallback') }}
         </p>
     </x-domain.app.topbar>
 
@@ -33,14 +33,14 @@ new class extends Component
             <x-domain.app.tool-list
                 :tools="$this->tools"
                 empty-icon="layer"
-                empty-title="This workspace's stack is empty"
-                empty-description="Tools saved to the workspace will show up here."
+                :empty-title="__('app/stacks/workspace.empty_title')"
+                :empty-description="__('app/stacks/workspace.empty_description')"
             />
         @else
             <x-domain.app.empty-state
                 icon="layer"
-                title="You're not part of a workspace yet"
-                description="Join or create a workspace to start building its stack."
+                :title="__('app/stacks/workspace.no_workspace_title')"
+                :description="__('app/stacks/workspace.no_workspace_description')"
             />
         @endif
     </div>

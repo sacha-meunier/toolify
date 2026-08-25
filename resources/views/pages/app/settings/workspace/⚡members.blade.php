@@ -62,7 +62,7 @@ class extends Component {
         $members = $this->workspace->members()->orderBy('name')->get()
             ->map(fn (User $user) => (object) [
                 'user' => $user,
-                'role' => 'Member',
+                'role' => __('app/settings/workspace/members.role_member'),
                 'joinedAt' => $user->pivot->created_at,
                 'removable' => true,
             ]);
@@ -70,7 +70,7 @@ class extends Component {
         if ($owner = $this->workspace->owner) {
             $members->prepend((object) [
                 'user' => $owner,
-                'role' => 'Owner',
+                'role' => __('app/settings/workspace/members.role_owner'),
                 'joinedAt' => $this->workspace->created_at,
                 'removable' => false,
             ]);
@@ -93,20 +93,20 @@ class extends Component {
 <div class="flex flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Workspace' => null,
-            'Members' => null,
+            __('app/settings/workspace/members.breadcrumb_settings') => null,
+            __('app/settings/workspace/members.breadcrumb_workspace') => null,
+            __('app/settings/workspace/members.breadcrumb_members') => null,
         ]"/>
 
         <x-slot:actions>
-            <x-ui.button variant="primary" size="sm" icon="add-01" label="Invite member" wire:click="openInviteMemberModal"/>
+            <x-ui.button variant="primary" size="sm" icon="add-01" :label="__('app/settings/workspace/members.invite_member')" wire:click="openInviteMemberModal"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
     <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
         <header class="flex flex-col gap-1 px-4">
-            <h1 class="text-3xl font-semibold text-foreground">Members</h1>
-            <p class="text-sm text-muted-foreground">People with access to {{ $workspace->name }}.</p>
+            <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/workspace/members.heading') }}</h1>
+            <p class="text-sm text-muted-foreground">{{ __('app/settings/workspace/members.description', ['name' => $workspace->name]) }}</p>
         </header>
 
         <div class="flex w-full flex-col divide-y divide-border overflow-visible rounded-xl border border-border bg-card shadow-xs">
@@ -125,7 +125,7 @@ class extends Component {
                         <p class="truncate text-xs text-muted-foreground">{{ $member->user->email }}</p>
                     </div>
 
-                    <p class="mr-2 w-20 shrink-0 text-right text-xs text-muted-foreground">Joined {{ $member->joinedAt->format('M j') }}</p>
+                    <p class="mr-2 w-20 shrink-0 text-right text-xs text-muted-foreground">{{ __('app/settings/workspace/members.joined_on', ['date' => $member->joinedAt->format('M j')]) }}</p>
 
                     <x-ui.badge>{{ $member->role }}</x-ui.badge>
 
@@ -142,11 +142,11 @@ class extends Component {
                                 <button
                                     type="button"
                                     wire:click="removeMember({{ $member->user->id }})"
-                                    wire:confirm="Remove {{ $member->user->name }} from {{ $workspace->name }}?"
+                                    wire:confirm="{{ __('app/settings/workspace/members.remove_member_confirm', ['member' => $member->user->name, 'workspace' => $workspace->name]) }}"
                                     class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
                                 >
                                     <x-ui.icon.delete-02 size="sm" class="shrink-0"/>
-                                    <span>Delete</span>
+                                    <span>{{ __('app/settings/workspace/members.delete') }}</span>
                                 </button>
                             </div>
                         </div>
@@ -160,19 +160,19 @@ class extends Component {
 
     <x-ui.modal show="$wire.inviteMemberModalOpen" close="closeInviteMemberModal" class="max-w-md">
         <x-slot:header>
-            <h2 class="text-lg font-semibold text-foreground">Invite member</h2>
+            <h2 class="text-lg font-semibold text-foreground">{{ __('app/settings/workspace/members.invite_modal_heading') }}</h2>
         </x-slot:header>
 
         <form wire:submit="inviteMember" class="flex flex-col gap-4">
             <x-ui.field>
-                <x-ui.field.label content="Email"/>
-                <x-ui.input type="email" wire:model="inviteForm.email" name="inviteForm.email" placeholder="teammate@company.com" autofocus/>
+                <x-ui.field.label :content="__('app/settings/workspace/members.email_label')"/>
+                <x-ui.input type="email" wire:model="inviteForm.email" name="inviteForm.email" :placeholder="__('app/settings/workspace/members.email_placeholder')" autofocus/>
                 <x-ui.field.error :content="$errors->first('inviteForm.email')"/>
             </x-ui.field>
 
             <div class="flex items-center justify-end gap-2 pt-2">
-                <x-ui.button type="button" variant="outline" label="Cancel" wire:click="closeInviteMemberModal"/>
-                <x-ui.button type="submit" variant="primary" label="Send invite"/>
+                <x-ui.button type="button" variant="outline" :label="__('app/settings/workspace/members.cancel')" wire:click="closeInviteMemberModal"/>
+                <x-ui.button type="submit" variant="primary" :label="__('app/settings/workspace/members.send_invite')"/>
             </div>
         </form>
     </x-ui.modal>

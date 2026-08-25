@@ -39,27 +39,27 @@ class extends Component {
 <div class="flex flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Workspace' => null,
-            'Teams' => route('settings.workspace.teams.index'),
-            'Create' => null,
+            __('app/settings/workspace/teams/create.breadcrumb_settings') => null,
+            __('app/settings/workspace/teams/create.breadcrumb_workspace') => null,
+            __('app/settings/workspace/teams/create.breadcrumb_teams') => route('settings.workspace.teams.index'),
+            __('app/settings/workspace/teams/create.breadcrumb_create') => null,
         ]"/>
 
         <x-slot:actions>
-            <x-ui.button variant="primary" size="sm" label="Create team" wire:click="save"/>
+            <x-ui.button variant="primary" size="sm" :label="__('app/settings/workspace/teams/create.create_team')" wire:click="save"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
     <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
         <header class="flex flex-col gap-1 border-b border-border px-4 pb-6">
-            <h1 class="text-3xl font-semibold text-foreground">Create team</h1>
-            <p class="text-sm text-muted-foreground">Teams let you organize a stack and surveys separately within {{ $workspace->name }}.</p>
+            <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/workspace/teams/create.heading') }}</h1>
+            <p class="text-sm text-muted-foreground">{{ __('app/settings/workspace/teams/create.description', ['name' => $workspace->name]) }}</p>
         </header>
 
         <x-domain.app.settings.section>
             <x-domain.app.settings.section-content
-                label="Logo"
-                description="Displayed in the sidebar and team switcher."
+                :label="__('app/settings/workspace/teams/create.logo_label')"
+                :description="__('app/settings/workspace/teams/create.logo_description')"
             >
                 <div class="flex items-center gap-3" x-data>
                     <div class="flex size-10 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-muted-foreground">
@@ -71,7 +71,7 @@ class extends Component {
                     </div>
 
                     <input type="file" wire:model="form.logo" accept="image/*" class="hidden" x-ref="logoInput">
-                    <x-ui.button variant="outline" size="sm" label="Change photo" x-on:click="$refs.logoInput.click()"/>
+                    <x-ui.button variant="outline" size="sm" :label="__('app/settings/workspace/teams/create.change_photo')" x-on:click="$refs.logoInput.click()"/>
                 </div>
 
                 @error('form.logo')
@@ -80,11 +80,11 @@ class extends Component {
             </x-domain.app.settings.section-content>
 
             <x-domain.app.settings.section-content
-                label="Name"
-                description="Displayed across the app for you and your team members."
+                :label="__('app/settings/workspace/teams/create.name_label')"
+                :description="__('app/settings/workspace/teams/create.name_description')"
             >
                 <div class="flex w-64 flex-col gap-1">
-                    <x-ui.input wire:model="form.name" placeholder="e.g. Marketing"/>
+                    <x-ui.input wire:model="form.name" :placeholder="__('app/settings/workspace/teams/create.name_placeholder')"/>
                     @error('form.name')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>
                     @enderror

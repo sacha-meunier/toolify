@@ -1,8 +1,8 @@
 @php
     $links = [
-        'public.discover' => 'Discover',
-        'public.features' => 'Features',
-        'public.contact' => 'Contact',
+        'public.discover' => __('layout.nav_discover'),
+        'public.features' => __('layout.nav_features'),
+        'public.contact' => __('layout.nav_contact'),
     ];
 @endphp
 
@@ -12,7 +12,7 @@
             <span class="flex size-5 items-center justify-center rounded-md bg-sidebar-primary">
                 <x-ui.icon.command size="xs" stroke-width="1.5" class="size-3 text-sidebar-primary-foreground"/>
             </span>
-            <span class="text-sm font-semibold text-sidebar-foreground">Toolify</span>
+            <span class="text-sm font-semibold text-sidebar-foreground">{{ __('layout.brand_name') }}</span>
         </a>
 
         <div class="hidden items-center gap-1 lg:flex">
@@ -29,10 +29,10 @@
 
         <div class="hidden items-center gap-2.5 lg:flex">
             @auth
-                <x-ui.button variant="primary" size="default" :href="route('discovery')" label="Open app"/>
+                <x-ui.button variant="primary" size="default" :href="route('discovery')" :label="__('layout.nav_open_app')"/>
             @else
-                <x-ui.button variant="secondary" size="default" :href="route('login')" label="Log in"/>
-                <x-ui.button variant="primary" size="default" :href="route('register')" label="Sign up"/>
+                <x-ui.button variant="secondary" size="default" :href="route('login')" :label="__('layout.nav_log_in')"/>
+                <x-ui.button variant="primary" size="default" :href="route('register')" :label="__('layout.nav_sign_up')"/>
             @endauth
         </div>
 
@@ -42,7 +42,7 @@
             icon="menu-two-line"
             class="lg:hidden"
             @click="mobileMenuOpen = !mobileMenuOpen"
-            aria-label="Toggle menu"
+            :aria-label="__('layout.nav_toggle_menu')"
         />
     </nav>
 
@@ -64,10 +64,10 @@
 
         <div class="mt-2 flex flex-col gap-2 border-t border-border pt-4">
             @auth
-                <x-ui.button variant="secondary" size="sm" class="w-full" :href="route('discovery')" label="Open app"/>
+                <x-ui.button variant="secondary" size="sm" class="w-full" :href="route('discovery')" :label="__('layout.nav_open_app')"/>
             @else
-                <x-ui.button variant="ghost" size="sm" class="w-full" :href="route('login')" label="Log in"/>
-                <x-ui.button variant="secondary" size="sm" class="w-full" :href="route('register')" label="Sign up"/>
+                <x-ui.button variant="ghost" size="sm" class="w-full" :href="route('login')" :label="__('layout.nav_log_in')"/>
+                <x-ui.button variant="secondary" size="sm" class="w-full" :href="route('register')" :label="__('layout.nav_sign_up')"/>
             @endauth
         </div>
     </div>

@@ -33,26 +33,26 @@ class extends Component {
 <div class="flex flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Profile' => null,
+            __('app/settings/account/profile.breadcrumb_settings') => null,
+            __('app/settings/account/profile.breadcrumb_profile') => null,
         ]"/>
 
         <x-slot:actions>
             <x-ui.field.saved event="profile-saved"/>
-            <x-ui.button variant="primary" size="sm" label="Save changes" wire:click="save"/>
+            <x-ui.button variant="primary" size="sm" :label="__('app/settings/account/profile.save_changes')" wire:click="save"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
     <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
         <header class="flex flex-col gap-1 border-b border-border px-4 pb-6">
-            <h1 class="text-3xl font-semibold text-foreground">Profile</h1>
-            <p class="text-sm text-muted-foreground">Manage your account information and public details.</p>
+            <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/account/profile.heading') }}</h1>
+            <p class="text-sm text-muted-foreground">{{ __('app/settings/account/profile.description') }}</p>
         </header>
 
         <x-domain.app.settings.section>
             <x-domain.app.settings.section-content
-                label="Profile picture"
-                description="Avatar displayed in member lists, comments, and notifications sent on your behalf."
+                :label="__('app/settings/account/profile.picture_label')"
+                :description="__('app/settings/account/profile.picture_description')"
             >
                 <div class="flex items-center gap-3" x-data>
                     <div class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground">
@@ -66,10 +66,10 @@ class extends Component {
                     </div>
 
                     <input type="file" wire:model="form.avatar" accept="image/*" class="hidden" x-ref="avatarInput">
-                    <x-ui.button variant="outline" size="sm" label="Change photo" x-on:click="$refs.avatarInput.click()"/>
+                    <x-ui.button variant="outline" size="sm" :label="__('app/settings/account/profile.change_photo')" x-on:click="$refs.avatarInput.click()"/>
 
                     @if ($form->user->avatar_url)
-                        <x-ui.button variant="ghost" size="sm" label="Remove" wire:click="deleteAvatar" wire:confirm="Remove your profile picture?"/>
+                        <x-ui.button variant="ghost" size="sm" :label="__('app/settings/account/profile.remove')" wire:click="deleteAvatar" wire::confirm="__('app/settings/account/profile.remove_avatar_confirm')"/>
                     @endif
                 </div>
 
@@ -79,8 +79,8 @@ class extends Component {
             </x-domain.app.settings.section-content>
 
             <x-domain.app.settings.section-content
-                label="Full name"
-                description="Name displayed on your profile and in invitations sent on your behalf."
+                :label="__('app/settings/account/profile.name_label')"
+                :description="__('app/settings/account/profile.name_description')"
             >
                 <div class="flex w-64 flex-col gap-1">
                     <x-ui.input wire:model="form.name"/>
@@ -91,15 +91,15 @@ class extends Component {
             </x-domain.app.settings.section-content>
 
             <x-domain.app.settings.section-content
-                label="Username"
-                description="Unique identifier used in @mentions and in the profile URL (/u/username)."
+                :label="__('app/settings/account/profile.username_label')"
+                :description="__('app/settings/account/profile.username_description')"
             >
-                <x-ui.input class="w-64" placeholder="Coming soon" disabled/>
+                <x-ui.input class="w-64" :placeholder="__('app/settings/account/profile.username_placeholder')" disabled/>
             </x-domain.app.settings.section-content>
 
             <x-domain.app.settings.section-content
-                label="Email"
-                description="Email address associated with the account. Used for login and notifications."
+                :label="__('app/settings/account/profile.email_label')"
+                :description="__('app/settings/account/profile.email_description')"
             >
                 <div class="flex w-64 flex-col gap-1">
                     <x-ui.input type="email" wire:model="form.email"/>

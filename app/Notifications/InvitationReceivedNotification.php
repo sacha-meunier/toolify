@@ -32,8 +32,15 @@ class InvitationReceivedNotification extends Notification
         $target = $this->invitation->target();
 
         $body = $this->invitation->team
-            ? "{$this->invitation->invitedBy->name} invited you to join {$this->invitation->team->name} in {$this->invitation->workspace->name}."
-            : "{$this->invitation->invitedBy->name} invited you to join {$this->invitation->workspace->name}.";
+            ? __('notifications.invitation_received.body_team', [
+                'invited_by' => $this->invitation->invitedBy->name,
+                'team' => $this->invitation->team->name,
+                'workspace' => $this->invitation->workspace->name,
+            ])
+            : __('notifications.invitation_received.body_workspace', [
+                'invited_by' => $this->invitation->invitedBy->name,
+                'workspace' => $this->invitation->workspace->name,
+            ]);
 
         return [
             'type' => $this->type()->value,

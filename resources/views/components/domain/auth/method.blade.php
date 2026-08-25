@@ -16,7 +16,7 @@
             <x-ui.button variant="{{ $primary ? 'primary' : 'secondary' }}" size="lg"
                          label="{{ $config['label'] }}" disabled/>
         @endif
-        <p class="text-muted-foreground text-sm text-center">You used {{ $method }} last time</p>
+        <p class="text-muted-foreground text-sm text-center">{{ __('auth/components/method.used_last_time', ['method' => $method]) }}</p>
     </div>
 @else
     @if ($config['action'])

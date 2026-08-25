@@ -52,7 +52,7 @@ new class extends Component
                 <x-ui.icon.command size="xs"/>
             @endif
         </span>
-        {{ $this->workspace->name ?? 'Toolify' }}
+        {{ $this->workspace->name ?? __('app/components/dropdown/workspace-switcher.brand_fallback') }}
     </x-ui.button>
 
     <div
@@ -66,7 +66,7 @@ new class extends Component
                 type="button"
                 class="flex w-full items-center justify-between px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
             >
-                <span class="truncate">Switch workspace</span>
+                <span class="truncate">{{ __('app/components/dropdown/workspace-switcher.switch_workspace') }}</span>
                 <x-ui.icon.arrow-right-01 size="xs" class="shrink-0 opacity-50"/>
             </button>
 
@@ -96,7 +96,7 @@ new class extends Component
                         <span class="truncate">{{ $workspace->name }}</span>
                     </button>
                 @empty
-                    <p class="px-3 py-2 text-sm text-muted-foreground">No workspace yet.</p>
+                    <p class="px-3 py-2 text-sm text-muted-foreground">{{ __('app/components/dropdown/workspace-switcher.no_workspace') }}</p>
                 @endforelse
             </div>
         </div>
@@ -108,7 +108,7 @@ new class extends Component
             disabled
             class="flex w-full cursor-not-allowed items-center px-3 py-2 text-left text-sm text-muted-foreground opacity-50"
         >
-            Invite and manage members
+            {{ __('app/components/dropdown/workspace-switcher.invite_and_manage_members') }}
         </button>
 
         <button
@@ -116,7 +116,7 @@ new class extends Component
             disabled
             class="flex w-full cursor-not-allowed items-center px-3 py-2 text-left text-sm text-muted-foreground opacity-50"
         >
-            Settings
+            {{ __('app/components/dropdown/workspace-switcher.settings') }}
         </button>
     </div>
 </div>

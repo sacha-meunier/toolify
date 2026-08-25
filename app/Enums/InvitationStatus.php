@@ -10,10 +10,6 @@ enum InvitationStatus: string
 
     public function label(): string
     {
-        return match ($this) {
-            self::Pending => 'Pending',
-            self::Accepted => 'Accepted',
-            self::Declined => 'Declined',
-        };
+        return __('enums/invitation-status.'.$this->value);
     }
 }

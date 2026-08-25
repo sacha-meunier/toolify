@@ -1,0 +1,6 @@
+<?php
+
+return [
+    'show_password' => 'Show password',
+    'hide_password' => 'Hide password',
+];

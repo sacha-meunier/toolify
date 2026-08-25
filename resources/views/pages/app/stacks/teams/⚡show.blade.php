@@ -27,15 +27,15 @@ new class extends Component
 
 <div class="flex flex-col">
     <x-domain.app.topbar>
-        <p class="truncate text-sm font-medium text-foreground">{{ $team->name }}'s stack</p>
+        <p class="truncate text-sm font-medium text-foreground">{{ __('app/stacks/teams/show.title', ['name' => $team->name]) }}</p>
     </x-domain.app.topbar>
 
     <div class="flex flex-col gap-6 px-8 py-8">
         <x-domain.app.tool-list
             :tools="$this->tools"
             empty-icon="layer"
-            empty-title="This team's stack is empty"
-            empty-description="Tools saved to {{ $team->name }} will show up here."
+            :empty-title="__('app/stacks/teams/show.empty_title')"
+            :empty-description="__('app/stacks/teams/show.empty_description', ['name' => $team->name])"
         />
     </div>
 </div>

@@ -1,6 +1,6 @@
 <x-layouts.shells.public>
     <x-domain.marketing.coming-soon
-        title="Features"
-        description="A detailed tour of Toolify's features is on its way."
+        :title="__('public/features.title')"
+        :description="__('public/features.description')"
     />
 </x-layouts.shells.public>

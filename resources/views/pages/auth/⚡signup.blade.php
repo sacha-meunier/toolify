@@ -60,10 +60,10 @@ new class extends Component {
         @if ($step === 1)
             <div class="flex flex-col gap-6" wire:key="step-1">
                 <div>
-                    <h1 class="text-foreground text-center font-semibold text-lg">Sign up to Toolify</h1>
+                    <h1 class="text-foreground text-center font-semibold text-lg">{{ __('auth/signup.heading') }}</h1>
                 </div>
 
-                <div class="flex flex-col gap-4" role="group" aria-label="Sign up method">
+                <div class="flex flex-col gap-4" role="group" aria-label="{{ __('auth/signup.method_group_label') }}">
                     @foreach ($this->authMethods as $method => $config)
                         <x-domain.auth.method wire:key="method-{{ $method }}" :method="$method" :config="$config"
                                               :primary="$loop->first"
@@ -72,32 +72,32 @@ new class extends Component {
                 </div>
 
                 <div class="flex items-center justify-center gap-2">
-                    <p class="text-muted-foreground font-medium text-sm">Already have an account ?</p>
-                    <x-ui.button variant="link" type="a" href="{{ route('login') }}" size="lg" label="Log in"/>
+                    <p class="text-muted-foreground font-medium text-sm">{{ __('auth/signup.has_account_prompt') }}</p>
+                    <x-ui.button variant="link" type="a" href="{{ route('login') }}" size="lg" :label="__('auth/signup.log_in_link')"/>
                 </div>
             </div>
         @elseif ($step === 2)
-            <x-domain.auth.step title="What's your email address?" wire:key="step-2">
+            <x-domain.auth.step :title="__('auth/signup.email_step_title')" wire:key="step-2">
                 <form wire:submit="submitEmail" class="flex flex-col gap-4 w-full">
                     <x-ui.field>
-                        <x-ui.input type="email" wire:model="form.email" name="email" placeholder="johndoe@gmail.com"
+                        <x-ui.input type="email" wire:model="form.email" name="email" :placeholder="__('auth/signup.email_placeholder')"
                                     autocomplete="email" required/>
                         <x-ui.field.error :content="$errors->first('form.email')"/>
                     </x-ui.field>
 
                     <x-ui.button type="submit" variant="secondary" size="lg" class="w-full" wire:target="submitEmail"
                                  wire:loading.attr="disabled">
-                        <span wire:loading.remove wire:target="submitEmail">Continue</span>
-                        <span wire:loading wire:target="submitEmail">Continuing…</span>
+                        <span wire:loading.remove wire:target="submitEmail">{{ __('auth/signup.continue_button') }}</span>
+                        <span wire:loading wire:target="submitEmail">{{ __('auth/signup.continuing_button') }}</span>
                     </x-ui.button>
                 </form>
 
                 <x-slot:footer>
-                    <x-ui.button wire:click="backToMethods" variant="link" size="lg" label="Back to sign up methods"/>
+                    <x-ui.button wire:click="backToMethods" variant="link" size="lg" :label="__('auth/signup.back_to_methods_link')"/>
                 </x-slot:footer>
             </x-domain.auth.step>
         @elseif ($step === 3)
-            <x-domain.auth.step title="What's your password?" wire:key="step-3">
+            <x-domain.auth.step :title="__('auth/signup.password_step_title')" wire:key="step-3">
                 <form wire:submit="register" class="flex flex-col gap-4 w-full">
                     <x-ui.field>
                         <x-ui.input type="password" wire:model="form.password" name="password"
@@ -107,13 +107,13 @@ new class extends Component {
 
                     <x-ui.button type="submit" variant="secondary" size="lg" class="w-full" wire:target="register"
                                  wire:loading.attr="disabled">
-                        <span wire:loading.remove wire:target="register">Continue</span>
-                        <span wire:loading wire:target="register">Creating your account…</span>
+                        <span wire:loading.remove wire:target="register">{{ __('auth/signup.continue_button') }}</span>
+                        <span wire:loading wire:target="register">{{ __('auth/signup.creating_account_button') }}</span>
                     </x-ui.button>
                 </form>
 
                 <x-slot:footer>
-                    <x-ui.button wire:click="backToEmail" variant="link" size="lg" label="Back to sign up email"/>
+                    <x-ui.button wire:click="backToEmail" variant="link" size="lg" :label="__('auth/signup.back_to_email_link')"/>
                 </x-slot:footer>
             </x-domain.auth.step>
         @endif

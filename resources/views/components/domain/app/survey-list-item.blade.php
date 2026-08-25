@@ -12,8 +12,8 @@
         <p class="truncate text-sm font-medium text-foreground">"{{ $survey->name }}"</p>
     </a>
 
-    <p class="shrink-0 text-sm text-muted-foreground">{{ $toolsCount }} {{ \Illuminate\Support\Str::plural('tool', $toolsCount) }}</p>
-    <p class="w-24 shrink-0 text-right text-sm text-muted-foreground">{{ $survey->last_visited_at?->diffForHumans() ?? 'Never' }}</p>
+    <p class="shrink-0 text-sm text-muted-foreground">{{ trans_choice('app/components/survey-list-item.tools_count', $toolsCount, ['count' => $toolsCount]) }}</p>
+    <p class="w-24 shrink-0 text-right text-sm text-muted-foreground">{{ $survey->last_visited_at?->diffForHumans() ?? __('app/components/survey-list-item.never_visited') }}</p>
 
     <div class="relative shrink-0" x-data="{ open: false }" @click.outside="open = false">
         <x-ui.button variant="ghost" size="icon-sm" icon="more-horizontal-square-01" @click="open = !open"/>
@@ -31,7 +31,7 @@
                 class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
             >
                 <x-ui.icon.pen-01 size="sm" class="shrink-0"/>
-                <span>Edit</span>
+                <span>{{ __('app/components/survey-list-item.edit') }}</span>
             </button>
 
             <button
@@ -41,7 +41,7 @@
                 class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
             >
                 <x-ui.icon.copy-01 size="sm" class="shrink-0"/>
-                <span>Duplicate</span>
+                <span>{{ __('app/components/survey-list-item.duplicate') }}</span>
             </button>
 
             <div class="my-1 h-px bg-border"></div>
@@ -49,11 +49,11 @@
             <button
                 type="button"
                 wire:click="delete({{ $survey->id }})"
-                wire:confirm="Delete this survey? This can't be undone."
+                wire:confirm="{{ __('app/components/survey-list-item.confirm_delete') }}"
                 class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
             >
                 <x-ui.icon.delete-02 size="sm" class="shrink-0"/>
-                <span>Delete</span>
+                <span>{{ __('app/components/survey-list-item.delete') }}</span>
             </button>
         </div>
     </div>

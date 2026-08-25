@@ -1,6 +1,6 @@
 @props([
     'name' => 'search',
-    'placeholder' => 'Search tools, apps, and companies...',
+    'placeholder' => null,
     'filters' => [
         'pricing' => [],
         'categories' => [],
@@ -10,6 +10,7 @@
 
 @php
     $activeFilterCount = collect($filters)->flatten()->count();
+    $placeholder ??= __('app/components/topbar/search.placeholder');
 @endphp
 
 <x-domain.app.topbar {{ $attributes->whereDoesntStartWith('wire:') }}>
@@ -27,7 +28,7 @@
     <x-slot:actions>
         <div class="relative" x-data="{ open: false }" @click.outside="open = false">
             <x-ui.button variant="outline" icon="filter" @click="open = !open">
-                Filters
+                {{ __('app/components/topbar/search.filters') }}
                 @if ($activeFilterCount > 0)
                     <x-ui.badge class="bg-primary text-primary-foreground">{{ $activeFilterCount }}</x-ui.badge>
                 @endif
@@ -40,9 +41,9 @@
                 class="absolute right-0 z-20 mt-1.5 w-56 overflow-visible rounded-md border border-border bg-background py-1 shadow-xs"
             >
                 @foreach ([
-                    ['group' => 'pricing', 'label' => 'Price', 'cases' => \App\Enums\Pricing::cases()],
-                    ['group' => 'platforms', 'label' => 'Platform', 'cases' => \App\Enums\Platform::cases()],
-                    ['group' => 'categories', 'label' => 'Category', 'cases' => \App\Enums\Category::cases()],
+                    ['group' => 'pricing', 'label' => __('app/components/topbar/search.filter_group_price'), 'cases' => \App\Enums\Pricing::cases()],
+                    ['group' => 'platforms', 'label' => __('app/components/topbar/search.filter_group_platform'), 'cases' => \App\Enums\Platform::cases()],
+                    ['group' => 'categories', 'label' => __('app/components/topbar/search.filter_group_category'), 'cases' => \App\Enums\Category::cases()],
                 ] as $type)
                     <div
                         class="relative"
@@ -96,7 +97,7 @@
                         wire:click="clearFilters"
                         class="flex w-full items-center px-3 py-2 text-left text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
                     >
-                        Clear all filters
+                        {{ __('app/components/topbar/search.clear_all_filters') }}
                     </button>
                 @endif
             </div>

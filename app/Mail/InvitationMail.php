@@ -19,7 +19,7 @@ class InvitationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Invitation to join {$this->invitation->target()->name}",
+            subject: __('mail.invitation.subject', ['target' => $this->invitation->target()->name]),
         );
     }
 
@@ -28,7 +28,10 @@ class InvitationMail extends Mailable
         return new Content(
             markdown: 'mail.invitation',
             with: [
-                'acceptUrl' => URL::signedRoute('invitations.onboarding', ['invitation' => $this->invitation]),
+                'acceptUrl' => URL::signedRoute('invitations.onboarding', [
+                    'locale' => app()->getLocale(),
+                    'invitation' => $this->invitation,
+                ]),
             ],
         );
     }

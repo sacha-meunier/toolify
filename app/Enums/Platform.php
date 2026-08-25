@@ -13,13 +13,6 @@ enum Platform: string
 
     public function label(): string
     {
-        return match ($this) {
-            self::Web => 'Web',
-            self::Ios => 'iOS',
-            self::Android => 'Android',
-            self::Macos => 'macOS',
-            self::Windows => 'Windows',
-            self::Linux => 'Linux',
-        };
+        return __('enums/platform.'.$this->value);
     }
 }

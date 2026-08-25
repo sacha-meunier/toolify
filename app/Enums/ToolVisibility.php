@@ -15,10 +15,6 @@ enum ToolVisibility: string
 
     public function label(): string
     {
-        return match ($this) {
-            self::Public => 'Public',
-            self::Unlisted => 'Unlisted',
-            self::Private => 'Private',
-        };
+        return __('enums/tool-visibility.'.$this->value);
     }
 }

@@ -135,7 +135,7 @@ new class extends Component
         @if ($search !== '' || $this->hasActiveFilters)
             <section>
                 <header class="flex items-center justify-between py-3">
-                    <h2 class="text-lg font-semibold text-foreground">Results</h2>
+                    <h2 class="text-lg font-semibold text-foreground">{{ __('app/search.results_heading') }}</h2>
                 </header>
 
                 <div class="flex flex-col divide-y border border-border rounded-md">
@@ -143,7 +143,7 @@ new class extends Component
                         <x-domain.app.tool-list-item :tool="$tool"/>
                     @empty
                         <div class="px-6 py-8 text-center text-sm text-muted-foreground">
-                            No tools match "{{ $search }}".
+                            {{ __('app/search.no_results', ['query' => $search]) }}
                         </div>
                     @endforelse
                 </div>
@@ -151,11 +151,11 @@ new class extends Component
         @else
             <section>
                 <header class="flex items-center justify-between py-3">
-                    <h2 class="text-lg font-semibold text-foreground">Recent searches</h2>
+                    <h2 class="text-lg font-semibold text-foreground">{{ __('app/search.recent_searches_heading') }}</h2>
                     @if (count($recentSearches))
                         <div class="flex items-center gap-2">
-                            <x-ui.button variant="secondary" icon="tool-view" label="Save all as surveys" wire:click="saveAllRecentSearchesAsSurveys"/>
-                            <x-ui.button label="Clear history" wire:click="clearRecentSearches"/>
+                            <x-ui.button variant="secondary" icon="tool-view" :label="__('app/search.save_all_as_surveys')" wire:click="saveAllRecentSearchesAsSurveys"/>
+                            <x-ui.button :label="__('app/search.clear_history')" wire:click="clearRecentSearches"/>
                         </div>
                     @endif
                 </header>
@@ -185,7 +185,7 @@ new class extends Component
                                     variant="secondary"
                                     size="sm"
                                     icon="layer"
-                                    label="Save as a survey"
+                                    :label="__('app/search.save_as_survey')"
                                     wire:click="openSurveyForm(null, @js($recentSearch['query']))"
                                 />
                             </div>
@@ -197,16 +197,15 @@ new class extends Component
                     @empty
                         <x-domain.app.empty-state
                             icon="search-01"
-                            title="No recent searches"
-                            description="Searches you run will show up here so you can jump back into them or save them as surveys."
+                            :title="__('app/search.empty_state_title')"
+                            :description="__('app/search.empty_state_description')"
                         />
                     @endforelse
                 </div>
 
                 @if (count($recentSearches))
                     <footer class="py-4">
-                        <p class="text-sm text-muted-foreground">Max 10 recent searches · each saved locally for 14
-                            days</p>
+                        <p class="text-sm text-muted-foreground">{{ __('app/search.retention_note') }}</p>
                     </footer>
                 @endif
             </section>

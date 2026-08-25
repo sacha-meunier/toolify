@@ -42,11 +42,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
 <div class="flex h-full min-h-0 flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Teams' => null,
+            __('app/settings/teams/listing/details.breadcrumb_settings') => null,
+            __('app/settings/teams/listing/details.breadcrumb_teams') => null,
             $team->name => null,
-            'Listing' => route('settings.teams.listing.index', $team),
-            'Details' => null,
+            __('app/settings/teams/listing/details.breadcrumb_listing') => route('settings.teams.listing.index', $team),
+            __('app/settings/teams/listing/details.breadcrumb_details') => null,
         ]"/>
 
         <x-slot:actions>
@@ -56,24 +56,24 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 variant="outline"
                 size="xs"
                 icon="arrow-up-right-01"
-                label="Preview page"
+                :label="__('app/settings/teams/listing/details.preview_page')"
                 :href="$this->tool ? route('tools.show', $this->tool) : null"
                 :disabled="! $this->tool"
                 target="_blank"
             />
 
-            <x-ui.button variant="primary" size="sm" label="Save changes" wire:click="save"/>
+            <x-ui.button variant="primary" size="sm" :label="__('app/settings/teams/listing/details.save_changes')" wire:click="save"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
     <div class="min-h-0 flex-1 overflow-y-auto">
         <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
             <header class="flex flex-col gap-1 px-4">
-                <h1 class="text-3xl font-semibold text-foreground">Details</h1>
+                <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/teams/listing/details.heading') }}</h1>
             </header>
 
             <x-domain.app.settings.section>
-                <x-domain.app.settings.section-content label="Founded" description="The year the company was founded.">
+                <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/details.founded_label')" :description="__('app/settings/teams/listing/details.founded_description')">
                     <div class="flex w-64 flex-col gap-1">
                         <x-ui.input type="text" wire:model="form.foundedYear"/>
                         @error('form.foundedYear')
@@ -82,7 +82,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     </div>
                 </x-domain.app.settings.section-content>
 
-                <x-domain.app.settings.section-content label="First release" description="The year of the first release of the product.">
+                <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/details.first_release_label')" :description="__('app/settings/teams/listing/details.first_release_description')">
                     <div class="flex w-64 flex-col gap-1">
                         <x-ui.input type="text" wire:model="form.firstReleaseYear"/>
                         @error('form.firstReleaseYear')
@@ -91,7 +91,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     </div>
                 </x-domain.app.settings.section-content>
 
-                <x-domain.app.settings.section-content label="Headquarters" description="The location of your headquarters.">
+                <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/details.headquarters_label')" :description="__('app/settings/teams/listing/details.headquarters_description')">
                     <div class="flex w-64 flex-col gap-1">
                         <x-ui.input wire:model="form.headquarters"/>
                         @error('form.headquarters')
@@ -100,7 +100,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     </div>
                 </x-domain.app.settings.section-content>
 
-                <x-domain.app.settings.section-content label="Headcount" description="The amount of employees inside of {{ $team->name }}.">
+                <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/details.headcount_label')" :description="__('app/settings/teams/listing/details.headcount_description', ['name' => $team->name])">
                     <div
                         class="flex w-64 flex-col gap-1"
                         x-data="{
@@ -112,7 +112,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                                 @endforeach
                             ],
                             label() {
-                                return this.options.find(option => option.value === $wire.form.headcount)?.label ?? 'Select...';
+                                return this.options.find(option => option.value === $wire.form.headcount)?.label ?? {{ Illuminate\Support\Js::from(__('app/settings/teams/listing/details.select_placeholder')) }};
                             },
                             toggle() {
                                 const rect = $refs.trigger.getBoundingClientRect();
@@ -159,7 +159,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     </div>
                 </x-domain.app.settings.section-content>
 
-                <x-domain.app.settings.section-content label="Status" description="Active products appear in search. Other statuses are kept for history.">
+                <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/details.status_label')" :description="__('app/settings/teams/listing/details.status_description')">
                     <div
                         class="flex w-64 flex-col gap-1"
                         x-data="{
@@ -171,7 +171,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                                 @endforeach
                             ],
                             label() {
-                                return this.options.find(option => option.value === $wire.form.status)?.label ?? 'Select...';
+                                return this.options.find(option => option.value === $wire.form.status)?.label ?? {{ Illuminate\Support\Js::from(__('app/settings/teams/listing/details.select_placeholder')) }};
                             },
                             toggle() {
                                 const rect = $refs.trigger.getBoundingClientRect();
@@ -223,8 +223,8 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
     <x-domain.app.settings.listing-nav
         :prev-href="route('settings.teams.listing.identity', $team)"
-        prev-label="Identity"
+        :prev-label="__('app/settings/teams/listing/details.nav_prev_label')"
         :next-href="route('settings.teams.listing.links', $team)"
-        next-label="Links"
+        :next-label="__('app/settings/teams/listing/details.nav_next_label')"
     />
 </div>

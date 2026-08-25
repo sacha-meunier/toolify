@@ -40,11 +40,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
 <div class="flex h-full min-h-0 flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Teams' => null,
+            __('app/settings/teams/listing/danger-zone.breadcrumb_settings') => null,
+            __('app/settings/teams/listing/danger-zone.breadcrumb_teams') => null,
             $team->name => null,
-            'Listing' => route('settings.teams.listing.index', $team),
-            'Danger zone' => null,
+            __('app/settings/teams/listing/danger-zone.breadcrumb_listing') => route('settings.teams.listing.index', $team),
+            __('app/settings/teams/listing/danger-zone.breadcrumb_danger_zone') => null,
         ]"/>
 
         <x-slot:actions>
@@ -52,7 +52,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 variant="outline"
                 size="xs"
                 icon="arrow-up-right-01"
-                label="Preview page"
+                :label="__('app/settings/teams/listing/danger-zone.preview_page')"
                 :href="$this->tool ? route('tools.show', $this->tool) : null"
                 :disabled="! $this->tool"
                 target="_blank"
@@ -66,15 +66,15 @@ new #[Layout('layouts::shells.settings')] class extends Component
             x-data="{ confirming: false }"
         >
             <header class="flex flex-col gap-1 px-4">
-                <h1 class="text-3xl font-semibold text-foreground">Danger zone</h1>
+                <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/teams/listing/danger-zone.heading') }}</h1>
             </header>
 
             <x-domain.app.settings.section>
                 <x-domain.app.settings.section-content
-                    label="Remove listing"
-                    description="Removes your product's listing from search, browsing, and new stacks. It stays visible as a removed entry in stacks that already saved it."
+                    :label="__('app/settings/teams/listing/danger-zone.remove_listing_label')"
+                    :description="__('app/settings/teams/listing/danger-zone.remove_listing_description')"
                 >
-                    <x-ui.button variant="destructive" size="sm" label="Remove listing" @click="confirming = true"/>
+                    <x-ui.button variant="destructive" size="sm" :label="__('app/settings/teams/listing/danger-zone.remove_listing_button')" @click="confirming = true"/>
                 </x-domain.app.settings.section-content>
             </x-domain.app.settings.section>
 
@@ -86,22 +86,22 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     class="flex w-full max-w-md flex-col gap-5 rounded-lg border border-border bg-background p-6 shadow-lg"
                 >
                     <header class="flex flex-col gap-1">
-                        <h2 class="text-lg font-semibold text-foreground">Remove listing</h2>
+                        <h2 class="text-lg font-semibold text-foreground">{{ __('app/settings/teams/listing/danger-zone.modal_heading') }}</h2>
                         <p class="text-sm text-muted-foreground">
-                            This will remove {{ $team->name }}'s listing from search, browsing, and new stacks. It stays visible as a removed entry in stacks that already saved it.
+                            {{ __('app/settings/teams/listing/danger-zone.modal_description', ['name' => $team->name]) }}
                         </p>
                     </header>
 
                     <div class="flex flex-col gap-1">
-                        <x-ui.input type="text" autocomplete="off" placeholder="Type DELETE to confirm" wire:model="form.confirmation" wire:keydown.enter="delete"/>
+                        <x-ui.input type="text" autocomplete="off" :placeholder="__('app/settings/teams/listing/danger-zone.confirmation_placeholder')" wire:model="form.confirmation" wire:keydown.enter="delete"/>
                         @error('form.confirmation')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
                         @enderror
                     </div>
 
                     <div class="flex items-center justify-end gap-2">
-                        <x-ui.button variant="outline" label="Cancel" @click="confirming = false"/>
-                        <x-ui.button variant="destructive" label="Remove listing" wire:click="delete"/>
+                        <x-ui.button variant="outline" :label="__('app/settings/teams/listing/danger-zone.cancel')" @click="confirming = false"/>
+                        <x-ui.button variant="destructive" :label="__('app/settings/teams/listing/danger-zone.remove_listing_button')" wire:click="delete"/>
                     </div>
                 </div>
             </div>
@@ -110,6 +110,6 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
     <x-domain.app.settings.listing-nav
         :prev-href="route('settings.teams.listing.basics', $team)"
-        prev-label="Basics"
+        :prev-label="__('app/settings/teams/listing/danger-zone.nav_prev_label')"
     />
 </div>

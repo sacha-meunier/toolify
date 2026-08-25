@@ -40,9 +40,9 @@ new class extends Component
     public function scopeLabel(): string
     {
         return match ($this->scope) {
-            'workspace' => 'Workspace',
+            'workspace' => __('app/surveys.scope_workspace'),
             'team' => $this->team->name,
-            default => 'Personal',
+            default => __('app/surveys.scope_personal'),
         };
     }
 
@@ -84,14 +84,14 @@ new class extends Component
 
 <div class="flex flex-col">
     <x-domain.app.topbar>
-        <x-domain.app.topbar.breadcrumb :items="['Surveys' => null, $this->scopeLabel => null]"/>
+        <x-domain.app.topbar.breadcrumb :items="[__('app/surveys.breadcrumb_root') => null, $this->scopeLabel => null]"/>
 
         @if ($this->scope !== 'workspace' || $this->workspace)
             <x-slot:actions>
                 <x-ui.button
                     variant="primary"
                     icon="add-01"
-                    label="New survey"
+                    :label="__('app/surveys.cta_new_survey')"
                     wire:click="openSurveyForm"
                 />
             </x-slot:actions>
@@ -102,19 +102,19 @@ new class extends Component
         @if ($this->scope === 'workspace' && ! $this->workspace)
             <x-domain.app.empty-state
                 icon="tool-view"
-                title="You're not part of a workspace yet"
-                description="Join or create a workspace to start saving surveys to it."
+                :title="__('app/surveys.no_workspace_title')"
+                :description="__('app/surveys.no_workspace_description')"
             />
         @else
             <x-domain.app.survey-list
                 :surveys="$this->surveys"
-                empty-title="No surveys yet"
-                empty-description="Save a search to get notified when new tools match it."
+                :empty-title="__('app/surveys.empty_title')"
+                :empty-description="__('app/surveys.empty_description')"
             >
                 <x-ui.button
                     variant="primary"
                     icon="add-01"
-                    label="Create a survey"
+                    :label="__('app/surveys.cta_create_survey')"
                     wire:click="openSurveyForm"
                     class="mt-2"
                 />

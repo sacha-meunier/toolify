@@ -17,7 +17,7 @@ new class extends Component
 
 <div class="flex flex-col">
     <x-domain.app.topbar>
-        <p class="truncate text-sm text-muted-foreground">Discovery</p>
+        <p class="truncate text-sm text-muted-foreground">{{ __('app/discovery.breadcrumb') }}</p>
     </x-domain.app.topbar>
 
     <div class="grid grid-cols-1 gap-6 px-8 py-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2">

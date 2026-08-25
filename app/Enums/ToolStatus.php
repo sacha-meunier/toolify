@@ -10,10 +10,6 @@ enum ToolStatus: string
 
     public function label(): string
     {
-        return match ($this) {
-            self::Active => 'Active',
-            self::ShutDown => 'Shut down',
-            self::Acquired => 'Acquired',
-        };
+        return __('enums/tool-status.'.$this->value);
     }
 }

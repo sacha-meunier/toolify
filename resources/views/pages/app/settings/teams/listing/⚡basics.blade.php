@@ -41,11 +41,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
 <div class="flex h-full min-h-0 flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Teams' => null,
+            __('app/settings/teams/listing/basics.breadcrumb_settings') => null,
+            __('app/settings/teams/listing/basics.breadcrumb_teams') => null,
             $team->name => null,
-            'Listing' => route('settings.teams.listing.index', $team),
-            'Basics' => null,
+            __('app/settings/teams/listing/basics.breadcrumb_listing') => route('settings.teams.listing.index', $team),
+            __('app/settings/teams/listing/basics.breadcrumb_basics') => null,
         ]"/>
 
         <x-slot:actions>
@@ -55,26 +55,26 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 variant="outline"
                 size="xs"
                 icon="arrow-up-right-01"
-                label="Preview page"
+                :label="__('app/settings/teams/listing/basics.preview_page')"
                 :href="$this->tool ? route('tools.show', $this->tool) : null"
                 :disabled="! $this->tool"
                 target="_blank"
             />
 
-            <x-ui.button variant="primary" size="sm" label="Save changes" wire:click="save"/>
+            <x-ui.button variant="primary" size="sm" :label="__('app/settings/teams/listing/basics.save_changes')" wire:click="save"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
     <div class="min-h-0 flex-1 overflow-y-auto">
         <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
             <header class="flex flex-col gap-1 px-4">
-                <h1 class="text-3xl font-semibold text-foreground">Basics</h1>
+                <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/teams/listing/basics.heading') }}</h1>
             </header>
 
             <x-domain.app.settings.section>
                 <x-domain.app.settings.section-content
-                    label="Visibility"
-                    description="Public products are visible to everyone and listed in search and category pages. Unlisted products are hidden from search but accessible via direct link. Private products are only visible to members of your team."
+                    :label="__('app/settings/teams/listing/basics.visibility_label')"
+                    :description="__('app/settings/teams/listing/basics.visibility_description')"
                 >
                     <div
                         class="flex w-64 flex-col gap-1"
@@ -87,7 +87,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                                 @endforeach
                             ],
                             label() {
-                                return this.options.find(option => option.value === $wire.form.visibility)?.label ?? 'Select...';
+                                return this.options.find(option => option.value === $wire.form.visibility)?.label ?? {{ Illuminate\Support\Js::from(__('app/settings/teams/listing/basics.select_placeholder')) }};
                             },
                             toggle() {
                                 const rect = $refs.trigger.getBoundingClientRect();
@@ -139,8 +139,8 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
     <x-domain.app.settings.listing-nav
         :prev-href="route('settings.teams.listing.links', $team)"
-        prev-label="Links"
+        :prev-label="__('app/settings/teams/listing/basics.nav_prev_label')"
         :next-href="route('settings.teams.listing.danger-zone', $team)"
-        next-label="Danger zone"
+        :next-label="__('app/settings/teams/listing/basics.nav_next_label')"
     />
 </div>

@@ -37,26 +37,26 @@ class extends Component {
 <div class="flex flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Workspace' => null,
-            'Teams' => null,
+            __('app/settings/workspace/teams/index.breadcrumb_settings') => null,
+            __('app/settings/workspace/teams/index.breadcrumb_workspace') => null,
+            __('app/settings/workspace/teams/index.breadcrumb_teams') => null,
         ]"/>
 
         <x-slot:actions>
-            <x-ui.button variant="primary" size="sm" icon="add-01" label="Create team" :href="route('settings.workspace.teams.create')" wire:navigate/>
+            <x-ui.button variant="primary" size="sm" icon="add-01" :label="__('app/settings/workspace/teams/index.create_team')" :href="route('settings.workspace.teams.create')" wire:navigate/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
     <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
         <header class="flex flex-col gap-1 px-4">
-            <h1 class="text-3xl font-semibold text-foreground">Teams</h1>
-            <p class="text-sm text-muted-foreground">Teams within {{ $workspace->name }}.</p>
+            <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/workspace/teams/index.heading') }}</h1>
+            <p class="text-sm text-muted-foreground">{{ __('app/settings/workspace/teams/index.description', ['name' => $workspace->name]) }}</p>
         </header>
 
         @if ($this->teams->isEmpty())
             <x-domain.app.settings.section>
-                <x-domain.app.settings.section-content label="No teams yet" description="Create a team to start organizing your stack and surveys.">
-                    <x-ui.button variant="outline" size="sm" label="Create team" :href="route('settings.workspace.teams.create')" wire:navigate/>
+                <x-domain.app.settings.section-content :label="__('app/settings/workspace/teams/index.empty_label')" :description="__('app/settings/workspace/teams/index.empty_description')">
+                    <x-ui.button variant="outline" size="sm" :label="__('app/settings/workspace/teams/index.create_team')" :href="route('settings.workspace.teams.create')" wire:navigate/>
                 </x-domain.app.settings.section-content>
             </x-domain.app.settings.section>
         @else
@@ -74,7 +74,7 @@ class extends Component {
                         @php $membersCount = $team->members()->count(); @endphp
                         <div class="flex min-w-0 flex-1 flex-col">
                             <p class="truncate text-sm font-medium text-foreground">{{ $team->name }}</p>
-                            <p class="truncate text-xs text-muted-foreground">{{ $membersCount }} member{{ $membersCount === 1 ? '' : 's' }}</p>
+                            <p class="truncate text-xs text-muted-foreground">{{ trans_choice('app/settings/workspace/teams/index.members_count', $membersCount, ['count' => $membersCount]) }}</p>
                         </div>
 
                         <x-ui.icon.arrow-right-01 size="xs" class="shrink-0 text-muted-foreground"/>

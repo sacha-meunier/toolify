@@ -40,11 +40,11 @@ class extends Component {
 <div class="flex h-full min-h-0 flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Teams' => null,
+            __('app/settings/teams/listing/links.breadcrumb_settings') => null,
+            __('app/settings/teams/listing/links.breadcrumb_teams') => null,
             $team->name => null,
-            'Listing' => route('settings.teams.listing.index', $team),
-            'Links' => null,
+            __('app/settings/teams/listing/links.breadcrumb_listing') => route('settings.teams.listing.index', $team),
+            __('app/settings/teams/listing/links.breadcrumb_links') => null,
         ]"/>
 
         <x-slot:actions>
@@ -54,24 +54,24 @@ class extends Component {
                 variant="outline"
                 size="xs"
                 icon="arrow-up-right-01"
-                label="Preview page"
+                :label="__('app/settings/teams/listing/links.preview_page')"
                 :href="$this->tool ? route('tools.show', $this->tool) : null"
                 :disabled="! $this->tool"
                 target="_blank"
             />
 
-            <x-ui.button variant="primary" size="sm" label="Save changes" wire:click="save"/>
+            <x-ui.button variant="primary" size="sm" :label="__('app/settings/teams/listing/links.save_changes')" wire:click="save"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
     <div class="min-h-0 flex-1 overflow-y-auto">
         <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
             <header class="flex flex-col gap-1 px-4">
-                <h1 class="text-3xl font-semibold text-foreground">Links</h1>
+                <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/teams/listing/links.heading') }}</h1>
             </header>
 
             <x-domain.app.settings.section>
-                <x-domain.app.settings.section-content icon="globe-02" label="Website" description="The link to the website of your product / tool.">
+                <x-domain.app.settings.section-content icon="globe-02" :label="__('app/settings/teams/listing/links.website_label')" :description="__('app/settings/teams/listing/links.website_description')">
                     <div class="flex w-64 flex-col gap-1">
                         <x-ui.input wire:model="form.websiteUrl"/>
                         @error('form.websiteUrl')
@@ -80,7 +80,7 @@ class extends Component {
                     </div>
                 </x-domain.app.settings.section-content>
 
-                <x-domain.app.settings.section-content icon="github" label="Github" description="The link to the Github repository of your product / tool.">
+                <x-domain.app.settings.section-content icon="github" :label="__('app/settings/teams/listing/links.github_label')" :description="__('app/settings/teams/listing/links.github_description')">
                     <div class="flex w-64 flex-col gap-1">
                         <x-ui.input wire:model="form.githubUrl"/>
                         @error('form.githubUrl')
@@ -89,7 +89,7 @@ class extends Component {
                     </div>
                 </x-domain.app.settings.section-content>
 
-                <x-domain.app.settings.section-content icon="twitter" label="X / Twitter" description="The link to the X / Twitter account of your product / tool.">
+                <x-domain.app.settings.section-content icon="twitter" :label="__('app/settings/teams/listing/links.twitter_label')" :description="__('app/settings/teams/listing/links.twitter_description')">
                     <div class="flex w-64 flex-col gap-1">
                         <x-ui.input wire:model="form.twitterUrl"/>
                         @error('form.twitterUrl')
@@ -98,7 +98,7 @@ class extends Component {
                     </div>
                 </x-domain.app.settings.section-content>
 
-                <x-domain.app.settings.section-content icon="apple" label="App Store" description="The link to App Store page of your product / tool.">
+                <x-domain.app.settings.section-content icon="apple" :label="__('app/settings/teams/listing/links.app_store_label')" :description="__('app/settings/teams/listing/links.app_store_description')">
                     <div class="flex w-64 flex-col gap-1">
                         <x-ui.input wire:model="form.appStoreUrl"/>
                         @error('form.appStoreUrl')
@@ -107,7 +107,7 @@ class extends Component {
                     </div>
                 </x-domain.app.settings.section-content>
 
-                <x-domain.app.settings.section-content icon="google-play" label="Play store" description="The link to Play Store page of your product / tool.">
+                <x-domain.app.settings.section-content icon="google-play" :label="__('app/settings/teams/listing/links.play_store_label')" :description="__('app/settings/teams/listing/links.play_store_description')">
                     <div class="flex w-64 flex-col gap-1">
                         <x-ui.input wire:model="form.playStoreUrl"/>
                         @error('form.playStoreUrl')
@@ -121,8 +121,8 @@ class extends Component {
 
     <x-domain.app.settings.listing-nav
         :prev-href="route('settings.teams.listing.details', $team)"
-        prev-label="Details"
+        :prev-label="__('app/settings/teams/listing/links.nav_prev_label')"
         :next-href="route('settings.teams.listing.basics', $team)"
-        next-label="Basics"
+        :next-label="__('app/settings/teams/listing/links.nav_next_label')"
     />
 </div>

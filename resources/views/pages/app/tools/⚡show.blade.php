@@ -20,7 +20,7 @@ new class extends Component
 <div class="flex flex-col">
     <x-domain.app.topbar>
         <p class="truncate text-sm text-muted-foreground">
-            <a href="{{ route('search') }}" wire:navigate class="hover:text-foreground">Search</a>
+            <a href="{{ route('search') }}" wire:navigate class="hover:text-foreground">{{ __('app/tools/show.breadcrumb_search') }}</a>
             <span class="px-1">/</span>
             <span>{{ $tool->categories->first()?->label() }}</span>
             <span class="px-1">/</span>
@@ -53,28 +53,28 @@ new class extends Component
             <div class="flex gap-4">
                 <div class="flex flex-1 flex-col gap-6 rounded-xl border border-border bg-gradient-to-b from-primary/0 to-primary/5 p-6 shadow-xs">
                     <div class="flex flex-col gap-1.5">
-                        <p class="text-sm text-muted-foreground">Rating</p>
+                        <p class="text-sm text-muted-foreground">{{ __('app/tools/show.stat_rating') }}</p>
                         <p class="text-3xl font-semibold text-card-foreground">4.7</p>
                     </div>
                 </div>
 
                 <div class="flex flex-1 flex-col gap-6 rounded-xl border border-border bg-gradient-to-b from-primary/0 to-primary/5 p-6 shadow-xs">
                     <div class="flex flex-col gap-1.5">
-                        <p class="text-sm text-muted-foreground">Collections</p>
+                        <p class="text-sm text-muted-foreground">{{ __('app/tools/show.stat_collections') }}</p>
                         <p class="text-3xl font-semibold text-card-foreground">175</p>
                     </div>
                 </div>
 
                 <div class="flex flex-1 flex-col gap-6 rounded-xl border border-border bg-gradient-to-b from-primary/0 to-primary/5 p-6 shadow-xs">
                     <div class="flex flex-col gap-1.5">
-                        <p class="text-sm text-muted-foreground">Followers</p>
+                        <p class="text-sm text-muted-foreground">{{ __('app/tools/show.stat_followers') }}</p>
                         <p class="text-3xl font-semibold text-card-foreground">1 290</p>
                     </div>
                 </div>
 
                 <div class="flex flex-1 flex-col gap-6 rounded-xl border border-border bg-gradient-to-b from-primary/0 to-primary/5 p-6 shadow-xs">
                     <div class="flex flex-col gap-1.5">
-                        <p class="text-sm text-muted-foreground">Views</p>
+                        <p class="text-sm text-muted-foreground">{{ __('app/tools/show.stat_views') }}</p>
                         <p class="text-3xl font-semibold text-card-foreground">12 290</p>
                     </div>
                 </div>
@@ -84,7 +84,7 @@ new class extends Component
         {{-- About --}}
         <section class="flex flex-col gap-4">
             <div class="flex flex-col gap-2">
-                <p class="text-sm font-medium text-foreground">About</p>
+                <p class="text-sm font-medium text-foreground">{{ __('app/tools/show.about_heading') }}</p>
                 <p class="text-base whitespace-pre-line text-foreground">{{ $tool->description }}</p>
             </div>
 
@@ -101,7 +101,7 @@ new class extends Component
         {{-- Links & Details --}}
         <section class="flex gap-6">
             <div class="flex flex-1 flex-col gap-2.5">
-                <p class="text-sm font-medium text-foreground">Links</p>
+                <p class="text-sm font-medium text-foreground">{{ __('app/tools/show.links_heading') }}</p>
 
                 <div class="flex flex-col items-start gap-1">
                     @foreach ([
@@ -119,7 +119,7 @@ new class extends Component
                         @else
                             <span class="flex items-center gap-1 rounded-md px-2 py-2 text-xs font-medium text-muted-foreground">
                                 <x-dynamic-component :component="'ui.icon.'.$link['icon']" size="xs"/>
-                                Not linked yet
+                                {{ __('app/tools/show.not_linked_yet') }}
                             </span>
                         @endif
                     @endforeach
@@ -131,59 +131,59 @@ new class extends Component
             </div>
 
             <div class="flex flex-col gap-2.5">
-                <p class="text-sm font-medium text-foreground">Details</p>
+                <p class="text-sm font-medium text-foreground">{{ __('app/tools/show.details_heading') }}</p>
 
                 <div class="flex w-[350px] flex-col gap-2.5">
                     <div class="flex items-center gap-2.5">
-                        <p class="flex-1 text-sm font-medium text-muted-foreground">Company</p>
+                        <p class="flex-1 text-sm font-medium text-muted-foreground">{{ __('app/tools/show.detail_company') }}</p>
                         <p class="text-base text-foreground">{{ $tool->team->name }}</p>
                     </div>
 
                     <div class="flex items-center gap-2.5">
-                        <p class="flex-1 text-sm font-medium text-muted-foreground">Category</p>
+                        <p class="flex-1 text-sm font-medium text-muted-foreground">{{ __('app/tools/show.detail_category') }}</p>
                         <p class="text-base text-foreground">{{ $tool->categories->map->label()->join(', ') }}</p>
                     </div>
 
                     <div class="flex items-center gap-2.5">
-                        <p class="flex-1 text-sm font-medium text-muted-foreground">Pricing</p>
+                        <p class="flex-1 text-sm font-medium text-muted-foreground">{{ __('app/tools/show.detail_pricing') }}</p>
                         <p class="text-base text-foreground">{{ $tool->pricing->label() }}</p>
                     </div>
 
                     <div class="flex items-center gap-2.5">
-                        <p class="flex-1 text-sm font-medium text-muted-foreground">Added</p>
+                        <p class="flex-1 text-sm font-medium text-muted-foreground">{{ __('app/tools/show.detail_added') }}</p>
                         <p class="text-base text-foreground">{{ $tool->created_at?->format('Y') }}</p>
                     </div>
 
                     @if ($tool->founded_year)
                         <div class="flex items-center gap-2.5">
-                            <p class="flex-1 text-sm font-medium text-muted-foreground">Founded</p>
+                            <p class="flex-1 text-sm font-medium text-muted-foreground">{{ __('app/tools/show.detail_founded') }}</p>
                             <p class="text-base text-foreground">{{ $tool->founded_year }}</p>
                         </div>
                     @endif
 
                     @if ($tool->first_release_year)
                         <div class="flex items-center gap-2.5">
-                            <p class="flex-1 text-sm font-medium text-muted-foreground">First release</p>
+                            <p class="flex-1 text-sm font-medium text-muted-foreground">{{ __('app/tools/show.detail_first_release') }}</p>
                             <p class="text-base text-foreground">{{ $tool->first_release_year }}</p>
                         </div>
                     @endif
 
                     @if ($tool->headquarters)
                         <div class="flex items-center gap-2.5">
-                            <p class="flex-1 text-sm font-medium text-muted-foreground">Headquarters</p>
+                            <p class="flex-1 text-sm font-medium text-muted-foreground">{{ __('app/tools/show.detail_headquarters') }}</p>
                             <p class="text-base text-foreground">{{ $tool->headquarters }}</p>
                         </div>
                     @endif
 
                     @if ($tool->headcount)
                         <div class="flex items-center gap-2.5">
-                            <p class="flex-1 text-sm font-medium text-muted-foreground">Headcount</p>
+                            <p class="flex-1 text-sm font-medium text-muted-foreground">{{ __('app/tools/show.detail_headcount') }}</p>
                             <p class="text-base text-foreground">{{ $tool->headcount->label() }}</p>
                         </div>
                     @endif
 
                     <div class="flex items-center gap-2.5">
-                        <p class="flex-1 text-sm font-medium text-muted-foreground">Status</p>
+                        <p class="flex-1 text-sm font-medium text-muted-foreground">{{ __('app/tools/show.detail_status') }}</p>
                         <p class="text-base text-foreground">{{ $tool->status->label() }}</p>
                     </div>
                 </div>
@@ -194,25 +194,29 @@ new class extends Component
         <section class="flex flex-col gap-6">
             <div class="flex items-end justify-between gap-6">
                 <div class="flex flex-1 flex-col gap-2">
-                    <p class="text-sm font-medium text-foreground">Gallery</p>
-                    <p class="text-lg font-semibold text-foreground">A closer look at {{ $tool->name }}</p>
+                    <p class="text-sm font-medium text-foreground">{{ __('app/tools/show.gallery_heading') }}</p>
+                    <p class="text-lg font-semibold text-foreground">{{ __('app/tools/show.gallery_title', ['name' => $tool->name]) }}</p>
                 </div>
 
-                <p class="w-[400px] text-right text-base text-foreground">Browse detailed visuals that showcase the experience, features, and design across every variant.</p>
+                <p class="w-[400px] text-right text-base text-foreground">{{ __('app/tools/show.gallery_intro') }}</p>
             </div>
 
             <div class="flex gap-4 overflow-x-auto">
-                @foreach (['Overview' => $tool->banner_url, 'Workflow' => $tool->gallery?->get(0), 'Collaboration' => $tool->gallery?->get(1)] as $shot => $image)
+                @foreach ([
+                    ['shot' => __('app/tools/show.gallery_shots.overview'), 'image' => $tool->banner_url],
+                    ['shot' => __('app/tools/show.gallery_shots.workflow'), 'image' => $tool->gallery?->get(0)],
+                    ['shot' => __('app/tools/show.gallery_shots.collaboration'), 'image' => $tool->gallery?->get(1)],
+                ] as $item)
                     <div class="w-[320px] shrink-0 overflow-clip rounded-xl border border-foreground/10 bg-card shadow-xs">
-                        @if ($image)
-                            <img src="{{ $image }}" alt="" class="aspect-video w-full object-cover">
+                        @if ($item['image'])
+                            <img src="{{ $item['image'] }}" alt="" class="aspect-video w-full object-cover">
                         @else
                             <div class="aspect-video w-full bg-gradient-to-br from-muted to-border"></div>
                         @endif
 
                         <div class="flex flex-col gap-1 p-4">
-                            <p class="text-base font-medium text-card-foreground">{{ $shot }}</p>
-                            <p class="text-sm text-muted-foreground">A look at the {{ strtolower($shot) }} experience.</p>
+                            <p class="text-base font-medium text-card-foreground">{{ $item['shot']['label'] }}</p>
+                            <p class="text-sm text-muted-foreground">{{ $item['shot']['description'] }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -223,18 +227,13 @@ new class extends Component
         <section class="flex flex-col gap-6">
             <div class="flex items-end justify-between gap-6">
                 <div class="flex flex-1 flex-col gap-2">
-                    <p class="text-sm font-medium text-foreground">Pricing</p>
-                    <p class="text-lg font-semibold text-foreground">4 plans</p>
+                    <p class="text-sm font-medium text-foreground">{{ __('app/tools/show.pricing_heading') }}</p>
+                    <p class="text-lg font-semibold text-foreground">{{ trans_choice('app/tools/show.pricing_plans_count', count(__('app/tools/show.pricing_plans')), ['count' => count(__('app/tools/show.pricing_plans'))]) }}</p>
                 </div>
             </div>
 
             <div class="flex gap-6">
-                @foreach ([
-                    ['name' => 'Free', 'price' => '$0', 'features' => ['Unlimited workspaces', '2 teams', 'Max 20 tools in stack']],
-                    ['name' => 'Basic', 'price' => '$10 per user/month', 'features' => ['All free features +', 'Item title 1', 'Item title 2', 'Item title 3']],
-                    ['name' => 'Business', 'price' => '$16 per user/month', 'features' => ['All basic features +']],
-                    ['name' => 'Entreprise', 'price' => 'Custom', 'features' => ['All business features +']],
-                ] as $plan)
+                @foreach (__('app/tools/show.pricing_plans') as $plan)
                     <div class="flex flex-1 flex-col overflow-clip rounded-xl border border-foreground/10 bg-card shadow-xs">
                         <div class="flex flex-col gap-1 p-4">
                             <p class="text-base font-medium text-card-foreground">{{ $plan['name'] }}</p>
@@ -257,11 +256,11 @@ new class extends Component
         {{-- Reviews --}}
         <section class="flex flex-col gap-6">
             <div class="flex items-end justify-between gap-6">
-                <p class="text-lg font-semibold text-foreground">What web users have to say</p>
+                <p class="text-lg font-semibold text-foreground">{{ __('app/tools/show.reviews_heading') }}</p>
 
                 <div class="flex items-center gap-2">
-                    <x-ui.button variant="secondary" size="xs" icon="arrow-up-right-01" label="View all reviews"/>
-                    <x-ui.button variant="primary" size="xs" icon="pen-01" label="Write a review"/>
+                    <x-ui.button variant="secondary" size="xs" icon="arrow-up-right-01" :label="__('app/tools/show.cta_view_all_reviews')"/>
+                    <x-ui.button variant="primary" size="xs" icon="pen-01" :label="__('app/tools/show.cta_write_a_review')"/>
                 </div>
             </div>
 
@@ -295,17 +294,13 @@ new class extends Component
                                     <div class="h-full rounded-full bg-primary" style="width: {{ $row['percent'] }}%"></div>
                                 </div>
 
-                                <p class="shrink-0 text-sm font-medium text-muted-foreground">{{ $row['percent'] }}% · {{ number_format($row['reviews']) }} reviews</p>
+                                <p class="shrink-0 text-sm font-medium text-muted-foreground">{{ __('app/tools/show.review_summary_row', ['percent' => $row['percent'], 'reviews' => number_format($row['reviews'])]) }}</p>
                             </div>
                         @endforeach
                     </div>
                 </div>
 
-                @foreach ([
-                    ['name' => 'Lucie', 'role' => 'Product Designer · Mistral', 'stars' => 5, 'ago' => '3d ago', 'body' => 'The cycle model finally clicked with our team. We replaced three tools with one and shipped two cycles before anyone asked for a feature back.'],
-                    ['name' => 'Raj', 'role' => 'UX Researcher · Innovate Labs', 'stars' => 3, 'ago' => '2d ago', 'body' => 'User feedback led us to a breakthrough in our onboarding process. Implementing interactive tutorials resulted in a 30% decrease in drop-off rates.'],
-                    ['name' => 'Maya', 'role' => 'Visual Designer · PixelCraft', 'stars' => 2, 'ago' => '1w ago', 'body' => "Revisiting our brand's color palette has received positive feedback from stakeholders. The fresh look aligns better with our mission and resonates with our audience."],
-                ] as $review)
+                @foreach (__('app/tools/show.reviews') as $review)
                     <div class="flex flex-col gap-2 rounded-xl border border-foreground/10 bg-card p-4 shadow-xs">
                         <div class="flex items-center gap-3">
                             <div class="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-medium text-muted-foreground">
@@ -340,19 +335,15 @@ new class extends Component
         <section class="flex flex-col gap-6">
             <div class="flex items-end justify-between gap-6">
                 <div class="flex flex-1 flex-col gap-2">
-                    <p class="text-sm font-medium text-foreground">Activity</p>
-                    <p class="text-lg font-semibold text-foreground">Latest releases</p>
+                    <p class="text-sm font-medium text-foreground">{{ __('app/tools/show.activity_heading') }}</p>
+                    <p class="text-lg font-semibold text-foreground">{{ __('app/tools/show.activity_title') }}</p>
                 </div>
 
-                <x-ui.button variant="secondary" size="xs" label="View all activity"/>
+                <x-ui.button variant="secondary" size="xs" :label="__('app/tools/show.cta_view_all_activity')"/>
             </div>
 
             <div class="flex flex-col">
-                @foreach ([
-                    ['title' => 'User feedback tool', 'description' => 'A new feature that allows users to submit feedback directly from the app.', 'date' => 'June 12'],
-                    ['title' => 'Real-time notifications', 'description' => 'Users receive instant alerts for important updates and messages.', 'date' => 'June 12'],
-                    ['title' => 'Contrast slider', 'description' => 'An option in the settings to choose the right amount of contrast.', 'date' => 'June 12'],
-                ] as $index => $release)
+                @foreach (__('app/tools/show.releases') as $index => $release)
                     @if ($index > 0)
                         <div class="h-px w-full bg-border"></div>
                     @endif

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('team_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('tagline');
-            $table->text('description');
+            $table->json('tagline');
+            $table->json('description');
             $table->string('website_url');
             $table->string('github_url')->nullable();
             $table->string('twitter_url')->nullable();

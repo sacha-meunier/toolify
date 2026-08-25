@@ -33,7 +33,10 @@ class TeamMemberAddedNotification extends Notification
         return [
             'type' => $this->type()->value,
             'title' => $this->team->name,
-            'body' => "{$this->addedBy->name} added you to {$this->team->name}. Feel free to check out the stack and surveys to get started.",
+            'body' => __('notifications.team_member_added.body', [
+                'added_by' => $this->addedBy->name,
+                'team' => $this->team->name,
+            ]),
             'url' => null,
             'avatar_url' => $this->team->logo_url,
             'avatar_initials' => $this->team->initials(),

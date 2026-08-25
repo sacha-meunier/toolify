@@ -1,22 +1,22 @@
 <x-mail::message>
-# You're invited to {{ $invitation->team->name ?? $invitation->workspace->name }}
+# {{ __('mail.invitation.heading', ['target' => $invitation->team->name ?? $invitation->workspace->name]) }}
 
-{{ $invitation->invitedBy->name }} ({{ $invitation->invitedBy->email }}) has invited you to join
+{{ __('mail.invitation.invited_by_intro', ['name' => $invitation->invitedBy->name, 'email' => $invitation->invitedBy->email]) }}
 @if ($invitation->team)
-the **{{ $invitation->team->name }}** team in the **{{ $invitation->workspace->name }}** workspace
+{{ __('mail.invitation.invited_to_team', ['team' => '**'.$invitation->team->name.'**', 'workspace' => '**'.$invitation->workspace->name.'**']) }}
 @else
-the **{{ $invitation->workspace->name }}** workspace
+{{ __('mail.invitation.invited_to_workspace', ['workspace' => '**'.$invitation->workspace->name.'**']) }}
 @endif
-on Toolify.
+{{ __('mail.invitation.on_toolify') }}
 
-Click below to get started. You'll create your account and be added to the right place in one flow, no need to sign up first.
+{{ __('mail.invitation.intro') }}
 
 <x-mail::button :url="$acceptUrl">
-Join {{ $invitation->team->name ?? $invitation->workspace->name }}
+{{ __('mail.invitation.accept_button', ['target' => $invitation->team->name ?? $invitation->workspace->name]) }}
 </x-mail::button>
 
-Use Toolify to organize your tools, run surveys, and keep your team's stack in one place.
+{{ __('mail.invitation.outro') }}
 
-Thanks,<br>
+{{ __('mail.invitation.signature') }}<br>
 {{ config('app.name') }}
 </x-mail::message>

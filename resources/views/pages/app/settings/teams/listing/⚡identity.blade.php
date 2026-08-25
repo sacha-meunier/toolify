@@ -36,11 +36,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
 <div class="flex h-full min-h-0 flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
-            'Settings' => null,
-            'Teams' => null,
+            __('app/settings/teams/listing/identity.breadcrumb_settings') => null,
+            __('app/settings/teams/listing/identity.breadcrumb_teams') => null,
             $team->name => null,
-            'Listing' => route('settings.teams.listing.index', $team),
-            'Identity' => null,
+            __('app/settings/teams/listing/identity.breadcrumb_listing') => route('settings.teams.listing.index', $team),
+            __('app/settings/teams/listing/identity.breadcrumb_identity') => null,
         ]"/>
 
         <x-slot:actions>
@@ -50,24 +50,24 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 variant="outline"
                 size="xs"
                 icon="arrow-up-right-01"
-                label="Preview page"
+                :label="__('app/settings/teams/listing/identity.preview_page')"
                 :href="$team->tool ? route('tools.show', $team->tool) : null"
                 :disabled="! $team->tool"
                 target="_blank"
             />
 
-            <x-ui.button variant="primary" size="sm" label="Save changes" wire:click="save"/>
+            <x-ui.button variant="primary" size="sm" :label="__('app/settings/teams/listing/identity.save_changes')" wire:click="save"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
     <div class="min-h-0 flex-1 overflow-y-auto">
         <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
             <header class="flex flex-col gap-1 px-4">
-                <h1 class="text-3xl font-semibold text-foreground">Identity</h1>
+                <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/teams/listing/identity.heading') }}</h1>
             </header>
 
             <x-domain.app.settings.section>
-                <x-domain.app.settings.section-content label="Product's logo" description="84×84. Used on the product hero and on every variant page.">
+                <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/identity.logo_label')" :description="__('app/settings/teams/listing/identity.logo_description')">
                     <div class="flex items-center gap-3" x-data>
                         <div class="flex size-10 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-muted-foreground">
                             @if ($form->logo && $form->logo->isPreviewable())
@@ -80,7 +80,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                         </div>
 
                         <input type="file" wire:model="form.logo" accept="image/*" class="hidden" x-ref="logoInput">
-                        <x-ui.button variant="outline" size="sm" label="Change photo" x-on:click="$refs.logoInput.click()"/>
+                        <x-ui.button variant="outline" size="sm" :label="__('app/settings/teams/listing/identity.change_photo')" x-on:click="$refs.logoInput.click()"/>
                     </div>
 
                     @error('form.logo')
@@ -88,7 +88,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     @enderror
                 </x-domain.app.settings.section-content>
 
-                <x-domain.app.settings.section-content label="Product's name" description="Displayed on the product hero and across all variant pages.">
+                <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/identity.name_label')" :description="__('app/settings/teams/listing/identity.name_description')">
                     <div class="flex w-64 flex-col gap-1">
                         <x-ui.input wire:model="form.name"/>
                         @error('form.name')
@@ -100,15 +100,15 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
             <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-0.5 px-4">
-                    <p class="text-sm font-medium text-foreground">Tagline</p>
-                    <p class="text-sm text-muted-foreground">One sentence. Shown directly under the product's name.</p>
+                    <p class="text-sm font-medium text-foreground">{{ __('app/settings/teams/listing/identity.tagline_title') }}</p>
+                    <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/identity.tagline_description') }}</p>
                 </div>
 
                 <div class="flex h-8 w-full items-center rounded-lg border border-input focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]">
                     <input
                         type="text"
                         wire:model="form.tagline"
-                        placeholder="e.g. Improve your tech survey for you and your team"
+                        placeholder="{{ __('app/settings/teams/listing/identity.tagline_placeholder') }}"
                         class="w-full flex-1 rounded-lg bg-transparent px-4 py-1 text-sm leading-5 text-foreground placeholder-muted-foreground outline-none"
                     >
                 </div>
@@ -119,14 +119,14 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
             <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-0.5 px-4">
-                    <p class="text-sm font-medium text-foreground">About</p>
-                    <p class="text-sm text-muted-foreground">Describe what your product is about.</p>
+                    <p class="text-sm font-medium text-foreground">{{ __('app/settings/teams/listing/identity.about_title') }}</p>
+                    <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/identity.about_description') }}</p>
                 </div>
 
                 <textarea
                     rows="4"
                     wire:model="form.description"
-                    placeholder="e.g. Toolify is there to simplify the tech survey..."
+                    placeholder="{{ __('app/settings/teams/listing/identity.about_placeholder') }}"
                     class="w-full resize-none rounded-lg border border-input bg-transparent px-4 py-1.5 text-sm text-foreground placeholder-muted-foreground outline-none focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]"
                 ></textarea>
                 @error('form.description')
@@ -154,8 +154,8 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 }"
             >
                 <div class="flex flex-col gap-0.5 px-4">
-                    <p class="text-sm font-medium text-foreground">Categories</p>
-                    <p class="text-sm text-muted-foreground">The categories covered by your product. Used in search. Minimum 1 category.</p>
+                    <p class="text-sm font-medium text-foreground">{{ __('app/settings/teams/listing/identity.categories_title') }}</p>
+                    <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/identity.categories_description') }}</p>
                 </div>
 
                 <div class="relative" @click.outside="open = false">
@@ -168,7 +168,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     >
                         <div class="flex flex-1 flex-wrap items-center gap-1.5">
                             <template x-if="$wire.form.categories.length === 0">
-                                <span class="flex h-6 items-center px-0.5 text-sm text-muted-foreground">Select categories...</span>
+                                <span class="flex h-6 items-center px-0.5 text-sm text-muted-foreground">{{ __('app/settings/teams/listing/identity.categories_placeholder') }}</span>
                             </template>
 
                             <template x-for="value in $wire.form.categories" :key="value">
@@ -214,6 +214,6 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
     <x-domain.app.settings.listing-nav
         :next-href="route('settings.teams.listing.details', $team)"
-        next-label="Details"
+        :next-label="__('app/settings/teams/listing/identity.nav_next_label')"
     />
 </div>

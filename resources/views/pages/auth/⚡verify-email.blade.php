@@ -37,21 +37,21 @@ new class extends Component {
     {{-- Brand : to be replaced later --}}
     <x-ui.icon.command class="size-12 block"/>
 
-    <x-domain.auth.step title="Check your email">
+    <x-domain.auth.step :title="__('auth/verify-email.step_title')">
         <div class="flex flex-col gap-4 w-full">
             <p class="text-muted-foreground text-sm text-center">
-                We sent a verification link to <span
+                {{ __('auth/verify-email.sent_to_prefix') }} <span
                     class="text-foreground font-medium">{{ auth()->user()->email }}</span>.
-                Click it to finish setting up your account.
+                {{ __('auth/verify-email.sent_to_suffix') }}
             </p>
 
             @if (session('status') === 'verification-link-sent')
-                <p class="text-sm text-center text-foreground">A new verification link has been sent.</p>
+                <p class="text-sm text-center text-foreground">{{ __('auth/verify-email.link_resent') }}</p>
             @endif
 
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
-                <x-ui.button type="submit" variant="secondary" size="lg" label="Resend email" class="w-full"/>
+                <x-ui.button type="submit" variant="secondary" size="lg" :label="__('auth/verify-email.resend_button')" class="w-full"/>
             </form>
         </div>
 
@@ -59,8 +59,8 @@ new class extends Component {
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <div class="flex items-center justify-center gap-2">
-                    <p class="text-muted-foreground font-medium text-sm">Not you ?</p>
-                    <x-ui.button type="submit" variant="link" size="lg" label="Log out"/>
+                    <p class="text-muted-foreground font-medium text-sm">{{ __('auth/verify-email.not_you_prompt') }}</p>
+                    <x-ui.button type="submit" variant="link" size="lg" :label="__('auth/verify-email.log_out_link')"/>
                 </div>
             </form>
         </x-slot:footer>

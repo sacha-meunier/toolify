@@ -1,0 +1,23 @@
+<?php
+
+return [
+    'status_heading' => 'Invitation :status',
+    'status_description' => 'This invitation to join :target has already been :status.',
+
+    'wrong_account_heading' => 'Wrong account',
+    'wrong_account_description' => 'This invitation was sent to :email. Log out and sign back in with that email to accept it.',
+
+    'welcome_heading' => 'Welcome to Toolify',
+    'welcome_description' => ':inviter invited you to join :target.',
+    'member' => 'member',
+    'continue' => 'Continue',
+    'creating_account' => 'Creating your account…',
+
+    'password_step_title' => 'Choose your password',
+
+    'profile_step_title' => 'Set up your profile',
+    'avatar_label' => 'Avatar',
+    'choose_photo' => 'Choose photo',
+    'full_name_label' => 'Full name',
+    'finishing_up' => 'Finishing up…',
+];

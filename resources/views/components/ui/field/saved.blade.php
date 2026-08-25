@@ -13,5 +13,5 @@
     {{ $attributes->class('flex items-center gap-1 text-xs text-muted-foreground') }}
 >
     <x-ui.icon.checkmark-circle-02 size="xs"/>
-    Saved
+    {{ __('components/ui/field-saved.saved') }}
 </span>

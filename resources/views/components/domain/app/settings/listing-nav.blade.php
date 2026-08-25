@@ -15,7 +15,7 @@
         @else
             <span class="flex items-center gap-1 text-sm text-muted-foreground/50">
                 <x-ui.icon.arrow-left-01 size="xs"/>
-                Previous
+                {{ __('app/components/settings/listing-nav.previous') }}
             </span>
         @endif
 
@@ -26,7 +26,7 @@
             </a>
         @else
             <span class="flex items-center gap-1 text-sm text-muted-foreground/50">
-                Next
+                {{ __('app/components/settings/listing-nav.next') }}
                 <x-ui.icon.arrow-right-01 size="xs"/>
             </span>
         @endif

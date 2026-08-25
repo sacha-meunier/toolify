@@ -22,6 +22,7 @@ use Illuminate\Support\Str;
  * @property string $name
  * @property string $email
  * @property string|null $avatar_url
+ * @property string|null $locale
  * @property Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token

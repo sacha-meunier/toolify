@@ -1,6 +1,6 @@
 <x-layouts.shells.public>
     <x-domain.marketing.coming-soon
-        title="Contact"
-        description="A way to reach us directly is on its way."
+        :title="__('public/contact.title')"
+        :description="__('public/contact.description')"
     />
 </x-layouts.shells.public>

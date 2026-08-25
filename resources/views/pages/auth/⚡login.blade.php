@@ -66,10 +66,10 @@ new class extends Component {
         @if ($step === 1)
             <div class="flex flex-col gap-6" wire:key="step-1">
                 <div>
-                    <h1 class="text-foreground text-center font-semibold text-lg">Log in to Toolify</h1>
+                    <h1 class="text-foreground text-center font-semibold text-lg">{{ __('auth/login.heading') }}</h1>
                 </div>
 
-                <div class="flex flex-col gap-4" role="group" aria-label="Log in method">
+                <div class="flex flex-col gap-4" role="group" aria-label="{{ __('auth/login.method_group_label') }}">
                     @foreach ($this->authMethods as $method => $config)
                         <x-domain.auth.method wire:key="method-{{ $method }}" :method="$method" :config="$config"
                                               :primary="$loop->first"
@@ -78,22 +78,22 @@ new class extends Component {
                 </div>
 
                 <div class="flex items-center justify-center gap-2">
-                    <p class="text-muted-foreground font-medium text-sm">Don't have an account ?</p>
-                    <x-ui.button variant="link" type="a" href="{{ route('register') }}" size="lg" label="Sign up"/>
+                    <p class="text-muted-foreground font-medium text-sm">{{ __('auth/login.no_account_prompt') }}</p>
+                    <x-ui.button variant="link" type="a" href="{{ route('register') }}" size="lg" :label="__('auth/login.sign_up_link')"/>
                 </div>
             </div>
         @elseif ($step === 2)
-            <x-domain.auth.step title="Log in to Toolify" wire:key="step-2">
+            <x-domain.auth.step :title="__('auth/login.heading')" wire:key="step-2">
                 <form wire:submit="login" class="flex flex-col gap-4 w-full">
                     <x-ui.field>
-                        <x-ui.field.label content="Email" for="email"/>
+                        <x-ui.field.label :content="__('auth/login.email_label')" for="email"/>
                         <x-ui.input type="email" wire:model="form.email" name="email" id="email"
-                                    placeholder="johndoe@gmail.com" autocomplete="email" required/>
+                                    :placeholder="__('auth/login.email_placeholder')" autocomplete="email" required/>
                         <x-ui.field.error :content="$errors->first('form.email') ?: $errors->first('email')"/>
                     </x-ui.field>
 
                     <x-ui.field>
-                        <x-ui.field.label content="Password" for="password"/>
+                        <x-ui.field.label :content="__('auth/login.password_label')" for="password"/>
                         <x-ui.input type="password" wire:model="form.password" name="password" id="password"
                                     autocomplete="current-password" required/>
                         <x-ui.field.error :content="$errors->first('form.password')"/>
@@ -101,15 +101,15 @@ new class extends Component {
 
                     <x-ui.button type="submit" variant="secondary" size="lg" class="w-full" wire:target="login"
                                  wire:loading.attr="disabled">
-                        <span wire:loading.remove wire:target="login">Continue</span>
-                        <span wire:loading wire:target="login">Logging in…</span>
+                        <span wire:loading.remove wire:target="login">{{ __('auth/login.continue_button') }}</span>
+                        <span wire:loading wire:target="login">{{ __('auth/login.logging_in_button') }}</span>
                     </x-ui.button>
                 </form>
 
                 <x-slot:footer>
-                    <x-ui.button wire:click="backToMethods" variant="link" size="lg" label="Back to log in methods"/>
+                    <x-ui.button wire:click="backToMethods" variant="link" size="lg" :label="__('auth/login.back_to_methods_link')"/>
                     <x-ui.button variant="link" type="a" href="{{ route('password.request') }}" size="lg"
-                                 label="Forgot password ?"/>
+                                 :label="__('auth/login.forgot_password_link')"/>
                 </x-slot:footer>
             </x-domain.auth.step>
         @endif

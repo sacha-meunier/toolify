@@ -11,11 +11,6 @@ enum Pricing: string
 
     public function label(): string
     {
-        return match ($this) {
-            self::Free => 'Free',
-            self::Freemium => 'Freemium',
-            self::Paid => 'Paid',
-            self::Subscription => 'Subscription',
-        };
+        return __('enums/pricing.'.$this->value);
     }
 }

@@ -6,7 +6,7 @@
     <div class="flex items-center gap-3 px-6 py-3.5 opacity-60">
         <div class="flex min-w-0 flex-1 flex-col items-start gap-2">
             <p class="truncate text-sm font-medium text-foreground">{{ $tool->name }}</p>
-            <x-ui.badge>Deleted from Toolify</x-ui.badge>
+            <x-ui.badge>{{ __('app/components/tool-list-item.deleted_badge') }}</x-ui.badge>
         </div>
     </div>
 @else
@@ -25,6 +25,6 @@
             </div>
         </a>
 
-        <x-ui.button variant="secondary" size="sm" :href="$tool->website_url" target="_blank" label="Visit"/>
+        <x-ui.button variant="secondary" size="sm" :href="$tool->website_url" target="_blank" :label="__('app/components/tool-list-item.visit')"/>
     </div>
 @endif

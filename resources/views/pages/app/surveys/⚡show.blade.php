@@ -35,9 +35,9 @@ new class extends Component
     public function scopeLabel(): string
     {
         return match (true) {
-            $this->survey->owner instanceof Workspace => 'Workspace',
+            $this->survey->owner instanceof Workspace => __('app/surveys/show.scope_workspace'),
             $this->survey->owner instanceof Team => $this->survey->owner->name,
-            default => 'Personal',
+            default => __('app/surveys/show.scope_personal'),
         };
     }
 
@@ -68,13 +68,13 @@ new class extends Component
 
 <div class="flex flex-col">
     <x-domain.app.topbar>
-        <x-domain.app.topbar.breadcrumb :items="['Surveys' => route('surveys.personal'), $this->scopeLabel => $this->scopeUrl, $survey->name => null]"/>
+        <x-domain.app.topbar.breadcrumb :items="[__('app/surveys/show.breadcrumb_root') => route('surveys.personal'), $this->scopeLabel => $this->scopeUrl, $survey->name => null]"/>
 
         <x-slot:actions>
             <x-ui.button
                 variant="outline"
                 icon="pen-01"
-                label="Edit"
+                :label="__('app/surveys/show.edit')"
                 wire:click="openSurveyForm({{ $survey->id }})"
             />
         </x-slot:actions>
@@ -90,17 +90,17 @@ new class extends Component
         @else
             <x-domain.app.empty-state
                 icon="search-01"
-                title="No tools match this survey yet"
-                description="You'll be notified as soon as a tool matches your criteria."
+                :title="__('app/surveys/show.empty_title')"
+                :description="__('app/surveys/show.empty_description')"
             >
                 <div class="flex items-center gap-2 mt-2">
                     <x-ui.button
                         variant="secondary"
                         icon="pen-01"
-                        label="Edit survey"
+                        :label="__('app/surveys/show.cta_edit_survey')"
                         wire:click="openSurveyForm({{ $survey->id }})"
                     />
-                    <x-ui.button variant="outline" label="Notification settings" disabled/>
+                    <x-ui.button variant="outline" :label="__('app/surveys/show.cta_notification_settings')" :href="route('settings.account.notifications')" wire:navigate/>
                 </div>
             </x-domain.app.empty-state>
         @endif

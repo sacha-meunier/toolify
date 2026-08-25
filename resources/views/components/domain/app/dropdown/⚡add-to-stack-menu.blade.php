@@ -72,7 +72,7 @@ new class extends Component
     <x-ui.button
         variant="primary"
         icon="layer"
-        label="Add to stack"
+        :label="__('app/components/dropdown/add-to-stack-menu.cta_add_to_stack')"
         @click="open = !open"
     />
 
@@ -91,7 +91,7 @@ new class extends Component
                 size="sm"
                 class="shrink-0 {{ $this->inPersonalStack() ? 'text-primary' : 'text-transparent' }}"
             />
-            <span class="truncate">My stack</span>
+            <span class="truncate">{{ __('app/components/dropdown/add-to-stack-menu.my_stack') }}</span>
         </button>
 
         @if ($this->workspace)
@@ -106,7 +106,7 @@ new class extends Component
                     size="sm"
                     class="shrink-0 {{ $this->inWorkspaceStack() ? 'text-primary' : 'text-transparent' }}"
                 />
-                <span class="truncate">Workspace · {{ $this->workspace->name }}</span>
+                <span class="truncate">{{ __('app/components/dropdown/add-to-stack-menu.workspace', ['name' => $this->workspace->name]) }}</span>
             </button>
 
             @if ($this->teams->isNotEmpty())
@@ -122,7 +122,7 @@ new class extends Component
                             size="sm"
                             class="shrink-0 {{ $this->inTeamStack($team) ? 'text-primary' : 'text-transparent' }}"
                         />
-                        <span class="truncate">Team · {{ $team->name }}</span>
+                        <span class="truncate">{{ __('app/components/dropdown/add-to-stack-menu.team', ['name' => $team->name]) }}</span>
                     </button>
                 @endforeach
             @endif
