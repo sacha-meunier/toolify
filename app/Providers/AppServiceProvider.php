@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureDefaults();
 
-        Route::pattern('locale', implode('|', config('app.available_locales')));
+        Route::pattern('locale', implode('|', array_keys(config('app.available_locales'))));
 
         URL::defaults(['locale' => app()->getLocale()]);
     }

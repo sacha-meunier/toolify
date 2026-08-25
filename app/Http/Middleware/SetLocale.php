@@ -47,7 +47,7 @@ class SetLocale
      */
     private function resolveLocale(Request $request): string
     {
-        $available = config('app.available_locales');
+        $available = array_keys(config('app.available_locales'));
 
         $routeLocale = $request->route('locale');
 
@@ -71,7 +71,7 @@ class SetLocale
      */
     public static function resolve(Request $request): string
     {
-        $available = config('app.available_locales');
+        $available = array_keys(config('app.available_locales'));
 
         $userLocale = $request->user()?->locale;
 

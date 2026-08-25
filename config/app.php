@@ -91,11 +91,16 @@ return [
     |
     | The locales the application is translated into and accepts as a
     | "{locale}" route prefix segment. Every entry must have a matching
-    | directory under lang/.
+    | directory under lang/. The value is each language's own native name
+    | (not translated: a language switcher shows "Français" even when
+    | browsing in English), used to build the language switcher UI.
     |
     */
 
-    'available_locales' => ['en', 'fr'],
+    'available_locales' => [
+        'en' => 'English',
+        'fr' => 'Français',
+    ],
 
     /*
     |--------------------------------------------------------------------------

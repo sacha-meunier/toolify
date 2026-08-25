@@ -21,6 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::prefix('account')->name('account.')->group(function () {
             Route::livewire('/profile', 'pages::app.settings.account.profile')->name('profile');
             Route::livewire('/security', 'pages::app.settings.account.security')->name('security');
+            Route::livewire('/preferences', 'pages::app.settings.account.preferences')->name('preferences');
         });
 
         Route::prefix('workspace')->name('workspace.')->group(function () {

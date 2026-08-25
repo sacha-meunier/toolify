@@ -18,7 +18,7 @@ Route::prefix('{locale}')
 Route::fallback(function (Request $request) {
     $firstSegment = explode('/', trim($request->path(), '/'))[0] ?? '';
 
-    if (in_array($firstSegment, config('app.available_locales'), true)) {
+    if (array_key_exists($firstSegment, config('app.available_locales'))) {
         abort(404);
     }
 

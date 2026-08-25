@@ -16,6 +16,4 @@ return [
 
     'language_label' => 'Language',
     'language_description' => 'Language used across menus, buttons, and notifications.',
-    'language_english' => 'English',
-    'language_french' => 'Français',
 ];

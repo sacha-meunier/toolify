@@ -28,6 +28,8 @@
         </div>
 
         <div class="hidden items-center gap-2.5 lg:flex">
+            <livewire:domain.marketing.dropdown.locale-switcher/>
+
             @auth
                 <x-ui.button variant="primary" size="default" :href="route('discovery')" :label="__('layout.nav_open_app')"/>
             @else
@@ -63,6 +65,8 @@
         @endforeach
 
         <div class="mt-2 flex flex-col gap-2 border-t border-border pt-4">
+            <livewire:domain.marketing.dropdown.locale-switcher/>
+
             @auth
                 <x-ui.button variant="secondary" size="sm" class="w-full" :href="route('discovery')" :label="__('layout.nav_open_app')"/>
             @else

@@ -6,8 +6,16 @@
     'disabled' => false,
 ])
 
-<div {{ $attributes->class('relative flex h-8 w-full items-center rounded-lg border border-input') }}>
+@php
+    // Binding directives (wire:model, wire:change, x-model, ...) must land on the actual
+    // <select>, not the wrapping container, otherwise the directives don't work.
+    $selectAttributes = $attributes->whereStartsWith(['wire:', 'x-model']);
+    $containerAttributes = $attributes->whereDoesntStartWith(['wire:', 'x-model']);
+@endphp
+
+<div {{ $containerAttributes->class('relative flex h-8 w-full items-center rounded-lg border border-input') }}>
     <select
+        {{ $selectAttributes }}
         name="{{ $name }}"
         id="{{ $id }}"
         @if($disabled) disabled @endif
