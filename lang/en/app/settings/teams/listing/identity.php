@@ -23,6 +23,7 @@ return [
     'about_title' => 'About',
     'about_description' => 'Describe what your product is about.',
     'about_placeholder' => 'e.g. Toolify is there to simplify the tech survey...',
+    'about_character_count' => ':current/:max',
 
     'categories_title' => 'Categories',
     'categories_description' => 'The categories covered by your product. Used in search. Minimum 1 category.',

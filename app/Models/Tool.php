@@ -111,14 +111,17 @@ class Tool extends Model
     /**
      * Resolve a translatable JSON attribute for the current app locale, falling back to
      * the app's default locale when the current locale hasn't been translated yet.
+     *
+     * An empty string counts as "not translated" too (not just a missing/null key), since
+     * editors save one explicitly for every locale left blank in the identity settings form.
      */
     private function resolveTranslation(?string $json): string
     {
         $translations = json_decode($json ?? '', true) ?? [];
 
-        return $translations[app()->getLocale()]
-            ?? $translations[config('app.fallback_locale')]
-            ?? '';
+        $current = $translations[app()->getLocale()] ?? '';
+
+        return $current !== '' ? $current : ($translations[config('app.fallback_locale')] ?? '');
     }
 
     /**
@@ -131,6 +134,33 @@ class Tool extends Model
         $translations[app()->getLocale()] = $value;
 
         return json_encode($translations);
+    }
+
+    /**
+     * Retrieve every translation stored for a translatable JSON attribute (tagline, description),
+     * keyed by locale. It's meant for editing every language at once (e.g. the
+     * listing identity settings form), regardless of which locale the editor is browsing in.
+     *
+     * Used in the settings listing.
+     *
+     * @return array<string, string>
+     */
+    public function translations(string $attribute): array
+    {
+        return json_decode($this->getRawOriginal($attribute) ?? '', true) ?? [];
+    }
+
+    /**
+     * Overwrite every locale's translation for a translatable JSON attribute at once, bypassing
+     * the tagline()/description() mutators above (which only ever touch the current app locale).
+     *
+     * Used in the settings listing.
+     *
+     * @param  array<string, string>  $translations
+     */
+    public function setTranslations(string $attribute, array $translations): void
+    {
+        $this->attributes[$attribute] = json_encode($translations);
     }
 
     /**

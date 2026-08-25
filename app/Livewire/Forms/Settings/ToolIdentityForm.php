@@ -12,13 +12,21 @@ class ToolIdentityForm extends Form
 {
     use LogoUpload;
 
+    public const int NAME_MAX_LENGTH = 100;
+
+    public const int TAGLINE_MAX_LENGTH = 255;
+
+    public const int DESCRIPTION_MAX_LENGTH = 500;
+
     public ?Tool $tool = null;
 
     public string $name = '';
 
-    public string $tagline = '';
+    /** @var array<string, string> keyed by locale, e.g. ['en' => '...', 'fr' => '...'] */
+    public array $tagline = [];
 
-    public string $description = '';
+    /** @var array<string, string> keyed by locale */
+    public array $description = [];
 
     /** @var array<int, string> */
     public array $categories = [];
@@ -30,22 +38,33 @@ class ToolIdentityForm extends Form
      */
     protected function rules(): array
     {
-        return [
-            'name' => ['required', 'string', 'max:255'],
-            'tagline' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
+        $rules = [
+            'name' => ['required', 'string', 'max:'.self::NAME_MAX_LENGTH],
+            'tagline' => ['array'],
+            'description' => ['array'],
             'categories' => ['required', 'array', 'min:1', 'max:'.Category::MAX_CATEGORIES_PER_TOOL],
             'categories.*' => [Rule::enum(Category::class)],
             'logo' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
         ];
+
+        // The fallback locale is what every listing page falls back to when a translation
+        // is missing, so it's the only one required. The other locales can be filled in later.
+        foreach (array_keys(config('app.available_locales')) as $locale) {
+            $required = $locale === config('app.fallback_locale');
+
+            $rules["tagline.$locale"] = [$required ? 'required' : 'nullable', 'string', 'max:'.self::TAGLINE_MAX_LENGTH];
+            $rules["description.$locale"] = [$required ? 'required' : 'nullable', 'string', 'max:'.self::DESCRIPTION_MAX_LENGTH];
+        }
+
+        return $rules;
     }
 
     public function setTool(Tool $tool): void
     {
         $this->tool = $tool;
         $this->name = $tool->name;
-        $this->tagline = $tool->tagline;
-        $this->description = $tool->description;
+        $this->tagline = $this->withEveryLocale($tool->translations('tagline'));
+        $this->description = $this->withEveryLocale($tool->translations('description'));
         $this->categories = $tool->categories->map(fn (Category $category) => $category->value)->all();
     }
 
@@ -53,10 +72,11 @@ class ToolIdentityForm extends Form
     {
         $this->validate();
 
+        $this->tool->setTranslations('tagline', $this->tagline);
+        $this->tool->setTranslations('description', $this->description);
+
         $this->tool->update([
             'name' => $this->name,
-            'tagline' => $this->tagline,
-            'description' => $this->description,
             'categories' => $this->categories,
         ]);
 
@@ -67,5 +87,19 @@ class ToolIdentityForm extends Form
 
             $this->reset('logo');
         }
+    }
+
+    /**
+     * Fill in an empty string for every configured locale missing from the tool's stored
+     * translations, so the form always has a bound value for each language tab to edit.
+     *
+     * @param  array<string, string>  $translations
+     * @return array<string, string>
+     */
+    private function withEveryLocale(array $translations): array
+    {
+        return collect(array_keys(config('app.available_locales')))
+            ->mapWithKeys(fn (string $locale) => [$locale => $translations[$locale] ?? ''])
+            ->all();
     }
 }

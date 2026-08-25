@@ -98,40 +98,96 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 </x-domain.app.settings.section-content>
             </x-domain.app.settings.section>
 
-            <div class="flex flex-col gap-2">
-                <div class="flex flex-col gap-0.5 px-4">
-                    <p class="text-sm font-medium text-foreground">{{ __('app/settings/teams/listing/identity.tagline_title') }}</p>
-                    <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/identity.tagline_description') }}</p>
+            <div class="flex flex-col gap-8">
+                <div class="flex flex-col gap-2" x-data="{ activeLocale: '{{ app()->getLocale() }}' }">
+                    <div class="flex items-center justify-between px-4">
+                        <div class="flex flex-col gap-0.5">
+                            <p class="text-sm font-medium text-foreground">{{ __('app/settings/teams/listing/identity.tagline_title') }}</p>
+                            <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/identity.tagline_description') }}</p>
+                        </div>
+
+                        <div class="inline-flex shrink-0 rounded-md border border-input p-0.5">
+                            @foreach (config('app.available_locales') as $code => $label)
+                                <button
+                                    type="button"
+                                    @click="activeLocale = '{{ $code }}'"
+                                    :class="activeLocale === '{{ $code }}' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'"
+                                    :aria-pressed="activeLocale === '{{ $code }}'"
+                                    aria-label="{{ $label }}"
+                                    class="relative rounded px-2.5 py-1 text-xs font-medium uppercase transition-colors"
+                                >
+                                    {{ $code }}
+                                    @error("form.tagline.$code")
+                                        <span class="absolute -top-0.5 -right-0.5 size-1.5 rounded-full bg-destructive"></span>
+                                    @enderror
+                                </button>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    @foreach (config('app.available_locales') as $code => $label)
+                        <div x-show="activeLocale === '{{ $code }}'" x-cloak>
+                            <div class="flex h-8 w-full items-center rounded-lg border border-input focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]">
+                                <input
+                                    type="text"
+                                    wire:model="form.tagline.{{ $code }}"
+                                    placeholder="{{ __('app/settings/teams/listing/identity.tagline_placeholder') }}"
+                                    class="w-full flex-1 rounded-lg bg-transparent px-4 py-1 text-sm leading-5 text-foreground placeholder-muted-foreground outline-none"
+                                >
+                            </div>
+                            @error("form.tagline.$code")
+                            <x-ui.field.error class="px-4">{{ $message }}</x-ui.field.error>
+                            @enderror
+                        </div>
+                    @endforeach
                 </div>
 
-                <div class="flex h-8 w-full items-center rounded-lg border border-input focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]">
-                    <input
-                        type="text"
-                        wire:model="form.tagline"
-                        placeholder="{{ __('app/settings/teams/listing/identity.tagline_placeholder') }}"
-                        class="w-full flex-1 rounded-lg bg-transparent px-4 py-1 text-sm leading-5 text-foreground placeholder-muted-foreground outline-none"
-                    >
-                </div>
-                @error('form.tagline')
-                <x-ui.field.error class="px-4">{{ $message }}</x-ui.field.error>
-                @enderror
-            </div>
+                <div class="flex flex-col gap-2" x-data="{ activeLocale: '{{ app()->getLocale() }}' }">
+                    <div class="flex items-center justify-between px-4">
+                        <div class="flex flex-col gap-0.5">
+                            <p class="text-sm font-medium text-foreground">{{ __('app/settings/teams/listing/identity.about_title') }}</p>
+                            <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/identity.about_description') }}</p>
+                        </div>
 
-            <div class="flex flex-col gap-2">
-                <div class="flex flex-col gap-0.5 px-4">
-                    <p class="text-sm font-medium text-foreground">{{ __('app/settings/teams/listing/identity.about_title') }}</p>
-                    <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/identity.about_description') }}</p>
-                </div>
+                        <div class="inline-flex shrink-0 rounded-md border border-input p-0.5">
+                            @foreach (config('app.available_locales') as $code => $label)
+                                <button
+                                    type="button"
+                                    @click="activeLocale = '{{ $code }}'"
+                                    :class="activeLocale === '{{ $code }}' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground'"
+                                    :aria-pressed="activeLocale === '{{ $code }}'"
+                                    aria-label="{{ $label }}"
+                                    class="relative rounded px-2.5 py-1 text-xs font-medium uppercase transition-colors"
+                                >
+                                    {{ $code }}
+                                    @error("form.description.$code")
+                                        <span class="absolute -top-0.5 -right-0.5 size-1.5 rounded-full bg-destructive"></span>
+                                    @enderror
+                                </button>
+                            @endforeach
+                        </div>
+                    </div>
 
-                <textarea
-                    rows="4"
-                    wire:model="form.description"
-                    placeholder="{{ __('app/settings/teams/listing/identity.about_placeholder') }}"
-                    class="w-full resize-none rounded-lg border border-input bg-transparent px-4 py-1.5 text-sm text-foreground placeholder-muted-foreground outline-none focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]"
-                ></textarea>
-                @error('form.description')
-                <x-ui.field.error class="px-4">{{ $message }}</x-ui.field.error>
-                @enderror
+                    @foreach (config('app.available_locales') as $code => $label)
+                        <div x-show="activeLocale === '{{ $code }}'" x-cloak>
+                            <textarea
+                                rows="4"
+                                wire:model.live.debounce.300ms="form.description.{{ $code }}"
+                                placeholder="{{ __('app/settings/teams/listing/identity.about_placeholder') }}"
+                                class="w-full resize-none rounded-lg border border-input bg-transparent px-4 py-1.5 text-sm text-foreground placeholder-muted-foreground outline-none focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]"
+                            ></textarea>
+                            <p class="px-4 pt-1 text-right text-xs text-muted-foreground">
+                                {{ __('app/settings/teams/listing/identity.about_character_count', [
+                                    'current' => mb_strlen($form->description[$code] ?? ''),
+                                    'max' => ToolIdentityForm::DESCRIPTION_MAX_LENGTH,
+                                ]) }}
+                            </p>
+                            @error("form.description.$code")
+                            <x-ui.field.error class="px-4">{{ $message }}</x-ui.field.error>
+                            @enderror
+                        </div>
+                    @endforeach
+                </div>
             </div>
 
             <div
