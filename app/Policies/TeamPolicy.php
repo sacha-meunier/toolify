@@ -24,6 +24,15 @@ class TeamPolicy
     }
 
     /**
+     * Determine whether the user can invite members to this team, and manage its pending
+     * invitations.
+     */
+    public function inviteMembers(User $user, Team $team): bool
+    {
+        return $team->workspace->owner_id === $user->id;
+    }
+
+    /**
      * Determine whether the user can manage this team's stack.
      */
     public function manageStack(User $user, Team $team): bool

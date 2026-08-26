@@ -1,6 +1,8 @@
 <?php
 
+use App\Enums\InvitationStatus;
 use App\Livewire\Forms\Settings\InviteMemberForm;
+use App\Models\Invitation;
 use App\Models\User;
 use App\Models\Workspace;
 use Illuminate\Support\Collection;
@@ -31,7 +33,7 @@ class extends Component {
 
     public function openInviteMemberModal(): void
     {
-        Gate::authorize('manageMembers', $this->workspace);
+        Gate::authorize('inviteMembers', $this->workspace);
 
         $this->inviteMemberModalOpen = true;
     }
@@ -45,11 +47,12 @@ class extends Component {
 
     public function inviteMember(): void
     {
-        Gate::authorize('manageMembers', $this->workspace);
+        Gate::authorize('inviteMembers', $this->workspace);
 
         if ($this->inviteForm->invite()) {
             $this->inviteMemberModalOpen = false;
             unset($this->members);
+            unset($this->pendingInvitations);
         }
     }
 
@@ -87,6 +90,35 @@ class extends Component {
 
         unset($this->members);
     }
+
+    /**
+     * @return Collection<int, object{invitation: Invitation, cancelled: bool}>
+     */
+    #[Computed]
+    public function pendingInvitations(): Collection
+    {
+        Gate::authorize('inviteMembers', $this->workspace);
+
+        return $this->workspace->invitations()
+            ->whereNull('team_id')
+            ->whereIn('status', [InvitationStatus::Pending, InvitationStatus::Declined])
+            ->whereNull('dismissed_at')
+            ->orderByDesc('created_at')
+            ->get()
+            ->map(fn (Invitation $invitation) => (object) [
+                'invitation' => $invitation,
+                'cancelled' => $invitation->status === InvitationStatus::Declined,
+            ]);
+    }
+
+    public function dismissInvitation(Invitation $invitation): void
+    {
+        Gate::authorize('inviteMembers', $this->workspace);
+
+        $invitation->dismiss();
+
+        unset($this->pendingInvitations);
+    }
 };
 ?>
 
@@ -98,9 +130,11 @@ class extends Component {
             __('app/settings/workspace/members.breadcrumb_members') => null,
         ]"/>
 
-        <x-slot:actions>
-            <x-ui.button variant="primary" size="sm" icon="add-01" :label="__('app/settings/workspace/members.invite_member')" wire:click="openInviteMemberModal"/>
-        </x-slot:actions>
+        @can('inviteMembers', $workspace)
+            <x-slot:actions>
+                <x-ui.button variant="primary" size="sm" icon="add-01" :label="__('app/settings/workspace/members.invite_member')" wire:click="openInviteMemberModal"/>
+            </x-slot:actions>
+        @endcan
     </x-domain.app.topbar>
 
     <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
@@ -180,6 +214,54 @@ class extends Component {
                 </div>
             @endforeach
         </div>
+
+        @can('inviteMembers', $workspace)
+            @if ($this->pendingInvitations->isNotEmpty())
+                <x-domain.app.settings.section
+                    :label="__('app/settings/workspace/members.pending_invitations_heading')"
+                    :description="__('app/settings/workspace/members.pending_invitations_description')"
+                >
+                    @foreach ($this->pendingInvitations as $pending)
+                        @php $invitation = $pending->invitation; @endphp
+                        <div wire:key="pending-invitation-{{ $invitation->id }}" class="flex items-center gap-3 px-4 py-3">
+                            <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-muted-foreground">
+                                <x-ui.icon.user size="sm"/>
+                            </div>
+
+                            <div class="flex min-w-0 flex-1 flex-col">
+                                <p class="truncate text-sm font-medium text-foreground">{{ $invitation->email }}</p>
+                                <p class="truncate text-xs text-muted-foreground">{{ __('app/settings/workspace/members.invited_on', ['date' => $invitation->created_at->format('M j')]) }}</p>
+                            </div>
+
+                            <x-ui.badge :class="$pending->cancelled ? 'bg-muted text-muted-foreground' : ''">
+                                {{ __('app/settings/workspace/members.status_'.($pending->cancelled ? 'cancelled' : 'pending')) }}
+                            </x-ui.badge>
+
+                            <div class="relative shrink-0" x-data="{ open: false }" @click.outside="open = false">
+                                <x-ui.button variant="ghost" size="icon-sm" icon="more-horizontal-square-01" @click="open = !open"/>
+
+                                <div
+                                    x-show="open"
+                                    x-cloak
+                                    x-transition
+                                    class="absolute right-0 z-10 mt-1.5 w-56 overflow-clip rounded-md border border-border bg-background py-1 shadow-xs"
+                                >
+                                    <button
+                                        type="button"
+                                        wire:click="dismissInvitation({{ $invitation->id }})"
+                                        wire:confirm="{{ __('app/settings/workspace/members.dismiss_invitation_confirm', ['email' => $invitation->email]) }}"
+                                        class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                                    >
+                                        <x-ui.icon.eye-off size="sm" class="shrink-0"/>
+                                        <span>{{ __('app/settings/workspace/members.hide_invitation') }}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </x-domain.app.settings.section>
+            @endif
+        @endcan
     </div>
 
     <x-ui.modal show="$wire.inviteMemberModalOpen" close="closeInviteMemberModal" class="max-w-md">

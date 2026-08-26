@@ -43,6 +43,11 @@ class Workspace extends Model
         return $this->hasMany(Team::class);
     }
 
+    public function invitations(): HasMany
+    {
+        return $this->hasMany(Invitation::class);
+    }
+
     /**
      * The members of this workspace (not including the owner).
      */

@@ -3,14 +3,11 @@
 namespace App\Livewire\Forms\Settings;
 
 use App\Enums\InvitationStatus;
-use App\Mail\InvitationMail;
 use App\Models\Invitation;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\Workspace;
-use App\Notifications\InvitationReceivedNotification;
 use App\Notifications\TeamMemberAddedNotification;
-use Illuminate\Support\Facades\Mail;
 use Livewire\Form;
 
 class InviteMemberForm extends Form
@@ -64,7 +61,7 @@ class InviteMemberForm extends Form
             return true;
         }
 
-        $this->sendInvitation($user);
+        $this->sendInvitation();
 
         return true;
     }
@@ -97,18 +94,14 @@ class InviteMemberForm extends Form
      * Create or update a pending invitation and notify the invitee in-app for existing
      * users, by email for anyone without a Toolify account yet.
      */
-    protected function sendInvitation(?User $user): void
+    protected function sendInvitation(): void
     {
         $invitation = Invitation::updateOrCreate(
             ['workspace_id' => $this->workspace->id, 'team_id' => $this->team?->id, 'email' => $this->email],
-            ['invited_by_id' => auth()->id(), 'status' => InvitationStatus::Pending],
+            ['invited_by_id' => auth()->id(), 'status' => InvitationStatus::Pending, 'dismissed_at' => null],
         );
 
-        if ($user) {
-            $user->notify(new InvitationReceivedNotification($invitation));
-        } else {
-            Mail::to($this->email)->send(new InvitationMail($invitation));
-        }
+        $invitation->notifyInvitee();
 
         $this->reset('email');
     }

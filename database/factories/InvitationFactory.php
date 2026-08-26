@@ -40,4 +40,20 @@ class InvitationFactory extends Factory
             'team_id' => $team->id,
         ]);
     }
+
+    /**
+     * Mark the invitation as declined by its invitee.
+     */
+    public function declined(): static
+    {
+        return $this->state(fn () => ['status' => InvitationStatus::Declined]);
+    }
+
+    /**
+     * Mark the invitation as dismissed from the pending list.
+     */
+    public function dismissed(): static
+    {
+        return $this->state(fn () => ['dismissed_at' => now()]);
+    }
 }

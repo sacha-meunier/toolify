@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('invited_by_id')->constrained('users')->cascadeOnDelete();
             $table->string('email');
             $table->string('status')->default('pending');
+            $table->timestamp('dismissed_at')->nullable();
             $table->timestamps();
 
             $table->unique(['workspace_id', 'team_id', 'email']);

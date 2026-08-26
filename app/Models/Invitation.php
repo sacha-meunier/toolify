@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use App\Enums\InvitationStatus;
+use App\Mail\InvitationMail;
+use App\Notifications\InvitationReceivedNotification;
+use Carbon\CarbonImmutable;
 use Database\Factories\InvitationFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * An invitation to join a workspace, or a specific team within one. `team_id` is null for a
@@ -20,10 +23,11 @@ use Illuminate\Support\Carbon;
  * @property int $invited_by_id
  * @property string $email
  * @property InvitationStatus $status
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property CarbonImmutable|null $dismissed_at
+ * @property CarbonImmutable|null $created_at
+ * @property CarbonImmutable|null $updated_at
  */
-#[Fillable(['workspace_id', 'team_id', 'invited_by_id', 'email', 'status'])]
+#[Fillable(['workspace_id', 'team_id', 'invited_by_id', 'email', 'status', 'dismissed_at'])]
 class Invitation extends Model
 {
     /** @use HasFactory<InvitationFactory> */
@@ -33,6 +37,7 @@ class Invitation extends Model
     {
         return [
             'status' => InvitationStatus::class,
+            'dismissed_at' => 'datetime',
         ];
     }
 
@@ -86,5 +91,29 @@ class Invitation extends Model
         abort_unless($this->status === InvitationStatus::Pending && $this->email === $user->email, 403);
 
         $this->update(['status' => InvitationStatus::Declined]);
+    }
+
+    /**
+     * Notify the invitee : in-app for existing users, by email for anyone without a
+     * Toolify account yet.
+     */
+    public function notifyInvitee(): void
+    {
+        $user = User::where('email', $this->email)->first();
+
+        if ($user) {
+            $user->notify(new InvitationReceivedNotification($this));
+        } else {
+            Mail::to($this->email)->send(new InvitationMail($this));
+        }
+    }
+
+    /**
+     * Remove this invitation from the pending list without deleting it, keeping history and
+     * preventing a future invite to the same email from creating a duplicate row.
+     */
+    public function dismiss(): void
+    {
+        $this->update(['dismissed_at' => now()]);
     }
 }
