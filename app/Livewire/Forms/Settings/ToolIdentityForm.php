@@ -89,6 +89,17 @@ class ToolIdentityForm extends Form
         }
     }
 
+    public function deleteLogo(): void
+    {
+        if (! $this->tool || ! $this->tool->logo_url) {
+            return;
+        }
+
+        $this->deleteLogoFile($this->tool->logo_url);
+
+        $this->tool->update(['logo_url' => null]);
+    }
+
     /**
      * Fill in an empty string for every configured locale missing from the tool's stored
      * translations, so the form always has a bound value for each language tab to edit.

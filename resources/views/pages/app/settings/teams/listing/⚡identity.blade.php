@@ -68,20 +68,28 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
             <x-domain.app.settings.section>
                 <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/identity.logo_label')" :description="__('app/settings/teams/listing/identity.logo_description')">
-                    <div class="flex items-center gap-3" x-data>
-                        <div class="flex size-10 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-muted-foreground">
-                            @if ($form->logo && $form->logo->isPreviewable())
-                                <img src="{{ $form->logo->temporaryUrl() }}" alt="" class="size-full object-cover">
-                            @elseif ($form->tool?->logo_url)
-                                <img src="{{ $form->tool->logo_url }}" alt="" class="size-full object-cover">
-                            @else
-                                <x-ui.icon.command class="size-5"/>
-                            @endif
-                        </div>
+                    <x-ui.avatar-picker
+                        class="size-8 bg-muted text-muted-foreground"
+                        preview-model="form.logo"
+                        :has-preview="(bool) ($form->logo && $form->logo->isPreviewable())"
+                        :has-persisted="(bool) $form->tool?->logo_url"
+                        delete-action="deleteLogo"
+                        :delete-confirm="__('app/settings/teams/listing/identity.remove_logo_confirm')"
+                        :change-label="__('app/settings/teams/listing/identity.change_photo')"
+                        :remove-label="__('app/settings/teams/listing/identity.remove')"
+                    >
+                        @if ($form->logo && $form->logo->isPreviewable())
+                            <img src="{{ $form->logo->temporaryUrl() }}" alt="" class="size-full object-cover">
+                        @elseif ($form->tool?->logo_url)
+                            <img src="{{ $form->tool->logo_url }}" alt="" class="size-full object-cover">
+                        @else
+                            <x-ui.icon.command class="size-4"/>
+                        @endif
 
-                        <input type="file" wire:model="form.logo" accept="image/*" class="hidden" x-ref="logoInput">
-                        <x-ui.button variant="outline" size="sm" :label="__('app/settings/teams/listing/identity.change_photo')" x-on:click="$refs.logoInput.click()"/>
-                    </div>
+                        <x-slot:input>
+                            <input type="file" wire:model="form.logo" accept="image/*" class="hidden" x-ref="pickerInput">
+                        </x-slot:input>
+                    </x-ui.avatar-picker>
 
                     @error('form.logo')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>

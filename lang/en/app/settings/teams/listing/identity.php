@@ -12,6 +12,8 @@ return [
     'logo_label' => "Product's logo",
     'logo_description' => '84×84. Used on the product hero and on every variant page.',
     'change_photo' => 'Change photo',
+    'remove' => 'Remove',
+    'remove_logo_confirm' => "Remove your product's logo?",
 
     'name_label' => "Product's name",
     'name_description' => 'Displayed on the product hero and across all variant pages.',

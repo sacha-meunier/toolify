@@ -20,6 +20,7 @@ return [
     'profile_step_title' => 'Set up your profile',
     'avatar_label' => 'Avatar',
     'choose_photo' => 'Choose photo',
+    'remove_photo' => 'Remove photo',
     'full_name_label' => 'Full name',
     'finishing_up' => 'Finishing up…',
 ];

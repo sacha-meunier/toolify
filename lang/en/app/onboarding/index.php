@@ -5,6 +5,7 @@ return [
     'profile_description' => "Choose how you'll appear in Toolify.",
     'avatar_label' => 'Avatar',
     'choose_photo' => 'Choose photo',
+    'remove_photo' => 'Remove photo',
     'fullname_label' => 'Fullname',
     'continue' => 'Continue',
     'continuing' => 'Continuing…',

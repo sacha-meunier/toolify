@@ -25,6 +25,11 @@ class extends Component {
         $this->form->setUser(auth()->user());
     }
 
+    public function deleteAvatar(): void
+    {
+        $this->form->deleteAvatar();
+    }
+
     #[Transition(type: 'forward')]
     public function continueFromProfile(): void
     {
@@ -104,20 +109,27 @@ class extends Component {
                     <x-ui.field>
                         <x-ui.field.label :content="__('app/onboarding/index.avatar_label')"/>
 
-                        <div class="flex items-center gap-3">
-                            <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground">
-                                @if ($form->avatar && $form->avatar->isPreviewable())
-                                    <img src="{{ $form->avatar->temporaryUrl() }}" alt="" class="size-full object-cover">
-                                @elseif ($form->user->avatar_url)
-                                    <img src="{{ $form->user->avatar_url }}" alt="" class="size-full object-cover">
-                                @else
-                                    <span x-text="initials()">{{ $form->user->initials() }}</span>
-                                @endif
-                            </div>
+                        <x-ui.avatar-upload
+                            class="size-8 border border-border bg-muted text-xs font-medium text-muted-foreground"
+                            preview-model="form.avatar"
+                            :has-preview="(bool) ($form->avatar && $form->avatar->isPreviewable())"
+                            :has-persisted="(bool) $form->user->avatar_url"
+                            delete-action="deleteAvatar"
+                            :choose-label="__('app/onboarding/index.choose_photo')"
+                            :remove-label="__('app/onboarding/index.remove_photo')"
+                        >
+                            @if ($form->avatar && $form->avatar->isPreviewable())
+                                <img src="{{ $form->avatar->temporaryUrl() }}" alt="" class="size-full object-cover">
+                            @elseif ($form->user->avatar_url)
+                                <img src="{{ $form->user->avatar_url }}" alt="" class="size-full object-cover">
+                            @else
+                                <span x-text="initials()">{{ $form->user->initials() }}</span>
+                            @endif
 
-                            <input type="file" wire:model="form.avatar" accept="image/*" class="hidden" x-ref="avatarInput">
-                            <x-ui.button type="button" variant="outline" size="sm" :label="__('app/onboarding/index.choose_photo')" x-on:click="$refs.avatarInput.click()"/>
-                        </div>
+                            <x-slot:input>
+                                <input type="file" wire:model="form.avatar" accept="image/*" class="hidden" x-ref="pickerInput">
+                            </x-slot:input>
+                        </x-ui.avatar-upload>
 
                         <x-ui.field.error :content="$errors->first('form.avatar')"/>
                     </x-ui.field>
@@ -184,19 +196,24 @@ class extends Component {
                     <x-ui.field>
                         <x-ui.field.label :content="__('app/onboarding/index.workspace_avatar_label')"/>
 
-                        <div class="flex items-center gap-3">
-                            <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground">
-                                @if ($form->workspaceLogo && $form->workspaceLogo->isPreviewable())
-                                    <img src="{{ $form->workspaceLogo->temporaryUrl() }}" alt="" class="size-full object-cover">
-                                @else
-                                    <span x-text="initials()" x-show="name.trim() !== ''"></span>
-                                    <x-ui.icon.layer class="size-4" x-show="name.trim() === ''"/>
-                                @endif
-                            </div>
+                        <x-ui.avatar-upload
+                            class="size-8 border border-border bg-muted text-xs font-medium text-muted-foreground"
+                            preview-model="form.workspaceLogo"
+                            :has-preview="(bool) ($form->workspaceLogo && $form->workspaceLogo->isPreviewable())"
+                            :choose-label="__('app/onboarding/index.choose_photo')"
+                            :remove-label="__('app/onboarding/index.remove_photo')"
+                        >
+                            @if ($form->workspaceLogo && $form->workspaceLogo->isPreviewable())
+                                <img src="{{ $form->workspaceLogo->temporaryUrl() }}" alt="" class="size-full object-cover">
+                            @else
+                                <span x-text="initials()" x-show="name.trim() !== ''"></span>
+                                <x-ui.icon.layer class="size-4" x-show="name.trim() === ''"/>
+                            @endif
 
-                            <input type="file" wire:model="form.workspaceLogo" accept="image/*" class="hidden" x-ref="workspaceLogoInput">
-                            <x-ui.button type="button" variant="outline" size="sm" :label="__('app/onboarding/index.choose_photo')" x-on:click="$refs.workspaceLogoInput.click()"/>
-                        </div>
+                            <x-slot:input>
+                                <input type="file" wire:model="form.workspaceLogo" accept="image/*" class="hidden" x-ref="pickerInput">
+                            </x-slot:input>
+                        </x-ui.avatar-upload>
 
                         <x-ui.field.error :content="$errors->first('form.workspaceLogo')"/>
                     </x-ui.field>

@@ -233,23 +233,23 @@ class extends Component {
                     <x-ui.field>
                         <x-ui.field.label :content="__('public/invitations/onboarding.avatar_label')"/>
 
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground">
-                                @if ($form->avatar && $form->avatar->isPreviewable())
-                                    <img src="{{ $form->avatar->temporaryUrl() }}" alt=""
-                                         class="size-full object-cover">
-                                @else
-                                    <span x-text="initials()"></span>
-                                @endif
-                            </div>
+                        <x-ui.avatar-upload
+                            class="size-8 border border-border bg-muted text-xs font-medium text-muted-foreground"
+                            preview-model="form.avatar"
+                            :has-preview="(bool) ($form->avatar && $form->avatar->isPreviewable())"
+                            :choose-label="__('public/invitations/onboarding.choose_photo')"
+                            :remove-label="__('public/invitations/onboarding.remove_photo')"
+                        >
+                            @if ($form->avatar && $form->avatar->isPreviewable())
+                                <img src="{{ $form->avatar->temporaryUrl() }}" alt="" class="size-full object-cover">
+                            @else
+                                <span x-text="initials()"></span>
+                            @endif
 
-                            <input type="file" wire:model="form.avatar" accept="image/*" class="hidden"
-                                   x-ref="avatarInput">
-                            <x-ui.button type="button" variant="outline" size="sm"
-                                         :label="__('public/invitations/onboarding.choose_photo')"
-                                         x-on:click="$refs.avatarInput.click()"/>
-                        </div>
+                            <x-slot:input>
+                                <input type="file" wire:model="form.avatar" accept="image/*" class="hidden" x-ref="pickerInput">
+                            </x-slot:input>
+                        </x-ui.avatar-upload>
 
                         <x-ui.field.error :content="$errors->first('form.avatar')"/>
                     </x-ui.field>

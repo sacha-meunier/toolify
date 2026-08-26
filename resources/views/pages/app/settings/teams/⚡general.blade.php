@@ -72,24 +72,28 @@ class extends Component {
                 :label="__('app/settings/teams/general.logo_label')"
                 :description="__('app/settings/teams/general.logo_description')"
             >
-                <div class="flex items-center gap-3" x-data>
-                    <div class="flex size-10 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-muted-foreground">
-                        @if ($form->logo && $form->logo->isPreviewable())
-                            <img src="{{ $form->logo->temporaryUrl() }}" alt="" class="size-full object-cover">
-                        @elseif ($form->team->logo_url)
-                            <img src="{{ $form->team->logo_url }}" alt="" class="size-full object-cover">
-                        @else
-                            <x-ui.icon.layer class="size-5"/>
-                        @endif
-                    </div>
-
-                    <input type="file" wire:model="form.logo" accept="image/*" class="hidden" x-ref="logoInput">
-                    <x-ui.button variant="outline" size="sm" :label="__('app/settings/teams/general.change_photo')" x-on:click="$refs.logoInput.click()"/>
-
-                    @if ($form->team->logo_url)
-                        <x-ui.button variant="ghost" size="sm" :label="__('app/settings/teams/general.remove')" wire:click="deleteLogo" wire::confirm="__('app/settings/teams/general.remove_logo_confirm')"/>
+                <x-ui.avatar-picker
+                    class="size-8 bg-muted text-muted-foreground"
+                    preview-model="form.logo"
+                    :has-preview="(bool) ($form->logo && $form->logo->isPreviewable())"
+                    :has-persisted="(bool) $form->team->logo_url"
+                    delete-action="deleteLogo"
+                    :delete-confirm="__('app/settings/teams/general.remove_logo_confirm')"
+                    :change-label="__('app/settings/teams/general.change_photo')"
+                    :remove-label="__('app/settings/teams/general.remove')"
+                >
+                    @if ($form->logo && $form->logo->isPreviewable())
+                        <img src="{{ $form->logo->temporaryUrl() }}" alt="" class="size-full object-cover">
+                    @elseif ($form->team->logo_url)
+                        <img src="{{ $form->team->logo_url }}" alt="" class="size-full object-cover">
+                    @else
+                        <x-ui.icon.layer class="size-4"/>
                     @endif
-                </div>
+
+                    <x-slot:input>
+                        <input type="file" wire:model="form.logo" accept="image/*" class="hidden" x-ref="pickerInput">
+                    </x-slot:input>
+                </x-ui.avatar-picker>
 
                 @error('form.logo')
                 <x-ui.field.error>{{ $message }}</x-ui.field.error>

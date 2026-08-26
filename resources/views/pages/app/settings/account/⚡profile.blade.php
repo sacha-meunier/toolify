@@ -54,24 +54,28 @@ class extends Component {
                 :label="__('app/settings/account/profile.picture_label')"
                 :description="__('app/settings/account/profile.picture_description')"
             >
-                <div class="flex items-center gap-3" x-data>
-                    <div class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground">
-                        @if ($form->avatar && $form->avatar->isPreviewable())
-                            <img src="{{ $form->avatar->temporaryUrl() }}" alt="" class="size-full object-cover">
-                        @elseif ($form->user->avatar_url)
-                            <img src="{{ $form->user->avatar_url }}" alt="" class="size-full object-cover">
-                        @else
-                            {{ $form->user->initials() }}
-                        @endif
-                    </div>
-
-                    <input type="file" wire:model="form.avatar" accept="image/*" class="hidden" x-ref="avatarInput">
-                    <x-ui.button variant="outline" size="sm" :label="__('app/settings/account/profile.change_photo')" x-on:click="$refs.avatarInput.click()"/>
-
-                    @if ($form->user->avatar_url)
-                        <x-ui.button variant="ghost" size="sm" :label="__('app/settings/account/profile.remove')" wire:click="deleteAvatar" wire::confirm="__('app/settings/account/profile.remove_avatar_confirm')"/>
+                <x-ui.avatar-picker
+                    class="size-8 border border-border bg-muted text-xs font-medium text-muted-foreground"
+                    preview-model="form.avatar"
+                    :has-preview="(bool) ($form->avatar && $form->avatar->isPreviewable())"
+                    :has-persisted="(bool) $form->user->avatar_url"
+                    delete-action="deleteAvatar"
+                    :delete-confirm="__('app/settings/account/profile.remove_avatar_confirm')"
+                    :change-label="__('app/settings/account/profile.change_photo')"
+                    :remove-label="__('app/settings/account/profile.remove')"
+                >
+                    @if ($form->avatar && $form->avatar->isPreviewable())
+                        <img src="{{ $form->avatar->temporaryUrl() }}" alt="" class="size-full object-cover">
+                    @elseif ($form->user->avatar_url)
+                        <img src="{{ $form->user->avatar_url }}" alt="" class="size-full object-cover">
+                    @else
+                        {{ $form->user->initials() }}
                     @endif
-                </div>
+
+                    <x-slot:input>
+                        <input type="file" wire:model="form.avatar" accept="image/*" class="hidden" x-ref="pickerInput">
+                    </x-slot:input>
+                </x-ui.avatar-picker>
 
                 @error('form.avatar')
                 <x-ui.field.error>{{ $message }}</x-ui.field.error>

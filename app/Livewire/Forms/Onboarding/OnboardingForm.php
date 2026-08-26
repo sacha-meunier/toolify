@@ -61,6 +61,17 @@ class OnboardingForm extends Form
         }
     }
 
+    public function deleteAvatar(): void
+    {
+        if (! $this->user->avatar_url) {
+            return;
+        }
+
+        $this->deleteAvatarFile($this->user->avatar_url);
+
+        $this->user->update(['avatar_url' => null]);
+    }
+
     /**
      * Create a new workspace owned by the user, with a unique slug and invite code.
      */
