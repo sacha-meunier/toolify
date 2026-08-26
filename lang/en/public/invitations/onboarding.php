@@ -11,9 +11,11 @@ return [
     'welcome_description' => ':inviter invited you to join :target.',
     'member' => 'member',
     'continue' => 'Continue',
-    'creating_account' => 'Creating your account…',
+    'continuing' => 'Continuing…',
+    'back_link' => 'Back',
 
     'password_step_title' => 'Choose your password',
+    'creating_account_for' => 'Creating your account for',
 
     'profile_step_title' => 'Set up your profile',
     'avatar_label' => 'Avatar',

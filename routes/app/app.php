@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::livewire('/onboarding', 'pages::app.onboarding.index')->name('onboarding');
+});
+
+Route::middleware(['auth', 'verified', 'onboarded'])->group(function () {
     Route::livewire('/search', 'pages::app.search.index')->name('search');
     Route::livewire('/discovery', 'pages::app.discovery.index')->name('discovery');
     Route::livewire('/inbox/{notification?}', 'pages::app.inbox.index')->name('inbox');
