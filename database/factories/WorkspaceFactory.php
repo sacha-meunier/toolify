@@ -24,6 +24,7 @@ class WorkspaceFactory extends Factory
             'owner_id' => User::factory(),
             'name' => $name,
             'slug' => str($name)->slug(),
+            'invite_code' => Workspace::generateUniqueInviteCode(),
         ];
     }
 }

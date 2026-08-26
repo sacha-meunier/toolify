@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('logo_url')->nullable();
             $table->string('slug')->unique();
+            $table->string('invite_code')->nullable()->unique();
             $table->timestamps();
         });
     }

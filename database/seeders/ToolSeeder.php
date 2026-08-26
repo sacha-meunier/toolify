@@ -32,6 +32,10 @@ class ToolSeeder extends Seeder
                 ['name' => $tool['company'], 'owner_id' => $admin->id]
             );
 
+            if (! $workspace->invite_code) {
+                $workspace->update(['invite_code' => Workspace::generateUniqueInviteCode()]);
+            }
+
             $team = Team::query()->updateOrCreate(
                 ['slug' => $toolSlug, 'workspace_id' => $workspace->id],
                 ['name' => $tool['name']]

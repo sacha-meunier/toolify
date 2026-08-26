@@ -109,6 +109,30 @@ class extends Component {
             <p class="text-sm text-muted-foreground">{{ __('app/settings/workspace/members.description', ['name' => $workspace->name]) }}</p>
         </header>
 
+        <x-domain.app.settings.section>
+            <x-domain.app.settings.section-content
+                :label="__('app/settings/workspace/members.invite_code_label')"
+                :description="__('app/settings/workspace/members.invite_code_description', ['name' => $workspace->name])"
+            >
+                <div class="flex items-center gap-2" x-data="{ copied: false }">
+                    <div class="inline-flex h-8 items-center rounded-lg border border-input bg-transparent px-2.5 font-mono text-sm text-foreground">
+                        {{ $workspace->invite_code }}
+                    </div>
+
+                    <x-ui.button
+                        type="button"
+                        variant="outline"
+                        size="icon"
+                        x-on:click="navigator.clipboard.writeText('{{ $workspace->invite_code }}'); copied = true; setTimeout(() => copied = false, 1500)"
+                        :aria-label="__('app/settings/workspace/members.copy_invite_code')"
+                    >
+                        <x-ui.icon.copy-01 x-show="!copied" size="sm"/>
+                        <x-ui.icon.checkmark-circle-02 x-show="copied" x-cloak size="sm"/>
+                    </x-ui.button>
+                </div>
+            </x-domain.app.settings.section-content>
+        </x-domain.app.settings.section>
+
         <div class="flex w-full flex-col divide-y divide-border overflow-visible rounded-xl border border-border bg-card shadow-xs">
             @foreach ($this->members as $member)
                 <div class="flex items-center gap-3 px-4 py-3">

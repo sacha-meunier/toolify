@@ -20,10 +20,11 @@ use Illuminate\Support\Str;
  * @property string $name
  * @property string|null $logo_url
  * @property string $slug
+ * @property string|null $invite_code
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['name', 'slug', 'logo_url', 'owner_id'])]
+#[Fillable(['name', 'slug', 'logo_url', 'owner_id', 'invite_code'])]
 class Workspace extends Model
 {
     /** @use HasFactory<WorkspaceFactory> */
@@ -69,5 +70,28 @@ class Workspace extends Model
         return Str::length($initials) > 1
             ? Str::substr($initials, 0, 1).Str::substr($initials, -1)
             : $initials;
+    }
+
+    /**
+     * Generate an invite code guaranteed to be unique : since collisions can't be predicted
+     * ahead of a random generation, keep generating a new candidate until one isn't already taken.
+     */
+    public static function generateUniqueInviteCode(): string
+    {
+        $code = static::randomInviteCode();
+
+        while (static::where('invite_code', $code)->exists()) {
+            $code = static::randomInviteCode();
+        }
+
+        return $code;
+    }
+
+    /**
+     * Generate a random "XXX-XXX" invite code candidate, not checked for uniqueness yet.
+     */
+    private static function randomInviteCode(): string
+    {
+        return Str::upper(Str::random(3)).'-'.Str::upper(Str::random(3));
     }
 }

@@ -24,6 +24,7 @@ use Illuminate\Support\Str;
  * @property string|null $avatar_url
  * @property string|null $locale
  * @property Carbon|null $email_verified_at
+ * @property Carbon|null $onboarded_at
  * @property string $password
  * @property string|null $remember_token
  * @property Carbon|null $created_at
@@ -45,6 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'email_verified_at' => 'datetime',
+            'onboarded_at' => 'datetime',
             'password' => 'hashed',
         ];
     }

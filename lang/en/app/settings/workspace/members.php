@@ -8,6 +8,10 @@ return [
     'heading' => 'Members',
     'description' => 'People with access to :name.',
 
+    'invite_code_label' => 'Invite code',
+    'invite_code_description' => 'Anyone with this code can join :name. It is generated automatically and cannot be edited yet.',
+    'copy_invite_code' => 'Copy invite code',
+
     'role_member' => 'Member',
     'role_owner' => 'Owner',
     'joined_on' => 'Joined :date',
