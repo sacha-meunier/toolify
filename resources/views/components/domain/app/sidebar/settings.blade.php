@@ -7,6 +7,10 @@
 
 <aside {{ $attributes->class('flex h-full w-61 shrink-0 flex-col overflow-visible rounded-sm border border-sidebar-border bg-sidebar') }}>
     <div class="flex h-14 shrink-0 items-center px-3">
+        <livewire:domain.app.dropdown.settings-workspace-switcher :key="'settings-workspace-switcher-'.$workspace?->id"/>
+    </div>
+
+    <div class="flex h-14 shrink-0 items-center px-3">
         <x-ui.button
             variant="ghost"
             size="lg"
@@ -23,7 +27,7 @@
         <x-domain.app.sidebar.group :label="__('app/components/sidebar/settings.personal_group')">
             <x-domain.app.sidebar.item icon="user" :href="route('settings.account.profile')">{{ __('app/components/sidebar/settings.profile') }}</x-domain.app.sidebar.item>
             <x-domain.app.sidebar.item icon="square-lock-02" :href="route('settings.account.security')">{{ __('app/components/sidebar/settings.account_security') }}</x-domain.app.sidebar.item>
-            <x-domain.app.sidebar.item icon="settings-02" :href="route('settings.account.preferences')">{{ __('app/components/sidebar/settings.preferences') }}</x-domain.app.sidebar.item>
+            <x-domain.app.sidebar.item icon="sliders-horizontal" :href="route('settings.account.preferences')">{{ __('app/components/sidebar/settings.preferences') }}</x-domain.app.sidebar.item>
             {{--<x-domain.app.sidebar.item icon="computer" :href="route('settings.account.display')">Display</x-domain.app.sidebar.item>--}}
             {{--<x-domain.app.sidebar.item icon="activity-01" :href="route('settings.account.tracking')">Tracking</x-domain.app.sidebar.item>--}}
             {{--<x-domain.app.sidebar.item icon="notification-01" :href="route('settings.account.notifications')">Notifications</x-domain.app.sidebar.item>--}}
