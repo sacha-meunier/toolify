@@ -12,6 +12,8 @@ Route::middleware(['auth', 'verified', 'onboarded'])->group(function () {
     Route::livewire('/inbox/{notification?}', 'pages::app.inbox.index')->name('inbox');
     Route::livewire('/tools/{tool:slug}', 'pages::app.tools.show')->name('tools.show');
 
+    Route::livewire('/workspaces/create-or-join', 'pages::app.workspaces.create-or-join')->name('workspaces.create-or-join');
+
     Route::livewire('/stack', 'pages::app.stacks.personal')->name('stacks.personal');
     Route::livewire('/stack/workspace', 'pages::app.stacks.workspace')->name('stacks.workspace');
     Route::livewire('/stack/teams/{team:slug}', 'pages::app.stacks.teams.show')->name('stacks.teams.show');

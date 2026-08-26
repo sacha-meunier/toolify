@@ -1,23 +1,18 @@
 <?php
 
-namespace App\Livewire\Forms\Onboarding;
+namespace App\Livewire\Forms\Workspaces;
 
-use App\Livewire\Forms\Settings\Images\AvatarUpload;
 use App\Livewire\Forms\Settings\Images\LogoUpload;
 use App\Models\User;
 use App\Models\Workspace;
 use Illuminate\Support\Arr;
 use Livewire\Form;
 
-class OnboardingForm extends Form
+class CreateOrJoinWorkspaceForm extends Form
 {
-    use AvatarUpload, LogoUpload;
+    use LogoUpload;
 
     public ?User $user = null;
-
-    public mixed $avatar = null;
-
-    public string $name = '';
 
     public string $workspaceChoice = 'create';
 
@@ -33,8 +28,6 @@ class OnboardingForm extends Form
     protected function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'avatar' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
             'workspaceName' => ['required', 'string', 'max:255'],
             'workspaceLogo' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
             'inviteCode' => ['required', 'string'],
@@ -44,21 +37,6 @@ class OnboardingForm extends Form
     public function setUser(User $user): void
     {
         $this->user = $user;
-        $this->name = $user->name;
-    }
-
-    /**
-     * Save the user's fullname and avatar from the profile step.
-     */
-    public function saveProfile(): void
-    {
-        $this->validate(Arr::only($this->rules(), ['name', 'avatar']));
-
-        $this->user->update(['name' => $this->name]);
-
-        if ($this->avatar) {
-            $this->user->update(['avatar_url' => $this->storeAvatar($this->avatar, $this->user->avatar_url)]);
-        }
     }
 
     /**
@@ -88,7 +66,7 @@ class OnboardingForm extends Form
         $workspace = Workspace::findByInviteCode($this->inviteCode);
 
         if (! $workspace) {
-            $this->addError('inviteCode', __('app/onboarding/index.invite_code_invalid'));
+            $this->addError('inviteCode', __('app/workspaces/create-or-join.invite_code_invalid'));
 
             return null;
         }

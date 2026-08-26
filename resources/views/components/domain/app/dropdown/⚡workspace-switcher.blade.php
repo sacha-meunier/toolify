@@ -101,6 +101,14 @@ new class extends Component
             </div>
         </div>
 
+        <a
+            href="{{ route('workspaces.create-or-join') }}"
+            wire:navigate
+            class="flex w-full items-center px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+        >
+            {{ __('app/components/dropdown/workspace-switcher.create_or_join_workspace') }}
+        </a>
+
         <div class="my-1 h-px bg-border"></div>
 
         <button

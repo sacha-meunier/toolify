@@ -102,4 +102,41 @@ class Workspace extends Model
     {
         return Str::upper(Str::random(3)).'-'.Str::upper(Str::random(3));
     }
+
+    /**
+     * Generate a unique slug for a workspace, adding  a random suffix on collision.
+     */
+    public static function generateUniqueSlug(string $name): string
+    {
+        $slug = Str::slug($name);
+
+        $unique = $slug;
+
+        while (static::where('slug', $unique)->exists()) {
+            $unique = $slug.'-'.random_int(1, 1000000);
+        }
+
+        return $unique;
+    }
+
+    /**
+     * Create a new workspace owned by the given user, with a unique slug and invite code.
+     */
+    public static function createOwnedBy(User $user, string $name): static
+    {
+        return static::create([
+            'name' => $name,
+            'slug' => static::generateUniqueSlug($name),
+            'owner_id' => $user->id,
+            'invite_code' => static::generateUniqueInviteCode(),
+        ]);
+    }
+
+    /**
+     * Find the workspace matching a pasted invite code.
+     */
+    public static function findByInviteCode(string $code): ?static
+    {
+        return static::where('invite_code', Str::upper(trim($code)))->first();
+    }
 }
