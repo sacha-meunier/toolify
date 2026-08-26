@@ -22,9 +22,6 @@ return [
     'headcount_label' => 'Headcount',
     'headcount_description' => 'The amount of employees inside of :name.',
 
-    'status_label' => 'Status',
-    'status_description' => 'Active products appear in search. Other statuses are kept for history.',
-
     'nav_prev_label' => 'Identity',
     'nav_next_label' => 'Links',
 ];

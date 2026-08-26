@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms\Settings;
 
+use App\Enums\ToolStatus;
 use App\Enums\ToolVisibility;
 use App\Models\Tool;
 use Illuminate\Validation\Rule;
@@ -13,6 +14,8 @@ class ToolBasicsForm extends Form
 
     public string $visibility = '';
 
+    public string $status = '';
+
     /**
      * @return array<string, array<int, mixed>>
      */
@@ -20,6 +23,7 @@ class ToolBasicsForm extends Form
     {
         return [
             'visibility' => ['required', Rule::enum(ToolVisibility::class)],
+            'status' => ['required', Rule::enum(ToolStatus::class)],
         ];
     }
 
@@ -27,6 +31,7 @@ class ToolBasicsForm extends Form
     {
         $this->tool = $tool;
         $this->visibility = $tool->visibility->value;
+        $this->status = $tool->status->value;
     }
 
     public function update(): void
@@ -35,6 +40,7 @@ class ToolBasicsForm extends Form
 
         $this->tool->update([
             'visibility' => $this->visibility,
+            'status' => $this->status,
         ]);
     }
 }

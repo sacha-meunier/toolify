@@ -67,6 +67,74 @@ new #[Layout('layouts::shells.settings')] class extends Component
     {
         return $this->team->tool;
     }
+
+    /**
+     * How many of the identity fields (logo, tagline, about, categories) are filled in, and
+     * whether the gap is specifically translations started but not finished for every locale.
+     *
+     * @return array{filled: int, total: int, missingTranslations: bool}
+     */
+    #[Computed]
+    public function identityProgress(): array
+    {
+        $locales = array_keys(config('app.available_locales'));
+        $tagline = $this->tool?->translations('tagline') ?? [];
+        $description = $this->tool?->translations('description') ?? [];
+
+        $taglineComplete = collect($locales)->every(fn (string $locale) => filled($tagline[$locale] ?? null));
+        $descriptionComplete = collect($locales)->every(fn (string $locale) => filled($description[$locale] ?? null));
+
+        $fields = [
+            (bool) $this->tool?->logo_url,
+            $taglineComplete,
+            $descriptionComplete,
+            (bool) $this->tool?->categories?->isNotEmpty(),
+        ];
+
+        return [
+            'filled' => collect($fields)->filter()->count(),
+            'total' => count($fields),
+            'missingTranslations' => (! $taglineComplete && collect($tagline)->filter(fn ($value) => filled($value))->isNotEmpty())
+                || (! $descriptionComplete && collect($description)->filter(fn ($value) => filled($value))->isNotEmpty()),
+        ];
+    }
+
+    /**
+     * How many of the details fields (founded, first release, headquarters, headcount) are filled in.
+     *
+     * @return array{filled: int, total: int}
+     */
+    #[Computed]
+    public function detailsProgress(): array
+    {
+        $fields = [
+            (bool) $this->tool?->founded_year,
+            (bool) $this->tool?->first_release_year,
+            (bool) $this->tool?->headquarters,
+            (bool) $this->tool?->headcount,
+        ];
+
+        return ['filled' => collect($fields)->filter()->count(), 'total' => count($fields)];
+    }
+
+    /**
+     * How many of the link fields (website, GitHub, X/Twitter, App Store, Play Store) are filled in.
+     *
+     * @return array{filled: int, total: int}
+     */
+    #[Computed]
+    public function linksProgress(): array
+    {
+        $fields = [
+            (bool) $this->tool?->website_url,
+            (bool) $this->tool?->github_url,
+            (bool) $this->tool?->twitter_url,
+            (bool) $this->tool?->app_store_url,
+            (bool) $this->tool?->play_store_url,
+        ];
+
+        return ['filled' => collect($fields)->filter()->count(), 'total' => count($fields)];
+    }
 };
 ?>
 
@@ -96,21 +164,18 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
         @if ($this->tool)
             <div wire:key="listing-populated" class="flex flex-col gap-8">
-                <div class="flex items-center justify-between gap-6 rounded-xl border border-border bg-card px-4 py-3 shadow-xs">
-                    <div class="flex items-center gap-3">
-                        <x-ui.badge class="bg-foreground text-background">{{ __('app/settings/teams/listing/index.live_badge') }}</x-ui.badge>
+                <div class="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 shadow-xs">
+                    <span class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-xs font-medium text-muted-foreground">
+                        @if ($this->tool->logo_url)
+                            <img src="{{ $this->tool->logo_url }}" alt="" class="size-full object-cover">
+                        @else
+                            {{ $this->tool->initials() }}
+                        @endif
+                    </span>
 
-                        <div class="flex flex-col">
-                            <p class="text-sm font-medium text-foreground">toolify.app/{{ $team->workspace->slug }}/{{ $team->slug }}</p>
-                            <p class="text-xs text-muted-foreground">{{ __('app/settings/teams/listing/index.live_url_complete') }}</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-2">
-                        <div class="h-1 w-24 overflow-clip rounded-full bg-foreground/10">
-                            <div class="h-full w-full rounded-full bg-foreground"></div>
-                        </div>
-                        <p class="shrink-0 text-xs text-muted-foreground">{{ __('app/settings/teams/listing/index.complete_percentage', ['percent' => 100]) }}</p>
+                    <div class="flex flex-col">
+                        <p class="text-sm font-medium text-foreground">{{ $this->tool->name }} · toolify.app/tools/{{ $this->tool->slug }}</p>
+                        <p class="text-xs text-muted-foreground">{{ __('app/settings/teams/listing/index.visibility_status_'.$this->tool->visibility->value) }}</p>
                     </div>
                 </div>
 
@@ -138,21 +203,44 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
                 <x-domain.app.settings.section :label="__('app/settings/teams/listing/index.general_section_label')">
                     <x-domain.app.settings.section-content :href="route('settings.teams.listing.identity', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.identity_label')" :description="__('app/settings/teams/listing/index.identity_description')" chevron>
-                        <span class="flex items-center gap-1.5 text-xs font-medium text-foreground">
-                            <span class="size-1.5 rounded-full bg-foreground"></span>
-                            {{ __('app/settings/teams/listing/index.complete_status') }}
-                        </span>
+                        @if ($this->identityProgress['filled'] === $this->identityProgress['total'])
+                            <span class="flex items-center gap-1.5 text-xs font-medium text-foreground">
+                                <span class="size-1.5 rounded-full bg-foreground"></span>
+                                {{ __('app/settings/teams/listing/index.complete_status') }}
+                            </span>
+                        @else
+                            <span class="flex items-center gap-1.5 text-xs font-medium text-orange-600 dark:text-orange-400">
+                                <span class="size-1.5 rounded-full bg-orange-600 dark:bg-orange-400"></span>
+                                {{ __('app/settings/teams/listing/index.progress_status', ['filled' => $this->identityProgress['filled'], 'total' => $this->identityProgress['total']]) }}
+                                @if ($this->identityProgress['missingTranslations'])
+                                    · {{ __('app/settings/teams/listing/index.missing_translations') }}
+                                @endif
+                            </span>
+                        @endif
                     </x-domain.app.settings.section-content>
 
                     <x-domain.app.settings.section-content :href="route('settings.teams.listing.details', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.details_label')" :description="__('app/settings/teams/listing/index.details_description')" chevron>
-                        <span class="flex items-center gap-1.5 text-xs font-medium text-foreground">
-                            <span class="size-1.5 rounded-full bg-foreground"></span>
-                            {{ __('app/settings/teams/listing/index.complete_status') }}
-                        </span>
+                        @if ($this->detailsProgress['filled'] === $this->detailsProgress['total'])
+                            <span class="flex items-center gap-1.5 text-xs font-medium text-foreground">
+                                <span class="size-1.5 rounded-full bg-foreground"></span>
+                                {{ __('app/settings/teams/listing/index.complete_status') }}
+                            </span>
+                        @else
+                            <span class="flex items-center gap-1.5 text-xs font-medium text-orange-600 dark:text-orange-400">
+                                <span class="size-1.5 rounded-full bg-orange-600 dark:bg-orange-400"></span>
+                                {{ __('app/settings/teams/listing/index.progress_status', ['filled' => $this->detailsProgress['filled'], 'total' => $this->detailsProgress['total']]) }}
+                            </span>
+                        @endif
                     </x-domain.app.settings.section-content>
 
                     <x-domain.app.settings.section-content :href="route('settings.teams.listing.links', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.links_label')" :description="__('app/settings/teams/listing/index.links_description')" chevron>
-                        <span class="text-xs font-medium text-muted-foreground">{{ __('app/settings/teams/listing/index.links_count') }}</span>
+                        <span @class([
+                            'text-xs font-medium',
+                            'text-orange-600 dark:text-orange-400' => $this->linksProgress['filled'] !== $this->linksProgress['total'],
+                            'text-muted-foreground' => $this->linksProgress['filled'] === $this->linksProgress['total'],
+                        ])>
+                            {{ __('app/settings/teams/listing/index.links_count', ['filled' => $this->linksProgress['filled'], 'total' => $this->linksProgress['total']]) }}
+                        </span>
                     </x-domain.app.settings.section-content>
 
                     {{--<x-domain.app.settings.section-content :href="route('settings.teams.listing.pricing', $team)" icon="discover-circle" label="Pricing" description="Free, basic, premium and custom plans" chevron>
@@ -161,7 +249,9 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 </x-domain.app.settings.section>
 
                 <x-domain.app.settings.section :label="__('app/settings/teams/listing/index.configuration_section_label')">
-                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.basics', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.basics_label')" :description="__('app/settings/teams/listing/index.basics_description')" chevron/>
+                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.basics', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.basics_label')" :description="__('app/settings/teams/listing/index.basics_description')" chevron>
+                        <span class="text-xs font-medium text-muted-foreground">{{ $this->tool->visibility->label() }} · {{ $this->tool->status->label() }}</span>
+                    </x-domain.app.settings.section-content>
 
                     <x-domain.app.settings.section-content :href="route('settings.teams.listing.danger-zone', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.danger_zone_label')" :description="__('app/settings/teams/listing/index.danger_zone_description')" chevron/>
                 </x-domain.app.settings.section>

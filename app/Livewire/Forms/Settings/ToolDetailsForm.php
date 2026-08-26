@@ -3,7 +3,6 @@
 namespace App\Livewire\Forms\Settings;
 
 use App\Enums\ToolHeadcount;
-use App\Enums\ToolStatus;
 use App\Models\Tool;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
@@ -21,8 +20,6 @@ class ToolDetailsForm extends Form
 
     public string $headcount = '';
 
-    public string $status = '';
-
     /**
      * @return array<string, array<int, mixed>>
      */
@@ -33,7 +30,6 @@ class ToolDetailsForm extends Form
             'firstReleaseYear' => ['nullable', 'integer', 'min:1970', 'max:'.Carbon::now()->year],
             'headquarters' => ['nullable', 'string', 'max:255'],
             'headcount' => ['nullable', Rule::enum(ToolHeadcount::class)],
-            'status' => ['required', Rule::enum(ToolStatus::class)],
         ];
     }
 
@@ -44,7 +40,6 @@ class ToolDetailsForm extends Form
         $this->firstReleaseYear = $tool->first_release_year;
         $this->headquarters = $tool->headquarters ?? '';
         $this->headcount = $tool->headcount?->value ?? '';
-        $this->status = $tool->status->value;
     }
 
     public function update(): void
@@ -56,7 +51,6 @@ class ToolDetailsForm extends Form
             'first_release_year' => $this->firstReleaseYear,
             'headquarters' => $this->headquarters ?: null,
             'headcount' => $this->headcount ?: null,
-            'status' => $this->status,
         ]);
     }
 }

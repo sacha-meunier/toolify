@@ -1,7 +1,6 @@
 <?php
 
 use App\Enums\ToolHeadcount;
-use App\Enums\ToolStatus;
 use App\Livewire\Forms\Settings\ToolDetailsForm;
 use App\Models\Team;
 use App\Models\Tool;
@@ -125,9 +124,9 @@ new #[Layout('layouts::shells.settings')] class extends Component
                             type="button"
                             x-ref="trigger"
                             @click="toggle()"
-                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm text-foreground"
+                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm"
                         >
-                            <span x-text="label()"></span>
+                            <span x-text="label()" :class="$wire.form.headcount ? 'text-foreground' : 'text-muted-foreground'"></span>
                             <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
                         </button>
 
@@ -154,65 +153,6 @@ new #[Layout('layouts::shells.settings')] class extends Component
                         </template>
 
                         @error('form.headcount')
-                        <x-ui.field.error>{{ $message }}</x-ui.field.error>
-                        @enderror
-                    </div>
-                </x-domain.app.settings.section-content>
-
-                <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/details.status_label')" :description="__('app/settings/teams/listing/details.status_description')">
-                    <div
-                        class="flex w-64 flex-col gap-1"
-                        x-data="{
-                            open: false,
-                            position: { top: 0, left: 0, width: 0 },
-                            options: [
-                                @foreach (ToolStatus::cases() as $option)
-                                    { value: '{{ $option->value }}', label: @js($option->label()) },
-                                @endforeach
-                            ],
-                            label() {
-                                return this.options.find(option => option.value === $wire.form.status)?.label ?? {{ Illuminate\Support\Js::from(__('app/settings/teams/listing/details.select_placeholder')) }};
-                            },
-                            toggle() {
-                                const rect = $refs.trigger.getBoundingClientRect();
-                                this.position = { top: rect.bottom + window.scrollY + 4, left: rect.left + window.scrollX, width: rect.width };
-                                this.open = ! this.open;
-                            },
-                        }"
-                    >
-                        <button
-                            type="button"
-                            x-ref="trigger"
-                            @click="toggle()"
-                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm text-foreground"
-                        >
-                            <span x-text="label()"></span>
-                            <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
-                        </button>
-
-                        <template x-teleport="body">
-                            <div
-                                x-show="open"
-                                x-cloak
-                                x-transition
-                                @click.outside="if (! $refs.trigger.contains($event.target)) open = false"
-                                x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px; width: ${position.width}px;`"
-                                class="z-50 overflow-clip rounded-lg border border-border bg-popover p-1 shadow-md"
-                            >
-                                <template x-for="option in options" :key="option.value">
-                                    <button
-                                        type="button"
-                                        @click="$wire.form.status = option.value; open = false"
-                                        class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
-                                    >
-                                        <span x-text="option.label"></span>
-                                        <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.status === option.value"/>
-                                    </button>
-                                </template>
-                            </div>
-                        </template>
-
-                        @error('form.status')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
                         @enderror
                     </div>

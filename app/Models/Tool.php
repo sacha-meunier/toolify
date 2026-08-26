@@ -172,6 +172,18 @@ class Tool extends Model
     }
 
     /**
+     * Get the tool's initials, used as a logo fallback.
+     */
+    public function initials(): string
+    {
+        $initials = Str::initials($this->name, true);
+
+        return Str::length($initials) > 1
+            ? Str::substr($initials, 0, 1).Str::substr($initials, -1)
+            : $initials;
+    }
+
+    /**
      * Scope to tools listable by the given user: Public tools for anyone, Private/Unlisted
      * tools belongs to a team the user is a member of (or owns the workspace of).
      */
