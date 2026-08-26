@@ -46,7 +46,7 @@ class extends Component {
         ]"/>
 
         <x-slot:actions>
-            <x-ui.button variant="primary" size="sm" :label="__('app/settings/workspace/teams/create.create_team')" wire:click="save"/>
+            <x-ui.button variant="primary" size="sm" :label="__('app/settings/workspace/teams/create.create_team')" :disabled="! trim($form->name)" wire:click="save"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
@@ -84,7 +84,7 @@ class extends Component {
                 :description="__('app/settings/workspace/teams/create.name_description')"
             >
                 <div class="flex w-64 flex-col gap-1">
-                    <x-ui.input wire:model="form.name" :placeholder="__('app/settings/workspace/teams/create.name_placeholder')"/>
+                    <x-ui.input wire:model.live="form.name" :placeholder="__('app/settings/workspace/teams/create.name_placeholder')"/>
                     @error('form.name')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>
                     @enderror
