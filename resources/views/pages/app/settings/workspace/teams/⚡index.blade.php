@@ -71,7 +71,7 @@ class extends Component {
                             @endif
                         </div>
 
-                        @php $membersCount = $team->members()->count(); @endphp
+                        @php $membersCount = $team->totalMemberCount(); @endphp
                         <div class="flex min-w-0 flex-1 flex-col">
                             <p class="truncate text-sm font-medium text-foreground">{{ $team->name }}</p>
                             <p class="truncate text-xs text-muted-foreground">{{ trans_choice('app/settings/workspace/teams/index.members_count', $membersCount, ['count' => $membersCount]) }}</p>

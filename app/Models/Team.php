@@ -57,6 +57,14 @@ class Team extends Model
     }
 
     /**
+     * The total amount of users in a team, this includes the owner.
+     */
+    public function totalMemberCount(): int
+    {
+        return $this->members()->count() + ($this->workspace->owner_id ? 1 : 0);
+    }
+
+    /**
      * Get the team's initials, used as a logo fallback.
      */
     public function initials(): string
