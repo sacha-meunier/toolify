@@ -13,7 +13,7 @@
             <p class="mt-4 text-muted-foreground">{{ $description }}</p>
         </div>
 
-        <div class="{{ $reverse ? 'lg:order-1' : '' }} aspect-[4/3] w-full rounded-xl border border-border bg-muted shadow-xs">
+        <div class="{{ $reverse ? 'lg:order-1' : '' }} w-full overflow-clip rounded-xl border border-border bg-muted shadow-xs">
             {{ $media ?? '' }}
         </div>
     </div>
