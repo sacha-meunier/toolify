@@ -6,7 +6,7 @@ return [
     'breadcrumb_listing' => 'Fiche',
     'breadcrumb_details' => 'Détails',
     'preview_page' => 'Aperçu de la page',
-    'save_changes' => 'Enregistrer les modifications',
+    'save_changes' => 'Enregistrer',
     'heading' => 'Détails',
     'select_placeholder' => 'Sélectionner...',
 

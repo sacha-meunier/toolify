@@ -62,7 +62,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
     <div class="min-h-0 flex-1 overflow-y-auto">
         <div
-            class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10"
+            class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-6 lg:px-10 lg:py-10"
             x-data="{ confirming: false }"
         >
             <header class="flex flex-col gap-1 px-4">

@@ -20,7 +20,7 @@ new class extends Component
         <p class="truncate text-sm text-muted-foreground">{{ __('app/discovery.breadcrumb') }}</p>
     </x-domain.app.topbar>
 
-    <div class="grid grid-cols-1 gap-6 px-8 py-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2">
+    <div class="grid grid-cols-1 gap-6 px-4 py-4 lg:px-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2">
         @foreach ($this->tools as $tool)
             <a
                 href="{{ route('tools.show', $tool) }}"

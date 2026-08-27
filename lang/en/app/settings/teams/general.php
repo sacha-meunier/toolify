@@ -4,7 +4,7 @@ return [
     'breadcrumb_settings' => 'Settings',
     'breadcrumb_teams' => 'Teams',
     'breadcrumb_general' => 'General',
-    'save_changes' => 'Save changes',
+    'save_changes' => 'Save',
     'heading' => 'General',
     'description' => "Manage your team's identity and general settings.",
 

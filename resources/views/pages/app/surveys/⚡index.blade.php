@@ -98,7 +98,7 @@ new class extends Component
         @endif
     </x-domain.app.topbar>
 
-    <div class="flex flex-col gap-6 px-8 py-8">
+    <div class="flex flex-col gap-6 px-4 py-6 lg:px-8 lg:py-8">
         @if ($this->scope === 'workspace' && ! $this->workspace)
             <x-domain.app.empty-state
                 icon="tool-view"

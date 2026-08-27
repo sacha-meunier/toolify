@@ -65,14 +65,14 @@ class extends Component {
     </x-domain.app.topbar>
 
     <div class="min-h-0 flex-1 overflow-y-auto">
-        <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
+        <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-6 lg:px-10 lg:py-10">
             <header class="flex flex-col gap-1 px-4">
                 <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/teams/listing/links.heading') }}</h1>
             </header>
 
             <x-domain.app.settings.section>
                 <x-domain.app.settings.section-content icon="globe-02" :label="__('app/settings/teams/listing/links.website_label')" :description="__('app/settings/teams/listing/links.website_description')">
-                    <div class="flex w-64 flex-col gap-1">
+                    <div class="flex w-full flex-col gap-1 lg:w-64">
                         <x-ui.input wire:model="form.websiteUrl"/>
                         @error('form.websiteUrl')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
@@ -81,7 +81,7 @@ class extends Component {
                 </x-domain.app.settings.section-content>
 
                 <x-domain.app.settings.section-content icon="github" :label="__('app/settings/teams/listing/links.github_label')" :description="__('app/settings/teams/listing/links.github_description')">
-                    <div class="flex w-64 flex-col gap-1">
+                    <div class="flex w-full flex-col gap-1 lg:w-64">
                         <x-ui.input wire:model="form.githubUrl"/>
                         @error('form.githubUrl')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
@@ -90,7 +90,7 @@ class extends Component {
                 </x-domain.app.settings.section-content>
 
                 <x-domain.app.settings.section-content icon="twitter" :label="__('app/settings/teams/listing/links.twitter_label')" :description="__('app/settings/teams/listing/links.twitter_description')">
-                    <div class="flex w-64 flex-col gap-1">
+                    <div class="flex w-full flex-col gap-1 lg:w-64">
                         <x-ui.input wire:model="form.twitterUrl"/>
                         @error('form.twitterUrl')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
@@ -99,7 +99,7 @@ class extends Component {
                 </x-domain.app.settings.section-content>
 
                 <x-domain.app.settings.section-content icon="apple" :label="__('app/settings/teams/listing/links.app_store_label')" :description="__('app/settings/teams/listing/links.app_store_description')">
-                    <div class="flex w-64 flex-col gap-1">
+                    <div class="flex w-full flex-col gap-1 lg:w-64">
                         <x-ui.input wire:model="form.appStoreUrl"/>
                         @error('form.appStoreUrl')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
@@ -108,7 +108,7 @@ class extends Component {
                 </x-domain.app.settings.section-content>
 
                 <x-domain.app.settings.section-content icon="google-play" :label="__('app/settings/teams/listing/links.play_store_label')" :description="__('app/settings/teams/listing/links.play_store_description')">
-                    <div class="flex w-64 flex-col gap-1">
+                    <div class="flex w-full flex-col gap-1 lg:w-64">
                         <x-ui.input wire:model="form.playStoreUrl"/>
                         @error('form.playStoreUrl')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>

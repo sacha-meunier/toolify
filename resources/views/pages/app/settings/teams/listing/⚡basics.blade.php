@@ -67,7 +67,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
     </x-domain.app.topbar>
 
     <div class="min-h-0 flex-1 overflow-y-auto">
-        <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
+        <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-6 lg:px-10 lg:py-10">
             <header class="flex flex-col gap-1 px-4">
                 <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/teams/listing/basics.heading') }}</h1>
             </header>
@@ -78,7 +78,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     :description="__('app/settings/teams/listing/basics.visibility_description')"
                 >
                     <div
-                        class="flex w-64 flex-col gap-1"
+                        class="flex w-full flex-col gap-1 lg:w-64"
                         x-data="{
                             open: false,
                             position: { top: 0, left: 0, width: 0 },
@@ -140,7 +140,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     :description="__('app/settings/teams/listing/basics.status_description')"
                 >
                     <div
-                        class="flex w-64 flex-col gap-1"
+                        class="flex w-full flex-col gap-1 lg:w-64"
                         x-data="{
                             open: false,
                             position: { top: 0, left: 0, width: 0 },

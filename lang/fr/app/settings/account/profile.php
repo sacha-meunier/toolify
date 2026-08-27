@@ -3,7 +3,7 @@
 return [
     'breadcrumb_settings' => 'Paramètres',
     'breadcrumb_profile' => 'Profil',
-    'save_changes' => 'Enregistrer les modifications',
+    'save_changes' => 'Enregistrer',
     'heading' => 'Profil',
     'description' => 'Gérez les informations de votre compte et vos détails publics.',
 

@@ -6,7 +6,7 @@ return [
     'breadcrumb_listing' => 'Fiche',
     'breadcrumb_basics' => 'Informations de base',
     'preview_page' => 'Aperçu de la page',
-    'save_changes' => 'Enregistrer les modifications',
+    'save_changes' => 'Enregistrer',
     'heading' => 'Informations de base',
 
     'visibility_label' => 'Visibilité',

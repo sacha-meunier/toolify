@@ -6,7 +6,7 @@ return [
     'breadcrumb_listing' => 'Listing',
     'breadcrumb_identity' => 'Identity',
     'preview_page' => 'Preview page',
-    'save_changes' => 'Save changes',
+    'save_changes' => 'Save',
     'heading' => 'Identity',
 
     'logo_label' => "Product's logo",

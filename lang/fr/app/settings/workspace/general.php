@@ -4,7 +4,7 @@ return [
     'breadcrumb_settings' => 'Paramètres',
     'breadcrumb_workspace' => 'Espace de travail',
     'breadcrumb_general' => 'Général',
-    'save_changes' => 'Enregistrer les modifications',
+    'save_changes' => 'Enregistrer',
     'heading' => 'Général',
     'description' => "Gérez l'identité et les paramètres généraux de votre espace de travail.",
 
@@ -12,7 +12,7 @@ return [
     'logo_description' => 'Affiché dans la barre latérale et le sélecteur d\'espace de travail.',
     'change_photo' => 'Changer la photo',
     'remove' => 'Supprimer',
-    'remove_logo_confirm' => "Supprimer le logo de votre espace de travail ?",
+    'remove_logo_confirm' => 'Supprimer le logo de votre espace de travail ?',
 
     'name_label' => 'Nom',
     'name_description' => 'Affiché dans toute l\'application pour vous et les membres de votre espace de travail.',

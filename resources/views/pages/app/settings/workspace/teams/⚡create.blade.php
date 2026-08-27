@@ -50,7 +50,7 @@ class extends Component {
         </x-slot:actions>
     </x-domain.app.topbar>
 
-    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-6 lg:px-10 lg:py-10">
         <header class="flex flex-col gap-1 border-b border-border px-4 pb-6">
             <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/workspace/teams/create.heading') }}</h1>
             <p class="text-sm text-muted-foreground">{{ __('app/settings/workspace/teams/create.description', ['name' => $workspace->name]) }}</p>
@@ -83,7 +83,7 @@ class extends Component {
                 :label="__('app/settings/workspace/teams/create.name_label')"
                 :description="__('app/settings/workspace/teams/create.name_description')"
             >
-                <div class="flex w-64 flex-col gap-1">
+                <div class="flex w-full flex-col gap-1 lg:w-64">
                     <x-ui.input wire:model.live="form.name" :placeholder="__('app/settings/workspace/teams/create.name_placeholder')"/>
                     @error('form.name')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>

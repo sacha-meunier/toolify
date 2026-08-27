@@ -6,7 +6,7 @@ return [
     'breadcrumb_listing' => 'Listing',
     'breadcrumb_basics' => 'Basics',
     'preview_page' => 'Preview page',
-    'save_changes' => 'Save changes',
+    'save_changes' => 'Save',
     'heading' => 'Basics',
 
     'visibility_label' => 'Visibility',

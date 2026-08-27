@@ -102,7 +102,7 @@ class extends Component {
             <x-domain.app.topbar.breadcrumb :items="[__('app/inbox.title') => route('inbox'), $notification->data['title'] => null]"/>
         </x-domain.app.topbar>
 
-        <div class="mx-auto flex w-full max-w-4xl flex-col gap-4 px-10 py-10">
+        <div class="mx-auto flex w-full max-w-4xl flex-col gap-4 px-4 py-6 lg:px-10 lg:py-10">
             <header class="flex flex-col gap-1">
                 <p class="text-xs text-muted-foreground">{{ $notification->created_at->diffForHumans(null, true, true) }}</p>
                 <h1 class="text-2xl font-semibold text-foreground">{{ $notification->data['title'] }}</h1>

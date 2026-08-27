@@ -156,7 +156,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
         </x-slot:actions>
     </x-domain.app.topbar>
 
-    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10" wire:transition="content">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-6 lg:px-10 lg:py-10" wire:transition="content">
         <header class="flex flex-col gap-1 px-4">
             <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/teams/listing/index.heading') }}</h1>
             <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/index.description') }}</p>
@@ -164,17 +164,26 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
         @if ($this->tool)
             <div wire:key="listing-populated" class="flex flex-col gap-8">
-                <div class="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 shadow-xs">
-                    <span class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-xs font-medium text-muted-foreground">
-                        @if ($this->tool->logo_url)
-                            <img src="{{ $this->tool->logo_url }}" alt="" class="size-full object-cover">
-                        @else
-                            {{ $this->tool->initials() }}
-                        @endif
-                    </span>
+                <div class="flex flex-col gap-2 rounded-xl border border-border bg-card px-4 py-4 shadow-xs lg:flex-row lg:items-center lg:gap-3 lg:py-3">
+                    <div class="flex min-w-0 items-center gap-3">
+                        <span class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-xs font-medium text-muted-foreground">
+                            @if ($this->tool->logo_url)
+                                <img src="{{ $this->tool->logo_url }}" alt="" class="size-full object-cover">
+                            @else
+                                {{ $this->tool->initials() }}
+                            @endif
+                        </span>
 
-                    <div class="flex flex-col">
-                        <p class="text-sm font-medium text-foreground">{{ $this->tool->name }} · toolify.app/tools/{{ $this->tool->slug }}</p>
+                        <p class="min-w-0 truncate text-sm font-medium text-foreground lg:hidden">{{ $this->tool->name }}</p>
+                    </div>
+
+                    <div class="flex min-w-0 flex-col gap-0.5 pl-11 lg:pl-0">
+                        <p class="hidden min-w-0 items-center gap-1 text-sm font-medium text-foreground lg:flex">
+                            <span class="truncate">{{ $this->tool->name }}</span>
+                            <span class="shrink-0 text-muted-foreground">·</span>
+                            <span class="truncate">toolify.app/tools/{{ $this->tool->slug }}</span>
+                        </p>
+                        <p class="truncate text-sm font-medium text-foreground lg:hidden">toolify.app/tools/{{ $this->tool->slug }}</p>
                         <p class="text-xs text-muted-foreground">{{ __('app/settings/teams/listing/index.visibility_status_'.$this->tool->visibility->value) }}</p>
                     </div>
                 </div>
@@ -202,7 +211,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 </x-domain.app.settings.section>--}}
 
                 <x-domain.app.settings.section :label="__('app/settings/teams/listing/index.general_section_label')">
-                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.identity', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.identity_label')" :description="__('app/settings/teams/listing/index.identity_description')" chevron>
+                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.identity', $team)" icon="identity-card" :label="__('app/settings/teams/listing/index.identity_label')" :description="__('app/settings/teams/listing/index.identity_description')" chevron>
                         @if ($this->identityProgress['filled'] === $this->identityProgress['total'])
                             <span class="flex items-center gap-1.5 text-xs font-medium text-foreground">
                                 <span class="size-1.5 rounded-full bg-foreground"></span>
@@ -219,7 +228,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                         @endif
                     </x-domain.app.settings.section-content>
 
-                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.details', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.details_label')" :description="__('app/settings/teams/listing/index.details_description')" chevron>
+                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.details', $team)" icon="building-01" :label="__('app/settings/teams/listing/index.details_label')" :description="__('app/settings/teams/listing/index.details_description')" chevron>
                         @if ($this->detailsProgress['filled'] === $this->detailsProgress['total'])
                             <span class="flex items-center gap-1.5 text-xs font-medium text-foreground">
                                 <span class="size-1.5 rounded-full bg-foreground"></span>
@@ -233,7 +242,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                         @endif
                     </x-domain.app.settings.section-content>
 
-                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.links', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.links_label')" :description="__('app/settings/teams/listing/index.links_description')" chevron>
+                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.links', $team)" icon="globe-02" :label="__('app/settings/teams/listing/index.links_label')" :description="__('app/settings/teams/listing/index.links_description')" chevron>
                         <span @class([
                             'text-xs font-medium',
                             'text-orange-600 dark:text-orange-400' => $this->linksProgress['filled'] !== $this->linksProgress['total'],
@@ -245,11 +254,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 </x-domain.app.settings.section>
 
                 <x-domain.app.settings.section :label="__('app/settings/teams/listing/index.configuration_section_label')">
-                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.basics', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.basics_label')" :description="__('app/settings/teams/listing/index.basics_description')" chevron>
+                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.basics', $team)" icon="eye" :label="__('app/settings/teams/listing/index.basics_label')" :description="__('app/settings/teams/listing/index.basics_description')" chevron>
                         <span class="text-xs font-medium text-muted-foreground">{{ $this->tool->visibility->label() }} · {{ $this->tool->status->label() }}</span>
                     </x-domain.app.settings.section-content>
 
-                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.danger-zone', $team)" icon="discover-circle" :label="__('app/settings/teams/listing/index.danger_zone_label')" :description="__('app/settings/teams/listing/index.danger_zone_description')" chevron/>
+                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.danger-zone', $team)" icon="delete-02" :label="__('app/settings/teams/listing/index.danger_zone_label')" :description="__('app/settings/teams/listing/index.danger_zone_description')" chevron/>
                 </x-domain.app.settings.section>
             </div>
         @else

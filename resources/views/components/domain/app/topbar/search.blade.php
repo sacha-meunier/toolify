@@ -26,8 +26,16 @@
     >
 
     <x-slot:actions>
-        <div class="relative" x-data="{ open: false }" @click.outside="open = false">
-            <x-ui.button variant="outline" icon="filter" @click="open = !open">
+        <div class="relative" x-data="{ open: false, expandedGroup: null, position: { top: 0, left: 0 } }" @click.outside="open = false">
+            <x-ui.button
+                variant="outline"
+                icon="filter"
+                @click="
+                    const rect = $el.getBoundingClientRect();
+                    position = { top: rect.bottom + window.scrollY + 6, left: Math.min(rect.left + window.scrollX, window.innerWidth - 272) };
+                    open = ! open;
+                "
+            >
                 {{ __('app/components/topbar/search.filters') }}
                 @if ($activeFilterCount > 0)
                     <x-ui.badge class="bg-primary text-primary-foreground">{{ $activeFilterCount }}</x-ui.badge>
@@ -38,22 +46,18 @@
                 x-show="open"
                 x-cloak
                 x-transition
-                class="absolute right-0 z-20 mt-1.5 w-56 overflow-visible rounded-md border border-border bg-background py-1 shadow-xs"
+                x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px;`"
+                class="z-50 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-background py-1 shadow-md lg:max-h-none lg:overflow-visible"
             >
                 @foreach ([
                     ['group' => 'pricing', 'label' => __('app/components/topbar/search.filter_group_price'), 'cases' => \App\Enums\Pricing::cases()],
                     ['group' => 'platforms', 'label' => __('app/components/topbar/search.filter_group_platform'), 'cases' => \App\Enums\Platform::cases()],
                     ['group' => 'categories', 'label' => __('app/components/topbar/search.filter_group_category'), 'cases' => \App\Enums\Category::cases()],
                 ] as $type)
-                    <div
-                        class="relative"
-                        x-data="{ hover: false, openLeft: false }"
-                        @mouseenter="openLeft = ($el.getBoundingClientRect().right + 224) > window.innerWidth; hover = true"
-                        @mouseleave="hover = false"
-                    >
+                    <div>
                         <button
                             type="button"
-                            @click="openLeft = ($el.getBoundingClientRect().right + 224) > window.innerWidth; hover = !hover"
+                            @click="expandedGroup = expandedGroup === '{{ $type['group'] }}' ? null : '{{ $type['group'] }}'"
                             class="flex w-full items-center justify-between px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                         >
                             <span class="truncate">
@@ -62,21 +66,19 @@
                                     <span class="text-muted-foreground">({{ count($filters[$type['group']]) }})</span>
                                 @endif
                             </span>
-                            <x-ui.icon.arrow-right-01 size="xs" class="shrink-0 opacity-50" x-bind:class="{ '-scale-x-100': openLeft }"/>
+                            <x-ui.icon.arrow-right-01
+                                size="xs"
+                                class="shrink-0 rotate-90 opacity-50 transition-transform"
+                                x-bind:class="{ '-rotate-90': expandedGroup === '{{ $type['group'] }}' }"
+                            />
                         </button>
 
-                        <div
-                            x-show="hover"
-                            x-cloak
-                            x-transition
-                            x-bind:class="openLeft ? 'right-full mr-1' : 'left-full ml-1'"
-                            class="absolute top-0 max-h-96 w-56 overflow-y-auto rounded-md border border-border bg-background py-1 shadow-xs"
-                        >
+                        <div x-show="expandedGroup === '{{ $type['group'] }}'" x-cloak class="bg-muted/30 py-1">
                             @foreach ($type['cases'] as $case)
                                 <button
                                     type="button"
                                     wire:click="toggleFilter('{{ $type['group'] }}', '{{ $case->value }}')"
-                                    class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                                    class="flex w-full items-center gap-2 py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
                                 >
                                     <x-ui.icon.checkmark-circle-02
                                         size="sm"

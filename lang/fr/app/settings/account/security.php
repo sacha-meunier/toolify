@@ -4,7 +4,7 @@ return [
     'breadcrumb_settings' => 'Paramètres',
     'breadcrumb_security' => 'Compte et sécurité',
     'heading' => 'Compte et sécurité',
-    'description' => 'Gérez vos identifiants, vos comptes connectés et vos sessions actives.',
+    'description' => 'Gérez vos identifiants et vos comptes connectés.',
     'coming_soon' => 'Bientôt disponible',
 
     'password_label' => 'Mot de passe',
@@ -20,16 +20,6 @@ return [
     'github' => 'Github',
     'google' => 'Google',
     'connect' => 'Connecter',
-
-    'active_sessions_label' => 'Sessions actives',
-    'active_sessions_description' => 'Appareils et navigateurs actuellement connectés au compte. Révoquer une session déconnecte immédiatement l\'appareil.',
-    'session_firefox_macos' => 'Firefox sur macOS',
-    'session_current_location' => 'Bruxelles, BE · Actif maintenant',
-    'session_current' => 'Actuelle',
-    'log_out' => 'Se déconnecter',
-    'session_firefox_iphone' => 'Firefox sur iPhone 13',
-    'session_last_seen_location' => 'Bruxelles, BE · Vu pour la dernière fois il y a 2 jours',
-    'revoke' => 'Révoquer',
 
     'delete_account_section_title' => 'Supprimer le compte',
     'delete_account_section_description' => 'Supprime définitivement votre compte et toutes les données associées. Cette action est irréversible.',

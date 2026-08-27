@@ -4,7 +4,7 @@ return [
     'breadcrumb_settings' => 'Settings',
     'breadcrumb_workspace' => 'Workspace',
     'breadcrumb_general' => 'General',
-    'save_changes' => 'Save changes',
+    'save_changes' => 'Save',
     'heading' => 'General',
     'description' => "Manage your workspace's identity and general settings.",
 

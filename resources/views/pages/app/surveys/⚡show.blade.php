@@ -80,7 +80,7 @@ new class extends Component
         </x-slot:actions>
     </x-domain.app.topbar>
 
-    <div class="flex flex-col gap-6 px-8 py-8">
+    <div class="flex flex-col gap-6 px-4 py-6 lg:px-8 lg:py-8">
         @if ($this->tools->isNotEmpty())
             <div class="flex flex-col divide-y border border-border rounded-md">
                 @foreach ($this->tools as $tool)

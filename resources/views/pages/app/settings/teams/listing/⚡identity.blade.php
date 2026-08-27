@@ -61,7 +61,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
     </x-domain.app.topbar>
 
     <div class="min-h-0 flex-1 overflow-y-auto">
-        <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
+        <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-6 lg:px-10 lg:py-10">
             <header class="flex flex-col gap-1 px-4">
                 <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/teams/listing/identity.heading') }}</h1>
             </header>
@@ -97,7 +97,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 </x-domain.app.settings.section-content>
 
                 <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/identity.name_label')" :description="__('app/settings/teams/listing/identity.name_description')">
-                    <div class="flex w-64 flex-col gap-1">
+                    <div class="flex w-full flex-col gap-1 lg:w-64">
                         <x-ui.input wire:model="form.name"/>
                         @error('form.name')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
@@ -108,7 +108,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
             <div class="flex flex-col gap-8">
                 <div class="flex flex-col gap-2" x-data="{ activeLocale: '{{ app()->getLocale() }}' }">
-                    <div class="flex items-center justify-between px-4">
+                    <div class="flex flex-col items-start gap-2 px-4 lg:flex-row lg:items-center lg:justify-between">
                         <div class="flex flex-col gap-0.5">
                             <p class="text-sm font-medium text-foreground">{{ __('app/settings/teams/listing/identity.tagline_title') }}</p>
                             <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/identity.tagline_description') }}</p>
@@ -151,7 +151,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 </div>
 
                 <div class="flex flex-col gap-2" x-data="{ activeLocale: '{{ app()->getLocale() }}' }">
-                    <div class="flex items-center justify-between px-4">
+                    <div class="flex flex-col items-start gap-2 px-4 lg:flex-row lg:items-center lg:justify-between">
                         <div class="flex flex-col gap-0.5">
                             <p class="text-sm font-medium text-foreground">{{ __('app/settings/teams/listing/identity.about_title') }}</p>
                             <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/identity.about_description') }}</p>

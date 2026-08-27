@@ -3,7 +3,7 @@
 return [
     'breadcrumb_settings' => 'Settings',
     'breadcrumb_profile' => 'Profile',
-    'save_changes' => 'Save changes',
+    'save_changes' => 'Save',
     'heading' => 'Profile',
     'description' => 'Manage your account information and public details.',
 

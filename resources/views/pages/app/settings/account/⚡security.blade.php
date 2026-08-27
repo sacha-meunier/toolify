@@ -34,7 +34,7 @@ class extends Component {
         ]"/>
     </x-domain.app.topbar>
 
-    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-6 lg:px-10 lg:py-10">
         <header class="flex flex-col gap-1 border-b border-border px-4 pb-6">
             <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/account/security.heading') }}</h1>
             <p class="text-sm text-muted-foreground">{{ __('app/settings/account/security.description') }}</p>
@@ -86,34 +86,6 @@ class extends Component {
                             class="text-sm font-medium text-foreground underline underline-offset-4 hover:text-primary disabled:opacity-50">
                         {{ __('app/settings/account/security.connect') }}
                     </button>
-                </div>
-            </x-domain.app.settings.section-content>
-        </x-domain.app.settings.section>
-
-        <x-domain.app.settings.section
-            :label="__('app/settings/account/security.active_sessions_label')"
-            :description="__('app/settings/account/security.active_sessions_description')"
-        >
-            <x-domain.app.settings.section-content
-                icon="computer-terminal-01"
-                :label="__('app/settings/account/security.session_firefox_macos')"
-                :description="__('app/settings/account/security.session_current_location')"
-            >
-                <div class="flex items-center gap-3">
-                    <x-ui.badge>{{ __('app/settings/account/security.coming_soon') }}</x-ui.badge>
-                    <x-ui.badge>{{ __('app/settings/account/security.session_current') }}</x-ui.badge>
-                    <x-ui.button variant="outline" size="sm" :label="__('app/settings/account/security.log_out')" disabled/>
-                </div>
-            </x-domain.app.settings.section-content>
-
-            <x-domain.app.settings.section-content
-                icon="computer-terminal-01"
-                :label="__('app/settings/account/security.session_firefox_iphone')"
-                :description="__('app/settings/account/security.session_last_seen_location')"
-            >
-                <div class="flex items-center gap-3">
-                    <x-ui.badge>{{ __('app/settings/account/security.coming_soon') }}</x-ui.badge>
-                    <x-ui.button variant="outline" size="sm" :label="__('app/settings/account/security.revoke')" disabled/>
                 </div>
             </x-domain.app.settings.section-content>
         </x-domain.app.settings.section>

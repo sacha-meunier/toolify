@@ -4,7 +4,7 @@ return [
     'breadcrumb_settings' => 'Settings',
     'breadcrumb_security' => 'Account & Security',
     'heading' => 'Account & Security',
-    'description' => 'Manage your credentials, connected accounts, and active sessions.',
+    'description' => 'Manage your credentials and connected accounts.',
     'coming_soon' => 'Coming soon',
 
     'password_label' => 'Password',
@@ -20,16 +20,6 @@ return [
     'github' => 'Github',
     'google' => 'Google',
     'connect' => 'Connect',
-
-    'active_sessions_label' => 'Active sessions',
-    'active_sessions_description' => 'Devices and browsers currently logged into the account. Revoking a session immediately logs the device out.',
-    'session_firefox_macos' => 'Firefox on macOS',
-    'session_current_location' => 'Brussels, BE · Active now',
-    'session_current' => 'Current',
-    'log_out' => 'Log out',
-    'session_firefox_iphone' => 'Firefox on iPhone 13',
-    'session_last_seen_location' => 'Brussels, BE · Last seen 2 days ago',
-    'revoke' => 'Revoke',
 
     'delete_account_section_title' => 'Delete account',
     'delete_account_section_description' => 'Permanently delete your account and all associated data. This action cannot be undone.',

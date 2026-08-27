@@ -131,7 +131,7 @@ new class extends Component
 >
     <x-domain.app.topbar.search wire:model.live.debounce.300ms="search" :filters="$filters"/>
 
-    <div class="flex flex-col gap-6 px-8">
+    <div class="flex flex-col gap-6 px-4 lg:px-8">
         @if ($search !== '' || $this->hasActiveFilters)
             <section>
                 <header class="flex items-center justify-between py-3">
@@ -150,10 +150,10 @@ new class extends Component
             </section>
         @else
             <section>
-                <header class="flex items-center justify-between py-3">
+                <header class="flex flex-col items-start gap-2 py-3 lg:flex-row lg:items-center lg:justify-between">
                     <h2 class="text-lg font-semibold text-foreground">{{ __('app/search.recent_searches_heading') }}</h2>
                     @if (count($recentSearches))
-                        <div class="flex items-center gap-2">
+                        <div class="flex w-full flex-wrap items-center gap-2 lg:w-auto">
                             <x-ui.button variant="secondary" icon="tool-view" :label="__('app/search.save_all_as_surveys')" wire:click="saveAllRecentSearchesAsSurveys"/>
                             <x-ui.button :label="__('app/search.clear_history')" wire:click="clearRecentSearches"/>
                         </div>
@@ -163,24 +163,26 @@ new class extends Component
                 <div class="flex flex-col gap-5 py-3.5 border border-border rounded-md">
                     @forelse ($recentSearches as $recentSearch)
                         {{-- item--}}
-                        <div class="flex">
-                            <div class="flex shrink-0 justify-center pl-6 pr-3 h-7">
-                                <x-ui.button variant="ghost" size="icon-xs" icon="search-01"/>
-                            </div>
-
-                            <div class="flex min-w-0 flex-1 flex-col gap-2 justify-center">
-                                <div class="flex items-center px-2 h-7">
-                                    <p class="truncate text-sm text-foreground">"{{ $recentSearch['query'] }}"</p>
+                        <div class="flex flex-wrap items-start gap-y-2">
+                            <div class="flex min-w-0 flex-1 items-center">
+                                <div class="flex shrink-0 justify-center pl-6 pr-3 h-7 items-center">
+                                    <x-ui.button variant="ghost" size="icon-xs" icon="search-01"/>
                                 </div>
 
-                                <div class="flex flex-wrap items-center gap-1.5 px-2">
-                                    @foreach ($recentSearch['filters'] as $filter)
-                                        <x-ui.badge>{{ $filter }}</x-ui.badge>
-                                    @endforeach
+                                <div class="flex min-w-0 flex-1 flex-col gap-2 justify-center">
+                                    <div class="flex items-center px-2 h-7">
+                                        <p class="truncate text-sm text-foreground">"{{ $recentSearch['query'] }}"</p>
+                                    </div>
+
+                                    <div class="flex flex-wrap items-center gap-1.5 px-2">
+                                        @foreach ($recentSearch['filters'] as $filter)
+                                            <x-ui.badge>{{ $filter }}</x-ui.badge>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="flex shrink-0 px-2 h-7">
+                            <div class="flex shrink-0 items-center gap-2 pl-14 pr-6 lg:pl-2">
                                 <x-ui.button
                                     variant="secondary"
                                     size="sm"
@@ -188,9 +190,7 @@ new class extends Component
                                     :label="__('app/search.save_as_survey')"
                                     wire:click="openSurveyForm(null, @js($recentSearch['query']))"
                                 />
-                            </div>
 
-                            <div class="flex shrink-0 justify-center pl-3 pr-6 h-7">
                                 <x-ui.button variant="ghost" size="sm" icon="more-horizontal-square-01"/>
                             </div>
                         </div>

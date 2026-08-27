@@ -5,7 +5,10 @@
     $teams = $workspace?->teams->filter(fn ($team) => $team->hasMember(auth()->user())) ?? collect();
 @endphp
 
-<aside {{ $attributes->class('flex h-full w-61 shrink-0 flex-col overflow-visible rounded-sm border border-sidebar-border bg-sidebar') }}>
+<aside
+    {{ $attributes->class('fixed inset-y-0 left-0 z-50 flex h-dvh w-72 shrink-0 -translate-x-full flex-col overflow-visible border-r border-sidebar-border bg-sidebar transition-transform duration-300 ease-in-out lg:static lg:inset-auto lg:z-10 lg:h-full lg:w-61 lg:translate-x-0 lg:rounded-sm lg:border') }}
+    :class="{ 'translate-x-0': sidebarOpen }"
+>
     <div class="flex h-14 shrink-0 items-center px-3">
         <livewire:domain.app.dropdown.settings-workspace-switcher :key="'settings-workspace-switcher-'.$workspace?->id"/>
     </div>

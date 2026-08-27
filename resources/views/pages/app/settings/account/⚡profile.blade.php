@@ -43,7 +43,7 @@ class extends Component {
         </x-slot:actions>
     </x-domain.app.topbar>
 
-    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-10 py-10">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-6 lg:px-10 lg:py-10">
         <header class="flex flex-col gap-1 border-b border-border px-4 pb-6">
             <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/account/profile.heading') }}</h1>
             <p class="text-sm text-muted-foreground">{{ __('app/settings/account/profile.description') }}</p>
@@ -86,7 +86,7 @@ class extends Component {
                 :label="__('app/settings/account/profile.name_label')"
                 :description="__('app/settings/account/profile.name_description')"
             >
-                <div class="flex w-64 flex-col gap-1">
+                <div class="flex w-full flex-col gap-1 lg:w-64">
                     <x-ui.input wire:model="form.name"/>
                     @error('form.name')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>
@@ -98,14 +98,14 @@ class extends Component {
                 :label="__('app/settings/account/profile.username_label')"
                 :description="__('app/settings/account/profile.username_description')"
             >
-                <x-ui.input class="w-64" :placeholder="__('app/settings/account/profile.username_placeholder')" disabled/>
+                <x-ui.input class="w-full lg:w-64" :placeholder="__('app/settings/account/profile.username_placeholder')" disabled/>
             </x-domain.app.settings.section-content>
 
             <x-domain.app.settings.section-content
                 :label="__('app/settings/account/profile.email_label')"
                 :description="__('app/settings/account/profile.email_description')"
             >
-                <div class="flex w-64 flex-col gap-1">
+                <div class="flex w-full flex-col gap-1 lg:w-64">
                     <x-ui.input type="email" wire:model="form.email"/>
                     @error('form.email')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>

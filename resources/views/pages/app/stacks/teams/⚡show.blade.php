@@ -30,7 +30,7 @@ new class extends Component
         <p class="truncate text-sm font-medium text-foreground">{{ __('app/stacks/teams/show.title', ['name' => $team->name]) }}</p>
     </x-domain.app.topbar>
 
-    <div class="flex flex-col gap-6 px-8 py-8">
+    <div class="flex flex-col gap-6 px-4 py-6 lg:px-8 lg:py-8">
         <x-domain.app.tool-list
             :tools="$this->tools"
             empty-icon="layer"
