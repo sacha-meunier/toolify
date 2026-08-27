@@ -1,4 +1,6 @@
 <x-layouts.shells.public>
+    <x-seo.tool-list :tools="$tools"/>
+
     <div class="mx-auto max-w-6xl px-6 py-16 lg:px-8">
         <div class="mx-auto max-w-2xl text-center">
             <h1 class="text-4xl font-semibold tracking-tight text-foreground">{{ __('public/discover.title') }}</h1>

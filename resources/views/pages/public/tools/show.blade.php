@@ -1,4 +1,6 @@
 <x-layouts.shells.public>
+    <x-seo.tool :tool="$tool"/>
+
     <div class="mx-auto flex max-w-6xl flex-col gap-16 py-8" x-data="{ authModalOpen: false }">
         {{-- Breadcrumb --}}
         <p class="truncate px-6 text-sm text-muted-foreground lg:px-8">

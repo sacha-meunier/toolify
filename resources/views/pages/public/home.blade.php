@@ -6,6 +6,8 @@
 @endphp
 
 <x-layouts.shells.public>
+    <x-seo.organization/>
+
     {{-- Hero --}}
     <section class="mx-auto max-w-6xl px-6 pt-10 pb-12 sm:pt-24 sm:pb-28 lg:px-8" aria-labelledby="hero-heading">
         <div class="mx-auto max-w-2xl text-center">
