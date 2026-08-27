@@ -6,6 +6,7 @@ return [
     'cta_get_started' => 'Get started',
     'cta_browse_tools' => 'Browse tools',
 
+    'feature_strip_heading' => 'Key features',
     'feature_strip_search' => 'Search',
     'feature_strip_survey' => 'Survey',
     'feature_strip_stack' => 'Stack',
@@ -21,6 +22,7 @@ return [
     'feature_three_title' => 'Hold on to the tools that matter.',
     'feature_three_description' => 'Save the tools you use, used to use, or want to try next, for yourself or for your team.',
 
+    'grid_section_heading' => 'Workspaces and listings',
     'grid_teams_title' => 'Built for how your team is actually structured.',
     'grid_teams_description' => 'Create a workspace, add teams underneath it, and mirror your real org instead of forcing everyone into one flat list.',
 

@@ -6,6 +6,7 @@ return [
     'cta_get_started' => 'Commencer',
     'cta_browse_tools' => 'Parcourir les outils',
 
+    'feature_strip_heading' => 'Fonctionnalités principales',
     'feature_strip_search' => 'Recherche',
     'feature_strip_survey' => 'Veille',
     'feature_strip_stack' => 'Stack',
@@ -21,6 +22,7 @@ return [
     'feature_three_title' => 'Gardez une trace des outils qui comptent.',
     'feature_three_description' => 'Enregistrez les outils que vous utilisez, avez utilisés ou souhaitez essayer, pour vous ou pour votre équipe.',
 
+    'grid_section_heading' => 'Espaces de travail et fiches',
     'grid_teams_title' => 'Conçu pour la structure réelle de votre équipe.',
     'grid_teams_description' => 'Créez un espace de travail, ajoutez des équipes en dessous, et reflétez votre organisation réelle plutôt que de tout regrouper dans une liste unique.',
 
