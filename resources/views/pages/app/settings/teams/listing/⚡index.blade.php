@@ -242,10 +242,6 @@ new #[Layout('layouts::shells.settings')] class extends Component
                             {{ __('app/settings/teams/listing/index.links_count', ['filled' => $this->linksProgress['filled'], 'total' => $this->linksProgress['total']]) }}
                         </span>
                     </x-domain.app.settings.section-content>
-
-                    {{--<x-domain.app.settings.section-content :href="route('settings.teams.listing.pricing', $team)" icon="discover-circle" label="Pricing" description="Free, basic, premium and custom plans" chevron>
-                        <span class="text-xs font-medium text-muted-foreground">4 plans</span>
-                    </x-domain.app.settings.section-content>--}}
                 </x-domain.app.settings.section>
 
                 <x-domain.app.settings.section :label="__('app/settings/teams/listing/index.configuration_section_label')">

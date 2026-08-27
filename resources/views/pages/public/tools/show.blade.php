@@ -1,14 +1,14 @@
 <x-layouts.shells.public>
-    <div class="mx-auto flex max-w-6xl flex-col gap-16 px-6 py-8 lg:px-8" x-data="{ authModalOpen: false }">
+    <div class="mx-auto flex max-w-6xl flex-col gap-16 py-8" x-data="{ authModalOpen: false }">
         {{-- Breadcrumb --}}
-        <p class="truncate text-sm text-muted-foreground">
+        <p class="truncate px-6 text-sm text-muted-foreground lg:px-8">
             <a href="{{ route('public.discover') }}" class="hover:text-foreground">{{ __('public/tools/show.breadcrumb_discover') }}</a>
             <span class="px-1">/</span>
             <span class="text-foreground">{{ $tool->name }}</span>
         </p>
 
         {{-- Header --}}
-        <section class="flex flex-col gap-6">
+        <section class="flex flex-col gap-6 px-6 lg:px-8">
             <div class="flex items-start gap-3">
                 <div class="flex size-12 shrink-0 items-center justify-center rounded-lg text-sidebar-primary-foreground">
                     @if ($tool->logo_url)
@@ -28,7 +28,7 @@
         </section>
 
         {{-- About --}}
-        <section class="flex flex-col gap-4">
+        <section class="flex flex-col gap-4 px-6 lg:px-8">
             <div class="flex flex-col gap-2">
                 <p class="text-sm font-medium text-foreground">{{ __('app/tools/show.about_heading') }}</p>
                 <p class="text-base whitespace-pre-line text-foreground">{{ $tool->description }}</p>
@@ -46,7 +46,7 @@
 
         {{-- Gallery --}}
         <section class="flex flex-col gap-6">
-            <div class="flex items-end justify-between gap-6">
+            <div class="flex items-end justify-between gap-6 px-6 lg:px-8">
                 <div class="flex flex-1 flex-col gap-2">
                     <p class="text-sm font-medium text-foreground">{{ __('app/tools/show.gallery_heading') }}</p>
                     <p class="text-lg font-semibold text-foreground">{{ __('app/tools/show.gallery_title', ['name' => $tool->name]) }}</p>
@@ -55,7 +55,7 @@
                 <p class="w-[400px] text-right text-base text-foreground">{{ __('app/tools/show.gallery_intro') }}</p>
             </div>
 
-            <div class="flex gap-4 overflow-x-auto">
+            <div class="flex gap-4 overflow-x-auto px-6 pb-4 lg:px-8">
                 @foreach ([$tool->banner_url, $tool->gallery?->get(0), $tool->gallery?->get(1)] as $image)
                     <div class="w-[320px] shrink-0 overflow-clip rounded-xl border border-foreground/10 bg-card shadow-xs">
                         @if ($image)
@@ -69,7 +69,7 @@
         </section>
 
         {{-- Links & Details --}}
-        <section class="flex gap-6">
+        <section class="flex gap-6 px-6 lg:px-8">
             <div class="flex flex-1 flex-col gap-2.5">
                 <p class="text-sm font-medium text-foreground">{{ __('app/tools/show.links_heading') }}</p>
 
