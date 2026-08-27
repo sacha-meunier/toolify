@@ -55,11 +55,10 @@ class UserSeeder extends Seeder
 
     private function createUser(string $name, string $email): User
     {
-        $user = User::updateOrcreate([
-            'name' => $name,
-            'email' => $email,
-            'password' => Hash::make('password'),
-        ]);
+        $user = User::updateOrCreate(
+            ['email' => $email],
+            ['name' => $name, 'password' => Hash::make('password')],
+        );
 
         $user->forceFill([
             'email_verified_at' => now(),
