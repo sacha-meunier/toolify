@@ -22,15 +22,17 @@ trait AvatarUpload
         $path = (new Image(fn () => $file->getContent(), $file))
             ->cover(128, 128)
             ->toWebp()
-            ->storePublicly('avatars', 'public');
+            ->store('avatars', config('filesystems.public_disk'));
 
         throw_if($path === false, RuntimeException::class, 'Failed to store the uploaded avatar.');
 
-        return Storage::disk('public')->url($path);
+        return Storage::disk(config('filesystems.public_disk'))->url($path);
     }
 
     protected function deleteAvatarFile(string $url): void
     {
-        Storage::disk('public')->delete(Str::after($url, Storage::disk('public')->url('')));
+        $disk = Storage::disk(config('filesystems.public_disk'));
+
+        $disk->delete(Str::after($url, $disk->url('')));
     }
 }

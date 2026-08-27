@@ -17,6 +17,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Public Uploads Disk
+    |--------------------------------------------------------------------------
+    |
+    | The disk used for user-uploaded public files (avatars, logos). Defaults
+    | to the local "public" disk; set to an object storage disk (e.g. "s3")
+    | in environments where the local filesystem isn't persisted/shared.
+    |
+    */
+
+    'public_disk' => env('PUBLIC_FILESYSTEM_DISK', 'public'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Filesystem Disks
     |--------------------------------------------------------------------------
     |
