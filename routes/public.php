@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DiscoverController;
+use App\Http\Controllers\PublicToolController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +14,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::view('/homepage', 'pages::public.home')->name('public.homepage');
-Route::view('/discover', 'pages::public.discover')->name('public.discover');
+
+Route::get('/discover', [DiscoverController::class, 'index'])->name('public.discover');
+Route::get('/discover/tools/{tool:slug}', [PublicToolController::class, 'show'])->name('public.tools.show');
+
 Route::view('/features', 'pages::public.features')->name('public.features');
 Route::view('/contact', 'pages::public.contact')->name('public.contact');
 
