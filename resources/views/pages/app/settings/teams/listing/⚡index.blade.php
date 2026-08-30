@@ -213,13 +213,13 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 <x-domain.app.settings.section :label="__('app/settings/teams/listing/index.general_section_label')">
                     <x-domain.app.settings.section-content :href="route('settings.teams.listing.identity', $team)" icon="identity-card" :label="__('app/settings/teams/listing/index.identity_label')" :description="__('app/settings/teams/listing/index.identity_description')" chevron>
                         @if ($this->identityProgress['filled'] === $this->identityProgress['total'])
-                            <span class="flex items-center gap-1.5 text-xs font-medium text-foreground">
-                                <span class="size-1.5 rounded-full bg-foreground"></span>
+                            <span class="flex items-center gap-1.5 text-xs font-medium text-success">
+                                <span class="size-1.5 rounded-full bg-success"></span>
                                 {{ __('app/settings/teams/listing/index.complete_status') }}
                             </span>
                         @else
-                            <span class="flex items-center gap-1.5 text-xs font-medium text-orange-600 dark:text-orange-400">
-                                <span class="size-1.5 rounded-full bg-orange-600 dark:bg-orange-400"></span>
+                            <span class="flex items-center gap-1.5 text-xs font-medium text-warning">
+                                <span class="size-1.5 rounded-full bg-warning"></span>
                                 {{ __('app/settings/teams/listing/index.progress_status', ['filled' => $this->identityProgress['filled'], 'total' => $this->identityProgress['total']]) }}
                                 @if ($this->identityProgress['missingTranslations'])
                                     · {{ __('app/settings/teams/listing/index.missing_translations') }}
@@ -230,13 +230,13 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
                     <x-domain.app.settings.section-content :href="route('settings.teams.listing.details', $team)" icon="building-01" :label="__('app/settings/teams/listing/index.details_label')" :description="__('app/settings/teams/listing/index.details_description')" chevron>
                         @if ($this->detailsProgress['filled'] === $this->detailsProgress['total'])
-                            <span class="flex items-center gap-1.5 text-xs font-medium text-foreground">
-                                <span class="size-1.5 rounded-full bg-foreground"></span>
+                            <span class="flex items-center gap-1.5 text-xs font-medium text-success">
+                                <span class="size-1.5 rounded-full bg-success"></span>
                                 {{ __('app/settings/teams/listing/index.complete_status') }}
                             </span>
                         @else
-                            <span class="flex items-center gap-1.5 text-xs font-medium text-orange-600 dark:text-orange-400">
-                                <span class="size-1.5 rounded-full bg-orange-600 dark:bg-orange-400"></span>
+                            <span class="flex items-center gap-1.5 text-xs font-medium text-warning">
+                                <span class="size-1.5 rounded-full bg-warning"></span>
                                 {{ __('app/settings/teams/listing/index.progress_status', ['filled' => $this->detailsProgress['filled'], 'total' => $this->detailsProgress['total']]) }}
                             </span>
                         @endif
@@ -245,7 +245,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     <x-domain.app.settings.section-content :href="route('settings.teams.listing.links', $team)" icon="globe-02" :label="__('app/settings/teams/listing/index.links_label')" :description="__('app/settings/teams/listing/index.links_description')" chevron>
                         <span @class([
                             'text-xs font-medium',
-                            'text-orange-600 dark:text-orange-400' => $this->linksProgress['filled'] !== $this->linksProgress['total'],
+                            'text-warning' => $this->linksProgress['filled'] !== $this->linksProgress['total'],
                             'text-muted-foreground' => $this->linksProgress['filled'] === $this->linksProgress['total'],
                         ])>
                             {{ __('app/settings/teams/listing/index.links_count', ['filled' => $this->linksProgress['filled'], 'total' => $this->linksProgress['total']]) }}

@@ -82,7 +82,7 @@ class extends Component {
                         <div class="flex items-center gap-2">
                             <p class="text-sm font-semibold text-foreground">{{ $item->data['title'] }}</p>
                             @if (! $item->read_at)
-                                <span class="size-2 shrink-0 rounded-full bg-blue-500"></span>
+                                <span class="size-2 shrink-0 rounded-full bg-info"></span>
                             @endif
                         </div>
                         <p class="shrink-0 text-xs text-muted-foreground">{{ $item->created_at->diffForHumans(null, true, true) }}</p>
