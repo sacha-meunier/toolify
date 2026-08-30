@@ -36,6 +36,23 @@ class extends Component
                     @endforeach
                 </x-ui.select>
             </x-domain.app.settings.section-content>
+
+            <x-domain.app.settings.section-content
+                :label="__('app/settings/account/preferences.theme_label')"
+                :description="__('app/settings/account/preferences.theme_description')"
+            >
+                <x-ui.select
+                    x-data
+                    x-cloak
+                    x-model="$store.theme.current"
+                    x-on:change="$store.theme.set($event.target.value)"
+                    class="w-full lg:w-64"
+                >
+                    <option value="system">{{ __('app/settings/account/preferences.theme_system') }}</option>
+                    <option value="light">{{ __('app/settings/account/preferences.theme_light') }}</option>
+                    <option value="dark">{{ __('app/settings/account/preferences.theme_dark') }}</option>
+                </x-ui.select>
+            </x-domain.app.settings.section-content>
         </x-domain.app.settings.section>
     </div>
 </div>
