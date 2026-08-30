@@ -15,12 +15,12 @@
 
     <div class="flex h-14 shrink-0 items-center px-3">
         <x-ui.button
-            variant="ghost"
+            variant="nav"
             size="lg"
             icon="arrow-left-01"
             :href="route('search')"
             wire:navigate
-            class="w-full justify-start gap-2 px-2 font-normal text-sidebar-foreground hover:bg-sidebar-accent"
+            class="w-full justify-start gap-2 px-2 font-normal text-sidebar-foreground hover:bg-sidebar-accent/45 hover:text-sidebar-accent-foreground"
         >
             {{ __('app/components/sidebar/settings.back_to_app_button') }}
         </x-ui.button>

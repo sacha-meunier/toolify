@@ -10,7 +10,7 @@
 
         <x-domain.app.sidebar.settings/>
 
-        <main class="flex flex-1 flex-col overflow-y-auto bg-background lg:rounded-sm lg:border lg:border-border">
+        <main class="flex flex-1 flex-col overflow-y-auto bg-pane lg:rounded-sm lg:border lg:border-border">
             {{ $slot }}
         </main>
     </div>

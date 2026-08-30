@@ -41,10 +41,10 @@ new class extends Component
 
 <div class="relative" x-data="{ open: false }" @click.outside="open = false">
     <x-ui.button
-        variant="ghost"
+        variant="nav"
         size="sm"
         icon:trailing="arrow-down-01"
-        class="w-full min-w-0 gap-2 px-1.5 font-semibold text-sidebar-foreground"
+        class="w-full min-w-0 gap-2 px-1.5 font-semibold text-sidebar-accent-foreground hover:bg-sidebar-accent/45"
         @click="open = !open"
     >
         <span class="flex size-5 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-[10px] font-medium text-muted-foreground">
@@ -61,7 +61,7 @@ new class extends Component
         x-show="open"
         x-cloak
         x-transition
-        class="absolute left-0 z-20 mt-1.5 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-background py-1 shadow-xs lg:max-h-none lg:max-w-none lg:overflow-visible"
+        class="absolute left-0 z-20 mt-1.5 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-popover py-1 shadow-xs lg:max-h-none lg:max-w-none lg:overflow-visible"
     >
         <div class="relative" x-data="{ expanded: false }" @mouseenter="if (window.innerWidth >= 1024) expanded = true" @mouseleave="if (window.innerWidth >= 1024) expanded = false">
             <button
@@ -77,7 +77,7 @@ new class extends Component
                 x-show="expanded"
                 x-cloak
                 x-transition
-                class="bg-muted/30 py-1 lg:absolute lg:top-0 lg:left-full lg:z-30 lg:ml-1 lg:w-56 lg:overflow-hidden lg:rounded-md lg:border lg:border-border lg:bg-background lg:py-1 lg:shadow-xs"
+                class="bg-muted/30 py-1 lg:absolute lg:top-0 lg:left-full lg:z-30 lg:ml-1 lg:w-56 lg:overflow-hidden lg:rounded-md lg:border lg:border-border lg:bg-popover lg:py-1 lg:shadow-xs"
             >
                 <div class="max-h-56 overflow-y-auto">
                     @forelse ($this->workspaces as $workspace)

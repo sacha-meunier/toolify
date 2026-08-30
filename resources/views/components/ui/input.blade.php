@@ -14,9 +14,9 @@
 ])
 
 @php
-    $baseClasses = 'w-full relative block border border-solid flex gap-1 h-8 items-center rounded-lg';
+    $baseClasses = 'w-full relative block border border-input bg-secondary flex gap-1 h-8 items-center rounded-lg focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50';
 
-    $inputClasses = 'w-full flex-1 px-2.5 py-1 rounded-lg text-sm leading-5 bg-transparent outline-none text-foreground placeholder-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed border-input focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)] focus-within:bg-white';
+    $inputClasses = 'w-full flex-1 px-2.5 py-1 rounded-lg text-sm leading-5 bg-transparent outline-none text-foreground placeholder-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed';
 
     $containerClasses = "$baseClasses";
 

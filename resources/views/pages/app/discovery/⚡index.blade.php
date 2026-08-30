@@ -25,7 +25,7 @@ new class extends Component
             <a
                 href="{{ route('tools.show', $tool) }}"
                 wire:navigate
-                class="flex flex-col gap-4 overflow-hidden rounded-xl border border-border bg-card shadow-xs transition-colors hover:border-foreground/20 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                class="flex flex-col gap-4 overflow-hidden rounded-xl border border-border bg-card shadow-xs hover:bg-muted hover:border-foreground/20 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
             >
                 <div class="flex gap-3 p-4">
                     <div class="self-center flex size-10 shrink-0 items-center justify-center rounded-xl text-sidebar-primary-foreground">

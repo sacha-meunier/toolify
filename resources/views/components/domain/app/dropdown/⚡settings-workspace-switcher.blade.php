@@ -45,10 +45,10 @@ new class extends Component
     @click.outside="open = false"
 >
     <x-ui.button
-        variant="ghost"
+        variant="nav"
         size="sm"
         icon:trailing="arrow-down-01"
-        class="w-full min-w-0 gap-2 px-1.5 font-semibold text-sidebar-foreground"
+        class="w-full min-w-0 gap-2 px-1.5 font-semibold text-sidebar-accent-foreground hover:bg-sidebar-accent/45"
         @click="
             const rect = $el.getBoundingClientRect();
             position = { top: rect.bottom + window.scrollY + 4, left: Math.min(rect.left + window.scrollX, window.innerWidth - 272) };
@@ -70,7 +70,7 @@ new class extends Component
         x-cloak
         x-transition
         x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px;`"
-        class="z-50 w-64 overflow-hidden rounded-md border border-border bg-background py-1 shadow-md"
+        class="z-50 w-64 overflow-hidden rounded-md border border-border bg-popover py-1 shadow-md"
     >
         <div class="max-h-56 overflow-y-auto">
             @forelse ($this->workspaces as $workspace)

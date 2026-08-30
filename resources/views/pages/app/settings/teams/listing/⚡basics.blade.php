@@ -101,7 +101,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                             type="button"
                             x-ref="trigger"
                             @click="toggle()"
-                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm text-foreground"
+                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-secondary px-2.5 text-left text-sm text-foreground"
                         >
                             <span x-text="label()"></span>
                             <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
@@ -163,7 +163,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                             type="button"
                             x-ref="trigger"
                             @click="toggle()"
-                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm text-foreground"
+                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-secondary px-2.5 text-left text-sm text-foreground"
                         >
                             <span x-text="label()"></span>
                             <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>

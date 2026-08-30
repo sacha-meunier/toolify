@@ -83,7 +83,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     x-show="confirming"
                     @click.outside="confirming = false"
                     @keydown.escape.window="confirming = false"
-                    class="flex w-full max-w-md flex-col gap-5 rounded-lg border border-border bg-background p-6 shadow-lg"
+                    class="flex w-full max-w-md flex-col gap-5 rounded-lg border border-border bg-popover p-6 shadow-lg"
                 >
                     <header class="flex flex-col gap-1">
                         <h2 class="text-lg font-semibold text-foreground">{{ __('app/settings/teams/listing/danger-zone.modal_heading') }}</h2>

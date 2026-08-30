@@ -80,7 +80,7 @@ new class extends Component
         x-show="open"
         x-cloak
         x-transition
-        class="absolute right-0 z-10 mt-1.5 w-64 overflow-clip rounded-md border border-border bg-background py-1 shadow-xs"
+        class="absolute right-0 z-10 mt-1.5 w-64 overflow-clip rounded-md border border-border bg-popover py-1 shadow-xs"
     >
         <button
             type="button"

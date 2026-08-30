@@ -5,7 +5,7 @@
     'nextLabel' => null,
 ])
 
-<div {{ $attributes->class('sticky bottom-0 z-10 flex h-14 shrink-0 items-center bg-background') }}>
+<div {{ $attributes->class('sticky bottom-0 z-10 flex h-14 shrink-0 items-center bg-pane') }}>
     <div class="mx-auto flex w-full max-w-4xl items-center justify-between gap-3 px-4 lg:px-14">
         @if ($prevHref)
             <a href="{{ $prevHref }}" wire:navigate class="flex min-w-0 items-center gap-1 text-sm font-medium text-foreground hover:text-primary">

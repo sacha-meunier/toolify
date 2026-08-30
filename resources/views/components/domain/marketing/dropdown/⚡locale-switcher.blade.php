@@ -14,7 +14,7 @@ new class extends Component
         variant="ghost"
         size="sm"
         icon:trailing="arrow-down-01"
-        class="gap-1.5 px-2.5 font-medium text-sidebar-foreground uppercase"
+        class="gap-1.5 px-2.5 font-medium text-muted-foreground uppercase"
         @click="open = !open"
         :aria-label="__('app/components/dropdown/locale-switcher.switch_language')"
     >
@@ -25,7 +25,7 @@ new class extends Component
         x-show="open"
         x-cloak
         x-transition
-        class="absolute right-0 z-20 mt-1.5 w-40 overflow-visible rounded-md border border-border bg-background py-1 shadow-xs"
+        class="absolute right-0 z-20 mt-1.5 w-40 overflow-visible rounded-md border border-border bg-popover py-1 shadow-xs"
     >
         @foreach (config('app.available_locales') as $code => $label)
             <button

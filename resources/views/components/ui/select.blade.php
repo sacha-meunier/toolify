@@ -13,7 +13,7 @@
     $containerAttributes = $attributes->whereDoesntStartWith(['wire:', 'x-model']);
 @endphp
 
-<div {{ $containerAttributes->class('relative flex h-8 w-full items-center rounded-lg border border-input') }}>
+<div {{ $containerAttributes->class('relative flex h-8 w-full items-center rounded-lg border border-input bg-secondary') }}>
     <select
         {{ $selectAttributes }}
         name="{{ $name }}"

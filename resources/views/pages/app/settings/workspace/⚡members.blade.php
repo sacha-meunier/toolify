@@ -149,7 +149,7 @@ class extends Component {
                 :description="__('app/settings/workspace/members.invite_code_description', ['name' => $workspace->name])"
             >
                 <div class="flex w-full items-center gap-2 lg:w-auto" x-data="{ copied: false }">
-                    <div class="flex h-8 flex-1 items-center rounded-lg border border-input bg-transparent px-2.5 font-mono text-sm text-foreground lg:flex-none">
+                    <div class="flex h-8 flex-1 items-center rounded-lg border border-input bg-secondary px-2.5 font-mono text-sm text-foreground lg:flex-none">
                         {{ $workspace->invite_code }}
                     </div>
 
@@ -198,7 +198,7 @@ class extends Component {
                                     x-show="open"
                                     x-cloak
                                     x-transition
-                                    class="absolute right-0 z-10 mt-1.5 w-44 overflow-clip rounded-md border border-border bg-background py-1 shadow-xs"
+                                    class="absolute right-0 z-10 mt-1.5 w-44 overflow-clip rounded-md border border-border bg-popover py-1 shadow-xs"
                                 >
                                     <button
                                         type="button"
@@ -251,7 +251,7 @@ class extends Component {
                                         x-show="open"
                                         x-cloak
                                         x-transition
-                                        class="absolute right-0 z-10 mt-1.5 w-56 overflow-clip rounded-md border border-border bg-background py-1 shadow-xs"
+                                        class="absolute right-0 z-10 mt-1.5 w-56 overflow-clip rounded-md border border-border bg-popover py-1 shadow-xs"
                                     >
                                         <button
                                             type="button"

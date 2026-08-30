@@ -12,7 +12,7 @@
             <span class="flex size-5 items-center justify-center rounded-md bg-sidebar-primary">
                 <x-ui.icon.command size="xs" stroke-width="1.5" class="size-3 text-sidebar-primary-foreground"/>
             </span>
-            <span class="text-sm font-semibold text-sidebar-foreground">{{ __('layout.brand_name') }}</span>
+            <span class="text-sm font-semibold text-foreground">{{ __('layout.brand_name') }}</span>
         </a>
 
         <div class="hidden items-center gap-1 lg:flex">
@@ -52,7 +52,7 @@
         x-show="mobileMenuOpen"
         x-cloak
         @click.outside="mobileMenuOpen = false"
-        class="absolute inset-x-0 top-full z-50 flex flex-col gap-1 border-b border-border bg-background p-4 shadow-xs lg:hidden"
+        class="absolute inset-x-0 top-full z-50 flex flex-col gap-1 border-b border-border bg-popover p-4 shadow-xs lg:hidden"
     >
         @foreach ($links as $route => $label)
             <x-ui.button

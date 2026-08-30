@@ -94,7 +94,7 @@
 
     {{-- Final CTA --}}
     <section class="border-y border-border bg-muted/40" aria-labelledby="final-cta-heading">
-        <div class="mx-auto max-w-6xl px-6 py-12 text-center sm:py-24 lg:px-8 bg-muted/40">
+        <div class="mx-auto max-w-6xl px-6 py-12 text-center sm:py-24 lg:px-8">
             <h2 id="final-cta-heading" class="text-3xl font-semibold tracking-tight text-foreground">{{ __('public/home.final_cta_heading') }}</h2>
             <div class="mt-8">
                 <x-ui.button variant="primary" size="lg" :href="route('register')" :label="__('public/home.cta_get_started')" icon:trailing="arrow-up-right-01"/>

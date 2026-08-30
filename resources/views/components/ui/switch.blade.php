@@ -17,5 +17,5 @@
         class="peer sr-only"
     >
     <span class="h-5 w-9 rounded-full bg-muted transition-colors peer-checked:bg-primary peer-disabled:cursor-not-allowed peer-disabled:opacity-50"></span>
-    <span class="absolute left-0.5 size-4 rounded-full bg-background shadow-xs transition-transform peer-checked:translate-x-4"></span>
+    <span class="absolute left-0.5 size-4 rounded-full bg-card shadow-xs transition-transform peer-checked:translate-x-4"></span>
 </label>

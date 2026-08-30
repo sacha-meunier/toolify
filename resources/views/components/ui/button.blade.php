@@ -1,7 +1,7 @@
 @blaze()
 
 @props([
-    'variant' => 'outline', // primary, secondary, destructive, outline, ghost, link
+    'variant' => 'outline', // primary, secondary, destructive, outline, ghost, nav, link
     'type' => 'button', // button, a
     'href' => null,
     'size' => 'default', // default, xs, sm, lg, icon, icon-xs, icon-sm, icon-lg
@@ -25,10 +25,11 @@
 
     $variantClasses = match ($variant) {
         'primary' => 'bg-primary text-primary-foreground hover:bg-primary/80 focus-visible:ring-3 focus-visible:ring-ring/50',
-        'secondary' => 'bg-secondary text-secondary-foreground hover:bg-secondary/70 focus-visible:ring-3 focus-visible:ring-ring/50',
+        'secondary' => 'bg-secondary text-secondary-foreground hover:bg-accent focus-visible:ring-3 focus-visible:ring-ring/50',
         'destructive' => 'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:ring-3 focus-visible:ring-destructive/20',
-        'outline' => 'bg-background text-foreground border border-border hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50',
-        'ghost' => 'text-foreground hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50',
+        'outline' => 'bg-secondary text-foreground border border-border hover:bg-accent focus-visible:ring-3 focus-visible:ring-ring/50',
+        'ghost' => 'text-foreground hover:bg-accent focus-visible:ring-3 focus-visible:ring-ring/50',
+        'nav' => 'focus-visible:ring-3 focus-visible:ring-ring/50',
         'link' => 'text-primary underline-offset-4 hover:underline',
     };
 

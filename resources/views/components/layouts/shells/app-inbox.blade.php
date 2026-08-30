@@ -14,7 +14,7 @@
 
         <x-domain.app.sidebar/>
 
-        <main class="flex flex-1 overflow-hidden bg-background lg:rounded-sm lg:border lg:border-border">
+        <main class="flex flex-1 overflow-hidden bg-pane lg:rounded-sm lg:border lg:border-border">
             <div class="{{ $hasNotification ? 'hidden' : 'flex' }} w-full shrink-0 flex-col overflow-y-auto border-r border-border lg:flex lg:w-80">
                 {{ $list }}
             </div>

@@ -10,7 +10,7 @@
         x-show="{{ $show }}"
         @click.outside="$wire.{{ $close }}()"
         @keydown.escape.window="$wire.{{ $close }}()"
-        {{ $attributes->class('flex max-h-[90vh] w-full flex-col gap-5 overflow-y-auto rounded-lg border border-border bg-background p-6 shadow-lg') }}
+        {{ $attributes->class('flex max-h-[90vh] w-full flex-col gap-5 overflow-y-auto rounded-lg border border-border bg-popover p-6 shadow-lg') }}
     >
         @isset($header)
             <header>

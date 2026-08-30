@@ -47,7 +47,7 @@
                 x-cloak
                 x-transition
                 x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px;`"
-                class="z-50 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-background py-1 shadow-md lg:max-h-none lg:overflow-visible"
+                class="z-50 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-popover py-1 shadow-md lg:max-h-none lg:overflow-visible"
             >
                 @foreach ([
                     ['group' => 'pricing', 'label' => __('app/components/topbar/search.filter_group_price'), 'cases' => \App\Enums\Pricing::cases()],

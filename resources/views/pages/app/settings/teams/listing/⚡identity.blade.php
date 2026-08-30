@@ -135,7 +135,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
                     @foreach (config('app.available_locales') as $code => $label)
                         <div x-show="activeLocale === '{{ $code }}'" x-cloak>
-                            <div class="flex h-8 w-full items-center rounded-lg border border-input focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]">
+                            <div class="flex h-8 w-full items-center rounded-lg border border-input bg-secondary focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50">
                                 <input
                                     type="text"
                                     wire:model="form.tagline.{{ $code }}"
@@ -182,7 +182,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                                 rows="4"
                                 wire:model.live.debounce.300ms="form.description.{{ $code }}"
                                 placeholder="{{ __('app/settings/teams/listing/identity.about_placeholder') }}"
-                                class="w-full resize-none rounded-lg border border-input bg-transparent px-4 py-1.5 text-sm text-foreground placeholder-muted-foreground outline-none focus-within:border-ring focus-within:shadow-[0px_0px_0px_3px_rgba(163,163,163,0.5)]"
+                                class="w-full resize-none rounded-lg border border-input bg-secondary px-4 py-1.5 text-sm text-foreground placeholder-muted-foreground outline-none focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50"
                             ></textarea>
                             <p class="px-4 pt-1 text-right text-xs text-muted-foreground">
                                 {{ __('app/settings/teams/listing/identity.about_character_count', [
@@ -228,7 +228,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                         tabindex="0"
                         @click="open = ! open"
                         @keydown.enter="open = ! open"
-                        class="flex w-full items-center gap-1.5 rounded-lg border border-input bg-transparent py-1.5 pr-3 pl-4 text-left"
+                        class="flex w-full items-center gap-1.5 rounded-lg border border-input bg-secondary py-1.5 pr-3 pl-4 text-left"
                     >
                         <div class="flex flex-1 flex-wrap items-center gap-1.5">
                             <template x-if="$wire.form.categories.length === 0">

@@ -124,7 +124,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                             type="button"
                             x-ref="trigger"
                             @click="toggle()"
-                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 text-left text-sm"
+                            class="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-secondary px-2.5 text-left text-sm"
                         >
                             <span x-text="label()" :class="$wire.form.headcount ? 'text-foreground' : 'text-muted-foreground'"></span>
                             <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
