@@ -24,7 +24,7 @@ return [
     'delete_account_section_title' => 'Supprimer le compte',
     'delete_account_section_description' => 'Supprime définitivement votre compte et toutes les données associées. Cette action est irréversible.',
     'delete_account_label' => 'Supprimer le compte',
-    'delete_account_description' => 'Une fois supprimées, toutes vos données seront définitivement effacées. Il n\'y a pas de retour en arrière possible.',
+    'delete_account_description' => 'Une fois supprimées, toutes vos données seront définitivement effacées. Il n’y a pas de retour en arrière possible.',
     'delete_account_button' => 'Supprimer le compte',
 
     'delete_modal_heading' => 'Supprimer le compte',

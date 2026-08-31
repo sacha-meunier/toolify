@@ -2,7 +2,7 @@
 
 return [
     'team_member_added' => [
-        'body' => ':added_by vous a ajouté à :team. N\'hésitez pas à consulter la stack et les veilles pour commencer.',
+        'body' => ':added_by vous a ajouté à :team. N’hésitez pas à consulter la stack et les veilles pour commencer.',
     ],
 
     'invitation_received' => [

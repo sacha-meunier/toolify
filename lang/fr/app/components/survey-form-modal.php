@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'title_edit' => 'Modifier l\'enquête',
-    'title_new' => 'Nouvelle enquête',
+    'title_edit' => 'Modifier la veille',
+    'title_new' => 'Nouvelle veille',
     'field_name' => 'Nom',
     'field_name_placeholder' => 'ex. Outils de gestion de projet gratuits',
     'field_query' => 'Recherche',
@@ -13,5 +13,5 @@ return [
     'filter_group_platform' => 'Plateforme',
     'filter_group_category' => 'Catégorie',
     'cancel' => 'Annuler',
-    'save_survey' => 'Enregistrer l\'enquête',
+    'save_survey' => 'Enregistrer la veille',
 ];

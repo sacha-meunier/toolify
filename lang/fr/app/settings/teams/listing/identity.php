@@ -20,11 +20,11 @@ return [
 
     'tagline_title' => 'Accroche',
     'tagline_description' => 'Une phrase. Affichée directement sous le nom du produit.',
-    'tagline_placeholder' => 'ex. Améliorez votre sondage tech pour vous et votre équipe',
+    'tagline_placeholder' => 'ex. Améliorez votre veille tech pour vous et votre équipe',
 
     'about_title' => 'À propos',
     'about_description' => 'Décrivez de quoi parle votre produit.',
-    'about_placeholder' => 'ex. Toolify est là pour simplifier le sondage tech...',
+    'about_placeholder' => 'ex. Toolify est là pour simplifier le veille tech...',
     'about_character_count' => ':current/:max',
 
     'categories_title' => 'Catégories',

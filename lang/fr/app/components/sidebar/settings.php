@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'back_to_app_button' => 'Retour à l\'application',
+    'back_to_app_button' => 'Retour à l’application',
     'personal_group' => 'Personnel',
     'profile' => 'Profil',
     'account_security' => 'Compte et sécurité',

@@ -3,7 +3,7 @@
 return [
     'heading' => 'Connectez-vous à Toolify',
     'method_group_label' => 'Méthode de connexion',
-    'no_account_prompt' => "Vous n'avez pas de compte ?",
+    'no_account_prompt' => "Vous n’avez pas de compte ?",
     'sign_up_link' => 'Inscrivez-vous',
     'email_label' => 'Email',
     'email_placeholder' => 'johndoe@gmail.com',

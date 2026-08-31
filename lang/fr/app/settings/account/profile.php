@@ -16,8 +16,8 @@ return [
     'name_label' => 'Nom complet',
     'name_description' => 'Nom affiché sur votre profil et dans les invitations envoyées en votre nom.',
 
-    'username_label' => 'Nom d\'utilisateur',
-    'username_description' => 'Identifiant unique utilisé dans les @mentions et dans l\'URL du profil (/u/username).',
+    'username_label' => 'Nom d’utilisateur',
+    'username_description' => 'Identifiant unique utilisé dans les @mentions et dans l’URL du profil (/u/username).',
     'username_placeholder' => 'Bientôt disponible',
 
     'email_label' => 'E-mail',

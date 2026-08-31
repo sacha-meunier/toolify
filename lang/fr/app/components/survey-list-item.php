@@ -6,5 +6,5 @@ return [
     'edit' => 'Modifier',
     'duplicate' => 'Dupliquer',
     'delete' => 'Supprimer',
-    'confirm_delete' => 'Supprimer cette enquête ? Cette action est irréversible.',
+    'confirm_delete' => 'Supprimer cette veille ? Cette action est irréversible.',
 ];

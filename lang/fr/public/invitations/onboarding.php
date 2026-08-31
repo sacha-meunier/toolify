@@ -5,7 +5,7 @@ return [
     'status_description' => 'Cette invitation à rejoindre :target a déjà été :status.',
 
     'wrong_account_heading' => 'Mauvais compte',
-    'wrong_account_description' => 'Cette invitation a été envoyée à :email. Déconnectez-vous et reconnectez-vous avec cette adresse e-mail pour l\'accepter.',
+    'wrong_account_description' => 'Cette invitation a été envoyée à :email. Déconnectez-vous et reconnectez-vous avec cette adresse e-mail pour l’accepter.',
 
     'welcome_heading' => 'Bienvenue sur Toolify',
     'welcome_description' => ':inviter vous a invité à rejoindre :target.',

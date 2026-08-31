@@ -41,11 +41,11 @@ return [
 
     'published_section_label' => 'Ce qui est publié',
     'published_section_description' => 'Seules les informations renseignées dans la fiche sont accessibles publiquement.',
-    'published_identity_description' => "Le nom, le logo, l'accroche, la description et les catégories deviennent visibles sur la page de :name.",
-    'published_details_description' => 'L\'année de fondation, le siège social, l\'effectif et le statut apparaissent en tant que détails sur la page.',
-    'published_links_description' => 'Les liens vers le site web, GitHub, X/Twitter, l\'App Store et le Play Store deviennent cliquables sur la page.',
+    'published_identity_description' => "Le nom, le logo, l’accroche, la description et les catégories deviennent visibles sur la page de :name.",
+    'published_details_description' => 'L’année de fondation, le siège social, l’effectif et le statut apparaissent en tant que détails sur la page.',
+    'published_links_description' => 'Les liens vers le site web, GitHub, X/Twitter, l’App Store et le Play Store deviennent cliquables sur la page.',
 
-    'ready_section_label' => 'Prêt quand vous l\'êtes',
+    'ready_section_label' => 'Prêt quand vous l’êtes',
     'setup_listing_label' => 'Configurer la fiche de :name',
     'setup_listing_description' => "Ouvre un parcours guidé pour remplir le profil de votre produit. Vous pouvez enregistrer et reprendre à tout moment.",
     'setup_listing_button' => 'Configurer la fiche',

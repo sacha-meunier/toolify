@@ -9,7 +9,7 @@ return [
     'description' => 'Équipes au sein de :name.',
 
     'empty_label' => 'Aucune équipe pour le moment',
-    'empty_description' => 'Créez une équipe pour commencer à organiser votre stack et vos sondages.',
+    'empty_description' => 'Créez une équipe pour commencer à organiser votre stack et vos veilles.',
 
     'members_count' => ':count membre|:count membres',
 ];

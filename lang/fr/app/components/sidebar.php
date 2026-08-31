@@ -7,7 +7,7 @@ return [
     'personal_group' => 'Personnel',
     'workspace_group' => 'Espace de travail',
     'teams_group' => 'Équipes',
-    'stack' => 'Pile',
-    'surveys' => 'Enquêtes',
+    'stack' => 'Stack',
+    'surveys' => 'Veilles',
     'help_button' => '?',
 ];

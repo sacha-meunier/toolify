@@ -25,15 +25,15 @@ return [
 
     'gallery_heading' => 'Galerie',
     'gallery_title' => 'Un aperçu détaillé de :name',
-    'gallery_intro' => "Parcourez des visuels détaillés qui mettent en valeur l'expérience, les fonctionnalités et le design de chaque variante.",
+    'gallery_intro' => "Parcourez des visuels détaillés qui mettent en valeur l’expérience, les fonctionnalités et le design de chaque variante.",
 
     'activity_heading' => 'Activité',
     'activity_title' => 'Dernières versions',
-    'cta_view_all_activity' => "Voir toute l'activité",
+    'cta_view_all_activity' => "Voir toute l’activité",
     'releases' => [
         [
             'title' => 'Outil de retour utilisateur',
-            'description' => "Une nouvelle fonctionnalité qui permet aux utilisateurs d'envoyer leurs retours directement depuis l'application.",
+            'description' => "Une nouvelle fonctionnalité qui permet aux utilisateurs d’envoyer leurs retours directement depuis l’application.",
             'date' => '12 juin',
         ],
         [
