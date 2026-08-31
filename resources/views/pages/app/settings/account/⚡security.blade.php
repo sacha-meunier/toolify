@@ -35,7 +35,7 @@ class extends Component {
     </x-domain.app.topbar>
 
     <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-6 lg:px-10 lg:py-10">
-        <header class="flex flex-col gap-1 border-b border-border px-4 pb-6">
+        <header class="flex flex-col gap-1 px-4">
             <h1 class="text-3xl font-semibold text-foreground">{{ __('app/settings/account/security.heading') }}</h1>
             <p class="text-sm text-muted-foreground">{{ __('app/settings/account/security.description') }}</p>
         </header>
