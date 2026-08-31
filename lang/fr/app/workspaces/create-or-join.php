@@ -16,6 +16,7 @@ return [
     'workspace_avatar_label' => "Avatar de l'espace de travail",
     'choose_photo' => 'Choisir une photo',
     'workspace_name_label' => "Nom de l'espace de travail",
+    'workspace_name_placeholder' => 'Ex : Acme Inc.',
 
     'join_step_title' => 'Rejoindre un espace de travail',
     'join_step_description' => "Collez un code d'invitation pour rejoindre un espace de travail.",

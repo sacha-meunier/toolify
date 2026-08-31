@@ -16,6 +16,7 @@ return [
     'workspace_avatar_label' => 'Workspace avatar',
     'choose_photo' => 'Choose photo',
     'workspace_name_label' => 'Workspace name',
+    'workspace_name_placeholder' => 'Ex : Acme Inc.',
 
     'join_step_title' => 'Join a workspace',
     'join_step_description' => 'Paste an invite code to join a workspace.',
