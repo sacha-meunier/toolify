@@ -16,7 +16,7 @@
         </header>
     @endif
 
-    <div class="flex w-full flex-col divide-y divide-border rounded-xl border border-border bg-card shadow-xs">
+    <div class="flex w-full flex-col divide-y divide-border overflow-clip rounded-xl border border-border bg-card shadow-xs">
         {{ $slot }}
     </div>
 </section>
