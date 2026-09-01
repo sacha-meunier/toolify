@@ -140,7 +140,7 @@ new class extends Component
 
                 <div class="flex flex-col divide-y border border-border rounded-md">
                     @forelse ($this->tools as $tool)
-                        <x-domain.app.tool-list-item :tool="$tool"/>
+                        <x-domain.app.tool-list-item :tool="$tool" :class="trim(($loop->first ? 'rounded-t-md ' : '').($loop->last ? 'rounded-b-md' : ''))"/>
                     @empty
                         <div class="px-6 py-8 text-center text-sm text-muted-foreground">
                             {{ __('app/search.no_results', ['query' => $search]) }}

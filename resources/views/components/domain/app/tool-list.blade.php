@@ -12,7 +12,7 @@
 @else
     <div class="flex flex-col divide-y border border-border rounded-md">
         @foreach ($tools as $tool)
-            <x-domain.app.tool-list-item :tool="$tool"/>
+            <x-domain.app.tool-list-item :tool="$tool" :class="trim(($loop->first ? 'rounded-t-md ' : '').($loop->last ? 'rounded-b-md' : ''))"/>
         @endforeach
     </div>
 @endif

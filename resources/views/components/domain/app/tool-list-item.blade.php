@@ -3,7 +3,7 @@
 ])
 
 @if ($tool->trashed())
-    <div class="flex items-center gap-3 px-4 py-3.5 opacity-60 lg:gap-6 lg:px-6">
+    <div {{ $attributes->class('flex items-center gap-3 px-4 py-3.5 opacity-60 lg:gap-6 lg:px-6') }}>
         <div class="flex size-10 shrink-0 items-center justify-center rounded-xl text-sidebar-primary-foreground">
             @if ($tool->logo_url)
                 <img src="{{ $tool->logo_url }}" alt="" class="size-full rounded-lg object-cover">
@@ -18,7 +18,7 @@
         </div>
     </div>
 @else
-    <div class="flex flex-wrap items-center gap-3 px-4 py-3.5 hover:bg-muted lg:flex-nowrap lg:px-6">
+    <div {{ $attributes->class('flex flex-wrap items-center gap-3 px-4 py-3.5 hover:bg-muted lg:flex-nowrap lg:px-6') }}>
         <a href="{{ route('tools.show', $tool) }}" wire:navigate class="flex min-w-0 flex-1 items-center gap-3 lg:gap-6">
             <div class="flex size-10 shrink-0 items-center justify-center rounded-xl text-sidebar-primary-foreground">
                 @if ($tool->logo_url)

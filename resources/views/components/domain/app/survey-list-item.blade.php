@@ -6,7 +6,7 @@
     $toolsCount = \App\Models\Tool::matching($survey->query ?? '', $survey->filters)->count();
 @endphp
 
-<div class="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3.5 hover:bg-muted lg:px-6">
+<div {{ $attributes->class('flex flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3.5 hover:bg-muted lg:px-6') }}>
     <a href="{{ route('surveys.show', $survey) }}" wire:navigate class="flex min-w-0 flex-1 items-center gap-2">
         <x-ui.icon.search-01 size="sm" class="shrink-0 text-muted-foreground"/>
         <p class="truncate text-sm font-medium text-foreground">"{{ $survey->name }}"</p>
