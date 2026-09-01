@@ -60,7 +60,7 @@ class extends Component {
 
         <x-slot:actions>
             <x-ui.field.saved event="workspace-saved"/>
-            <x-ui.button variant="primary" size="sm" :label="__('app/settings/workspace/general.save_changes')" wire:click="save"/>
+            <x-ui.button variant="primary" size="sm" :label="__('app/settings/workspace/general.save_changes')" wire:click="save" x-bind:disabled="! ($wire.$dirty('form') || $wire.form.logo)"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 

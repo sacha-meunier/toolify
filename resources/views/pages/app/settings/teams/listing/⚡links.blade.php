@@ -60,7 +60,7 @@ class extends Component {
                 target="_blank"
             />
 
-            <x-ui.button variant="primary" size="sm" :label="__('app/settings/teams/listing/links.save_changes')" wire:click="save"/>
+            <x-ui.button variant="primary" size="sm" :label="__('app/settings/teams/listing/links.save_changes')" wire:click="save" x-bind:disabled="! $wire.$dirty('form')"/>
         </x-slot:actions>
     </x-domain.app.topbar>
 
