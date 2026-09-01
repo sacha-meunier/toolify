@@ -23,7 +23,7 @@
 
                     <div class="flex min-w-0 flex-1 flex-col">
                         <h1 id="tool-name-heading" class="truncate text-lg font-semibold text-foreground">{{ $tool->name }}</h1>
-                        <p class="truncate text-base text-foreground">{{ $tool->tagline }}</p>
+                        <p class="truncate text-base text-muted-foreground">{{ $tool->tagline }}</p>
                     </div>
                 </div>
 
@@ -35,7 +35,7 @@
         <section class="flex flex-col gap-4 px-6 lg:px-8" aria-labelledby="about-heading">
             <div class="flex flex-col gap-2">
                 <h2 id="about-heading" class="text-sm font-medium text-foreground">{{ __('app/tools/show.about_heading') }}</h2>
-                <p class="text-base whitespace-pre-line text-foreground">{{ $tool->description }}</p>
+                <p class="text-base whitespace-pre-line text-muted-foreground">{{ $tool->description }}</p>
             </div>
 
             <div class="flex flex-wrap items-center gap-2">
@@ -52,11 +52,11 @@
         <section class="flex flex-col gap-6" aria-labelledby="gallery-heading">
             <div class="flex flex-col items-start justify-between gap-3 px-6 lg:flex-row lg:items-end lg:gap-6 lg:px-8">
                 <div class="flex flex-1 flex-col gap-2">
-                    <p class="text-sm font-medium text-foreground">{{ __('app/tools/show.gallery_heading') }}</p>
+                    <p class="text-sm font-medium text-muted-foreground">{{ __('app/tools/show.gallery_heading') }}</p>
                     <h2 id="gallery-heading" class="text-lg font-semibold text-foreground">{{ __('app/tools/show.gallery_title', ['name' => $tool->name]) }}</h2>
                 </div>
 
-                <p class="text-base text-foreground lg:w-[400px] lg:text-right">{{ __('app/tools/show.gallery_intro') }}</p>
+                <p class="text-base text-muted-foreground lg:w-[400px] lg:text-right">{{ __('app/tools/show.gallery_intro') }}</p>
             </div>
 
             <div class="flex gap-4 overflow-x-auto px-6 pb-4 lg:px-8">
