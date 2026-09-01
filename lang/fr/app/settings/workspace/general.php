@@ -6,10 +6,10 @@ return [
     'breadcrumb_general' => 'Général',
     'save_changes' => 'Enregistrer',
     'heading' => 'Général',
-    'description' => "Gérez l’identité et les paramètres généraux de votre espace de travail.",
+    'description' => 'Gérez l’identité et les paramètres généraux de votre espace de travail.',
 
     'logo_label' => 'Logo',
-    'logo_description' => 'Affiché dans la barre latérale et le sélecteur d’espace de travail.',
+    'logo_description' => 'Affiché dans la barre latérale et le sélecteur d’espace de travail. JPEG, PNG ou WebP, 2 Mo maximum.',
     'change_photo' => 'Changer la photo',
     'remove' => 'Supprimer',
     'remove_logo_confirm' => 'Supprimer le logo de votre espace de travail ?',

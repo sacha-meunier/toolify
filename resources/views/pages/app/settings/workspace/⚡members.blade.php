@@ -279,8 +279,8 @@ class extends Component {
 
         <form wire:submit="inviteMember" class="flex flex-col gap-4">
             <x-ui.field>
-                <x-ui.field.label :content="__('app/settings/workspace/members.email_label')"/>
-                <x-ui.input type="email" wire:model="inviteForm.email" name="inviteForm.email" :placeholder="__('app/settings/workspace/members.email_placeholder')" autofocus/>
+                <x-ui.field.label :content="__('app/settings/workspace/members.email_label')" required/>
+                <x-ui.input type="email" wire:model="inviteForm.email" name="inviteForm.email" :placeholder="__('app/settings/workspace/members.email_placeholder')" autofocus required/>
                 <x-ui.field.error :content="$errors->first('inviteForm.email')"/>
             </x-ui.field>
 

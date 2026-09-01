@@ -6,10 +6,10 @@ return [
     'breadcrumb_general' => 'Général',
     'save_changes' => 'Enregistrer',
     'heading' => 'Général',
-    'description' => "Gérez l’identité et les paramètres généraux de votre équipe.",
+    'description' => 'Gérez l’identité et les paramètres généraux de votre équipe.',
 
     'logo_label' => 'Logo',
-    'logo_description' => 'Affiché dans la barre latérale et le sélecteur d’équipe.',
+    'logo_description' => 'Affiché dans la barre latérale et le sélecteur d’équipe. JPEG, PNG ou WebP, 2 Mo maximum.',
     'change_photo' => 'Changer la photo',
     'remove' => 'Supprimer',
     'remove_logo_confirm' => 'Supprimer le logo de votre équipe ?',

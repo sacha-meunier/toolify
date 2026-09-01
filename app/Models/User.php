@@ -37,6 +37,8 @@ class User extends Authenticatable implements MustVerifyEmail
     /** @use HasFactory<UserFactory> */
     use HasFactory, HasStack, HasSurveys, Notifiable;
 
+    public const int NAME_MAX_LENGTH = 75;
+
     /**
      * Get the attributes that should be cast.
      *

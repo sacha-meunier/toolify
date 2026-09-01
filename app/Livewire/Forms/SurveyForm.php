@@ -27,7 +27,7 @@ class SurveyForm extends Form
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'query' => ['nullable', 'string', 'max:255'],
+            'query' => ['nullable', 'string', 'max:'.Survey::QUERY_MAX_LENGTH],
         ];
     }
 

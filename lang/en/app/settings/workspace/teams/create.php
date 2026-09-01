@@ -10,7 +10,7 @@ return [
     'description' => 'Teams let you organize a stack and surveys separately within :name.',
 
     'logo_label' => 'Logo',
-    'logo_description' => 'Displayed in the sidebar and team switcher.',
+    'logo_description' => 'Displayed in the sidebar and team switcher. JPEG, PNG or WebP, up to 2 MB.',
     'change_photo' => 'Change photo',
 
     'name_label' => 'Name',

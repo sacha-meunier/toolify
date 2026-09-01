@@ -26,6 +26,8 @@ class Survey extends Model
     /** @use HasFactory<SurveyFactory> */
     use HasFactory;
 
+    public const int QUERY_MAX_LENGTH = 255;
+
     /**
      * Get the attributes that should be cast.
      *

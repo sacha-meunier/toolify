@@ -25,11 +25,11 @@ class ToolLinksForm extends Form
     protected function rules(): array
     {
         return [
-            'websiteUrl' => ['required', 'url', 'max:255'],
-            'githubUrl' => ['nullable', 'url', 'max:255'],
-            'twitterUrl' => ['nullable', 'url', 'max:255'],
-            'appStoreUrl' => ['nullable', 'url', 'max:255'],
-            'playStoreUrl' => ['nullable', 'url', 'max:255'],
+            'websiteUrl' => ['required', 'url', 'max:'.Tool::URL_MAX_LENGTH],
+            'githubUrl' => ['nullable', 'url', 'max:'.Tool::URL_MAX_LENGTH],
+            'twitterUrl' => ['nullable', 'url', 'max:'.Tool::URL_MAX_LENGTH],
+            'appStoreUrl' => ['nullable', 'url', 'max:'.Tool::URL_MAX_LENGTH],
+            'playStoreUrl' => ['nullable', 'url', 'max:'.Tool::URL_MAX_LENGTH],
         ];
     }
 

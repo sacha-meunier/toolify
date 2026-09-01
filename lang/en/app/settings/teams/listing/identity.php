@@ -10,7 +10,7 @@ return [
     'heading' => 'Identity',
 
     'logo_label' => "Product's logo",
-    'logo_description' => '84×84. Used on the product hero and on every variant page.',
+    'logo_description' => '84×84. Used on the product hero and on every variant page. JPEG, PNG or WebP, up to 2 MB.',
     'change_photo' => 'Change photo',
     'remove' => 'Remove',
     'remove_logo_confirm' => "Remove your product's logo?",

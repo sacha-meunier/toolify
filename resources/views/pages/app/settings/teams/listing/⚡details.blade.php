@@ -91,8 +91,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 </x-domain.app.settings.section-content>
 
                 <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/details.headquarters_label')" :description="__('app/settings/teams/listing/details.headquarters_description')">
-                    <div class="flex w-full flex-col gap-1 lg:w-64">
-                        <x-ui.input wire:model="form.headquarters"/>
+                    <div class="flex w-full flex-col gap-1 lg:w-64" x-data="{ length: {{ mb_strlen($form->headquarters) }} }">
+                        <x-ui.input wire:model="form.headquarters" x-on:input="length = $event.target.value.length" maxlength="{{ Tool::HEADQUARTERS_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ Tool::HEADQUARTERS_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => Tool::HEADQUARTERS_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         @error('form.headquarters')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
                         @enderror

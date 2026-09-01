@@ -28,7 +28,7 @@ class CreateOrJoinWorkspaceForm extends Form
     protected function rules(): array
     {
         return [
-            'workspaceName' => ['required', 'string', 'max:255'],
+            'workspaceName' => ['required', 'string', 'max:'.Workspace::NAME_MAX_LENGTH],
             'workspaceLogo' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
             'inviteCode' => ['required', 'string'],
         ];

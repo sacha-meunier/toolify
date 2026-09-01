@@ -14,6 +14,7 @@ return [
 
     'create_step_title' => 'Create your workspace',
     'workspace_avatar_label' => 'Workspace avatar',
+    'workspace_avatar_hint' => 'JPEG, PNG or WebP, up to 2 MB.',
     'choose_photo' => 'Choose photo',
     'workspace_name_label' => 'Workspace name',
     'workspace_name_placeholder' => 'Ex : Acme Inc.',

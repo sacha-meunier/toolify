@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Forms\Settings\ProfileForm;
+use App\Models\User;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -85,9 +86,13 @@ class extends Component {
             <x-domain.app.settings.section-content
                 :label="__('app/settings/account/profile.name_label')"
                 :description="__('app/settings/account/profile.name_description')"
+                required
             >
-                <div class="flex w-full flex-col gap-1 lg:w-64">
-                    <x-ui.input wire:model="form.name"/>
+                <div class="flex w-full flex-col gap-1 lg:w-64" x-data="{ length: {{ mb_strlen($form->name) }} }">
+                    <x-ui.input wire:model="form.name" x-on:input="length = $event.target.value.length" required maxlength="{{ User::NAME_MAX_LENGTH }}"/>
+                    <x-ui.field.error x-show="length >= {{ User::NAME_MAX_LENGTH }}" x-cloak>
+                        {{ __('components/ui/field.max_length_reached', ['max' => User::NAME_MAX_LENGTH]) }}
+                    </x-ui.field.error>
                     @error('form.name')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>
                     @enderror
@@ -104,9 +109,10 @@ class extends Component {
             <x-domain.app.settings.section-content
                 :label="__('app/settings/account/profile.email_label')"
                 :description="__('app/settings/account/profile.email_description')"
+                required
             >
                 <div class="flex w-full flex-col gap-1 lg:w-64">
-                    <x-ui.input type="email" wire:model="form.email"/>
+                    <x-ui.input type="email" wire:model="form.email" required/>
                     @error('form.email')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>
                     @enderror

@@ -4,6 +4,7 @@ return [
     'profile_heading' => 'Configurez votre profil',
     'profile_description' => 'Choisissez comment vous apparaîtrez sur Toolify.',
     'avatar_label' => 'Avatar',
+    'avatar_hint' => 'JPEG, PNG ou WebP, 2 Mo maximum.',
     'choose_photo' => 'Choisir une photo',
     'remove_photo' => 'Supprimer la photo',
     'fullname_label' => 'Nom complet',

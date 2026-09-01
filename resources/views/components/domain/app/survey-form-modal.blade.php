@@ -4,15 +4,21 @@
     </x-slot:header>
 
     <form wire:submit="saveSurveyForm" class="flex flex-col gap-4">
-        <x-ui.field>
-            <x-ui.field.label :content="__('app/components/survey-form-modal.field_name')"/>
-            <x-ui.input wire:model="surveyForm.name" name="surveyForm.name" :placeholder="__('app/components/survey-form-modal.field_name_placeholder')"/>
+        <x-ui.field x-data="{ length: {{ mb_strlen($surveyForm->name) }} }">
+            <x-ui.field.label :content="__('app/components/survey-form-modal.field_name')" required/>
+            <x-ui.input wire:model="surveyForm.name" x-on:input="length = $event.target.value.length" name="surveyForm.name" :placeholder="__('app/components/survey-form-modal.field_name_placeholder')" required maxlength="255"/>
+            <x-ui.field.error x-show="length >= 255" x-cloak>
+                {{ __('components/ui/field.max_length_reached', ['max' => 255]) }}
+            </x-ui.field.error>
             <x-ui.field.error :content="$errors->first('surveyForm.name')"/>
         </x-ui.field>
 
-        <x-ui.field>
+        <x-ui.field x-data="{ length: {{ mb_strlen($surveyForm->query) }} }">
             <x-ui.field.label :content="__('app/components/survey-form-modal.field_query')"/>
-            <x-ui.input wire:model="surveyForm.query" name="surveyForm.query" :placeholder="__('app/components/survey-form-modal.field_query_placeholder')"/>
+            <x-ui.input wire:model="surveyForm.query" x-on:input="length = $event.target.value.length" name="surveyForm.query" :placeholder="__('app/components/survey-form-modal.field_query_placeholder')" maxlength="{{ \App\Models\Survey::QUERY_MAX_LENGTH }}"/>
+            <x-ui.field.error x-show="length >= {{ \App\Models\Survey::QUERY_MAX_LENGTH }}" x-cloak>
+                {{ __('components/ui/field.max_length_reached', ['max' => \App\Models\Survey::QUERY_MAX_LENGTH]) }}
+            </x-ui.field.error>
             <x-ui.field.error :content="$errors->first('surveyForm.query')"/>
         </x-ui.field>
 

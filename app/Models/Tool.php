@@ -57,6 +57,10 @@ class Tool extends Model
     /** @use HasFactory<ToolFactory> */
     use HasFactory, SoftDeletes;
 
+    public const int URL_MAX_LENGTH = 255;
+
+    public const int HEADQUARTERS_MAX_LENGTH = 255;
+
     /**
      * Generate the tool's unguessable share token up front, so it's ready
      * the moment its visibility is switched to Unlisted.

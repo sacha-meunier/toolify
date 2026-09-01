@@ -19,6 +19,7 @@ return [
 
     'profile_step_title' => 'Configurez votre profil',
     'avatar_label' => 'Avatar',
+    'avatar_hint' => 'JPEG, PNG ou WebP, 2 Mo maximum.',
     'choose_photo' => 'Choisir une photo',
     'remove_photo' => 'Supprimer la photo',
     'full_name_label' => 'Nom complet',

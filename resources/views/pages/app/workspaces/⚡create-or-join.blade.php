@@ -109,6 +109,7 @@ class extends Component {
                     class="flex flex-col gap-4 w-full"
                     x-data="{
                         name: @js($form->workspaceName),
+                        length: {{ mb_strlen($form->workspaceName) }},
                         initials() {
                             const parts = this.name.trim().split(/\s+/).filter(Boolean).map(p => p[0]);
                             const initials = parts.join('').toUpperCase();
@@ -119,6 +120,7 @@ class extends Component {
                 >
                     <x-ui.field>
                         <x-ui.field.label :content="__('app/workspaces/create-or-join.workspace_avatar_label')"/>
+                        <x-ui.field.description :content="__('app/workspaces/create-or-join.workspace_avatar_hint')"/>
 
                         <div class="flex items-center gap-3">
                             <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground">
@@ -138,8 +140,11 @@ class extends Component {
                     </x-ui.field>
 
                     <x-ui.field>
-                        <x-ui.field.label :content="__('app/workspaces/create-or-join.workspace_name_label')"/>
-                        <x-ui.input wire:model="form.workspaceName" x-model="name" name="workspaceName" :placeholder="__('app/workspaces/create-or-join.workspace_name_placeholder')" required/>
+                        <x-ui.field.label :content="__('app/workspaces/create-or-join.workspace_name_label')" required/>
+                        <x-ui.input wire:model="form.workspaceName" x-model="name" x-on:input="length = $event.target.value.length" name="workspaceName" :placeholder="__('app/workspaces/create-or-join.workspace_name_placeholder')" required maxlength="{{ Workspace::NAME_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ Workspace::NAME_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => Workspace::NAME_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         <x-ui.field.error :content="$errors->first('form.workspaceName')"/>
                     </x-ui.field>
 
@@ -160,7 +165,7 @@ class extends Component {
 
                 <form wire:submit="finishJoin" class="flex flex-col gap-4 w-full">
                     <x-ui.field>
-                        <x-ui.field.label :content="__('app/workspaces/create-or-join.invite_code_label')"/>
+                        <x-ui.field.label :content="__('app/workspaces/create-or-join.invite_code_label')" required/>
                         <x-ui.input wire:model="form.inviteCode" name="inviteCode" :placeholder="__('app/workspaces/create-or-join.invite_code_placeholder')" required/>
                         <x-ui.field.error :content="$errors->first('form.inviteCode')"/>
                     </x-ui.field>

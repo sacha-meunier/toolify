@@ -22,7 +22,7 @@ class TeamForm extends Form
     protected function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:'.Team::NAME_MAX_LENGTH],
             'logo' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
         ];
     }

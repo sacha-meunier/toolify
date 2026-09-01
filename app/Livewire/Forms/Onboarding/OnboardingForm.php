@@ -33,9 +33,9 @@ class OnboardingForm extends Form
     protected function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:'.User::NAME_MAX_LENGTH],
             'avatar' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
-            'workspaceName' => ['required', 'string', 'max:255'],
+            'workspaceName' => ['required', 'string', 'max:'.Workspace::NAME_MAX_LENGTH],
             'workspaceLogo' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
             'inviteCode' => ['required', 'string'],
         ];

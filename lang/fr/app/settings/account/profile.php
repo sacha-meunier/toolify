@@ -8,7 +8,7 @@ return [
     'description' => 'Gérez les informations de votre compte et vos détails publics.',
 
     'picture_label' => 'Photo de profil',
-    'picture_description' => 'Avatar affiché dans les listes de membres, les commentaires et les notifications envoyées en votre nom.',
+    'picture_description' => 'Avatar affiché dans les listes de membres, les commentaires et les notifications envoyées en votre nom. JPEG, PNG ou WebP, 2 Mo maximum.',
     'change_photo' => 'Changer la photo',
     'remove' => 'Supprimer',
     'remove_avatar_confirm' => 'Supprimer votre photo de profil ?',

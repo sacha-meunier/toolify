@@ -1,6 +1,8 @@
 <?php
 
 use App\Livewire\Forms\Onboarding\OnboardingForm;
+use App\Models\User;
+use App\Models\Workspace;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Transition;
 use Livewire\Component;
@@ -98,6 +100,7 @@ class extends Component {
                     class="flex flex-col gap-4 w-full"
                     x-data="{
                         name: @js($form->name),
+                        length: {{ mb_strlen($form->name) }},
                         initials() {
                             const parts = this.name.trim().split(/\s+/).filter(Boolean).map(p => p[0]);
                             const initials = parts.join('').toUpperCase();
@@ -108,6 +111,7 @@ class extends Component {
                 >
                     <x-ui.field>
                         <x-ui.field.label :content="__('app/onboarding/index.avatar_label')"/>
+                        <x-ui.field.description :content="__('app/onboarding/index.avatar_hint')"/>
 
                         <x-ui.avatar-upload
                             class="size-8 border border-border bg-muted text-xs font-medium text-muted-foreground"
@@ -135,8 +139,11 @@ class extends Component {
                     </x-ui.field>
 
                     <x-ui.field>
-                        <x-ui.field.label :content="__('app/onboarding/index.fullname_label')"/>
-                        <x-ui.input wire:model="form.name" x-model="name" name="name" autocomplete="name" required/>
+                        <x-ui.field.label :content="__('app/onboarding/index.fullname_label')" required/>
+                        <x-ui.input wire:model="form.name" x-model="name" x-on:input="length = $event.target.value.length" name="name" autocomplete="name" required maxlength="{{ User::NAME_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ User::NAME_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => User::NAME_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         <x-ui.field.error :content="$errors->first('form.name')"/>
                     </x-ui.field>
 
@@ -185,6 +192,7 @@ class extends Component {
                     class="flex flex-col gap-4 w-full"
                     x-data="{
                         name: @js($form->workspaceName),
+                        length: {{ mb_strlen($form->workspaceName) }},
                         initials() {
                             const parts = this.name.trim().split(/\s+/).filter(Boolean).map(p => p[0]);
                             const initials = parts.join('').toUpperCase();
@@ -195,6 +203,7 @@ class extends Component {
                 >
                     <x-ui.field>
                         <x-ui.field.label :content="__('app/onboarding/index.workspace_avatar_label')"/>
+                        <x-ui.field.description :content="__('app/onboarding/index.avatar_hint')"/>
 
                         <x-ui.avatar-upload
                             class="size-8 border border-border bg-muted text-xs font-medium text-muted-foreground"
@@ -219,8 +228,11 @@ class extends Component {
                     </x-ui.field>
 
                     <x-ui.field>
-                        <x-ui.field.label :content="__('app/onboarding/index.workspace_name_label')"/>
-                        <x-ui.input wire:model="form.workspaceName" x-model="name" name="workspaceName" required/>
+                        <x-ui.field.label :content="__('app/onboarding/index.workspace_name_label')" required/>
+                        <x-ui.input wire:model="form.workspaceName" x-model="name" x-on:input="length = $event.target.value.length" name="workspaceName" required maxlength="{{ Workspace::NAME_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ Workspace::NAME_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => Workspace::NAME_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         <x-ui.field.error :content="$errors->first('form.workspaceName')"/>
                     </x-ui.field>
 
@@ -241,7 +253,7 @@ class extends Component {
 
                 <form wire:submit="finishJoin" class="flex flex-col gap-4 w-full">
                     <x-ui.field>
-                        <x-ui.field.label :content="__('app/onboarding/index.invite_code_label')"/>
+                        <x-ui.field.label :content="__('app/onboarding/index.invite_code_label')" required/>
                         <x-ui.input wire:model="form.inviteCode" name="inviteCode" :placeholder="__('app/onboarding/index.invite_code_placeholder')" required/>
                         <x-ui.field.error :content="$errors->first('form.inviteCode')"/>
                     </x-ui.field>

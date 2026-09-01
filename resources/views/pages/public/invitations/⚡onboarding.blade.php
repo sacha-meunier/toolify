@@ -222,6 +222,7 @@ class extends Component {
                     class="flex flex-col gap-4 w-full"
                     x-data="{
                     name: @js($form->name),
+                    length: {{ mb_strlen($form->name) }},
                     initials() {
                         const parts = this.name.trim().split(/\s+/).filter(Boolean).map(p => p[0]);
                         const initials = parts.join('').toUpperCase();
@@ -232,6 +233,7 @@ class extends Component {
                 >
                     <x-ui.field>
                         <x-ui.field.label :content="__('public/invitations/onboarding.avatar_label')"/>
+                        <x-ui.field.description :content="__('public/invitations/onboarding.avatar_hint')"/>
 
                         <x-ui.avatar-upload
                             class="size-8 border border-border bg-muted text-xs font-medium text-muted-foreground"
@@ -255,8 +257,11 @@ class extends Component {
                     </x-ui.field>
 
                     <x-ui.field>
-                        <x-ui.field.label :content="__('public/invitations/onboarding.full_name_label')"/>
-                        <x-ui.input wire:model="form.name" x-model="name" name="name" autocomplete="name" required/>
+                        <x-ui.field.label :content="__('public/invitations/onboarding.full_name_label')" required/>
+                        <x-ui.input wire:model="form.name" x-model="name" x-on:input="length = $event.target.value.length" name="name" autocomplete="name" required maxlength="{{ User::NAME_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ User::NAME_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => User::NAME_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         <x-ui.field.error :content="$errors->first('form.name')"/>
                     </x-ui.field>
 

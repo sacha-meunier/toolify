@@ -71,9 +71,12 @@ class extends Component {
             </header>
 
             <x-domain.app.settings.section>
-                <x-domain.app.settings.section-content icon="globe-02" :label="__('app/settings/teams/listing/links.website_label')" :description="__('app/settings/teams/listing/links.website_description')">
-                    <div class="flex w-full flex-col gap-1 lg:w-64">
-                        <x-ui.input wire:model="form.websiteUrl"/>
+                <x-domain.app.settings.section-content icon="globe-02" :label="__('app/settings/teams/listing/links.website_label')" :description="__('app/settings/teams/listing/links.website_description')" required>
+                    <div class="flex w-full flex-col gap-1 lg:w-64" x-data="{ length: {{ mb_strlen($form->websiteUrl) }} }">
+                        <x-ui.input wire:model="form.websiteUrl" x-on:input="length = $event.target.value.length" required maxlength="{{ Tool::URL_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ Tool::URL_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => Tool::URL_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         @error('form.websiteUrl')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
                         @enderror
@@ -81,8 +84,11 @@ class extends Component {
                 </x-domain.app.settings.section-content>
 
                 <x-domain.app.settings.section-content icon="github" :label="__('app/settings/teams/listing/links.github_label')" :description="__('app/settings/teams/listing/links.github_description')">
-                    <div class="flex w-full flex-col gap-1 lg:w-64">
-                        <x-ui.input wire:model="form.githubUrl"/>
+                    <div class="flex w-full flex-col gap-1 lg:w-64" x-data="{ length: {{ mb_strlen($form->githubUrl) }} }">
+                        <x-ui.input wire:model="form.githubUrl" x-on:input="length = $event.target.value.length" maxlength="{{ Tool::URL_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ Tool::URL_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => Tool::URL_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         @error('form.githubUrl')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
                         @enderror
@@ -90,8 +96,11 @@ class extends Component {
                 </x-domain.app.settings.section-content>
 
                 <x-domain.app.settings.section-content icon="twitter" :label="__('app/settings/teams/listing/links.twitter_label')" :description="__('app/settings/teams/listing/links.twitter_description')">
-                    <div class="flex w-full flex-col gap-1 lg:w-64">
-                        <x-ui.input wire:model="form.twitterUrl"/>
+                    <div class="flex w-full flex-col gap-1 lg:w-64" x-data="{ length: {{ mb_strlen($form->twitterUrl) }} }">
+                        <x-ui.input wire:model="form.twitterUrl" x-on:input="length = $event.target.value.length" maxlength="{{ Tool::URL_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ Tool::URL_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => Tool::URL_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         @error('form.twitterUrl')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
                         @enderror
@@ -99,8 +108,11 @@ class extends Component {
                 </x-domain.app.settings.section-content>
 
                 <x-domain.app.settings.section-content icon="apple" :label="__('app/settings/teams/listing/links.app_store_label')" :description="__('app/settings/teams/listing/links.app_store_description')">
-                    <div class="flex w-full flex-col gap-1 lg:w-64">
-                        <x-ui.input wire:model="form.appStoreUrl"/>
+                    <div class="flex w-full flex-col gap-1 lg:w-64" x-data="{ length: {{ mb_strlen($form->appStoreUrl) }} }">
+                        <x-ui.input wire:model="form.appStoreUrl" x-on:input="length = $event.target.value.length" maxlength="{{ Tool::URL_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ Tool::URL_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => Tool::URL_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         @error('form.appStoreUrl')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
                         @enderror
@@ -108,8 +120,11 @@ class extends Component {
                 </x-domain.app.settings.section-content>
 
                 <x-domain.app.settings.section-content icon="google-play" :label="__('app/settings/teams/listing/links.play_store_label')" :description="__('app/settings/teams/listing/links.play_store_description')">
-                    <div class="flex w-full flex-col gap-1 lg:w-64">
-                        <x-ui.input wire:model="form.playStoreUrl"/>
+                    <div class="flex w-full flex-col gap-1 lg:w-64" x-data="{ length: {{ mb_strlen($form->playStoreUrl) }} }">
+                        <x-ui.input wire:model="form.playStoreUrl" x-on:input="length = $event.target.value.length" maxlength="{{ Tool::URL_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ Tool::URL_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => Tool::URL_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         @error('form.playStoreUrl')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
                         @enderror

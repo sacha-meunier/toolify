@@ -9,7 +9,7 @@ return [
     'description' => "Manage your team's identity and general settings.",
 
     'logo_label' => 'Logo',
-    'logo_description' => 'Displayed in the sidebar and team switcher.',
+    'logo_description' => 'Displayed in the sidebar and team switcher. JPEG, PNG or WebP, up to 2 MB.',
     'change_photo' => 'Change photo',
     'remove' => 'Remove',
     'remove_logo_confirm' => "Remove your team's logo?",

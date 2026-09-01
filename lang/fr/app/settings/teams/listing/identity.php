@@ -10,7 +10,7 @@ return [
     'heading' => 'Identité',
 
     'logo_label' => 'Logo du produit',
-    'logo_description' => '84×84. Utilisé sur la page principale du produit et sur chaque page de variante.',
+    'logo_description' => '84×84. Utilisé sur la page principale du produit et sur chaque page de variante. JPEG, PNG ou WebP, 2 Mo maximum.',
     'change_photo' => 'Changer la photo',
     'remove' => 'Supprimer',
     'remove_logo_confirm' => 'Supprimer le logo de votre produit ?',

@@ -26,7 +26,7 @@ class ProfileForm extends Form
     protected function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:'.User::NAME_MAX_LENGTH],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user)],
             'avatar' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
         ];

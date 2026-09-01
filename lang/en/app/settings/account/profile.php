@@ -8,7 +8,7 @@ return [
     'description' => 'Manage your account information and public details.',
 
     'picture_label' => 'Profile picture',
-    'picture_description' => 'Avatar displayed in member lists, comments, and notifications sent on your behalf.',
+    'picture_description' => 'Avatar displayed in member lists, comments, and notifications sent on your behalf. JPEG, PNG or WebP, up to 2 MB.',
     'change_photo' => 'Change photo',
     'remove' => 'Remove',
     'remove_avatar_confirm' => 'Remove your profile picture?',

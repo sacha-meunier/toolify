@@ -19,6 +19,7 @@ return [
 
     'profile_step_title' => 'Set up your profile',
     'avatar_label' => 'Avatar',
+    'avatar_hint' => 'JPEG, PNG or WebP, up to 2 MB.',
     'choose_photo' => 'Choose photo',
     'remove_photo' => 'Remove photo',
     'full_name_label' => 'Full name',

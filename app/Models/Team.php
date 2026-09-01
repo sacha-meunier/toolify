@@ -30,6 +30,8 @@ class Team extends Model
     /** @use HasFactory<TeamFactory> */
     use HasFactory, HasStack, HasSurveys;
 
+    public const int NAME_MAX_LENGTH = 75;
+
     public function workspace(): BelongsTo
     {
         return $this->belongsTo(Workspace::class);

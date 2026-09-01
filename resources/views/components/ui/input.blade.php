@@ -11,6 +11,7 @@
     'required' => false,
     'disabled' => false,
     'readonly' => false,
+    'maxlength' => null,
 ])
 
 @php
@@ -20,10 +21,10 @@
 
     $containerClasses = "$baseClasses";
 
-    // Binding directives (wire:model, x-model, ...) must land on the actual <input>,
-    // not the wrapping container, otherwise the directives don't work.
-    $inputAttributes = $attributes->whereStartsWith(['wire:', 'x-model']);
-    $containerAttributes = $attributes->whereDoesntStartWith(['wire:', 'x-model']);
+    // Binding directives (wire:model, x-model, x-on:/@ listeners, ...) must land on the actual
+    // <input>, not the wrapping container, otherwise the directives don't work.
+    $inputAttributes = $attributes->whereStartsWith(['wire:', 'x-model', 'x-on:', '@']);
+    $containerAttributes = $attributes->whereDoesntStartWith(['wire:', 'x-model', 'x-on:', '@']);
 @endphp
 
 @switch($type)
@@ -44,6 +45,7 @@
                 @if($required) required @endif
                 @if($disabled) disabled @endif
                 @if($readonly) readonly @endif
+                @if($maxlength) maxlength="{{ $maxlength }}" @endif
             >
         </div>
         @break

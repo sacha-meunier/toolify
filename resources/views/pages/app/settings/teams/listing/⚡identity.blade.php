@@ -96,9 +96,12 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     @enderror
                 </x-domain.app.settings.section-content>
 
-                <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/identity.name_label')" :description="__('app/settings/teams/listing/identity.name_description')">
-                    <div class="flex w-full flex-col gap-1 lg:w-64">
-                        <x-ui.input wire:model="form.name"/>
+                <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/identity.name_label')" :description="__('app/settings/teams/listing/identity.name_description')" required>
+                    <div class="flex w-full flex-col gap-1 lg:w-64" x-data="{ length: {{ mb_strlen($form->name) }} }">
+                        <x-ui.input wire:model="form.name" x-on:input="length = $event.target.value.length" required maxlength="{{ ToolIdentityForm::NAME_MAX_LENGTH }}"/>
+                        <x-ui.field.error x-show="length >= {{ ToolIdentityForm::NAME_MAX_LENGTH }}" x-cloak>
+                            {{ __('components/ui/field.max_length_reached', ['max' => ToolIdentityForm::NAME_MAX_LENGTH]) }}
+                        </x-ui.field.error>
                         @error('form.name')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
                         @enderror
@@ -134,15 +137,20 @@ new #[Layout('layouts::shells.settings')] class extends Component
                     </div>
 
                     @foreach (config('app.available_locales') as $code => $label)
-                        <div x-show="activeLocale === '{{ $code }}'" x-cloak>
+                        <div x-show="activeLocale === '{{ $code }}'" x-cloak x-data="{ length: {{ mb_strlen($form->tagline[$code] ?? '') }} }">
                             <div class="flex h-8 w-full items-center rounded-lg border border-input bg-secondary focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50">
                                 <input
                                     type="text"
                                     wire:model="form.tagline.{{ $code }}"
+                                    x-on:input="length = $event.target.value.length"
+                                    maxlength="{{ ToolIdentityForm::TAGLINE_MAX_LENGTH }}"
                                     placeholder="{{ __('app/settings/teams/listing/identity.tagline_placeholder') }}"
                                     class="w-full flex-1 rounded-lg bg-transparent px-4 py-1 text-sm leading-5 text-foreground placeholder-muted-foreground outline-none"
                                 >
                             </div>
+                            <x-ui.field.error x-show="length >= {{ ToolIdentityForm::TAGLINE_MAX_LENGTH }}" x-cloak class="px-4">
+                                {{ __('components/ui/field.max_length_reached', ['max' => ToolIdentityForm::TAGLINE_MAX_LENGTH]) }}
+                            </x-ui.field.error>
                             @error("form.tagline.$code")
                             <x-ui.field.error class="px-4">{{ $message }}</x-ui.field.error>
                             @enderror

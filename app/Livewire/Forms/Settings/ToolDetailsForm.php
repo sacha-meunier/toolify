@@ -28,7 +28,7 @@ class ToolDetailsForm extends Form
         return [
             'foundedYear' => ['nullable', 'integer', 'min:1970', 'max:'.Carbon::now()->year],
             'firstReleaseYear' => ['nullable', 'integer', 'min:1970', 'max:'.Carbon::now()->year],
-            'headquarters' => ['nullable', 'string', 'max:255'],
+            'headquarters' => ['nullable', 'string', 'max:'.Tool::HEADQUARTERS_MAX_LENGTH],
             'headcount' => ['nullable', Rule::enum(ToolHeadcount::class)],
         ];
     }

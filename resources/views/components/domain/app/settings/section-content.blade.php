@@ -4,6 +4,7 @@
     'icon' => null,
     'chevron' => false,
     'href' => null,
+    'required' => false,
 ])
 
 @php
@@ -26,7 +27,13 @@
 
         <div class="flex min-w-0 flex-1 flex-col gap-0.5">
             @if ($label)
-                <p class="text-xs font-semibold text-foreground">{{ $label }}</p>
+                <p class="text-xs font-semibold text-foreground">
+                    {{ $label }}
+                    @if ($required)
+                        <span class="text-destructive" aria-hidden="true">*</span>
+                        <span class="sr-only">{{ __('components/ui/field.required') }}</span>
+                    @endif
+                </p>
             @endif
 
             @if ($description)

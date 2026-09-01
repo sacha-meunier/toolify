@@ -82,9 +82,13 @@ class extends Component {
             <x-domain.app.settings.section-content
                 :label="__('app/settings/workspace/teams/create.name_label')"
                 :description="__('app/settings/workspace/teams/create.name_description')"
+                required
             >
-                <div class="flex w-full flex-col gap-1 lg:w-64">
-                    <x-ui.input wire:model.live="form.name" :placeholder="__('app/settings/workspace/teams/create.name_placeholder')"/>
+                <div class="flex w-full flex-col gap-1 lg:w-64" x-data="{ length: {{ mb_strlen($form->name) }} }">
+                    <x-ui.input wire:model.live="form.name" x-on:input="length = $event.target.value.length" :placeholder="__('app/settings/workspace/teams/create.name_placeholder')" required maxlength="{{ Team::NAME_MAX_LENGTH }}"/>
+                    <x-ui.field.error x-show="length >= {{ Team::NAME_MAX_LENGTH }}" x-cloak>
+                        {{ __('components/ui/field.max_length_reached', ['max' => Team::NAME_MAX_LENGTH]) }}
+                    </x-ui.field.error>
                     @error('form.name')
                     <x-ui.field.error>{{ $message }}</x-ui.field.error>
                     @enderror

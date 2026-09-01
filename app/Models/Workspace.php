@@ -30,6 +30,8 @@ class Workspace extends Model
     /** @use HasFactory<WorkspaceFactory> */
     use HasFactory, HasStack, HasSurveys;
 
+    public const int NAME_MAX_LENGTH = 75;
+
     /**
      * The user who owns this workspace. Null means the workspace is held by Toolify itself.
      */

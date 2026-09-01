@@ -29,7 +29,7 @@ class InvitationOnboardingForm extends Form
     {
         return [
             'password' => ['required', 'string', Password::default()],
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:'.User::NAME_MAX_LENGTH],
             'avatar' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
         ];
     }
