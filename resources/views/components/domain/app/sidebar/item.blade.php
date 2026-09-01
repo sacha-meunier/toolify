@@ -14,6 +14,7 @@
     size="lg"
     :href="$disabled ? null : $href"
     :icon="$icon"
+    icon-stroke-width="1.5"
     :disabled="$disabled"
     wire:navigate
     {{ $attributes->except('href')->class([

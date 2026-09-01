@@ -4,6 +4,8 @@
 ])
 
 @php
+    $strokeWidth ??= '2';
+
     // Size mapping
     $sizeClasses = match($size) {
         'xs' => 'size-3',

@@ -7,6 +7,7 @@
     'size' => 'default', // default, xs, sm, lg, icon, icon-xs, icon-sm, icon-lg
     'label' => null, // label used when don‘t want slot and closing tag
     'icon' => null,
+    'iconStrokeWidth' => null,
 ])
 
 @php
@@ -52,7 +53,7 @@
     @case('a')
         <a href="{{ $href }}" {{ $attributes->except('icon:trailing')->class($classes) }}>
             @if ($icon)
-                <x-dynamic-component :size="$iconSize" :component="'ui.icon.'.$icon"/>
+                <x-dynamic-component :size="$iconSize" :stroke-width="$iconStrokeWidth" :component="'ui.icon.'.$icon"/>
             @endif
             {{ $label }}
             {{ $slot }}
@@ -65,7 +66,7 @@
     @case('button')
         <button type="{{ $type }}" {{ $attributes->except('icon:trailing')->class($classes) }}>
             @if ($icon)
-                <x-dynamic-component :size="$iconSize" :component="'ui.icon.'.$icon"/>
+                <x-dynamic-component :size="$iconSize" :stroke-width="$iconStrokeWidth" :component="'ui.icon.'.$icon"/>
             @endif
             {{ $label }}
             {{ $slot }}
