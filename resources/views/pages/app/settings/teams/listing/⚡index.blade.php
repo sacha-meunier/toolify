@@ -145,7 +145,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
         <x-slot:actions>
             <x-ui.button
                 variant="outline"
-                size="xs"
+                size="sm"
                 icon="arrow-up-right-01"
                 :label="__('app/settings/teams/listing/index.preview_page')"
                 wire:navigate

@@ -53,7 +53,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
             <x-ui.button
                 variant="outline"
-                size="xs"
+                size="sm"
                 icon="arrow-up-right-01"
                 :label="__('app/settings/teams/listing/details.preview_page')"
                 :href="$this->tool ? route('tools.show', $this->tool) : null"
