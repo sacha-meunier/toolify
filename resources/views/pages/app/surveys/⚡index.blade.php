@@ -82,7 +82,7 @@ new class extends Component
 };
 ?>
 
-<div class="flex flex-col">
+<div class="flex flex-1 flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[__('app/surveys.breadcrumb_root') => null, $this->scopeLabel => null]"/>
 
@@ -98,13 +98,15 @@ new class extends Component
         @endif
     </x-domain.app.topbar>
 
-    <div class="flex flex-col gap-6 px-4 py-6 lg:px-8 lg:py-8">
+    <div class="flex flex-1 flex-col gap-6 px-4 py-6 lg:px-8 lg:py-8">
         @if ($this->scope === 'workspace' && ! $this->workspace)
-            <x-domain.app.empty-state
-                icon="tool-view"
-                :title="__('app/surveys.no_workspace_title')"
-                :description="__('app/surveys.no_workspace_description')"
-            />
+            <div class="flex flex-1 items-center justify-center">
+                <x-domain.app.empty-state
+                    icon="tool-view"
+                    :title="__('app/surveys.no_workspace_title')"
+                    :description="__('app/surveys.no_workspace_description')"
+                />
+            </div>
         @else
             <x-domain.app.survey-list
                 :surveys="$this->surveys"

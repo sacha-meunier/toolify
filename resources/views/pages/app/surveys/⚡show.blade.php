@@ -66,7 +66,7 @@ new class extends Component
 };
 ?>
 
-<div class="flex flex-col">
+<div class="flex flex-1 flex-col">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[__('app/surveys/show.breadcrumb_root') => route('surveys.personal'), $this->scopeLabel => $this->scopeUrl, $survey->name => null]"/>
 
@@ -80,7 +80,7 @@ new class extends Component
         </x-slot:actions>
     </x-domain.app.topbar>
 
-    <div class="flex flex-col gap-6 px-4 py-6 lg:px-8 lg:py-8">
+    <div class="flex flex-1 flex-col gap-6 px-4 py-6 lg:px-8 lg:py-8">
         @if ($this->tools->isNotEmpty())
             <div class="flex flex-col divide-y border border-border rounded-md">
                 @foreach ($this->tools as $tool)
@@ -88,21 +88,23 @@ new class extends Component
                 @endforeach
             </div>
         @else
-            <x-domain.app.empty-state
-                icon="search-01"
-                :title="__('app/surveys/show.empty_title')"
-                :description="__('app/surveys/show.empty_description')"
-            >
-                <div class="flex items-center gap-2 mt-2">
-                    <x-ui.button
-                        variant="secondary"
-                        icon="pen-01"
-                        :label="__('app/surveys/show.cta_edit_survey')"
-                        wire:click="openSurveyForm({{ $survey->id }})"
-                    />
-                    <x-ui.button variant="outline" :label="__('app/surveys/show.cta_notification_settings')" :href="route('settings.account.notifications')" wire:navigate/>
-                </div>
-            </x-domain.app.empty-state>
+            <div class="flex flex-1 items-center justify-center">
+                <x-domain.app.empty-state
+                    icon="search-01"
+                    :title="__('app/surveys/show.empty_title')"
+                    :description="__('app/surveys/show.empty_description')"
+                >
+                    <div class="flex items-center gap-2 mt-2">
+                        <x-ui.button
+                            variant="secondary"
+                            icon="pen-01"
+                            :label="__('app/surveys/show.cta_edit_survey')"
+                            wire:click="openSurveyForm({{ $survey->id }})"
+                        />
+                        <x-ui.button variant="outline" :label="__('app/surveys/show.cta_notification_settings')" :href="route('settings.account.notifications')" wire:navigate/>
+                    </div>
+                </x-domain.app.empty-state>
+            </div>
         @endif
     </div>
 

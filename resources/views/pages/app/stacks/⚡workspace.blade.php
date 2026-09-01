@@ -21,14 +21,14 @@ new class extends Component
 };
 ?>
 
-<div class="flex flex-col">
+<div class="flex flex-1 flex-col">
     <x-domain.app.topbar>
         <p class="truncate text-sm font-medium text-foreground">
             {{ $this->workspace ? __('app/stacks/workspace.title', ['name' => $this->workspace->name]) : __('app/stacks/workspace.title_fallback') }}
         </p>
     </x-domain.app.topbar>
 
-    <div class="flex flex-col gap-6 px-4 py-6 lg:px-8 lg:py-8">
+    <div class="flex flex-1 flex-col gap-6 px-4 py-6 lg:px-8 lg:py-8">
         @if ($this->workspace)
             <x-domain.app.tool-list
                 :tools="$this->tools"
@@ -37,11 +37,13 @@ new class extends Component
                 :empty-description="__('app/stacks/workspace.empty_description')"
             />
         @else
-            <x-domain.app.empty-state
-                icon="layer"
-                :title="__('app/stacks/workspace.no_workspace_title')"
-                :description="__('app/stacks/workspace.no_workspace_description')"
-            />
+            <div class="flex flex-1 items-center justify-center">
+                <x-domain.app.empty-state
+                    icon="layer"
+                    :title="__('app/stacks/workspace.no_workspace_title')"
+                    :description="__('app/stacks/workspace.no_workspace_description')"
+                />
+            </div>
         @endif
     </div>
 </div>

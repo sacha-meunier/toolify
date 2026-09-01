@@ -122,7 +122,7 @@ new class extends Component
 ?>
 
 <div
-    class="flex flex-col"
+    class="flex flex-1 flex-col"
     x-data
     x-init="
         $wire.syncRecentSearches(JSON.parse(localStorage.getItem('toolify:recent-searches') ?? '[]'));
@@ -131,7 +131,7 @@ new class extends Component
 >
     <x-domain.app.topbar.search wire:model.live.debounce.300ms="search" :filters="$filters"/>
 
-    <div class="flex flex-col gap-6 px-4 lg:px-8">
+    <div class="flex flex-1 flex-col gap-6 px-4 lg:px-8">
         @if ($search !== '' || $this->hasActiveFilters)
             <section>
                 <header class="flex items-center justify-between py-3">
@@ -148,20 +148,18 @@ new class extends Component
                     @endforelse
                 </div>
             </section>
-        @else
+        @elseif (count($recentSearches))
             <section>
                 <header class="flex flex-col items-start gap-2 py-3 lg:flex-row lg:items-center lg:justify-between">
                     <h2 class="text-lg font-semibold text-foreground">{{ __('app/search.recent_searches_heading') }}</h2>
-                    @if (count($recentSearches))
-                        <div class="flex w-full flex-wrap items-center gap-2 lg:w-auto">
-                            <x-ui.button variant="secondary" icon="tool-view" :label="__('app/search.save_all_as_surveys')" wire:click="saveAllRecentSearchesAsSurveys"/>
-                            <x-ui.button :label="__('app/search.clear_history')" wire:click="clearRecentSearches"/>
-                        </div>
-                    @endif
+                    <div class="flex w-full flex-wrap items-center gap-2 lg:w-auto">
+                        <x-ui.button variant="secondary" icon="tool-view" :label="__('app/search.save_all_as_surveys')" wire:click="saveAllRecentSearchesAsSurveys"/>
+                        <x-ui.button :label="__('app/search.clear_history')" wire:click="clearRecentSearches"/>
+                    </div>
                 </header>
 
                 <div class="flex flex-col gap-5 py-3.5 border border-border rounded-md">
-                    @forelse ($recentSearches as $recentSearch)
+                    @foreach ($recentSearches as $recentSearch)
                         {{-- item--}}
                         <div class="flex flex-wrap items-start gap-y-2">
                             <div class="flex min-w-0 flex-1 items-center">
@@ -194,23 +192,23 @@ new class extends Component
                                 <x-ui.button variant="ghost" size="sm" icon="more-horizontal-square-01"/>
                             </div>
                         </div>
-                    @empty
-                        <x-domain.app.empty-state
-                            icon="search-01"
-                            :title="__('app/search.empty_state_title')"
-                            :description="__('app/search.empty_state_description')"
-                        />
-                    @endforelse
+                    @endforeach
                 </div>
 
-                @if (count($recentSearches))
-                    <footer class="py-4">
-                        <p class="text-sm text-muted-foreground">{{ __('app/search.retention_note') }}</p>
-                    </footer>
-                @endif
+                <footer class="py-4">
+                    <p class="text-sm text-muted-foreground">{{ __('app/search.retention_note') }}</p>
+                </footer>
             </section>
 
             {{-- TODO : Add recent surveys --}}
+        @else
+            <div class="flex flex-1 items-center justify-center">
+                <x-domain.app.empty-state
+                    icon="search-01"
+                    :title="__('app/search.empty_state_title')"
+                    :description="__('app/search.empty_state_description')"
+                />
+            </div>
         @endif
     </div>
 

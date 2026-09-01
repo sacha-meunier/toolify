@@ -6,7 +6,7 @@
 ])
 
 @if ($tools->isEmpty())
-    <div class="border border-border rounded-md">
+    <div class="flex flex-1 items-center justify-center">
         <x-domain.app.empty-state :icon="$emptyIcon" :title="$emptyTitle" :description="$emptyDescription"/>
     </div>
 @else

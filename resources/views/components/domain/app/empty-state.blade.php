@@ -4,7 +4,7 @@
     'description' => null,
 ])
 
-<div class="flex flex-col items-center justify-center gap-3 px-4 py-12 text-center">
+<div class="flex flex-col items-center gap-3 px-4 py-12 text-center">
     <x-dynamic-component :component="'ui.icon.'.$icon" class="size-8 text-muted-foreground"/>
 
     <div class="flex flex-col gap-1">
