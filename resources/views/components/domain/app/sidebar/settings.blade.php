@@ -20,7 +20,7 @@
             icon="arrow-left-01"
             :href="route('search')"
             wire:navigate
-            class="w-full justify-start gap-2 px-2 font-normal text-sidebar-foreground hover:bg-sidebar-accent/45 hover:text-sidebar-accent-foreground"
+            class="w-full justify-start gap-2 px-2 font-normal text-sidebar-foreground hover:bg-sidebar-accent-hover hover:text-sidebar-accent-foreground"
         >
             {{ __('app/components/sidebar/settings.back_to_app_button') }}
         </x-ui.button>

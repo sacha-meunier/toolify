@@ -19,7 +19,7 @@
     wire:navigate
     {{ $attributes->except('href')->class([
         'w-full justify-start gap-2 rounded-md px-2 font-normal',
-        'text-sidebar-foreground hover:bg-sidebar-accent/45 hover:text-sidebar-accent-foreground' => ! $active,
+        'text-sidebar-foreground hover:bg-sidebar-accent-hover hover:text-sidebar-accent-foreground' => ! $active,
         'bg-sidebar-accent font-medium text-sidebar-accent-foreground' => $active,
     ]) }}
 >
