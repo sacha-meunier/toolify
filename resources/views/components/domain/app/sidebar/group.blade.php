@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <div class="flex w-full flex-col items-start">
+    <div class="flex w-full flex-col items-start gap-0.5">
         {{ $slot }}
     </div>
 </div>
