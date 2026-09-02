@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Forms\Settings\TeamCreateForm;
+use App\Models\Team;
 use App\Models\Workspace;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Layout;
