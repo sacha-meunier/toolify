@@ -49,6 +49,25 @@
 
     <div class="flex shrink-0 items-center justify-between px-4 py-3.5">
         <x-domain.app.sidebar.account/>
-        <x-ui.button variant="outline" size="icon-xs" :label="__('app/components/sidebar.help_button')"/>
+
+        <div class="relative" x-data="{ open: false }" @click.outside="open = false">
+            <x-ui.button
+                variant="outline"
+                size="icon-xs"
+                :label="__('app/components/sidebar.help_button')"
+                @click="open = !open"
+            />
+
+            <x-ui.dropdown-panel
+                x-show="open"
+                origin="bottom-right"
+                class="absolute right-0 bottom-full z-20 mb-1.5 w-48 overflow-visible rounded-md border border-border bg-popover p-1 shadow-xs"
+            >
+                <x-ui.button :href="route('public.homepage')" variant="ghost" class="w-full justify-between">
+                    <span class="flex-1 text-left">{{ __('app/components/sidebar.help_homepage_link') }}</span>
+                    <x-ui.icon.arrow-up-right-01 size="xs" stroke-width="1.5" class="text-muted-foreground"/>
+                </x-ui.button>
+            </x-ui.dropdown-panel>
+        </div>
     </div>
 </aside>

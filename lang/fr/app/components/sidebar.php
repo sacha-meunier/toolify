@@ -10,4 +10,5 @@ return [
     'stack' => 'Stack',
     'surveys' => 'Veilles',
     'help_button' => '?',
+    'help_homepage_link' => 'Page d\'accueil',
 ];

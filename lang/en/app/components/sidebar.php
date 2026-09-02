@@ -10,4 +10,5 @@ return [
     'stack' => 'Stack',
     'surveys' => 'Surveys',
     'help_button' => '?',
+    'help_homepage_link' => 'Homepage',
 ];

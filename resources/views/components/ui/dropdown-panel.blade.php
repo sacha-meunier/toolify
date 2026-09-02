@@ -1,5 +1,5 @@
 @props([
-    'origin' => 'top-left', // top-left, top-right, top, bottom-left
+    'origin' => 'top-left', // top-left, top-right, top, bottom-left, bottom-right
 ])
 
 @php
@@ -7,6 +7,7 @@
         'top-right' => 'origin-top-right',
         'top' => 'origin-top',
         'bottom-left' => 'origin-bottom-left',
+        'bottom-right' => 'origin-bottom-right',
         default => 'origin-top-left',
     };
 @endphp
