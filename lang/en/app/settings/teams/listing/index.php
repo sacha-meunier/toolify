@@ -6,7 +6,7 @@ return [
     'breadcrumb_listing' => 'Listing',
     'preview_page' => 'Preview page',
     'heading' => 'Listing',
-    'description' => "Fill in your company's details to allow people to find your products.",
+    'description' => 'Fill in your tool\'s details to help people discover and evaluate it.',
 
     'visibility_status_public' => 'Public and listed in search.',
     'visibility_status_unlisted' => 'Unlisted, accessible via direct link only.',
@@ -33,20 +33,12 @@ return [
     'danger_zone_label' => 'Danger zone',
     'danger_zone_description' => 'Unpublish, reset or delete this listing.',
 
-    'benefits_section_label' => "What you'll get",
-    'benefits_section_description' => 'Listing :name unlocks the following advantages:',
-    'discoverability_label' => 'Discoverability',
-    'discoverability_description' => ':name becomes indexed in Search.',
-    'reply_to_reviews_label' => 'Reply to reviews',
-    'reply_to_reviews_description' => 'Engage publicly with the reviews left on :name.',
-    'followers_feed_label' => 'Followers feed',
-    'followers_feed_description' => 'Followers receive your activity, updates, new releases and changelog entries in their inbox.',
-
     'published_section_label' => 'What gets published',
     'published_section_description' => 'Only the information filled in the listing is publicly available.',
     'published_identity_description' => "Name, logo, tagline, description and categories become visible on :name's page.",
     'published_details_description' => 'Founded year, headquarters, headcount and status appear as details on the page.',
     'published_links_description' => 'Website, GitHub, X/Twitter, App Store and Play Store links become clickable on the page.',
+    'published_gallery_description' => 'Banner and screenshots become visible on the page.',
 
     'ready_section_label' => 'Ready when you are',
     'setup_listing_label' => 'Setup the listing of :name',

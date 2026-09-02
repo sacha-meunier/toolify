@@ -32,6 +32,10 @@
     --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
     --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
 
+    /* Scale values used across interaction animations (never animate from/to scale(0)) */
+    --scale-fade-initial: 0.98;
+    --scale-fade-final: 1;
+
     /* Box-shadow scale */
     --shadow-2xs: var(--shadow-2xs);
     --shadow-xs: var(--shadow-xs);
@@ -293,33 +297,35 @@ html:active-view-transition-type(backward) {
     }
 }
 
-/* Plain cross-fade, no horizontal movement, used when there's no directionality to convey
-   (e.g. revealing the listing setup wizard). Slower than the slide transitions above so it reads
-   as deliberate rather than a flicker. */
+/* Cross-fade with a scale animation, no horizontal movement. */
 html:active-view-transition-type(fade) {
     &::view-transition-old(content) {
-        animation: fade-out 700ms forwards;
+        animation: fade-out 180ms var(--ease-in-out-strong) forwards;
     }
     &::view-transition-new(content) {
-        animation: fade-in 700ms forwards;
+        animation: fade-in 320ms var(--ease-out-strong) 80ms backwards;
     }
 }
 
 @keyframes fade-in {
     from {
         opacity: 0;
+        transform: scale(var(--scale-fade-initial));
     }
     to {
         opacity: 1;
+        transform: scale(var(--scale-fade-final));
     }
 }
 
 @keyframes fade-out {
     from {
         opacity: 1;
+        transform: scale(var(--scale-fade-final));
     }
     to {
         opacity: 0;
+        transform: scale(var(--scale-fade-initial));
     }
 }
 

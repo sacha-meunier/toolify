@@ -281,16 +281,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
             </div>
         @else
             <div wire:key="listing-empty" class="flex flex-col gap-8">
-                <x-domain.app.settings.section :label="__('app/settings/teams/listing/index.benefits_section_label')" :description="__('app/settings/teams/listing/index.benefits_section_description', ['name' => $team->name])">
-                    <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/index.discoverability_label')" :description="__('app/settings/teams/listing/index.discoverability_description', ['name' => $team->name])"/>
-                    <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/index.reply_to_reviews_label')" :description="__('app/settings/teams/listing/index.reply_to_reviews_description', ['name' => $team->name])"/>
-                    <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/index.followers_feed_label')" :description="__('app/settings/teams/listing/index.followers_feed_description')"/>
-                </x-domain.app.settings.section>
-
                 <x-domain.app.settings.section :label="__('app/settings/teams/listing/index.published_section_label')" :description="__('app/settings/teams/listing/index.published_section_description')">
                     <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/index.identity_label')" :description="__('app/settings/teams/listing/index.published_identity_description', ['name' => $team->name])"/>
                     <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/index.details_label')" :description="__('app/settings/teams/listing/index.published_details_description')"/>
                     <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/index.links_label')" :description="__('app/settings/teams/listing/index.published_links_description')"/>
+                    <x-domain.app.settings.section-content :label="__('app/settings/teams/listing/index.gallery_label')" :description="__('app/settings/teams/listing/index.published_gallery_description')"/>
                 </x-domain.app.settings.section>
 
                 <x-domain.app.settings.section :label="__('app/settings/teams/listing/index.ready_section_label')">
