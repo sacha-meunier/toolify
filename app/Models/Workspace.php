@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 /**
@@ -65,6 +66,18 @@ class Workspace extends Model
     public function hasMember(User $user): bool
     {
         return $this->owner_id === $user->id || $this->members()->whereKey($user->id)->exists();
+    }
+
+    /**
+     * Remove a member from the workspace and from every team within it.
+     */
+    public function removeMember(User $user): void
+    {
+        DB::transaction(function () use ($user) {
+            $this->members()->detach($user);
+
+            $this->teams->each(fn (Team $team) => $team->members()->detach($user));
+        });
     }
 
     /**

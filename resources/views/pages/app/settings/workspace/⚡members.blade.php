@@ -86,7 +86,7 @@ class extends Component {
     {
         Gate::authorize('manageMembers', $this->workspace);
 
-        $this->workspace->members()->detach($user);
+        $this->workspace->removeMember($user);
 
         unset($this->members);
     }
