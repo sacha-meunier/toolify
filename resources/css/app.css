@@ -35,6 +35,8 @@
     /* Scale values used across interaction animations (never animate from/to scale(0)) */
     --scale-fade-initial: 0.98;
     --scale-fade-final: 1;
+    --scale-press: 0.97;
+    --scale-press-icon: 0.9;
 
     /* Box-shadow scale */
     --shadow-2xs: var(--shadow-2xs);

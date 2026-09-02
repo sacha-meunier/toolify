@@ -45,7 +45,7 @@
                                 <button
                                     type="button"
                                     wire:click="toggleSurveyFormFilter('{{ $type['group'] }}', '{{ $case->value }}')"
-                                    class="flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs {{ in_array($case->value, $surveyForm->filters[$type['group']], true) ? 'border-primary bg-primary text-primary-foreground' : 'border-border text-foreground hover:bg-muted' }}"
+                                    class="flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-(--scale-press) {{ in_array($case->value, $surveyForm->filters[$type['group']], true) ? 'border-primary bg-primary text-primary-foreground' : 'border-border text-foreground hover:bg-muted' }}"
                                 >
                                     {{ $case->label() }}
                                 </button>

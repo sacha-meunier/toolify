@@ -11,7 +11,10 @@
 ])
 
 @php
-    $baseClasses = "relative inline-flex items-center justify-center font-medium whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none &_svg]:pointer-events-none extend-touch-target shrink-0";
+    $isIconOnly = str_starts_with($size, 'icon');
+
+    $baseClasses = 'relative inline-flex items-center justify-center font-medium whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none &_svg]:pointer-events-none extend-touch-target shrink-0 transition-transform duration-150 ease-out '
+        .($isIconOnly ? 'active:scale-(--scale-press-icon)' : 'active:scale-(--scale-press)');
 
     $sizeClasses = match ($size) {
         'xs' => 'h-6 text-xs rounded-md gap-1 px-2',
