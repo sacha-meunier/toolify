@@ -27,7 +27,7 @@
 
         <div class="flex min-w-0 flex-1 flex-col gap-0.5">
             @if ($label)
-                <p class="text-xs font-semibold text-foreground">
+                <p class="text-xs font-semibold text-balance text-foreground">
                     {{ $label }}
                     @if ($required)
                         <span class="text-destructive" aria-hidden="true">*</span>
@@ -37,7 +37,7 @@
             @endif
 
             @if ($description)
-                <p class="text-xs text-muted-foreground">{{ $description }}</p>
+                <p class="text-xs text-balance text-muted-foreground">{{ $description }}</p>
             @endif
         </div>
     </div>
