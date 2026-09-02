@@ -44,7 +44,15 @@ new class extends Component
 
                 <div class="px-12">
                     @if ($tool->banner_url)
-                        <img src="{{ $tool->banner_url }}" alt="" class="h-[225px] w-full rounded-t-md object-cover">
+                        <img
+                            src="{{ $tool->banner_url }}"
+                            alt=""
+                            x-data="{ portrait: false }"
+                            x-init="if ($el.complete) portrait = $el.naturalHeight > $el.naturalWidth"
+                            x-on:load="portrait = $el.naturalHeight > $el.naturalWidth"
+                            :class="portrait ? 'mx-auto w-auto max-w-full' : 'w-full'"
+                            class="h-[225px] rounded-t-md object-cover"
+                        >
                     @else
                         <div class="h-[225px] w-full rounded-t-md bg-muted"></div>
                     @endif
