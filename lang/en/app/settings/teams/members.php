@@ -13,6 +13,7 @@ return [
     'joined_on' => 'Joined :date',
 
     'delete' => 'Delete',
+    'remove_member_modal_heading' => 'Remove member',
     'remove_member_confirm' => 'Remove :member from :team?',
 
     'invite_modal_heading' => 'Invite member',
@@ -27,5 +28,6 @@ return [
     'status_cancelled' => 'Cancelled',
     'invited_on' => 'Invited :date',
     'hide_invitation' => 'Hide from list',
+    'dismiss_invitation_modal_heading' => 'Hide invitation',
     'dismiss_invitation_confirm' => 'Hide :email from this list? Their invitation stays active and they can still join with it.',
 ];

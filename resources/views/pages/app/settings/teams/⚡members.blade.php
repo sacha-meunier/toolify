@@ -117,7 +117,7 @@ class extends Component {
 };
 ?>
 
-<div class="flex flex-col">
+<div class="flex flex-col" x-data="{ confirmMemberId: null, confirmMemberMessage: null, confirmMemberOpen: false, confirmInvitationId: null, confirmInvitationMessage: null, confirmInvitationOpen: false }">
     <x-domain.app.topbar>
         <x-domain.app.topbar.breadcrumb :items="[
             __('app/settings/teams/members.breadcrumb_settings') => null,
@@ -174,8 +174,12 @@ class extends Component {
                                 >
                                     <button
                                         type="button"
-                                        wire:click="removeMember({{ $member->user->id }})"
-                                        wire:confirm="{{ __('app/settings/teams/members.remove_member_confirm', ['member' => $member->user->name, 'team' => $team->name]) }}"
+                                        @click="
+                                            open = false;
+                                            confirmMemberId = {{ $member->user->id }};
+                                            confirmMemberMessage = @js(__('app/settings/teams/members.remove_member_confirm', ['member' => $member->user->name, 'team' => $team->name]));
+                                            confirmMemberOpen = true
+                                        "
                                         class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
                                     >
                                         <x-ui.icon.delete-02 size="sm" class="shrink-0"/>
@@ -227,8 +231,12 @@ class extends Component {
                                     >
                                         <button
                                             type="button"
-                                            wire:click="dismissInvitation({{ $invitation->id }})"
-                                            wire:confirm="{{ __('app/settings/teams/members.dismiss_invitation_confirm', ['email' => $invitation->email]) }}"
+                                            @click="
+                                                open = false;
+                                                confirmInvitationId = {{ $invitation->id }};
+                                                confirmInvitationMessage = @js(__('app/settings/teams/members.dismiss_invitation_confirm', ['email' => $invitation->email]));
+                                                confirmInvitationOpen = true
+                                            "
                                             class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                                         >
                                             <x-ui.icon.eye-off size="sm" class="shrink-0"/>
@@ -262,4 +270,28 @@ class extends Component {
             </div>
         </form>
     </x-ui.modal>
+
+    <x-ui.confirm-modal
+        show="confirmMemberOpen"
+        :heading="__('app/settings/teams/members.remove_member_modal_heading')"
+        :cancel-label="__('app/settings/teams/members.cancel')"
+    >
+        <x-slot:body>
+            <p class="text-sm text-muted-foreground" x-text="confirmMemberMessage"></p>
+        </x-slot:body>
+
+        <x-ui.button variant="destructive" :label="__('app/settings/teams/members.delete')" @click="$wire.call('removeMember', confirmMemberId); confirmMemberOpen = false"/>
+    </x-ui.confirm-modal>
+
+    <x-ui.confirm-modal
+        show="confirmInvitationOpen"
+        :heading="__('app/settings/teams/members.dismiss_invitation_modal_heading')"
+        :cancel-label="__('app/settings/teams/members.cancel')"
+    >
+        <x-slot:body>
+            <p class="text-sm text-muted-foreground" x-text="confirmInvitationMessage"></p>
+        </x-slot:body>
+
+        <x-ui.button variant="primary" :label="__('app/settings/teams/members.hide_invitation')" @click="$wire.call('dismissInvitation', confirmInvitationId); confirmInvitationOpen = false"/>
+    </x-ui.confirm-modal>
 </div>

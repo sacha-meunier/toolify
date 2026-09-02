@@ -30,6 +30,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
         $this->dispatch('tool-saved');
     }
+
+    public function deleteLogo(): void
+    {
+        $this->form->deleteLogo();
+    }
 };
 ?>
 

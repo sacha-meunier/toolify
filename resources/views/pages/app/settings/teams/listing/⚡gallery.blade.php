@@ -219,29 +219,18 @@ new #[Layout('layouts::shells.settings')] class extends Component
         :next-label="__('app/settings/teams/listing/gallery.nav_next_label')"
     />
 
-    {{-- Remove image confirmation --}}
-    <div x-show="confirmRemoveOpen" x-cloak x-transition.opacity class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-        <div
-            x-show="confirmRemoveOpen"
-            @click.outside="confirmRemoveOpen = false"
-            @keydown.escape.window="confirmRemoveOpen = false"
-            class="flex w-full max-w-md flex-col gap-5 rounded-lg border border-border bg-popover p-6 shadow-lg"
-        >
-            <header class="flex flex-col gap-1">
-                <h2 class="text-lg font-semibold text-foreground">{{ __('app/settings/teams/listing/gallery.remove_modal_heading') }}</h2>
-                <p class="text-sm text-muted-foreground">{{ __('app/settings/teams/listing/gallery.remove_modal_description') }}</p>
-            </header>
-
-            <div class="flex items-center justify-end gap-2">
-                <x-ui.button variant="outline" :label="__('app/settings/teams/listing/gallery.cancel')" @click="confirmRemoveOpen = false"/>
-                <x-ui.button
-                    variant="destructive"
-                    :label="__('app/settings/teams/listing/gallery.remove')"
-                    @click="confirmRemoveType === 'banner' ? $wire.call('removeBanner') : $wire.call('removeImage', confirmRemoveIndex); confirmRemoveOpen = false"
-                />
-            </div>
-        </div>
-    </div>
+    <x-ui.confirm-modal
+        show="confirmRemoveOpen"
+        :heading="__('app/settings/teams/listing/gallery.remove_modal_heading')"
+        :description="__('app/settings/teams/listing/gallery.remove_modal_description')"
+        :cancel-label="__('app/settings/teams/listing/gallery.cancel')"
+    >
+        <x-ui.button
+            variant="destructive"
+            :label="__('app/settings/teams/listing/gallery.remove')"
+            @click="confirmRemoveType === 'banner' ? $wire.call('removeBanner') : $wire.call('removeImage', confirmRemoveIndex); confirmRemoveOpen = false"
+        />
+    </x-ui.confirm-modal>
 
     <x-ui.lightbox :label="__('app/settings/teams/listing/gallery.close')"/>
 </div>

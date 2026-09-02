@@ -7,4 +7,6 @@ return [
     'duplicate' => 'Dupliquer',
     'delete' => 'Supprimer',
     'confirm_delete' => 'Supprimer cette veille ? Cette action est irréversible.',
+    'confirm_delete_heading' => 'Supprimer la veille',
+    'cancel' => 'Annuler',
 ];

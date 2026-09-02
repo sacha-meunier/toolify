@@ -10,7 +10,7 @@
     'removeLabel' => null,
 ])
 
-<div class="relative shrink-0" x-data="{ open: false }" @click.outside="open = false">
+<div class="relative shrink-0" x-data="{ open: false, confirming: false }" @click.outside="open = false">
     <div
         role="button"
         tabindex="0"
@@ -47,14 +47,11 @@
         @if ($hasPreview || $hasPersisted)
             <button
                 type="button"
-                @click="open = false"
                 @if ($hasPreview)
+                    @click="open = false"
                     wire:click="$set('{{ $previewModel }}', null)"
                 @else
-                    wire:click="{{ $deleteAction }}"
-                    @if ($deleteConfirm)
-                        wire:confirm="{{ $deleteConfirm }}"
-                    @endif
+                    @click="open = false; confirming = true"
                 @endif
                 class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
             >
@@ -63,4 +60,10 @@
             </button>
         @endif
     </div>
+
+    @if ($hasPersisted && $deleteConfirm)
+        <x-ui.confirm-modal :heading="$deleteConfirm" :cancel-label="__('components/ui/avatar-picker.cancel')">
+            <x-ui.button variant="destructive" :label="$removeLabel" wire:click="{{ $deleteAction }}" @click="confirming = false"/>
+        </x-ui.confirm-modal>
+    @endif
 </div>

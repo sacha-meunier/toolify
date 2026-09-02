@@ -78,33 +78,22 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 </x-domain.app.settings.section-content>
             </x-domain.app.settings.section>
 
-            <div x-show="confirming" x-cloak x-transition.opacity class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-                <div
-                    x-show="confirming"
-                    @click.outside="confirming = false"
-                    @keydown.escape.window="confirming = false"
-                    class="flex w-full max-w-md flex-col gap-5 rounded-lg border border-border bg-popover p-6 shadow-lg"
-                >
-                    <header class="flex flex-col gap-1">
-                        <h2 class="text-lg font-semibold text-foreground">{{ __('app/settings/teams/listing/danger-zone.modal_heading') }}</h2>
-                        <p class="text-sm text-muted-foreground">
-                            {{ __('app/settings/teams/listing/danger-zone.modal_description', ['name' => $team->name]) }}
-                        </p>
-                    </header>
-
+            <x-ui.confirm-modal
+                :heading="__('app/settings/teams/listing/danger-zone.modal_heading')"
+                :description="__('app/settings/teams/listing/danger-zone.modal_description', ['name' => $team->name])"
+                :cancel-label="__('app/settings/teams/listing/danger-zone.cancel')"
+            >
+                <x-slot:body>
                     <div class="flex flex-col gap-1">
                         <x-ui.input type="text" autocomplete="off" :placeholder="__('app/settings/teams/listing/danger-zone.confirmation_placeholder')" wire:model="form.confirmation" wire:keydown.enter="delete"/>
                         @error('form.confirmation')
                         <x-ui.field.error>{{ $message }}</x-ui.field.error>
                         @enderror
                     </div>
+                </x-slot:body>
 
-                    <div class="flex items-center justify-end gap-2">
-                        <x-ui.button variant="outline" :label="__('app/settings/teams/listing/danger-zone.cancel')" @click="confirming = false"/>
-                        <x-ui.button variant="destructive" :label="__('app/settings/teams/listing/danger-zone.remove_listing_button')" wire:click="delete"/>
-                    </div>
-                </div>
-            </div>
+                <x-ui.button variant="destructive" :label="__('app/settings/teams/listing/danger-zone.remove_listing_button')" wire:click="delete"/>
+            </x-ui.confirm-modal>
         </div>
     </div>
 

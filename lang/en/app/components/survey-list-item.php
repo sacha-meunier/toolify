@@ -7,4 +7,6 @@ return [
     'duplicate' => 'Duplicate',
     'delete' => 'Delete',
     'confirm_delete' => "Delete this survey? This can't be undone.",
+    'confirm_delete_heading' => 'Delete survey',
+    'cancel' => 'Cancel',
 ];

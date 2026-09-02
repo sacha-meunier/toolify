@@ -17,6 +17,7 @@ return [
     'joined_on' => 'A rejoint le :date',
 
     'delete' => 'Supprimer',
+    'remove_member_modal_heading' => 'Retirer le membre',
     'remove_member_confirm' => 'Retirer :member de :workspace ?',
 
     'invite_modal_heading' => 'Inviter un membre',
@@ -31,5 +32,6 @@ return [
     'status_cancelled' => 'Annulée',
     'invited_on' => 'Invité(e) le :date',
     'hide_invitation' => 'Masquer de la liste',
+    'dismiss_invitation_modal_heading' => 'Masquer l’invitation',
     'dismiss_invitation_confirm' => 'Masquer :email de cette liste ? Son invitation reste active et cette personne peut toujours l’utiliser pour rejoindre.',
 ];

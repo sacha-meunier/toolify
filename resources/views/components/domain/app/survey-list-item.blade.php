@@ -16,7 +16,7 @@
         <p class="shrink-0 text-sm text-muted-foreground">{{ trans_choice('app/components/survey-list-item.tools_count', $toolsCount, ['count' => $toolsCount]) }}</p>
         <p class="w-24 shrink-0 text-right text-sm text-muted-foreground">{{ $survey->last_visited_at?->diffForHumans() ?? __('app/components/survey-list-item.never_visited') }}</p>
 
-        <div class="relative shrink-0" x-data="{ open: false }" @click.outside="open = false">
+        <div class="relative shrink-0" x-data="{ open: false, confirming: false }" @click.outside="open = false">
             <x-ui.button variant="ghost" size="icon-sm" icon="more-horizontal-square-01" @click="open = !open"/>
 
             <div
@@ -49,8 +49,7 @@
 
                 <button
                     type="button"
-                    wire:click="delete({{ $survey->id }})"
-                    wire:confirm="{{ __('app/components/survey-list-item.confirm_delete') }}"
+                    @click="open = false; confirming = true"
                     class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
                 >
                     <x-ui.icon.delete-02 size="sm" class="shrink-0"/>
@@ -58,5 +57,13 @@
                 </button>
             </div>
         </div>
+
+        <x-ui.confirm-modal
+            :heading="__('app/components/survey-list-item.confirm_delete_heading')"
+            :description="__('app/components/survey-list-item.confirm_delete')"
+            :cancel-label="__('app/components/survey-list-item.cancel')"
+        >
+            <x-ui.button variant="destructive" :label="__('app/components/survey-list-item.delete')" wire:click="delete({{ $survey->id }})" @click="confirming = false"/>
+        </x-ui.confirm-modal>
     </div>
 </div>
