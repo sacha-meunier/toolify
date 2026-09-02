@@ -88,7 +88,7 @@ new class extends Component
         >
             <x-ui.icon.checkmark-circle-02
                 size="sm"
-                class="shrink-0 {{ $this->inPersonalStack() ? 'text-primary' : 'text-transparent' }}"
+                class="shrink-0 transition-colors duration-150 ease-out {{ $this->inPersonalStack() ? 'text-primary' : 'text-transparent' }}"
             />
             <span class="truncate">{{ __('app/components/dropdown/add-to-stack-menu.my_stack') }}</span>
         </button>
@@ -103,7 +103,7 @@ new class extends Component
             >
                 <x-ui.icon.checkmark-circle-02
                     size="sm"
-                    class="shrink-0 {{ $this->inWorkspaceStack() ? 'text-primary' : 'text-transparent' }}"
+                    class="shrink-0 transition-colors duration-150 ease-out {{ $this->inWorkspaceStack() ? 'text-primary' : 'text-transparent' }}"
                 />
                 <span class="truncate">{{ __('app/components/dropdown/add-to-stack-menu.workspace', ['name' => $this->workspace->name]) }}</span>
             </button>
@@ -119,7 +119,7 @@ new class extends Component
                     >
                         <x-ui.icon.checkmark-circle-02
                             size="sm"
-                            class="shrink-0 {{ $this->inTeamStack($team) ? 'text-primary' : 'text-transparent' }}"
+                            class="shrink-0 transition-colors duration-150 ease-out {{ $this->inTeamStack($team) ? 'text-primary' : 'text-transparent' }}"
                         />
                         <span class="truncate">{{ __('app/components/dropdown/add-to-stack-menu.team', ['name' => $team->name]) }}</span>
                     </button>

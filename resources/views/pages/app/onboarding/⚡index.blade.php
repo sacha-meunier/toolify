@@ -162,7 +162,7 @@ class extends Component {
                 </div>
 
                 <div class="flex flex-col gap-3" role="radiogroup" aria-label="{{ __('app/onboarding/index.workspace_choice_group_label') }}">
-                    <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-border p-4 has-[:checked]:border-foreground">
+                    <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-border p-4 transition-colors duration-150 ease-out has-[:checked]:border-foreground">
                         <div class="flex flex-1 flex-col gap-0.5">
                             <p class="text-sm font-medium text-foreground">{{ __('app/onboarding/index.create_option_label') }}</p>
                             <p class="text-sm text-muted-foreground">{{ __('app/onboarding/index.create_option_description') }}</p>
@@ -170,7 +170,7 @@ class extends Component {
                         <input type="radio" wire:model="form.workspaceChoice" value="create" class="mt-0.5 size-4 accent-foreground">
                     </label>
 
-                    <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-border p-4 has-[:checked]:border-foreground">
+                    <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-border p-4 transition-colors duration-150 ease-out has-[:checked]:border-foreground">
                         <div class="flex flex-1 flex-col gap-0.5">
                             <p class="text-sm font-medium text-foreground">{{ __('app/onboarding/index.join_option_label') }}</p>
                             <p class="text-sm text-muted-foreground">{{ __('app/onboarding/index.join_option_description') }}</p>

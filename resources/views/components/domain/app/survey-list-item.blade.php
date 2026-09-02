@@ -12,11 +12,11 @@
         <p class="truncate text-sm font-medium text-foreground">"{{ $survey->name }}"</p>
     </a>
 
-    <div class="flex shrink-0 items-center gap-3 pl-7 lg:pl-0">
+    <div class="flex shrink-0 items-center gap-3 pl-7 lg:pl-0" x-data="{ open: false, confirming: false }">
         <p class="shrink-0 text-sm text-muted-foreground">{{ trans_choice('app/components/survey-list-item.tools_count', $toolsCount, ['count' => $toolsCount]) }}</p>
         <p class="w-24 shrink-0 text-right text-sm text-muted-foreground">{{ $survey->last_visited_at?->diffForHumans() ?? __('app/components/survey-list-item.never_visited') }}</p>
 
-        <div class="relative shrink-0" x-data="{ open: false, confirming: false }" @click.outside="open = false">
+        <div class="relative shrink-0" @click.outside="open = false">
             <x-ui.button variant="ghost" size="icon-sm" icon="more-horizontal-square-01" @click="open = !open"/>
 
             <x-ui.dropdown-panel

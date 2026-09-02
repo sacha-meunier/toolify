@@ -90,7 +90,7 @@
                                 >
                                     <x-ui.icon.checkmark-circle-02
                                         size="sm"
-                                        class="shrink-0 {{ in_array($case->value, $filters[$type['group']], true) ? 'text-primary' : 'text-transparent' }}"
+                                        class="shrink-0 transition-colors duration-150 ease-out {{ in_array($case->value, $filters[$type['group']], true) ? 'text-primary' : 'text-transparent' }}"
                                     />
                                     <span class="truncate">{{ $case->label() }}</span>
                                 </button>
