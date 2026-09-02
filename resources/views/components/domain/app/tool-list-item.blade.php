@@ -19,7 +19,7 @@
     </div>
 @else
     <div {{ $attributes->class('relative flex flex-wrap items-center gap-3 px-4 py-3.5 hover:bg-muted lg:flex-nowrap lg:px-6') }}>
-        <a href="{{ route('tools.show', $tool) }}" wire:navigate class="flex min-w-0 flex-1 items-center gap-3 before:absolute before:inset-0 lg:gap-6">
+        <a href="{{ route('tools.show', $tool) }}" wire:navigate class="flex min-w-0 flex-1 items-start gap-3 before:absolute before:inset-0 lg:gap-6">
             <div class="flex size-10 shrink-0 items-center justify-center rounded-xl text-sidebar-primary-foreground">
                 @if ($tool->logo_url)
                     <img src="{{ $tool->logo_url }}" alt="" class="size-full rounded-lg object-cover">
@@ -29,7 +29,7 @@
             </div>
 
             <div class="flex min-w-0 flex-1 flex-col gap-2">
-                <div class="flex min-w-0 flex-col lg:flex-row lg:items-center lg:gap-2">
+                <div class="flex min-w-0 flex-col">
                     <p class="w-full min-w-0 truncate text-sm font-medium text-foreground">{{ $tool->name }}</p>
                     <p class="w-full min-w-0 truncate text-sm text-muted-foreground">{{ $tool->tagline }}</p>
                 </div>
