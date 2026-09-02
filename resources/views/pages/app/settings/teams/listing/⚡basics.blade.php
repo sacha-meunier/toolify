@@ -108,10 +108,9 @@ new #[Layout('layouts::shells.settings')] class extends Component
                         </button>
 
                         <template x-teleport="body">
-                            <div
+                            <x-ui.dropdown-panel
                                 x-show="open"
-                                x-cloak
-                                x-transition
+                                origin="top"
                                 @click.outside="if (! $refs.trigger.contains($event.target)) open = false"
                                 x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px; width: ${position.width}px;`"
                                 class="z-50 overflow-clip rounded-lg border border-border bg-popover p-1 shadow-md"
@@ -126,7 +125,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                                         <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.visibility === option.value"/>
                                     </button>
                                 </template>
-                            </div>
+                            </x-ui.dropdown-panel>
                         </template>
 
                         @error('form.visibility')
@@ -170,10 +169,9 @@ new #[Layout('layouts::shells.settings')] class extends Component
                         </button>
 
                         <template x-teleport="body">
-                            <div
+                            <x-ui.dropdown-panel
                                 x-show="open"
-                                x-cloak
-                                x-transition
+                                origin="top"
                                 @click.outside="if (! $refs.trigger.contains($event.target)) open = false"
                                 x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px; width: ${position.width}px;`"
                                 class="z-50 overflow-clip rounded-lg border border-border bg-popover p-1 shadow-md"
@@ -188,7 +186,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                                         <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.status === option.value"/>
                                     </button>
                                 </template>
-                            </div>
+                            </x-ui.dropdown-panel>
                         </template>
 
                         @error('form.status')

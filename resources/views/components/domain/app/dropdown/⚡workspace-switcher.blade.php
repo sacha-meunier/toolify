@@ -57,10 +57,8 @@ new class extends Component
         <span class="min-w-0 flex-1 truncate text-left">{{ $this->workspace->name }}</span>
     </x-ui.button>
 
-    <div
+    <x-ui.dropdown-panel
         x-show="open"
-        x-cloak
-        x-transition
         class="absolute left-0 z-20 mt-1.5 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-popover p-1 shadow-xs lg:max-h-none lg:max-w-none lg:overflow-visible"
     >
         <div class="relative" x-data="{ expanded: false }" @mouseenter="if (window.innerWidth >= 1024) expanded = true" @mouseleave="if (window.innerWidth >= 1024) expanded = false">
@@ -76,8 +74,13 @@ new class extends Component
             <div
                 x-show="expanded"
                 x-cloak
-                x-transition
-                class="bg-muted/30 py-1 lg:absolute lg:top-0 lg:left-full lg:z-30 lg:ml-1 lg:w-56 lg:overflow-hidden lg:rounded-md lg:border lg:border-border lg:bg-popover lg:p-1 lg:shadow-xs"
+                x-transition:enter="transition ease-out-strong duration-150"
+                x-transition:enter-start="opacity-0 scale-95"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-100"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-95"
+                class="origin-top bg-muted/30 py-1 lg:absolute lg:top-0 lg:left-full lg:z-30 lg:ml-1 lg:w-56 lg:origin-top-left lg:overflow-hidden lg:rounded-md lg:border lg:border-border lg:bg-popover lg:p-1 lg:shadow-xs"
             >
                 <div class="max-h-56 overflow-y-auto">
                     @forelse ($this->workspaces as $workspace)
@@ -133,5 +136,5 @@ new class extends Component
         >
             {{ __('app/components/dropdown/workspace-switcher.settings') }}
         </a>
-    </div>
+    </x-ui.dropdown-panel>
 </div>

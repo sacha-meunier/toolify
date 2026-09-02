@@ -19,10 +19,9 @@
         <div class="relative shrink-0" x-data="{ open: false, confirming: false }" @click.outside="open = false">
             <x-ui.button variant="ghost" size="icon-sm" icon="more-horizontal-square-01" @click="open = !open"/>
 
-            <div
+            <x-ui.dropdown-panel
                 x-show="open"
-                x-cloak
-                x-transition
+                origin="top-right"
                 class="absolute right-0 z-10 mt-1.5 w-44 overflow-clip rounded-md border border-border bg-popover p-1 shadow-xs"
             >
                 <button
@@ -55,7 +54,7 @@
                     <x-ui.icon.delete-02 size="sm" class="shrink-0"/>
                     <span>{{ __('app/components/survey-list-item.delete') }}</span>
                 </button>
-            </div>
+            </x-ui.dropdown-panel>
         </div>
 
         <x-ui.confirm-modal

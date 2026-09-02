@@ -263,10 +263,9 @@ new #[Layout('layouts::shells.settings')] class extends Component
                         <x-ui.icon.arrow-down-01 size="xs" class="shrink-0 text-muted-foreground"/>
                     </div>
 
-                    <div
+                    <x-ui.dropdown-panel
                         x-show="open"
-                        x-cloak
-                        x-transition
+                        origin="top"
                         class="absolute z-10 mt-1 max-h-64 w-full overflow-y-auto rounded-lg border border-border bg-popover p-1 shadow-md"
                     >
                         <template x-for="option in options" :key="option.value">
@@ -279,7 +278,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                                 <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.categories.includes(option.value)"/>
                             </button>
                         </template>
-                    </div>
+                    </x-ui.dropdown-panel>
                 </div>
 
                 @error('form.categories')

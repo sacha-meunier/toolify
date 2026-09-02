@@ -76,10 +76,9 @@ new class extends Component
         @click="open = !open"
     />
 
-    <div
+    <x-ui.dropdown-panel
         x-show="open"
-        x-cloak
-        x-transition
+        origin="top-right"
         class="absolute right-0 z-10 mt-1.5 w-64 overflow-clip rounded-md border border-border bg-popover p-1 shadow-xs"
     >
         <button
@@ -127,5 +126,5 @@ new class extends Component
                 @endforeach
             @endif
         @endif
-    </div>
+    </x-ui.dropdown-panel>
 </div>

@@ -21,10 +21,9 @@ new class extends Component
         {{ app()->getLocale() }}
     </x-ui.button>
 
-    <div
+    <x-ui.dropdown-panel
         x-show="open"
-        x-cloak
-        x-transition
+        origin="top-right"
         class="absolute right-0 z-20 mt-1.5 w-40 overflow-visible rounded-md border border-border bg-popover p-1 shadow-xs"
     >
         @foreach (config('app.available_locales') as $code => $label)
@@ -41,5 +40,5 @@ new class extends Component
                 <span class="truncate">{{ $label }}</span>
             </button>
         @endforeach
-    </div>
+    </x-ui.dropdown-panel>
 </div>

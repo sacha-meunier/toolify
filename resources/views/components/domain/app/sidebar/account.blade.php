@@ -17,10 +17,9 @@
         @endif
     </button>
 
-    <div
+    <x-ui.dropdown-panel
         x-show="open"
-        x-cloak
-        x-transition
+        origin="bottom-left"
         class="absolute bottom-full left-0 z-20 mb-1.5 w-64 overflow-visible rounded-md border border-border bg-popover p-1 shadow-xs"
     >
         <div class="flex items-center gap-2 px-3 py-2">
@@ -52,5 +51,5 @@
                 {{ __('app/components/sidebar/account.log_out_button') }}
             </button>
         </form>
-    </div>
+    </x-ui.dropdown-panel>
 </div>

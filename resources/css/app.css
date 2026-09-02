@@ -28,6 +28,10 @@
     --tracking-wider: calc(var(--tracking-normal) + 0.05em);
     --tracking-widest: calc(var(--tracking-normal) + 0.1em);
 
+    /* Easing curves (stronger than the built-in ease-out/ease-in-out) */
+    --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+
     /* Box-shadow scale */
     --shadow-2xs: var(--shadow-2xs);
     --shadow-xs: var(--shadow-xs);
@@ -230,22 +234,21 @@
    Uses Livewire's wire:transition + #[Transition(type: ...)] on the swapping action. */
 html:active-view-transition-type(forward) {
     &::view-transition-old(content) {
-        animation: slide-out-to-left 500ms forwards;
+        animation: slide-out-to-left 350ms var(--ease-in-out-strong) forwards;
     }
     &::view-transition-new(content) {
-        animation: slide-in-from-right 500ms forwards;
+        animation: slide-in-from-right 350ms var(--ease-in-out-strong) forwards;
     }
 }
 
 html:active-view-transition-type(backward) {
     &::view-transition-old(content) {
-        animation: slide-out-to-right 500ms forwards;
+        animation: slide-out-to-right 350ms var(--ease-in-out-strong) forwards;
     }
     &::view-transition-new(content) {
-        animation: slide-in-from-left 500ms forwards;
+        animation: slide-in-from-left 350ms var(--ease-in-out-strong) forwards;
     }
 }
-
 
 @keyframes slide-in-from-right {
     from {

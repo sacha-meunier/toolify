@@ -65,10 +65,8 @@ new class extends Component
         <span class="min-w-0 flex-1 truncate text-left">{{ $this->workspace->name }}</span>
     </x-ui.button>
 
-    <div
+    <x-ui.dropdown-panel
         x-show="open"
-        x-cloak
-        x-transition
         x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px;`"
         class="z-50 w-64 overflow-hidden rounded-md border border-border bg-popover p-1 shadow-md"
     >
@@ -106,5 +104,5 @@ new class extends Component
         >
             {{ __('app/components/dropdown/workspace-switcher.create_or_join_workspace') }}
         </a>
-    </div>
+    </x-ui.dropdown-panel>
 </div>
