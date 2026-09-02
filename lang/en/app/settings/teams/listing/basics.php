@@ -17,6 +17,6 @@ return [
 
     'select_placeholder' => 'Select...',
 
-    'nav_prev_label' => 'Links',
+    'nav_prev_label' => 'Gallery',
     'nav_next_label' => 'Danger zone',
 ];

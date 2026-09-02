@@ -201,7 +201,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
     </div>
 
     <x-domain.app.settings.listing-nav
-        :prev-href="route('settings.teams.listing.links', $team)"
+        :prev-href="route('settings.teams.listing.gallery', $team)"
         :prev-label="__('app/settings/teams/listing/basics.nav_prev_label')"
         :next-href="route('settings.teams.listing.danger-zone', $team)"
         :next-label="__('app/settings/teams/listing/basics.nav_next_label')"

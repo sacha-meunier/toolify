@@ -137,7 +137,7 @@ class extends Component {
     <x-domain.app.settings.listing-nav
         :prev-href="route('settings.teams.listing.details', $team)"
         :prev-label="__('app/settings/teams/listing/links.nav_prev_label')"
-        :next-href="route('settings.teams.listing.basics', $team)"
+        :next-href="route('settings.teams.listing.gallery', $team)"
         :next-label="__('app/settings/teams/listing/links.nav_next_label')"
     />
 </div>

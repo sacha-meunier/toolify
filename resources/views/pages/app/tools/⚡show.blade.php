@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Tool;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component
@@ -14,10 +16,16 @@ new class extends Component
 
         $this->tool = $tool;
     }
+
+    #[Computed]
+    public function galleryImages(): Collection
+    {
+        return collect([$this->tool->banner_url])->merge($this->tool->gallery ?? [])->filter();
+    }
 };
 ?>
 
-<div class="flex flex-col">
+<div class="flex flex-col" x-data="{ lightboxImage: null }">
     <x-domain.app.topbar>
         <p class="truncate text-sm text-muted-foreground">
             <a href="{{ route('search') }}" wire:navigate class="hover:text-foreground">{{ __('app/tools/show.breadcrumb_search') }}</a>
@@ -74,19 +82,32 @@ new class extends Component
                     <h2 id="gallery-heading" class="text-lg font-semibold text-foreground">{{ __('app/tools/show.gallery_title', ['name' => $tool->name]) }}</h2>
                 </div>
 
-                <p class="text-base text-muted-foreground lg:w-[400px] lg:text-right">{{ __('app/tools/show.gallery_intro') }}</p>
+                @if ($this->galleryImages->isNotEmpty())
+                    <p class="text-base text-muted-foreground lg:w-[400px] lg:text-right">{{ __('app/tools/show.gallery_intro') }}</p>
+                @endif
             </div>
 
-            <div class="flex gap-4 overflow-x-auto px-4 pb-4 lg:px-8">
-                @foreach ([$tool->banner_url, $tool->gallery?->get(0), $tool->gallery?->get(1)] as $image)
-                    <div class="w-[320px] shrink-0 overflow-clip rounded-xl border border-foreground/10 bg-card shadow-xs">
-                        @if ($image)
-                            <img src="{{ $image }}" alt="" class="aspect-video w-full object-cover">
-                        @else
-                            <div class="aspect-video w-full bg-gradient-to-br from-muted to-border"></div>
-                        @endif
+            <div class="flex items-start snap-x snap-mandatory gap-4 overflow-x-auto scroll-pl-4 px-4 pb-4 lg:snap-none lg:px-8">
+                @forelse ($this->galleryImages as $image)
+                    <img
+                        src="{{ $image }}"
+                        alt=""
+                        tabindex="0"
+                        role="button"
+                        x-data="{ portrait: false }"
+                        x-init="if ($el.complete) portrait = $el.naturalHeight > $el.naturalWidth"
+                        x-on:load="portrait = $el.naturalHeight > $el.naturalWidth"
+                        @click="lightboxImage = '{{ $image }}'"
+                        @keydown.enter="lightboxImage = '{{ $image }}'"
+                        :class="portrait ? 'h-64 w-auto' : 'w-[85%] h-auto'"
+                        class="shrink-0 snap-start cursor-zoom-in rounded-xl border border-foreground/10 bg-card shadow-xs lg:h-64 lg:w-auto"
+                    >
+                @empty
+                    <div class="flex aspect-video w-[85%] shrink-0 snap-start flex-col items-center justify-center gap-2 rounded-xl border border-foreground/10 bg-card px-6 text-center shadow-xs lg:h-64 lg:w-[320px]">
+                        <x-ui.icon.image-02 class="size-6 text-muted-foreground"/>
+                        <p class="text-sm text-muted-foreground">{{ __('app/tools/show.gallery_empty_title', ['name' => $tool->name]) }}</p>
                     </div>
-                @endforeach
+                @endforelse
             </div>
         </section>
 
@@ -182,4 +203,6 @@ new class extends Component
             </div>
         </section>
     </div>
+
+    <x-ui.lightbox :label="__('app/tools/show.gallery_close')"/>
 </div>

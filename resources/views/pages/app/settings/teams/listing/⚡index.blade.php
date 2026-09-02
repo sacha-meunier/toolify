@@ -3,6 +3,7 @@
 use App\Enums\Pricing;
 use App\Enums\ToolStatus;
 use App\Enums\ToolVisibility;
+use App\Livewire\Forms\Settings\ToolGalleryForm;
 use App\Models\Team;
 use App\Models\Tool;
 use Illuminate\Support\Facades\Gate;
@@ -135,6 +136,17 @@ new #[Layout('layouts::shells.settings')] class extends Component
 
         return ['filled' => collect($fields)->filter()->count(), 'total' => count($fields)];
     }
+
+    /**
+     * How many gallery images the listing currently has.
+     *
+     * @return array{filled: int, max: int}
+     */
+    #[Computed]
+    public function galleryProgress(): array
+    {
+        return ['filled' => $this->tool?->gallery?->count() ?? 0, 'max' => ToolGalleryForm::MAX_IMAGES];
+    }
 };
 ?>
 
@@ -249,6 +261,12 @@ new #[Layout('layouts::shells.settings')] class extends Component
                             'text-muted-foreground' => $this->linksProgress['filled'] === $this->linksProgress['total'],
                         ])>
                             {{ __('app/settings/teams/listing/index.links_count', ['filled' => $this->linksProgress['filled'], 'total' => $this->linksProgress['total']]) }}
+                        </span>
+                    </x-domain.app.settings.section-content>
+
+                    <x-domain.app.settings.section-content :href="route('settings.teams.listing.gallery', $team)" icon="image-02" :label="__('app/settings/teams/listing/index.gallery_label')" :description="__('app/settings/teams/listing/index.gallery_description')" chevron>
+                        <span class="text-xs font-medium text-muted-foreground">
+                            {{ __('app/settings/teams/listing/index.gallery_count', ['filled' => $this->galleryProgress['filled'], 'max' => $this->galleryProgress['max']]) }}
                         </span>
                     </x-domain.app.settings.section-content>
                 </x-domain.app.settings.section>

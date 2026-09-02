@@ -26,6 +26,8 @@ return [
     'gallery_heading' => 'Gallery',
     'gallery_title' => 'A closer look at :name',
     'gallery_intro' => 'Browse detailed visuals that showcase the experience, features, and design across every variant.',
+    'gallery_empty_title' => "The :name team hasn't shared any screenshots of their app yet.",
+    'gallery_close' => 'Close',
 
     'activity_heading' => 'Activity',
     'activity_title' => 'Latest releases',

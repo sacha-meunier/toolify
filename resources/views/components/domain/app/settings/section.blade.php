@@ -1,6 +1,7 @@
 @props([
     'label' => null,
     'description' => null,
+    'card' => true, // Wrap the slot in a bordered card.
 ])
 
 <section {{ $attributes->class('flex w-full flex-col gap-2') }}>
@@ -16,7 +17,11 @@
         </header>
     @endif
 
-    <div class="flex w-full flex-col divide-y divide-border overflow-clip rounded-xl border border-border bg-card shadow-xs">
+    @if ($card)
+        <div class="flex w-full flex-col divide-y divide-border overflow-clip rounded-xl border border-border bg-card shadow-xs">
+            {{ $slot }}
+        </div>
+    @else
         {{ $slot }}
-    </div>
+    @endif
 </section>

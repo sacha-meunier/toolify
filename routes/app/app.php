@@ -49,6 +49,7 @@ Route::middleware(['auth', 'verified', 'onboarded'])->group(function () {
                 Route::livewire('/identity', 'pages::app.settings.teams.listing.identity')->name('identity');
                 Route::livewire('/details', 'pages::app.settings.teams.listing.details')->name('details');
                 Route::livewire('/links', 'pages::app.settings.teams.listing.links')->name('links');
+                Route::livewire('/gallery', 'pages::app.settings.teams.listing.gallery')->name('gallery');
                 Route::livewire('/basics', 'pages::app.settings.teams.listing.basics')->name('basics');
                 Route::livewire('/danger-zone', 'pages::app.settings.teams.listing.danger-zone')->name('danger-zone');
             });

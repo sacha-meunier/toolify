@@ -1,7 +1,9 @@
+@php $galleryImages = collect([$tool->banner_url])->merge($tool->gallery ?? [])->filter(); @endphp
+
 <x-layouts.shells.public>
     <x-seo.tool :tool="$tool"/>
 
-    <div class="mx-auto flex max-w-6xl flex-col gap-16 py-8" x-data="{ authModalOpen: false }">
+    <div class="mx-auto flex max-w-6xl flex-col gap-16 py-8" x-data="{ authModalOpen: false, lightboxImage: null }">
         {{-- Breadcrumb --}}
         <p class="truncate px-6 text-sm text-muted-foreground lg:px-8">
             <a href="{{ route('public.discover') }}" class="hover:text-foreground">{{ __('public/tools/show.breadcrumb_discover') }}</a>
@@ -56,19 +58,32 @@
                     <h2 id="gallery-heading" class="text-lg font-semibold text-foreground">{{ __('app/tools/show.gallery_title', ['name' => $tool->name]) }}</h2>
                 </div>
 
-                <p class="text-base text-muted-foreground lg:w-[400px] lg:text-right">{{ __('app/tools/show.gallery_intro') }}</p>
+                @if ($galleryImages->isNotEmpty())
+                    <p class="text-base text-muted-foreground lg:w-[400px] lg:text-right">{{ __('app/tools/show.gallery_intro') }}</p>
+                @endif
             </div>
 
-            <div class="flex gap-4 overflow-x-auto px-6 pb-4 lg:px-8">
-                @foreach ([$tool->banner_url, $tool->gallery?->get(0), $tool->gallery?->get(1)] as $image)
-                    <div class="w-[320px] shrink-0 overflow-clip rounded-xl border border-foreground/10 bg-card shadow-xs">
-                        @if ($image)
-                            <img src="{{ $image }}" alt="" class="aspect-video w-full object-cover">
-                        @else
-                            <div class="aspect-video w-full bg-gradient-to-br from-muted to-border"></div>
-                        @endif
+            <div class="flex items-start snap-x snap-mandatory gap-4 overflow-x-auto scroll-pl-6 px-6 pb-4 lg:snap-none lg:px-8">
+                @forelse ($galleryImages as $image)
+                    <img
+                        src="{{ $image }}"
+                        alt=""
+                        tabindex="0"
+                        role="button"
+                        x-data="{ portrait: false }"
+                        x-init="if ($el.complete) portrait = $el.naturalHeight > $el.naturalWidth"
+                        x-on:load="portrait = $el.naturalHeight > $el.naturalWidth"
+                        @click="lightboxImage = '{{ $image }}'"
+                        @keydown.enter="lightboxImage = '{{ $image }}'"
+                        :class="portrait ? 'h-64 w-auto' : 'w-[85%] h-auto'"
+                        class="shrink-0 snap-start cursor-zoom-in rounded-xl border border-foreground/10 bg-card shadow-xs lg:h-64 lg:w-auto"
+                    >
+                @empty
+                    <div class="flex aspect-video w-[85%] shrink-0 snap-start flex-col items-center justify-center gap-2 rounded-xl border border-foreground/10 bg-card px-6 text-center shadow-xs lg:h-64 lg:w-[320px]">
+                        <x-ui.icon.image-02 class="size-6 text-muted-foreground"/>
+                        <p class="text-sm text-muted-foreground">{{ __('app/tools/show.gallery_empty_title', ['name' => $tool->name]) }}</p>
                     </div>
-                @endforeach
+                @endforelse
             </div>
         </section>
 
@@ -188,6 +203,8 @@
                 </div>
             </div>
         </div>
+
+        <x-ui.lightbox :label="__('app/tools/show.gallery_close')"/>
     </div>
 
     <x-domain.marketing.footer/>

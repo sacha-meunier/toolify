@@ -25,5 +25,5 @@ return [
     'play_store_description' => 'Le lien vers la page Play Store de votre produit / outil.',
 
     'nav_prev_label' => 'Détails',
-    'nav_next_label' => 'Informations de base',
+    'nav_next_label' => 'Galerie',
 ];

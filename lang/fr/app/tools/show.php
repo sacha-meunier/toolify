@@ -25,15 +25,17 @@ return [
 
     'gallery_heading' => 'Galerie',
     'gallery_title' => 'Un aperçu détaillé de :name',
-    'gallery_intro' => "Parcourez des visuels détaillés qui mettent en valeur l’expérience, les fonctionnalités et le design de chaque variante.",
+    'gallery_intro' => 'Parcourez des visuels détaillés qui mettent en valeur l’expérience, les fonctionnalités et le design de chaque variante.',
+    'gallery_empty_title' => 'L’équipe de :name n’a pas encore partagé de captures d’écran de son app.',
+    'gallery_close' => 'Fermer',
 
     'activity_heading' => 'Activité',
     'activity_title' => 'Dernières versions',
-    'cta_view_all_activity' => "Voir toute l’activité",
+    'cta_view_all_activity' => 'Voir toute l’activité',
     'releases' => [
         [
             'title' => 'Outil de retour utilisateur',
-            'description' => "Une nouvelle fonctionnalité qui permet aux utilisateurs d’envoyer leurs retours directement depuis l’application.",
+            'description' => 'Une nouvelle fonctionnalité qui permet aux utilisateurs d’envoyer leurs retours directement depuis l’application.',
             'date' => '12 juin',
         ],
         [
@@ -43,7 +45,7 @@ return [
         ],
         [
             'title' => 'Curseur de contraste',
-            'description' => "Une option dans les paramètres pour choisir le niveau de contraste adapté.",
+            'description' => 'Une option dans les paramètres pour choisir le niveau de contraste adapté.',
             'date' => '12 juin',
         ],
     ],
