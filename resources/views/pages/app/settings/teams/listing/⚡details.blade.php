@@ -146,7 +146,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                                     <button
                                         type="button"
                                         @click="$wire.form.headcount = option.value; open = false"
-                                        class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
+                                        class="flex w-full items-center justify-between rounded-sm px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
                                     >
                                         <span x-text="option.label"></span>
                                         <x-ui.icon.checkmark-circle-02 size="xs" class="text-foreground" x-show="$wire.form.headcount === option.value"/>

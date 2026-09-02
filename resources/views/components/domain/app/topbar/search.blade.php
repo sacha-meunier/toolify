@@ -47,7 +47,7 @@
                 x-cloak
                 x-transition
                 x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px;`"
-                class="z-50 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-popover py-1 shadow-md lg:max-h-none lg:overflow-visible"
+                class="z-50 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-popover p-1 shadow-md lg:max-h-none lg:overflow-visible"
             >
                 @foreach ([
                     ['group' => 'pricing', 'label' => __('app/components/topbar/search.filter_group_price'), 'cases' => \App\Enums\Pricing::cases()],
@@ -58,7 +58,7 @@
                         <button
                             type="button"
                             @click="expandedGroup = expandedGroup === '{{ $type['group'] }}' ? null : '{{ $type['group'] }}'"
-                            class="flex w-full items-center justify-between px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                            class="flex w-full items-center justify-between rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                         >
                             <span class="truncate">
                                 {{ $type['label'] }}
@@ -78,7 +78,7 @@
                                 <button
                                     type="button"
                                     wire:click="toggleFilter('{{ $type['group'] }}', '{{ $case->value }}')"
-                                    class="flex w-full items-center gap-2 py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
+                                    class="flex w-full items-center gap-2 rounded py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
                                 >
                                     <x-ui.icon.checkmark-circle-02
                                         size="sm"
@@ -92,12 +92,12 @@
                 @endforeach
 
                 @if ($activeFilterCount > 0)
-                    <div class="my-1 h-px bg-border"></div>
+                    <div class="-mx-1 my-1 h-px bg-border"></div>
 
                     <button
                         type="button"
                         wire:click="clearFilters"
-                        class="flex w-full items-center px-3 py-2 text-left text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+                        class="flex w-full items-center rounded px-3 py-2 text-left text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
                     >
                         {{ __('app/components/topbar/search.clear_all_filters') }}
                     </button>

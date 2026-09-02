@@ -61,13 +61,13 @@ new class extends Component
         x-show="open"
         x-cloak
         x-transition
-        class="absolute left-0 z-20 mt-1.5 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-popover py-1 shadow-xs lg:max-h-none lg:max-w-none lg:overflow-visible"
+        class="absolute left-0 z-20 mt-1.5 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-popover p-1 shadow-xs lg:max-h-none lg:max-w-none lg:overflow-visible"
     >
         <div class="relative" x-data="{ expanded: false }" @mouseenter="if (window.innerWidth >= 1024) expanded = true" @mouseleave="if (window.innerWidth >= 1024) expanded = false">
             <button
                 type="button"
                 @click="expanded = ! expanded"
-                class="flex w-full items-center justify-between px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                class="flex w-full items-center justify-between rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
             >
                 <span class="truncate">{{ __('app/components/dropdown/workspace-switcher.switch_workspace') }}</span>
                 <x-ui.icon.arrow-right-01 size="xs" class="shrink-0 rotate-90 opacity-50 transition-transform lg:rotate-0" x-bind:class="{ '-rotate-90': expanded }"/>
@@ -77,14 +77,14 @@ new class extends Component
                 x-show="expanded"
                 x-cloak
                 x-transition
-                class="bg-muted/30 py-1 lg:absolute lg:top-0 lg:left-full lg:z-30 lg:ml-1 lg:w-56 lg:overflow-hidden lg:rounded-md lg:border lg:border-border lg:bg-popover lg:py-1 lg:shadow-xs"
+                class="bg-muted/30 py-1 lg:absolute lg:top-0 lg:left-full lg:z-30 lg:ml-1 lg:w-56 lg:overflow-hidden lg:rounded-md lg:border lg:border-border lg:bg-popover lg:p-1 lg:shadow-xs"
             >
                 <div class="max-h-56 overflow-y-auto">
                     @forelse ($this->workspaces as $workspace)
                         <button
                             type="button"
                             wire:click="switchTo({{ $workspace->id }})"
-                            class="flex w-full items-center gap-2 py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
+                            class="flex w-full items-center gap-2 rounded py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
                         >
                             <x-ui.icon.checkmark-circle-02
                                 size="sm"
@@ -104,24 +104,24 @@ new class extends Component
                     @endforelse
                 </div>
 
-                <div class="my-1 h-px bg-border"></div>
+                <div class="my-1 h-px bg-border lg:-mx-1"></div>
 
                 <a
                     href="{{ route('workspaces.create-or-join') }}"
                     wire:navigate
-                    class="flex w-full items-center py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
+                    class="flex w-full items-center rounded py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
                 >
                     {{ __('app/components/dropdown/workspace-switcher.create_or_join_workspace') }}
                 </a>
             </div>
         </div>
 
-        <div class="my-1 h-px bg-border"></div>
+        <div class="-mx-1 my-1 h-px bg-border"></div>
 
         <a
             href="{{ route('settings.workspace.members') }}"
             wire:navigate
-            class="flex w-full items-center px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+            class="flex w-full items-center rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
         >
             {{ __('app/components/dropdown/workspace-switcher.invite_and_manage_members') }}
         </a>
@@ -129,7 +129,7 @@ new class extends Component
         <a
             href="{{ route('settings.workspace.general') }}"
             wire:navigate
-            class="flex w-full items-center px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+            class="flex w-full items-center rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
         >
             {{ __('app/components/dropdown/workspace-switcher.settings') }}
         </a>

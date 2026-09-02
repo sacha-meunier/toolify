@@ -80,12 +80,12 @@ new class extends Component
         x-show="open"
         x-cloak
         x-transition
-        class="absolute right-0 z-10 mt-1.5 w-64 overflow-clip rounded-md border border-border bg-popover py-1 shadow-xs"
+        class="absolute right-0 z-10 mt-1.5 w-64 overflow-clip rounded-md border border-border bg-popover p-1 shadow-xs"
     >
         <button
             type="button"
             wire:click="toggle('personal')"
-            class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+            class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
         >
             <x-ui.icon.checkmark-circle-02
                 size="sm"
@@ -95,12 +95,12 @@ new class extends Component
         </button>
 
         @if ($this->workspace)
-            <div class="my-1 h-px bg-border"></div>
+            <div class="-mx-1 my-1 h-px bg-border"></div>
 
             <button
                 type="button"
                 wire:click="toggle('workspace')"
-                class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
             >
                 <x-ui.icon.checkmark-circle-02
                     size="sm"
@@ -110,13 +110,13 @@ new class extends Component
             </button>
 
             @if ($this->teams->isNotEmpty())
-                <div class="my-1 h-px bg-border"></div>
+                <div class="-mx-1 my-1 h-px bg-border"></div>
 
                 @foreach ($this->teams as $team)
                     <button
                         type="button"
                         wire:click="toggle('team', {{ $team->id }})"
-                        class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                        class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                     >
                         <x-ui.icon.checkmark-circle-02
                             size="sm"

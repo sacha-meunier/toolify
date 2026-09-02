@@ -25,13 +25,13 @@ new class extends Component
         x-show="open"
         x-cloak
         x-transition
-        class="absolute right-0 z-20 mt-1.5 w-40 overflow-visible rounded-md border border-border bg-popover py-1 shadow-xs"
+        class="absolute right-0 z-20 mt-1.5 w-40 overflow-visible rounded-md border border-border bg-popover p-1 shadow-xs"
     >
         @foreach (config('app.available_locales') as $code => $label)
             <button
                 type="button"
                 wire:click="setLocale('{{ $code }}')"
-                class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
             >
                 <x-ui.icon.checkmark-circle-02
                     size="sm"

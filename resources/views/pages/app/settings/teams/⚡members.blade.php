@@ -170,7 +170,7 @@ class extends Component {
                                     x-show="open"
                                     x-cloak
                                     x-transition
-                                    class="absolute right-0 z-10 mt-1.5 w-44 overflow-clip rounded-md border border-border bg-popover py-1 shadow-xs"
+                                    class="absolute right-0 z-10 mt-1.5 w-44 overflow-clip rounded-md border border-border bg-popover p-1 shadow-xs"
                                 >
                                     <button
                                         type="button"
@@ -180,7 +180,7 @@ class extends Component {
                                             confirmMemberMessage = @js(__('app/settings/teams/members.remove_member_confirm', ['member' => $member->user->name, 'team' => $team->name]));
                                             confirmMemberOpen = true
                                         "
-                                        class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
+                                        class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
                                     >
                                         <x-ui.icon.delete-02 size="sm" class="shrink-0"/>
                                         <span>{{ __('app/settings/teams/members.delete') }}</span>
@@ -227,7 +227,7 @@ class extends Component {
                                         x-show="open"
                                         x-cloak
                                         x-transition
-                                        class="absolute right-0 z-10 mt-1.5 w-56 overflow-clip rounded-md border border-border bg-popover py-1 shadow-xs"
+                                        class="absolute right-0 z-10 mt-1.5 w-56 overflow-clip rounded-md border border-border bg-popover p-1 shadow-xs"
                                     >
                                         <button
                                             type="button"
@@ -237,7 +237,7 @@ class extends Component {
                                                 confirmInvitationMessage = @js(__('app/settings/teams/members.dismiss_invitation_confirm', ['email' => $invitation->email]));
                                                 confirmInvitationOpen = true
                                             "
-                                            class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                                            class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                                         >
                                             <x-ui.icon.eye-off size="sm" class="shrink-0"/>
                                             <span>{{ __('app/settings/teams/members.hide_invitation') }}</span>

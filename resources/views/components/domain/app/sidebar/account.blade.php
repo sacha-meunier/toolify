@@ -21,7 +21,7 @@
         x-show="open"
         x-cloak
         x-transition
-        class="absolute bottom-full left-0 z-20 mb-1.5 w-64 overflow-visible rounded-md border border-border bg-popover py-1 shadow-xs"
+        class="absolute bottom-full left-0 z-20 mb-1.5 w-64 overflow-visible rounded-md border border-border bg-popover p-1 shadow-xs"
     >
         <div class="flex items-center gap-2 px-3 py-2">
             <div class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-sm font-medium text-muted-foreground">
@@ -37,17 +37,17 @@
             </div>
         </div>
 
-        <div class="my-1 h-px bg-border"></div>
+        <div class="-mx-1 my-1 h-px bg-border"></div>
 
         <x-ui.button :href="route('settings.account.profile')" wire:navigate :label="__('app/components/sidebar/account.settings_link')" variant="ghost" class="w-full justify-start"></x-ui.button>
 
-        <div class="my-1 h-px bg-border"></div>
+        <div class="-mx-1 my-1 h-px bg-border"></div>
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button
                 type="submit"
-                class="flex w-full items-center px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
+                class="flex w-full items-center rounded px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted"
             >
                 {{ __('app/components/sidebar/account.log_out_button') }}
             </button>

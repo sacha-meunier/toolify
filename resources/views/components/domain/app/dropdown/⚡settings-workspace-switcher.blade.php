@@ -70,14 +70,14 @@ new class extends Component
         x-cloak
         x-transition
         x-bind:style="`position: fixed; top: ${position.top}px; left: ${position.left}px;`"
-        class="z-50 w-64 overflow-hidden rounded-md border border-border bg-popover py-1 shadow-md"
+        class="z-50 w-64 overflow-hidden rounded-md border border-border bg-popover p-1 shadow-md"
     >
         <div class="max-h-56 overflow-y-auto">
             @forelse ($this->workspaces as $workspace)
                 <button
                     type="button"
                     wire:click="switchTo({{ $workspace->id }})"
-                    class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                    class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                 >
                     <x-ui.icon.checkmark-circle-02
                         size="sm"
@@ -97,12 +97,12 @@ new class extends Component
             @endforelse
         </div>
 
-        <div class="my-1 h-px bg-border"></div>
+        <div class="-mx-1 my-1 h-px bg-border"></div>
 
         <a
             href="{{ route('workspaces.create-or-join') }}"
             wire:navigate
-            class="flex w-full items-center px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+            class="flex w-full items-center rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
         >
             {{ __('app/components/dropdown/workspace-switcher.create_or_join_workspace') }}
         </a>

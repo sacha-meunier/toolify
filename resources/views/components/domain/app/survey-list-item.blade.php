@@ -23,13 +23,13 @@
                 x-show="open"
                 x-cloak
                 x-transition
-                class="absolute right-0 z-10 mt-1.5 w-44 overflow-clip rounded-md border border-border bg-popover py-1 shadow-xs"
+                class="absolute right-0 z-10 mt-1.5 w-44 overflow-clip rounded-md border border-border bg-popover p-1 shadow-xs"
             >
                 <button
                     type="button"
                     wire:click="openSurveyForm({{ $survey->id }})"
                     @click="open = false"
-                    class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                    class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                 >
                     <x-ui.icon.pen-01 size="sm" class="shrink-0"/>
                     <span>{{ __('app/components/survey-list-item.edit') }}</span>
@@ -39,18 +39,18 @@
                     type="button"
                     wire:click="duplicate({{ $survey->id }})"
                     @click="open = false"
-                    class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                    class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                 >
                     <x-ui.icon.copy-01 size="sm" class="shrink-0"/>
                     <span>{{ __('app/components/survey-list-item.duplicate') }}</span>
                 </button>
 
-                <div class="my-1 h-px bg-border"></div>
+                <div class="-mx-1 my-1 h-px bg-border"></div>
 
                 <button
                     type="button"
                     @click="open = false; confirming = true"
-                    class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
+                    class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
                 >
                     <x-ui.icon.delete-02 size="sm" class="shrink-0"/>
                     <span>{{ __('app/components/survey-list-item.delete') }}</span>
