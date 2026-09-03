@@ -18,7 +18,7 @@
     @endif
 
     @if ($card)
-        <div class="flex w-full flex-col divide-y divide-border overflow-clip rounded-xl border border-border bg-card shadow-xs">
+        <div class="flex w-full flex-col divide-y divide-border rounded-xl border border-border bg-card shadow-xs [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl">
             {{ $slot }}
         </div>
     @else
