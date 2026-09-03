@@ -86,7 +86,7 @@
                                 <button
                                     type="button"
                                     wire:click="toggleFilter('{{ $type['group'] }}', '{{ $case->value }}')"
-                                    class="flex w-full items-center gap-2 rounded py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
+                                    class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                                 >
                                     <x-ui.icon.checkmark-circle-02
                                         size="sm"
