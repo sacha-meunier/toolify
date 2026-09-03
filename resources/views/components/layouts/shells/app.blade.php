@@ -1,4 +1,6 @@
-<x-layouts.root>
+@props(['title' => null])
+
+<x-layouts.root :title="$title">
     <div class="flex h-dvh w-full lg:gap-2 lg:p-2" x-data="{ sidebarOpen: false }">
         <div
             x-show="sidebarOpen"

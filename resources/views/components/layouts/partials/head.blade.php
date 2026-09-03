@@ -4,7 +4,7 @@
 
     <script>{!! file_get_contents(resource_path('js/themeManager.js')) !!}</script>
 
-    <title>{{ $title ?? config('app.name') }}</title>
+    <title>{{ $title ? $title.' | '.config('app.name') : config('app.name') }}</title>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">

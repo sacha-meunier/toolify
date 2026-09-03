@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Workspace;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
@@ -7,6 +8,8 @@ use Livewire\Component;
 
 new class extends Component
 {
+    use BuildsPageTitle;
+
     #[Computed]
     public function workspace(): ?Workspace
     {
@@ -17,6 +20,11 @@ new class extends Component
     public function tools(): Collection
     {
         return $this->workspace?->stack?->tools()->withTrashed()->get() ?? new Collection;
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/components/sidebar.stack'), $this->workspace?->name));
     }
 };
 ?>

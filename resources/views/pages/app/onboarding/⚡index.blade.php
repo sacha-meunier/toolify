@@ -80,6 +80,16 @@ class extends Component {
 
         $this->redirect(route('search'), navigate: true);
     }
+
+    public function render()
+    {
+        return $this->view()->title(match ($this->step) {
+            'workspace' => __('app/onboarding/index.workspace_heading'),
+            'create' => __('app/onboarding/index.create_step_title'),
+            'join' => __('app/onboarding/index.join_step_title'),
+            default => __('app/onboarding/index.profile_heading'),
+        });
+    }
 };
 ?>
 

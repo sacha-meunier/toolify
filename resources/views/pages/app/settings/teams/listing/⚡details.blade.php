@@ -2,6 +2,7 @@
 
 use App\Enums\ToolHeadcount;
 use App\Livewire\Forms\Settings\ToolDetailsForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Team;
 use App\Models\Tool;
 use Illuminate\Support\Facades\Gate;
@@ -11,6 +12,8 @@ use Livewire\Component;
 
 new #[Layout('layouts::shells.settings')] class extends Component
 {
+    use BuildsPageTitle;
+
     public Team $team;
 
     public ToolDetailsForm $form;
@@ -34,6 +37,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
     public function tool(): ?Tool
     {
         return $this->team->tool;
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/teams/listing/details.heading'), $this->team->name));
     }
 };
 ?>

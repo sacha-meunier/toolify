@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Forms\Settings\TeamCreateForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Team;
 use App\Models\Workspace;
 use Illuminate\Support\Facades\Gate;
@@ -10,7 +11,7 @@ use Livewire\WithFileUploads;
 
 new #[Layout('layouts::shells.settings')]
 class extends Component {
-    use WithFileUploads;
+    use BuildsPageTitle, WithFileUploads;
 
     public Workspace $workspace;
 
@@ -33,6 +34,11 @@ class extends Component {
         $team = $this->form->store();
 
         $this->redirectRoute('settings.teams.general', $team);
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/workspace/teams/create.heading'), $this->workspace->name));
     }
 };
 ?>

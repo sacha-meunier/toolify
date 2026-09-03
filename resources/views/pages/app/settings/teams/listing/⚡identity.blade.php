@@ -2,6 +2,7 @@
 
 use App\Enums\Category;
 use App\Livewire\Forms\Settings\ToolIdentityForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Layout;
@@ -10,7 +11,7 @@ use Livewire\WithFileUploads;
 
 new #[Layout('layouts::shells.settings')] class extends Component
 {
-    use WithFileUploads;
+    use BuildsPageTitle, WithFileUploads;
 
     public Team $team;
 
@@ -34,6 +35,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
     public function deleteLogo(): void
     {
         $this->form->deleteLogo();
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/teams/listing/identity.heading'), $this->team->name));
     }
 };
 ?>

@@ -2,6 +2,7 @@
 
 use App\Enums\InvitationStatus;
 use App\Livewire\Forms\Settings\InviteMemberForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Invitation;
 use App\Models\Team;
 use App\Models\User;
@@ -13,6 +14,8 @@ use Livewire\Component;
 
 new #[Layout('layouts::shells.settings')]
 class extends Component {
+    use BuildsPageTitle;
+
     public Team $team;
 
     public InviteMemberForm $inviteForm;
@@ -113,6 +116,11 @@ class extends Component {
         $invitation->dismiss();
 
         unset($this->pendingInvitations);
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/teams/members.heading'), $this->team->name));
     }
 };
 ?>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Forms\Settings\ProfileForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\User;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -8,7 +9,7 @@ use Livewire\WithFileUploads;
 
 new #[Layout('layouts::shells.settings')]
 class extends Component {
-    use WithFileUploads;
+    use BuildsPageTitle, WithFileUploads;
 
     public ProfileForm $form;
 
@@ -27,6 +28,11 @@ class extends Component {
     public function deleteAvatar(): void
     {
         $this->form->deleteAvatar();
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/account/profile.heading')));
     }
 };
 ?>

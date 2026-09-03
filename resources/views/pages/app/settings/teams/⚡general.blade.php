@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Forms\Settings\TeamForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Layout;
@@ -9,7 +10,7 @@ use Livewire\WithFileUploads;
 
 new #[Layout('layouts::shells.settings')]
 class extends Component {
-    use WithFileUploads;
+    use BuildsPageTitle, WithFileUploads;
 
     public Team $team;
 
@@ -42,6 +43,11 @@ class extends Component {
         $this->team->delete();
 
         $this->redirectRoute('discovery');
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/teams/general.heading'), $this->team->name));
     }
 };
 ?>
