@@ -213,9 +213,13 @@ class Tool extends Model
      */
     public static function matching(string $search, array $filters): Builder
     {
-        $matchingCategories = collect(Category::cases())
-            ->filter(fn (Category $category) => str_contains(strtolower($category->label()), strtolower($search)))
-            ->map(fn (Category $category) => $category->value);
+        $matchingCases = fn (array $cases) => collect($cases)
+            ->filter(fn ($case) => str_contains(strtolower($case->label()), strtolower($search)))
+            ->map(fn ($case) => $case->value);
+
+        $matchingCategories = $matchingCases(Category::cases());
+        $matchingPricing = $matchingCases(Pricing::cases());
+        $matchingPlatforms = $matchingCases(Platform::cases());
 
         $lowercasedSearchPattern = '%'.Str::lower($search).'%';
         $taglineMatch = fn (string $locale) => 'LOWER(tagline->>"$.'.$locale.'") LIKE ?';
@@ -226,9 +230,15 @@ class Tool extends Model
                 ->whereLike('name', "%{$search}%", caseSensitive: false)
                 ->orWhereRaw($taglineMatch(app()->getLocale()), [$lowercasedSearchPattern])
                 ->orWhereRaw($taglineMatch(config('app.fallback_locale')), [$lowercasedSearchPattern])
+                ->when($matchingPricing->isNotEmpty(), fn ($query) => $query->orWhereIn('pricing', $matchingPricing))
                 ->when($matchingCategories->isNotEmpty(), fn ($query) => $query->orWhere(
                     fn ($query) => $matchingCategories->each(
                         fn (string $category) => $query->orWhereJsonContains('categories', $category)
+                    )
+                ))
+                ->when($matchingPlatforms->isNotEmpty(), fn ($query) => $query->orWhere(
+                    fn ($query) => $matchingPlatforms->each(
+                        fn (string $platform) => $query->orWhereJsonContains('platforms', $platform)
                     )
                 ))
             )
