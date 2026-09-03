@@ -217,12 +217,15 @@ class Tool extends Model
             ->filter(fn (Category $category) => str_contains(strtolower($category->label()), strtolower($search)))
             ->map(fn (Category $category) => $category->value);
 
+        $lowercasedSearchPattern = '%'.Str::lower($search).'%';
+        $taglineMatch = fn (string $locale) => 'LOWER(tagline->>"$.'.$locale.'") LIKE ?';
+
         return static::query()
             ->visibleTo(auth()->user())
             ->where(fn ($query) => $query
-                ->where('name', 'like', "%{$search}%")
-                ->orWhere('tagline->'.app()->getLocale(), 'like', "%{$search}%")
-                ->orWhere('tagline->'.config('app.fallback_locale'), 'like', "%{$search}%")
+                ->whereLike('name', "%{$search}%", caseSensitive: false)
+                ->orWhereRaw($taglineMatch(app()->getLocale()), [$lowercasedSearchPattern])
+                ->orWhereRaw($taglineMatch(config('app.fallback_locale')), [$lowercasedSearchPattern])
                 ->when($matchingCategories->isNotEmpty(), fn ($query) => $query->orWhere(
                     fn ($query) => $matchingCategories->each(
                         fn (string $category) => $query->orWhereJsonContains('categories', $category)
