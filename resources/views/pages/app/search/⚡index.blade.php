@@ -68,15 +68,19 @@ new class extends Component
             ->all();
     }
 
-    public function saveAllRecentSearchesAsSurveys(): void
+    public function rerunRecentSearch(string $query): void
     {
-        foreach ($this->recentSearches as $recentSearch) {
-            auth()->user()->surveys()->create([
-                'name' => $recentSearch['query'],
-                'query' => $recentSearch['query'],
-                'filters' => ['pricing' => [], 'categories' => [], 'platforms' => []],
-            ]);
-        }
+        $this->search = $query;
+    }
+
+    public function deleteRecentSearch(int $index): void
+    {
+        $this->recentSearches = collect($this->recentSearches)
+            ->reject(fn (array $recentSearch, int $key) => $key === $index)
+            ->values()
+            ->all();
+
+        $this->dispatch('recent-searches-changed', searches: $this->recentSearches);
     }
 
     public function clearRecentSearches(): void
@@ -153,43 +157,51 @@ new class extends Component
                 <header class="flex flex-col items-start gap-2 py-3 lg:flex-row lg:items-center lg:justify-between">
                     <h2 class="text-lg font-semibold text-foreground">{{ __('app/search.recent_searches_heading') }}</h2>
                     <div class="flex w-full flex-wrap items-center gap-2 lg:w-auto">
-                        <x-ui.button variant="secondary" icon="tool-view" :label="__('app/search.save_all_as_surveys')" wire:click="saveAllRecentSearchesAsSurveys"/>
                         <x-ui.button :label="__('app/search.clear_history')" wire:click="clearRecentSearches"/>
                     </div>
                 </header>
 
-                <div class="flex flex-col gap-5 py-3.5 border border-border rounded-md">
-                    @foreach ($recentSearches as $recentSearch)
-                        {{-- item--}}
-                        <div class="flex flex-wrap items-start gap-y-2">
-                            <div class="flex min-w-0 flex-1 items-center">
-                                <div class="flex shrink-0 justify-center pl-6 pr-3 h-7 items-center">
-                                    <x-ui.button variant="ghost" size="icon-xs" icon="search-01"/>
+                <div class="flex flex-col divide-y divide-border border border-border rounded-md">
+                    @foreach ($recentSearches as $index => $recentSearch)
+                        <div class="{{ trim(($loop->first ? 'rounded-t-md ' : '').($loop->last ? 'rounded-b-md' : '')) }} relative flex flex-wrap items-center gap-y-2 px-4 py-3.5 hover:bg-muted lg:px-6">
+                            <button
+                                type="button"
+                                wire:click="rerunRecentSearch(@js($recentSearch['query']))"
+                                class="flex min-w-0 flex-1 items-center gap-3 text-left before:absolute before:inset-0"
+                            >
+                                <x-ui.icon.search-01 size="sm" class="shrink-0 text-muted-foreground"/>
+
+                                <div class="flex min-w-0 flex-1 flex-col gap-2">
+                                    <p class="truncate text-sm text-foreground">"{{ $recentSearch['query'] }}"</p>
+
+                                    @if (count($recentSearch['filters']))
+                                        <div class="flex flex-wrap items-center gap-1.5">
+                                            @foreach ($recentSearch['filters'] as $filter)
+                                                <x-ui.badge>{{ $filter }}</x-ui.badge>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </div>
+                            </button>
 
-                                <div class="flex min-w-0 flex-1 flex-col gap-2 justify-center">
-                                    <div class="flex items-center px-2 h-7">
-                                        <p class="truncate text-sm text-foreground">"{{ $recentSearch['query'] }}"</p>
-                                    </div>
+                            <div class="relative shrink-0 pl-3" x-data="{ open: false }" @click.outside="open = false">
+                                <x-ui.button variant="ghost" size="sm" icon="more-horizontal-square-01" @click="open = !open"/>
 
-                                    <div class="flex flex-wrap items-center gap-1.5 px-2">
-                                        @foreach ($recentSearch['filters'] as $filter)
-                                            <x-ui.badge>{{ $filter }}</x-ui.badge>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex shrink-0 items-center gap-2 pl-14 pr-6 lg:pl-2">
-                                <x-ui.button
-                                    variant="secondary"
-                                    size="sm"
-                                    icon="layer"
-                                    :label="__('app/search.save_as_survey')"
-                                    wire:click="openSurveyForm(null, @js($recentSearch['query']))"
-                                />
-
-                                <x-ui.button variant="ghost" size="sm" icon="more-horizontal-square-01"/>
+                                <x-ui.dropdown-panel
+                                    x-show="open"
+                                    origin="top-right"
+                                    class="absolute right-0 z-10 mt-1.5 w-44 overflow-clip rounded-md border border-border bg-popover p-1 shadow-xs"
+                                >
+                                    <button
+                                        type="button"
+                                        wire:click="deleteRecentSearch({{ $index }})"
+                                        @click="open = false"
+                                        class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
+                                    >
+                                        <x-ui.icon.delete-02 size="sm" class="shrink-0"/>
+                                        <span>{{ __('app/search.delete_recent_search') }}</span>
+                                    </button>
+                                </x-ui.dropdown-panel>
                             </div>
                         </div>
                     @endforeach
