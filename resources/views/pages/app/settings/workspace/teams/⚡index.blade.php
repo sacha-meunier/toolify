@@ -32,7 +32,11 @@ class extends Component {
     #[Computed]
     public function teams(): Collection
     {
-        return $this->workspace->teams()->orderBy('name')->get();
+        return $this->workspace->teams()
+            ->orderBy('name')
+            ->get()
+            ->filter(fn (Team $team): bool => $team->hasMember(auth()->user()))
+            ->values();
     }
 
     public function render()
