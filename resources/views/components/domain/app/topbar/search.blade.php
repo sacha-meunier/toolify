@@ -48,9 +48,9 @@
                 class="z-50 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-popover p-1 shadow-md lg:max-h-none lg:overflow-visible"
             >
                 @foreach ([
-                    ['group' => 'pricing', 'label' => __('app/components/topbar/search.filter_group_price'), 'cases' => \App\Enums\Pricing::cases()],
-                    ['group' => 'platforms', 'label' => __('app/components/topbar/search.filter_group_platform'), 'cases' => \App\Enums\Platform::cases()],
-                    ['group' => 'categories', 'label' => __('app/components/topbar/search.filter_group_category'), 'cases' => \App\Enums\Category::cases()],
+                    ['group' => 'pricing', 'label' => __('app/components/topbar/search.filter_group_price'), 'cases' => collect(\App\Enums\Pricing::cases())->sortBy(fn ($case) => $case->label())->values()],
+                    ['group' => 'platforms', 'label' => __('app/components/topbar/search.filter_group_platform'), 'cases' => collect(\App\Enums\Platform::cases())->sortBy(fn ($case) => $case->label())->values()],
+                    ['group' => 'categories', 'label' => __('app/components/topbar/search.filter_group_category'), 'cases' => collect(\App\Enums\Category::cases())->sortBy(fn ($case) => $case->label())->values()],
                 ] as $type)
                     <div class="relative" x-data="{ expanded: false }" @mouseenter="if (window.innerWidth >= 1024) expanded = true" @mouseleave="if (window.innerWidth >= 1024) expanded = false">
                         <button

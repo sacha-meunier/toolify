@@ -222,7 +222,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
                 x-data="{
                     open: false,
                     options: [
-                        @foreach (Category::cases() as $category)
+                        @foreach (collect(Category::cases())->sortBy(fn ($category) => $category->label()) as $category)
                             { value: '{{ $category->value }}', label: @js($category->label()) },
                         @endforeach
                     ],
