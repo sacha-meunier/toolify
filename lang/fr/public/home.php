@@ -5,6 +5,11 @@ return [
     'hero_subheading' => 'Recherchez des outils par catégorie, prix et plateforme. Enregistrez ceux qui valent la peine d’être suivis, construisez votre stack et gardez toute votre équipe alignée.',
     'cta_get_started' => 'Commencer',
     'cta_browse_tools' => 'Parcourir les outils',
+    'gallery_close' => 'Fermer',
+    'hero_image_alt' => 'Capture d’écran de la page découverte de Toolify',
+    'feature_one_image_alt' => 'Capture d’écran des filtres de la page de recherche',
+    'feature_two_image_alt' => 'Capture d’écran Illustratant la création d’une veille',
+    'feature_three_image_alt' => 'Capture d’écran Illustratant la stack d’outils',
 
     'feature_strip_heading' => 'Fonctionnalités principales',
     'feature_strip_search' => 'Recherche',

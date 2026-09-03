@@ -5,6 +5,11 @@ return [
     'hero_subheading' => 'Search tools by category, price, and platform. Save the ones worth tracking, build your stack, and keep your whole team aligned.',
     'cta_get_started' => 'Get started',
     'cta_browse_tools' => 'Browse tools',
+    'gallery_close' => 'Close',
+    'hero_image_alt' => 'Screenshot of the Toolify discover page',
+    'feature_one_image_alt' => 'Screenshot of the search page filters',
+    'feature_two_image_alt' => 'Screenshot showing the creation of a survey',
+    'feature_three_image_alt' => 'Screenshot showing the tool stack',
 
     'feature_strip_heading' => 'Key features',
     'feature_strip_search' => 'Search',

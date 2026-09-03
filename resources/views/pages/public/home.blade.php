@@ -8,6 +8,8 @@
 <x-layouts.shells.public>
     <x-seo.organization/>
 
+    <div x-data="{ lightboxImage: null }">
+
     {{-- Hero --}}
     <section class="mx-auto max-w-6xl px-6 pt-10 pb-12 sm:pt-24 sm:pb-28 lg:px-8" aria-labelledby="hero-heading">
         <div class="mx-auto max-w-2xl text-center">
@@ -25,7 +27,15 @@
 
         <div class="mx-auto mt-8 max-w-5xl sm:mt-16">
             <div class="w-full overflow-clip rounded-xl border border-border bg-muted shadow-xs">
-                <img src="{{ asset('images/marketing/discovery.png') }}" alt="" class="w-full object-cover">
+                <img
+                    src="{{ asset('images/marketing/discovery.png') }}"
+                    alt="{{ __('public/home.hero_image_alt') }}"
+                    tabindex="0"
+                    role="button"
+                    @click="lightboxImage = '{{ asset('images/marketing/discovery.png') }}'"
+                    @keydown.enter="lightboxImage = '{{ asset('images/marketing/discovery.png') }}'"
+                    class="w-full cursor-zoom-in object-cover"
+                >
             </div>
         </div>
     </section>
@@ -52,7 +62,15 @@
         :description="__('public/home.feature_one_description')"
     >
         <x-slot:media>
-            <img src="{{ asset('images/marketing/search-filters.png') }}" alt="" class="w-full object-cover">
+            <img
+                src="{{ asset('images/marketing/search-filters.png') }}"
+                alt="{{ __('public/home.feature_one_image_alt') }}"
+                tabindex="0"
+                role="button"
+                @click="lightboxImage = '{{ asset('images/marketing/search-filters.png') }}'"
+                @keydown.enter="lightboxImage = '{{ asset('images/marketing/search-filters.png') }}'"
+                class="w-full cursor-zoom-in object-cover"
+            >
         </x-slot:media>
     </x-domain.marketing.feature-section>
 
@@ -62,7 +80,15 @@
         :reverse="true"
     >
         <x-slot:media>
-            <img src="{{ asset('images/marketing/edit-survey.png') }}" alt="" class="w-full object-cover">
+            <img
+                src="{{ asset('images/marketing/edit-survey.png') }}"
+                alt="{{ __('public/home.feature_two_image_alt') }}"
+                tabindex="0"
+                role="button"
+                @click="lightboxImage = '{{ asset('images/marketing/edit-survey.png') }}'"
+                @keydown.enter="lightboxImage = '{{ asset('images/marketing/edit-survey.png') }}'"
+                class="w-full cursor-zoom-in object-cover"
+            >
         </x-slot:media>
     </x-domain.marketing.feature-section>
 
@@ -71,7 +97,15 @@
         :description="__('public/home.feature_three_description')"
     >
         <x-slot:media>
-            <img src="{{ asset('images/marketing/stack.png') }}" alt="" class="w-full object-cover">
+            <img
+                src="{{ asset('images/marketing/stack.png') }}"
+                alt="{{ __('public/home.feature_three_image_alt') }}"
+                tabindex="0"
+                role="button"
+                @click="lightboxImage = '{{ asset('images/marketing/stack.png') }}'"
+                @keydown.enter="lightboxImage = '{{ asset('images/marketing/stack.png') }}'"
+                class="w-full cursor-zoom-in object-cover"
+            >
         </x-slot:media>
     </x-domain.marketing.feature-section>
 
@@ -102,6 +136,9 @@
             <p class="mt-4 text-sm text-muted-foreground">{{ __('public/home.final_cta_note') }}</p>
         </div>
     </section>
+
+    <x-ui.lightbox :label="__('public/home.gallery_close')"/>
+    </div>
 
     <x-domain.marketing.footer/>
 </x-layouts.shells.public>
