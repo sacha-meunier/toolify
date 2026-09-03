@@ -63,7 +63,7 @@ class extends Component {
                 :description="__('app/settings/workspace/teams/create.logo_description')"
             >
                 <div class="flex items-center gap-3" x-data>
-                    <div class="flex size-10 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-muted-foreground">
+                    <div class="flex size-10 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-muted-foreground">
                         @if ($form->logo && $form->logo->isPreviewable())
                             <img src="{{ $form->logo->temporaryUrl() }}" alt="" class="size-full object-cover">
                         @else

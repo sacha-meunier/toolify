@@ -178,7 +178,7 @@ new #[Layout('layouts::shells.settings')] class extends Component
             <div wire:key="listing-populated" class="flex flex-col gap-8">
                 <div class="flex flex-col gap-2 rounded-xl border border-border bg-card px-4 py-4 shadow-xs lg:flex-row lg:items-center lg:gap-3 lg:py-3">
                     <div class="flex min-w-0 items-center gap-3">
-                        <span class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-xs font-medium text-muted-foreground">
+                        <span class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-xs font-medium text-muted-foreground">
                             @if ($this->tool->logo_url)
                                 <img src="{{ $this->tool->logo_url }}" alt="" class="size-full object-cover">
                             @else

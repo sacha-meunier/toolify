@@ -143,7 +143,7 @@ class extends Component {
             @foreach ($this->members as $member)
                 <div class="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3">
                     <div class="flex min-w-0 flex-1 items-center gap-3">
-                        <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-sm font-medium text-muted-foreground">
+                        <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-sm font-medium text-muted-foreground">
                             @if ($member->user->avatar_url)
                                 <img src="{{ $member->user->avatar_url }}" alt="" class="size-full object-cover">
                             @else
@@ -204,7 +204,7 @@ class extends Component {
                         @php $invitation = $pending->invitation; @endphp
                         <div wire:key="pending-invitation-{{ $invitation->id }}" class="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3">
                             <div class="flex min-w-0 flex-1 items-center gap-3">
-                                <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-muted-foreground">
+                                <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-muted-foreground">
                                     <x-ui.icon.user size="sm"/>
                                 </div>
 

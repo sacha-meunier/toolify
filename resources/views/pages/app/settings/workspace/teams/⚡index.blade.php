@@ -63,7 +63,7 @@ class extends Component {
             <div class="flex w-full flex-col divide-y divide-border overflow-clip rounded-xl border border-border bg-card shadow-xs">
                 @foreach ($this->teams as $team)
                     <a href="{{ route('settings.teams.general', $team) }}" wire:navigate class="flex items-center gap-3 px-4 py-3 hover:bg-muted/50">
-                        <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-sm font-medium text-muted-foreground">
+                        <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-sm font-medium text-muted-foreground">
                             @if ($team->logo_url)
                                 <img src="{{ $team->logo_url }}" alt="" class="size-full object-cover">
                             @else

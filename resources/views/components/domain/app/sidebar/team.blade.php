@@ -10,7 +10,7 @@
         'text-sidebar-foreground' => ! $active,
         'text-sidebar-accent-foreground' => $active,
     ])>
-        <span class="flex size-5 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-[10px] font-medium text-muted-foreground">
+        <span class="flex size-5 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-[10px] font-medium text-muted-foreground">
             @if ($team->logo_url)
                 <img src="{{ $team->logo_url }}" alt="" class="size-full object-cover">
             @else

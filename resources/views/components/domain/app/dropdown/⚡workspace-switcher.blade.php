@@ -47,7 +47,7 @@ new class extends Component
         class="w-full min-w-0 gap-2 px-1.5 font-semibold text-sidebar-accent-foreground hover:bg-sidebar-accent/45"
         @click="open = !open"
     >
-        <span class="flex size-5 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-[10px] font-medium text-muted-foreground">
+        <span class="flex size-5 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-[10px] font-medium text-muted-foreground">
             @if ($this->workspace->logo_url)
                 <img src="{{ $this->workspace->logo_url }}" alt="" class="size-full object-cover">
             @else
@@ -87,13 +87,13 @@ new class extends Component
                         <button
                             type="button"
                             wire:click="switchTo({{ $workspace->id }})"
-                            class="flex w-full items-center gap-2 rounded py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
+                            class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                         >
                             <x-ui.icon.checkmark-circle-02
                                 size="sm"
                                 class="shrink-0 {{ $this->workspace?->id === $workspace->id ? 'text-primary' : 'text-transparent' }}"
                             />
-                            <span class="flex size-5 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-[10px] font-medium text-muted-foreground">
+                            <span class="flex size-5 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-[10px] font-medium text-muted-foreground">
                                 @if ($workspace->logo_url)
                                     <img src="{{ $workspace->logo_url }}" alt="" class="size-full object-cover">
                                 @else
@@ -103,7 +103,7 @@ new class extends Component
                             <span class="truncate">{{ $workspace->name }}</span>
                         </button>
                     @empty
-                        <p class="px-6 py-2 text-sm text-muted-foreground">{{ __('app/components/dropdown/workspace-switcher.no_workspace') }}</p>
+                        <p class="px-3 py-2 text-sm text-muted-foreground">{{ __('app/components/dropdown/workspace-switcher.no_workspace') }}</p>
                     @endforelse
                 </div>
 
@@ -112,7 +112,7 @@ new class extends Component
                 <a
                     href="{{ route('workspaces.create-or-join') }}"
                     wire:navigate
-                    class="flex w-full items-center rounded py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
+                    class="flex w-full items-center rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
                 >
                     {{ __('app/components/dropdown/workspace-switcher.create_or_join_workspace') }}
                 </a>

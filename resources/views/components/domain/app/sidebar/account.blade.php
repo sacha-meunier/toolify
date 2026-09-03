@@ -7,7 +7,7 @@
 <div class="relative" x-data="{ open: false }" @click.outside="open = false">
     <button
         type="button"
-        class="flex size-6 shrink-0 items-center justify-center overflow-clip rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground cursor-pointer extend-touch-target"
+        class="flex size-6 shrink-0 items-center justify-center overflow-clip rounded-lg border border-border bg-muted text-xs font-medium text-muted-foreground cursor-pointer extend-touch-target"
         @click="open = !open"
     >
         @if ($user->avatar_url)
@@ -23,7 +23,7 @@
         class="absolute bottom-full left-0 z-20 mb-1.5 w-64 overflow-visible rounded-md border border-border bg-popover p-1 shadow-xs"
     >
         <div class="flex items-center gap-2 px-3 py-2">
-            <div class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-sm font-medium text-muted-foreground">
+            <div class="flex size-8 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-sm font-medium text-muted-foreground">
                 @if ($user->avatar_url)
                     <img src="{{ $user->avatar_url }}" alt="" class="size-full object-cover">
                 @else

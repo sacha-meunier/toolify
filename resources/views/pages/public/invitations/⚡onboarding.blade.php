@@ -145,7 +145,7 @@ class extends Component {
                 <div class="flex w-full flex-col rounded-xl border border-border bg-card p-4">
                     <div class="flex items-center gap-3">
                         <div
-                            class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-sm font-medium text-muted-foreground">
+                            class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-sm font-medium text-muted-foreground">
                             @if ($invitation->workspace->logo_url)
                                 <img src="{{ $invitation->workspace->logo_url }}" alt="" class="size-full object-cover">
                             @else
@@ -166,7 +166,7 @@ class extends Component {
                                 class="absolute left-[18px] top-0 h-[18px] w-3 rounded-bl-xl border-b border-l border-border"></span>
 
                             <div
-                                class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full bg-muted text-sm font-medium text-muted-foreground">
+                                class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-lg bg-muted text-sm font-medium text-muted-foreground">
                                 @if ($invitation->team->logo_url)
                                     <img src="{{ $invitation->team->logo_url }}" alt="" class="size-full object-cover">
                                 @else

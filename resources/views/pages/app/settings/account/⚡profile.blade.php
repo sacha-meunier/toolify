@@ -56,7 +56,7 @@ class extends Component {
                 :description="__('app/settings/account/profile.picture_description')"
             >
                 <x-ui.avatar-picker
-                    class="size-8 border border-border bg-muted text-xs font-medium text-muted-foreground"
+                    class="size-8 bg-muted text-xs font-medium text-muted-foreground"
                     preview-model="form.avatar"
                     :has-preview="(bool) ($form->avatar && $form->avatar->isPreviewable())"
                     :has-persisted="(bool) $form->user->avatar_url"

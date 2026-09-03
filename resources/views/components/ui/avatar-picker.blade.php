@@ -18,11 +18,11 @@
         :aria-expanded="open"
         @click="open = ! open"
         @keydown.enter="open = ! open"
-        {{ $attributes->class('group relative flex items-center justify-center overflow-clip rounded-full') }}
+        {{ $attributes->class('group relative flex items-center justify-center overflow-clip rounded-lg') }}
     >
         {{ $slot }}
 
-        <div class="absolute inset-0 flex items-center justify-center rounded-full bg-black/0 transition-colors group-hover:bg-black/50">
+        <div class="absolute inset-0 flex items-center justify-center rounded-lg bg-black/0 transition-colors group-hover:bg-black/50">
             <x-ui.icon.pen-01 size="xs" stroke-width="3" class="text-white opacity-0 transition-opacity group-hover:opacity-100"/>
         </div>
     </div>

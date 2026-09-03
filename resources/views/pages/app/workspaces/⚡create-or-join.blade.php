@@ -123,7 +123,7 @@ class extends Component {
                         <x-ui.field.description :content="__('app/workspaces/create-or-join.workspace_avatar_hint')"/>
 
                         <div class="flex items-center gap-3">
-                            <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground">
+                            <div class="flex size-9 shrink-0 items-center justify-center overflow-clip rounded-lg border border-border bg-muted text-xs font-medium text-muted-foreground">
                                 @if ($form->workspaceLogo && $form->workspaceLogo->isPreviewable())
                                     <img src="{{ $form->workspaceLogo->temporaryUrl() }}" alt="" class="size-full object-cover">
                                 @else
