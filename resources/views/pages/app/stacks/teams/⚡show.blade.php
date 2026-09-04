@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Team;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Gate;
@@ -8,6 +9,8 @@ use Livewire\Component;
 
 new class extends Component
 {
+    use BuildsPageTitle;
+
     public Team $team;
 
     public function mount(Team $team): void
@@ -21,6 +24,11 @@ new class extends Component
     public function tools(): Collection
     {
         return $this->team->stack?->tools()->withTrashed()->get() ?? new Collection;
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/components/sidebar.stack'), $this->team->name));
     }
 };
 ?>

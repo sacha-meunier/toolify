@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Livewire\Traits\SwitchesLocale;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -7,7 +8,12 @@ use Livewire\Component;
 new #[Layout('layouts::shells.settings')]
 class extends Component
 {
-    use SwitchesLocale;
+    use BuildsPageTitle, SwitchesLocale;
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/account/preferences.heading')));
+    }
 };
 ?>
 

@@ -1,12 +1,13 @@
 @props([
     'backHref' => null,
+    'title' => null,
 ])
 
 @php
     $backHref ??= session('workspace_wizard_back_href', route('discovery'));
 @endphp
 
-<x-layouts.root>
+<x-layouts.root :title="$title">
     <div class="flex min-h-screen flex-col bg-background text-foreground">
         <div class="p-4">
             <x-ui.button

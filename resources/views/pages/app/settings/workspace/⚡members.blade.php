@@ -2,6 +2,7 @@
 
 use App\Enums\InvitationStatus;
 use App\Livewire\Forms\Settings\InviteMemberForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Invitation;
 use App\Models\User;
 use App\Models\Workspace;
@@ -13,6 +14,8 @@ use Livewire\Component;
 
 new #[Layout('layouts::shells.settings')]
 class extends Component {
+    use BuildsPageTitle;
+
     public Workspace $workspace;
 
     public InviteMemberForm $inviteForm;
@@ -118,6 +121,11 @@ class extends Component {
         $invitation->dismiss();
 
         unset($this->pendingInvitations);
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/workspace/members.heading'), $this->workspace->name));
     }
 };
 ?>

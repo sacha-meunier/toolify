@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Forms\Settings\ToolGalleryForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Layout;
@@ -9,7 +10,7 @@ use Livewire\WithFileUploads;
 
 new #[Layout('layouts::shells.settings')] class extends Component
 {
-    use WithFileUploads;
+    use BuildsPageTitle, WithFileUploads;
 
     public Team $team;
 
@@ -45,6 +46,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
     public function removeBanner(): void
     {
         $this->form->removeBanner();
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/teams/listing/gallery.heading'), $this->team->name));
     }
 };
 ?>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Livewire\Traits\ManagesSurveyForm;
 use App\Models\Survey;
 use App\Models\Tool;
@@ -10,7 +11,7 @@ use Livewire\Component;
 
 new class extends Component
 {
-    use ManagesSurveyForm;
+    use BuildsPageTitle, ManagesSurveyForm;
 
     public const int MAX_RECENT_SEARCHES = 10;
 
@@ -121,6 +122,11 @@ new class extends Component
 
     protected function afterSurveyFormSaved(Survey $survey): void
     {
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/components/sidebar.search')));
     }
 };
 ?>

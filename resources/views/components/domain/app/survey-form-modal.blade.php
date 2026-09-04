@@ -34,9 +34,9 @@
 
             <div class="flex flex-col gap-4 rounded-md border border-border p-3">
                 @foreach ([
-                    ['group' => 'pricing', 'label' => __('app/components/survey-form-modal.filter_group_price'), 'cases' => \App\Enums\Pricing::cases()],
-                    ['group' => 'platforms', 'label' => __('app/components/survey-form-modal.filter_group_platform'), 'cases' => \App\Enums\Platform::cases()],
-                    ['group' => 'categories', 'label' => __('app/components/survey-form-modal.filter_group_category'), 'cases' => \App\Enums\Category::cases()],
+                    ['group' => 'pricing', 'label' => __('app/components/survey-form-modal.filter_group_price'), 'cases' => collect(\App\Enums\Pricing::cases())->sortBy(fn ($case) => $case->label())->values()],
+                    ['group' => 'platforms', 'label' => __('app/components/survey-form-modal.filter_group_platform'), 'cases' => collect(\App\Enums\Platform::cases())->sortBy(fn ($case) => $case->label())->values()],
+                    ['group' => 'categories', 'label' => __('app/components/survey-form-modal.filter_group_category'), 'cases' => collect(\App\Enums\Category::cases())->sortBy(fn ($case) => $case->label())->values()],
                 ] as $type)
                     <div class="flex flex-col gap-1.5">
                         <p class="text-xs font-medium text-muted-foreground">{{ $type['label'] }}</p>

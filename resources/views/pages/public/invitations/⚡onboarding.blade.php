@@ -2,6 +2,7 @@
 
 use App\Enums\InvitationStatus;
 use App\Livewire\Forms\Invitations\InvitationOnboardingForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Invitation;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -14,7 +15,7 @@ use Livewire\WithFileUploads;
 
 new #[Layout('layouts::shells.auth')]
 class extends Component {
-    use WithFileUploads;
+    use BuildsPageTitle, WithFileUploads;
 
     public Invitation $invitation;
 
@@ -111,12 +112,22 @@ class extends Component {
     {
         return route('discovery');
     }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(match (true) {
+            $this->blocked === 'wrong-account' => __('public/invitations/onboarding.wrong_account_heading'),
+            $this->blocked !== null => __('public/invitations/onboarding.status_heading', ['status' => $this->invitation->status->label()]),
+            $this->step === 'password' => __('public/invitations/onboarding.password_step_title'),
+            $this->step === 'profile' => __('public/invitations/onboarding.profile_step_title'),
+            default => __('public/invitations/onboarding.welcome_heading'),
+        }));
+    }
 };
 ?>
 
 <div class="flex flex-col gap-6">
-    {{-- Brand : to be replaced later --}}
-    <x-ui.icon.command class="size-12 block self-center"/>
+    <x-ui.logo class="size-12 block self-center"/>
 
     <div wire:transition="content" class="w-full">
         @if ($blocked === 'handled')

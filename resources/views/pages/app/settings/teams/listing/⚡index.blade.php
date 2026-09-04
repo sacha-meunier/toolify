@@ -4,6 +4,7 @@ use App\Enums\Pricing;
 use App\Enums\ToolStatus;
 use App\Enums\ToolVisibility;
 use App\Livewire\Forms\Settings\ToolGalleryForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Team;
 use App\Models\Tool;
 use Illuminate\Support\Facades\Gate;
@@ -15,6 +16,8 @@ use Livewire\Component;
 
 new #[Layout('layouts::shells.settings')] class extends Component
 {
+    use BuildsPageTitle;
+
     public Team $team;
 
     public function mount(Team $team): void
@@ -146,6 +149,11 @@ new #[Layout('layouts::shells.settings')] class extends Component
     public function galleryProgress(): array
     {
         return ['filled' => $this->tool?->gallery?->count() ?? 0, 'max' => ToolGalleryForm::MAX_IMAGES];
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/teams/listing/index.heading'), $this->team->name));
     }
 };
 ?>

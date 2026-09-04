@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Tool;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
@@ -7,10 +8,17 @@ use Livewire\Component;
 
 new class extends Component
 {
+    use BuildsPageTitle;
+
     #[Computed]
     public function tools(): Collection
     {
         return Tool::query()->visibleTo(auth()->user())->orderBy('updated_at', 'desc')->get();
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/discovery.breadcrumb')));
     }
 };
 ?>

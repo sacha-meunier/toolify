@@ -1,6 +1,6 @@
 @php $galleryImages = collect([$tool->banner_url])->merge($tool->gallery ?? [])->filter(); @endphp
 
-<x-layouts.shells.public>
+<x-layouts.shells.public :title="$tool->name">
     <x-seo.tool :tool="$tool"/>
 
     <div class="mx-auto flex max-w-6xl flex-col gap-16 py-8" x-data="{ authModalOpen: false, lightboxImage: null }">

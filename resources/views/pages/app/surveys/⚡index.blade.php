@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Livewire\Traits\ManagesSurveyForm;
 use App\Livewire\Traits\ManagesSurveys;
 use App\Models\Survey;
@@ -14,7 +15,7 @@ use Livewire\Component;
 
 new class extends Component
 {
-    use ManagesSurveyForm, ManagesSurveys;
+    use BuildsPageTitle, ManagesSurveyForm, ManagesSurveys;
 
     public string $scope;
 
@@ -78,6 +79,17 @@ new class extends Component
     protected function afterSurveyFormSaved(Survey $survey): void
     {
         unset($this->surveys);
+    }
+
+    public function render()
+    {
+        $scope = match ($this->scope) {
+            'workspace' => $this->workspace?->name,
+            'team' => $this->team->name,
+            default => null,
+        };
+
+        return $this->view()->title($this->pageTitle(__('app/components/sidebar.surveys'), $scope));
     }
 };
 ?>

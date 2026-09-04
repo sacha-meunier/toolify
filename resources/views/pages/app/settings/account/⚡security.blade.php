@@ -1,12 +1,15 @@
 <?php
 
 use App\Livewire\Forms\Settings\DeleteAccountForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 new #[Layout('layouts::shells.settings')]
 class extends Component {
+    use BuildsPageTitle;
+
     public DeleteAccountForm $deleteAccountForm;
 
     public function mount(): void
@@ -22,6 +25,11 @@ class extends Component {
         session()->regenerateToken();
 
         $this->redirect(route('login'), navigate: false);
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/account/security.heading')));
     }
 };
 ?>

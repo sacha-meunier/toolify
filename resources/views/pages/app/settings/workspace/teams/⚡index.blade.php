@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Team;
 use App\Models\Workspace;
 use Illuminate\Support\Collection;
@@ -10,6 +11,8 @@ use Livewire\Component;
 
 new #[Layout('layouts::shells.settings')]
 class extends Component {
+    use BuildsPageTitle;
+
     public Workspace $workspace;
 
     public function mount(): void
@@ -29,7 +32,16 @@ class extends Component {
     #[Computed]
     public function teams(): Collection
     {
-        return $this->workspace->teams()->orderBy('name')->get();
+        return $this->workspace->teams()
+            ->orderBy('name')
+            ->get()
+            ->filter(fn (Team $team): bool => $team->hasMember(auth()->user()))
+            ->values();
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/workspace/teams/index.heading'), $this->workspace->name));
     }
 };
 ?>

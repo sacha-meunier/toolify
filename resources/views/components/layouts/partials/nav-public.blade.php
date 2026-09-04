@@ -9,9 +9,7 @@
 <div x-data="{ mobileMenuOpen: false }" class="fixed inset-x-0 top-0 z-40 border-b border-border bg-background">
     <nav class="mx-auto flex h-14 max-w-6xl items-center justify-between px-6 lg:px-8">
         <a href="{{ route(auth()->check() ? 'public.homepage' : 'home') }}" class="flex shrink-0 items-center gap-2 py-2 rounded-md extend-touch-target">
-            <span class="flex size-5 items-center justify-center rounded-md bg-sidebar-primary">
-                <x-ui.icon.command size="xs" stroke-width="1.5" class="size-3 text-sidebar-primary-foreground"/>
-            </span>
+            <x-ui.logo class="size-5 text-foreground"/>
             <span class="text-sm font-semibold text-foreground">{{ __('layout.brand_name') }}</span>
         </a>
 

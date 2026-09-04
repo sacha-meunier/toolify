@@ -2,6 +2,7 @@
 
 use App\Enums\InvitationStatus;
 use App\Enums\NotificationType;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Invitation;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Collection;
@@ -11,6 +12,8 @@ use Livewire\Component;
 
 new #[Layout('layouts::shells.app-inbox')]
 class extends Component {
+    use BuildsPageTitle;
+
     public ?DatabaseNotification $notification = null;
 
     public ?Invitation $invitation = null;
@@ -51,6 +54,11 @@ class extends Component {
     public function notifications(): Collection
     {
         return auth()->user()->notifications;
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/inbox.title')));
     }
 };
 ?>

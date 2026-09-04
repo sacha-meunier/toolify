@@ -63,6 +63,11 @@ new class extends Component
         $this->survey->refresh();
         unset($this->tools, $this->scopeLabel, $this->scopeUrl);
     }
+
+    public function render()
+    {
+        return $this->view()->title($this->survey->name);
+    }
 };
 ?>
 

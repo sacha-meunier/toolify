@@ -1,15 +1,23 @@
 <?php
 
+use App\Livewire\Traits\BuildsPageTitle;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component
 {
+    use BuildsPageTitle;
+
     #[Computed]
     public function tools(): Collection
     {
         return auth()->user()->stack?->tools()->withTrashed()->get() ?? new Collection;
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/components/sidebar.stack')));
     }
 };
 ?>

@@ -1,4 +1,4 @@
-<x-layouts.shells.auth>
+<x-layouts.shells.auth title="Link expired">
     {{-- Brand : to be replaced later --}}
     <span class="mx-auto flex size-12 items-center justify-center rounded-2xl bg-sidebar-primary">
                 <x-ui.icon.command size="xs" stroke-width="1.5" class="size-6 text-sidebar-primary-foreground"/>

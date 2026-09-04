@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Forms\Settings\WorkspaceForm;
+use App\Livewire\Traits\BuildsPageTitle;
 use App\Models\Workspace;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Layout;
@@ -9,7 +10,7 @@ use Livewire\WithFileUploads;
 
 new #[Layout('layouts::shells.settings')]
 class extends Component {
-    use WithFileUploads;
+    use BuildsPageTitle, WithFileUploads;
 
     public Workspace $workspace;
 
@@ -46,6 +47,11 @@ class extends Component {
         $this->workspace->delete();
 
         $this->redirectRoute('discovery');
+    }
+
+    public function render()
+    {
+        return $this->view()->title($this->pageTitle(__('app/settings/workspace/general.heading'), $this->workspace->name));
     }
 };
 ?>

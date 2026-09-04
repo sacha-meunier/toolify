@@ -22,6 +22,11 @@ new class extends Component
     {
         return collect([$this->tool->banner_url])->merge($this->tool->gallery ?? [])->filter();
     }
+
+    public function render()
+    {
+        return $this->view()->title($this->tool->name);
+    }
 };
 ?>
 

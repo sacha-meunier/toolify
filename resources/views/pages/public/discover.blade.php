@@ -1,4 +1,4 @@
-<x-layouts.shells.public>
+<x-layouts.shells.public :title="__('public/discover.title')">
     <x-seo.tool-list :tools="$tools"/>
 
     <div class="mx-auto max-w-6xl px-6 py-16 lg:px-8">

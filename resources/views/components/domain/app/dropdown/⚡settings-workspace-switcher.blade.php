@@ -16,6 +16,7 @@ new class extends Component
         $currentId = $this->workspace?->id;
 
         return auth()->user()->accessibleWorkspaces()
+            ->sortBy(fn (Workspace $workspace) => $workspace->name)
             ->sortBy(fn (Workspace $workspace) => $workspace->id === $currentId ? 0 : 1)
             ->values();
     }

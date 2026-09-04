@@ -48,9 +48,9 @@
                 class="z-50 max-h-[70vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-md border border-border bg-popover p-1 shadow-md lg:max-h-none lg:overflow-visible"
             >
                 @foreach ([
-                    ['group' => 'pricing', 'label' => __('app/components/topbar/search.filter_group_price'), 'cases' => \App\Enums\Pricing::cases()],
-                    ['group' => 'platforms', 'label' => __('app/components/topbar/search.filter_group_platform'), 'cases' => \App\Enums\Platform::cases()],
-                    ['group' => 'categories', 'label' => __('app/components/topbar/search.filter_group_category'), 'cases' => \App\Enums\Category::cases()],
+                    ['group' => 'pricing', 'label' => __('app/components/topbar/search.filter_group_price'), 'cases' => collect(\App\Enums\Pricing::cases())->sortBy(fn ($case) => $case->label())->values()],
+                    ['group' => 'platforms', 'label' => __('app/components/topbar/search.filter_group_platform'), 'cases' => collect(\App\Enums\Platform::cases())->sortBy(fn ($case) => $case->label())->values()],
+                    ['group' => 'categories', 'label' => __('app/components/topbar/search.filter_group_category'), 'cases' => collect(\App\Enums\Category::cases())->sortBy(fn ($case) => $case->label())->values()],
                 ] as $type)
                     <div class="relative" x-data="{ expanded: false }" @mouseenter="if (window.innerWidth >= 1024) expanded = true" @mouseleave="if (window.innerWidth >= 1024) expanded = false">
                         <button
@@ -82,19 +82,21 @@
                             x-transition:leave-end="opacity-0 scale-95"
                             class="origin-top bg-muted/30 py-1 lg:absolute lg:top-0 lg:right-full lg:z-30 lg:mr-1 lg:w-56 lg:origin-top-right lg:overflow-hidden lg:rounded-md lg:border lg:border-border lg:bg-popover lg:p-1 lg:shadow-xs"
                         >
-                            @foreach ($type['cases'] as $case)
-                                <button
-                                    type="button"
-                                    wire:click="toggleFilter('{{ $type['group'] }}', '{{ $case->value }}')"
-                                    class="flex w-full items-center gap-2 rounded py-2 pr-3 pl-6 text-left text-sm text-foreground hover:bg-muted"
-                                >
-                                    <x-ui.icon.checkmark-circle-02
-                                        size="sm"
-                                        class="shrink-0 transition-colors duration-150 ease-out {{ in_array($case->value, $filters[$type['group']], true) ? 'text-primary' : 'text-transparent' }}"
-                                    />
-                                    <span class="truncate">{{ $case->label() }}</span>
-                                </button>
-                            @endforeach
+                            <div class="lg:max-h-[60vh] lg:overflow-y-auto">
+                                @foreach ($type['cases'] as $case)
+                                    <button
+                                        type="button"
+                                        wire:click="toggleFilter('{{ $type['group'] }}', '{{ $case->value }}')"
+                                        class="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                                    >
+                                        <x-ui.icon.checkmark-circle-02
+                                            size="sm"
+                                            class="shrink-0 transition-colors duration-150 ease-out {{ in_array($case->value, $filters[$type['group']], true) ? 'text-primary' : 'text-transparent' }}"
+                                        />
+                                        <span class="truncate">{{ $case->label() }}</span>
+                                    </button>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 @endforeach

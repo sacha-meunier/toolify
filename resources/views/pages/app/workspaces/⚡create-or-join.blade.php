@@ -62,6 +62,11 @@ class extends Component {
 
         $this->redirect(route('discovery'), navigate: true);
     }
+
+    public function render()
+    {
+        return $this->view()->title(__('app/workspaces/create-or-join.choice_heading'));
+    }
 };
 ?>
 
