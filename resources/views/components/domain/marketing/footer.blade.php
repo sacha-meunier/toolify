@@ -8,10 +8,8 @@
 
 <footer class="border-t border-border">
     <div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-10 sm:flex-row sm:justify-between lg:px-8">
-        <a href="{{ route(auth()->check() ? 'public.homepage' : 'home') }}" class="flex items-center gap-2 rounded-md hover:bg-muted extend-touch-target">
-            <span class="flex size-5 items-center justify-center rounded-md bg-sidebar-primary">
-                <x-ui.icon.command size="xs" stroke-width="1.5" class="size-3 text-sidebar-primary-foreground"/>
-            </span>
+        <a href="{{ route(auth()->check() ? 'public.homepage' : 'home') }}" class="flex items-center gap-2 rounded-md extend-touch-target">
+            <x-ui.logo class="size-5 text-foreground"/>
             <span class="text-sm font-semibold text-foreground">{{ __('public/home.brand_name') }}</span>
         </a>
 

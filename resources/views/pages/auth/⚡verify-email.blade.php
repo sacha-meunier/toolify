@@ -34,8 +34,7 @@ new class extends Component {
         }, { once: true });
     "
 >
-    {{-- Brand : to be replaced later --}}
-    <x-ui.icon.command class="size-12 block"/>
+    <x-ui.logo class="size-12 block"/>
 
     <x-domain.auth.step :title="__('auth/verify-email.step_title')">
         <div class="flex flex-col gap-4 w-full">

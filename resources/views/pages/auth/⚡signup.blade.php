@@ -53,8 +53,7 @@ new class extends Component {
 ?>
 
 <div class="flex flex-col gap-6">
-    {{-- Brand : to be replaced later --}}
-    <x-ui.icon.command class="size-12 block self-center"/>
+    <x-ui.logo class="size-12 block self-center"/>
 
     <div wire:transition="content" class="w-full">
         @if ($step === 1)
